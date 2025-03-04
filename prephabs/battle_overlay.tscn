@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://c5au12ja27aq6"]
+
+[ext_resource type="PackedScene" uid="uid://wc8076dp0nrg" path="res://prephabs/draggable_spot.tscn" id="1_m25ou"]
+[ext_resource type="Texture2D" uid="uid://b84jvofvhhvkn" path="res://art/temp_assets/AB.jpg" id="2_mhbff"]
+
+[node name="battle_overlay" type="CanvasLayer"]
+
+[node name="draggable_spot" parent="." instance=ExtResource("1_m25ou")]
+offset_left = 85.0
+offset_top = 481.0
+offset_right = 85.0
+offset_bottom = 481.0
+scale = Vector2(4.57047, 4.57047)
+setTextureTo = ExtResource("2_mhbff")
+
+[node name="draggable_spot2" parent="." instance=ExtResource("1_m25ou")]
+offset_left = 970.0
+offset_top = 481.0
+offset_right = 970.0
+offset_bottom = 481.0
+scale = Vector2(4.57047, 4.57047)
