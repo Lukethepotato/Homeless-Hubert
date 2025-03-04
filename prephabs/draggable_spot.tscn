@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://wc8076dp0nrg"]
 
 [ext_resource type="Script" path="res://drag_spot_script.gd" id="1_0oyh1"]
-[ext_resource type="Script" path="res://prephabs/draggable_spot_parent.gd" id="1_kvsg6"]
+[ext_resource type="Script" path="res://draggable_spot_parent.gd" id="1_kvsg6"]
 [ext_resource type="PackedScene" uid="uid://cahb7rpax867j" path="res://prephabs/drag_preview.tscn" id="3_tqdn5"]
 
 [node name="draggable_spot" type="Control"]
@@ -15,6 +15,7 @@ script = ExtResource("1_kvsg6")
 
 [node name="Panel" type="Panel" parent="."]
 z_index = -1
+layout_mode = 0
 offset_left = -10.0
 offset_top = -8.0
 offset_right = 30.0
@@ -22,6 +23,7 @@ offset_bottom = 32.0
 
 [node name="TextureRect" type="TextureRect" parent="."]
 unique_name_in_owner = true
+layout_mode = 0
 offset_left = -8.0
 offset_top = -5.0
 offset_right = 27.0

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cahb7rpax867j"]
 
-[ext_resource type="Script" path="res://prephabs/drag_preview.gd" id="1_7d72y"]
+[ext_resource type="Script" path="res://drag_preview.gd" id="1_7d72y"]
 
 [node name="drag_preview" type="Sprite2D"]
 script = ExtResource("1_7d72y")

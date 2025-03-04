@@ -17,6 +17,8 @@ config/icon="res://icon.svg"
 [autoload]
 
 Dialogic="*res://addons/dialogic/Core/DialogicGameHandler.gd"
+PlayerAutoload="*res://autoloads/player_autoload.gd"
+GlobalsAutoload="*res://autoloads/globals_autoload.gd"
 
 [dialogic]
 
@@ -33,7 +35,8 @@ enabled=PackedStringArray("res://addons/YouCanDoIt/plugin.cfg", "res://addons/di
 
 folder_colors={
 "res://Resources/": "red",
-"res://art/": "orange"
+"res://art/": "orange",
+"res://autoloads/": "gray"
 }
 
 [input]

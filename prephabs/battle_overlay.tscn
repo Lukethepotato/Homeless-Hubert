@@ -14,8 +14,8 @@ scale = Vector2(4.57047, 4.57047)
 setTextureTo = ExtResource("2_mhbff")
 
 [node name="draggable_spot2" parent="." instance=ExtResource("1_m25ou")]
-offset_left = 970.0
-offset_top = 481.0
-offset_right = 970.0
-offset_bottom = 481.0
+offset_left = 989.0
+offset_top = 475.0
+offset_right = 989.0
+offset_bottom = 475.0
 scale = Vector2(4.57047, 4.57047)
