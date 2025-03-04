@@ -2,10 +2,9 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_50020"]
 
-[node name="Node2D" type="Node2D"]
+[node name="Hubert" type="Node2D"]
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
-position = Vector2(348, 185)
 shape = SubResource("CircleShape2D_50020")
