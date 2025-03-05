@@ -1,3 +1,20 @@
-[gd_scene format=3 uid="uid://cjnea8maf3y5l"]
+[gd_scene load_steps=4 format=3 uid="uid://cjnea8maf3y5l"]
+
+[ext_resource type="PackedScene" uid="uid://co6wwlpta51be" path="res://prephabs/Hubert.tscn" id="1_n63l7"]
+
+[sub_resource type="Animation" id="Animation_4spdc"]
+resource_name = "new_animation"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_b23nh"]
+_data = {
+"new_animation": SubResource("Animation_4spdc")
+}
 
 [node name="main dock" type="Node2D"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_b23nh")
+}
+
+[node name="Hubert" parent="." instance=ExtResource("1_n63l7")]
