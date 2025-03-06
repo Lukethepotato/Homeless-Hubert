@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://co6wwlpta51be"]
+[gd_scene load_steps=11 format=3 uid="uid://co6wwlpta51be"]
 
 [ext_resource type="Texture2D" uid="uid://c6njw0wsgo6vb" path="res://art/temp_assets/Goblin_Forward_Run-Sheet.png" id="1_1xmmu"]
 [ext_resource type="Texture2D" uid="uid://7j27av2hvwmc" path="res://art/temp_assets/Goblin_Idle.png" id="2_x2k4m"]
+[ext_resource type="Script" path="res://prephabs/misc_player_anim_player.gd" id="3_q40jc"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3unbv"]
 atlas = ExtResource("1_1xmmu")
@@ -64,3 +65,6 @@ animation = &"Idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
 shape = SubResource("CircleShape2D_50020")
+
+[node name="misc player anim player" type="Node2D" parent="."]
+script = ExtResource("3_q40jc")
