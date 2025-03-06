@@ -21,7 +21,8 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	pass
+	if attack_resource != null:
+		texture = attack_resource.icon_texture
 
 func _get_drag_data(at_position):
 	if dropped == false && draggableUI:

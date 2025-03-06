@@ -1,21 +1,42 @@
-[gd_scene load_steps=3 format=3 uid="uid://c5au12ja27aq6"]
+[gd_scene load_steps=5 format=3 uid="uid://c5au12ja27aq6"]
 
 [ext_resource type="PackedScene" uid="uid://wc8076dp0nrg" path="res://prephabs/draggable_spot.tscn" id="1_m25ou"]
+[ext_resource type="Script" path="res://prephabs/attack_in_spot_dectector.gd" id="2_co3gh"]
 [ext_resource type="Texture2D" uid="uid://b84jvofvhhvkn" path="res://art/temp_assets/AB.jpg" id="2_mhbff"]
+[ext_resource type="Resource" uid="uid://ctrdselwi2kf1" path="res://Resources/Attacks/Player/Kick.tres" id="4_mue14"]
 
 [node name="battle_overlay" type="CanvasLayer"]
 
-[node name="draggable_spot" parent="." instance=ExtResource("1_m25ou")]
-offset_left = 85.0
-offset_top = 481.0
-offset_right = 85.0
-offset_bottom = 481.0
+[node name="attack_spot" parent="." instance=ExtResource("1_m25ou")]
+offset_left = 140.0
+offset_top = 192.0
+offset_right = 140.0
+offset_bottom = 192.0
+scale = Vector2(1.74089, 1.74089)
+
+[node name="attack in spot dectector" type="Node2D" parent="attack_spot"]
+script = ExtResource("2_co3gh")
+
+[node name="Attack_give" parent="." instance=ExtResource("1_m25ou")]
+offset_left = 80.0001
+offset_top = 486.0
+offset_right = 80.0001
+offset_bottom = 486.0
 scale = Vector2(4.57047, 4.57047)
 setTextureTo = ExtResource("2_mhbff")
+attack_resource_give = ExtResource("4_mue14")
 
-[node name="draggable_spot2" parent="." instance=ExtResource("1_m25ou")]
-offset_left = 989.0
-offset_top = 475.0
-offset_right = 989.0
-offset_bottom = 475.0
-scale = Vector2(4.57047, 4.57047)
+[node name="Button" type="Button" parent="."]
+offset_left = 830.0
+offset_top = 534.0
+offset_right = 1112.0
+offset_bottom = 617.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Button"]
+layout_mode = 0
+offset_right = 282.0
+offset_bottom = 82.0
+theme_override_font_sizes/normal_font_size = 56
+bbcode_enabled = true
+text = "attack
+"
