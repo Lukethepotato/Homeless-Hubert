@@ -1,6 +1,6 @@
 extends Node
 
-signal dropped_UI(attack_resource, dropped_where)
+signal dropped_UI(attack_resource: player_attack, dropped_where_name: String)
 @export var current_turn: int = -1
 @export var enemy_node: NodePath
 #-1 = not in fight 

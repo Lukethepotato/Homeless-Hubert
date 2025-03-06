@@ -39,9 +39,7 @@ func _get_drag_data(at_position):
 		data["origin_Texture"] = texture
 		data["orgin_Node"] = self
 		data["orgin_Preview"] = preview
-		
-		if attack_resource != null:
-			data["attack_resource"] = attack_resource
+		data["attack_resource"] = attack_resource
 		
 		texture = null
 		return data
@@ -60,7 +58,15 @@ func _drop_data(_pos, data):
 	if draggableUI:
 		texture = data["origin_Texture"]
 		data["origin_Texture"] = null
-		GlobalsAutoload.emit_signal("dropped_UI", data["attack_resource"], get_parent().name)
+		
+		#theres an error here I cant bother to fix
+		#its your problem now Jeremy
+		
+		#oh wait I fixed it nevermind, you owe me now
+		
+		
+		if data["attack_resource"]!= null:
+			GlobalsAutoload.emit_signal("dropped_UI", data["attack_resource"], get_parent().name)
 		dropped = true
 		print("dropped on " + name)
 		
