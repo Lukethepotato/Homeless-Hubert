@@ -4,6 +4,7 @@ extends Control
 @export var attack_resource_give: player_attack
 #if this a UI peice that shows one of the attacks you can drag
 #this var determines what attack that would be
+@export var attack_resource_holding: player_attack
 
 func _ready() -> void:
 	%TextureRect.texture = setTextureTo

@@ -212,5 +212,3 @@ last_resort_attack = ExtResource("6_o0do7")
 [node name="Attack pattern" parent="Enemy/Enemy attack manager" instance=ExtResource("4_bfxgc")]
 
 [node name="battle_overlay" parent="." instance=ExtResource("1_pcs3m")]
-
-[connection signal="animation_finished" from="BattleScen_AnimPlayer" to="BattleScen_AnimPlayer" method="_on_animation_finished"]

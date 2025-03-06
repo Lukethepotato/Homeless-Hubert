@@ -12,4 +12,10 @@ func _process(delta: float) -> void:
 
 
 func _on_attack_button_pressed() -> void:
-	GlobalsAutoload.current_turn = 3 # Replace with function body.
+	if (PlayerAutoload.attack_resources_in[0] != null):
+		GlobalsAutoload.current_turn = 3
+		 # Replace with function body.
+
+
+func _on_clear_choesen_attacks_pressed() -> void:
+	GlobalsAutoload.clear_attack_selection.emit() # Replace with function body.

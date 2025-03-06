@@ -17,7 +17,7 @@ static var dropped := false
 
 
 func _ready() -> void:
-	pass # Replace with function body.
+	GlobalsAutoload.clear_attack_selection.connect(_clear_attack_selection_receive) # Replace with function body.
 
 
 func _process(delta: float) -> void:
@@ -67,6 +67,7 @@ func _drop_data(_pos, data):
 		
 		
 		if data["attack_resource"]!= null:
+			get_parent().attack_resource_holding = data["attack_resource"]
 			GlobalsAutoload.emit_signal("dropped_UI", data["attack_resource"], get_parent().name)
 		dropped = true
 		print("dropped on " + name)
@@ -77,4 +78,9 @@ func _reset():
 		texture = orginText
 	else:
 		dropped = false
+	
+func _clear_attack_selection_receive():
+	if texture != null && get_parent().attack_resource_give == null:
+		attack_resource = null
+		texture = null
 	

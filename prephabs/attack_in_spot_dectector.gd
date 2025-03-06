@@ -8,19 +8,20 @@ extends Node2D
 
 
 func _ready() -> void:
-	GlobalsAutoload.dropped_UI.connect(dropped_in_spot_signal_receive) # Replace with function body.
-
+	#GlobalsAutoload.dropped_UI.connect(dropped_in_spot_signal_receive) # Replace with function body.
+	pass
 
 func _process(delta: float) -> void:
 	if get_parent().currentTexture != null:
 		slot_full = true
+		PlayerAutoload.attack_resources_in[order_slot_attack] = get_parent().attack_resource_holding
 	else:
 		slot_full = false
 		
 		if PlayerAutoload.attack_resources_in[order_slot_attack] != null:
 			PlayerAutoload.attack_resources_in[order_slot_attack] = null
 	
-func dropped_in_spot_signal_receive(attack_resource: player_attack, dropped_where_name:String):
-	if (get_parent().name == dropped_where_name):
-		PlayerAutoload.attack_resources_in[order_slot_attack] = attack_resource
+#func dropped_in_spot_signal_receive(attack_resource: player_attack, dropped_where_name:String):
+	#if (get_parent().name == dropped_where_name):
+		#PlayerAutoload.attack_resources_in[order_slot_attack] = attack_resource
 	 # Replace with function body.

@@ -1,5 +1,5 @@
 extends AnimationPlayer
-
+var attack_in_turn_index: int = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -8,14 +8,16 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if GlobalsAutoload.current_turn == 3:
+	if GlobalsAutoload.current_turn == PlayerAutoload.goes_on_turn:
 		play(PlayerAutoload.attack_resources_in[0].animation_name)
 		
 
 
 func _on_animation_finished(anim_name: StringName) -> void:
-	if anim_name == PlayerAutoload.attack_resources_in[0].animation_name && PlayerAutoload.attack_resources_in[1] != null:
-		play(PlayerAutoload.attack_resources_in[1].animation_name)
-		
+	if (PlayerAutoload.attack_resources_in.size() < attack_in_turn_index):
+		play(PlayerAutoload.attack_resources_in[attack_in_turn_index].animation_name)
+		attack_in_turn_index += 1
+		print("attack played")
 	else:
-		GlobalsAutoload.current_turn = 4 # Replace with function body.
+		attack_in_turn_index = 0
+		GlobalsAutoload.current_turn += 1
