@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://cjnea8maf3y5l"]
+[gd_scene load_steps=7 format=3 uid="uid://cjnea8maf3y5l"]
 
 [ext_resource type="PackedScene" uid="uid://co6wwlpta51be" path="res://prephabs/Hubert.tscn" id="1_n63l7"]
 
@@ -68,6 +68,8 @@ _data = {
 "new_animation": SubResource("Animation_4spdc")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0bnu0"]
+
 [node name="main dock" type="Node2D"]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -76,5 +78,10 @@ libraries = {
 }
 
 [node name="Hubert" parent="." instance=ExtResource("1_n63l7")]
-position = Vector2(110, 382)
+position = Vector2(407, 370)
 scale = Vector2(2.81022, 2.81022)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(388, 376)
+scale = Vector2(9.26103, 6.53406)
+shape = SubResource("RectangleShape2D_0bnu0")

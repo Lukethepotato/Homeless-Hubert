@@ -27,6 +27,14 @@ region = Rect2(164, 0, 41, 32)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("2_x2k4m")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_3unbv")
 }, {
 "duration": 1.0,
@@ -42,15 +50,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_5056w")
 }],
 "loop": true,
-"name": &"Attack",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("2_x2k4m")
-}],
-"loop": true,
-"name": &"Idle",
+"name": &"basic_kick",
 "speed": 5.0
 }]
 
