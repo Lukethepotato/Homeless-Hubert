@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://gpn4laugdwmm"]
+
+[ext_resource type="Script" path="res://damage_donator.gd" id="1_ufc1o"]
+
+[node name="damage_donator" type="Node2D"]
+script = ExtResource("1_ufc1o")

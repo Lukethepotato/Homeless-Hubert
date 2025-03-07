@@ -13,9 +13,10 @@ signal clear_attack_selection()
 
 #if you can make this an enum go ahead bucko
 
-@export var enemy_node: NodePath
+@export var enemy_node: Node2D
 var previous_turn: int = -1
 #Not really always the previous turn it just helps check if the turn has changed
+@export var combo_node: Node2D
 
 
 func _ready() -> void:

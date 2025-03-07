@@ -14,10 +14,15 @@ func _process(delta: float) -> void:
 
 
 func _on_animation_finished(anim_name: StringName) -> void:
-	if (PlayerAutoload.attack_resources_in.size() < attack_in_turn_index):
+	if (PlayerAutoload.attack_resources_in.size() > attack_in_turn_index):
+		PlayerAutoload.attack_history.append(PlayerAutoload.attack_resources_in[attack_in_turn_index])
+		
+		#check if a combo was done here and if so dont play the next attack in turn index play combo
+		
 		play(PlayerAutoload.attack_resources_in[attack_in_turn_index].animation_name)
 		attack_in_turn_index += 1
 		print("attack played")
+		
 	else:
 		attack_in_turn_index = 0
 		GlobalsAutoload.current_turn += 1

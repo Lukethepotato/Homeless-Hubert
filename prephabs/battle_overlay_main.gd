@@ -14,6 +14,7 @@ func _process(delta: float) -> void:
 func _on_attack_button_pressed() -> void:
 	if (PlayerAutoload.attack_resources_in[0] != null):
 		GlobalsAutoload.current_turn = 3
+	
 		 # Replace with function body.
 
 

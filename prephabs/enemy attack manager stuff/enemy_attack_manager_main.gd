@@ -9,6 +9,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if GlobalsAutoload.current_turn == GlobalsAutoload.enemy_goes_on_turn:
 		%BattleScen_AnimPlayer.play(_return_enemy_attack_choice().animation_name)
+		print("enemy attack")
 		
 func _return_enemy_attack_choice() -> enemy_attack:
 	for i in get_child_count():
