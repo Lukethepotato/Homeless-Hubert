@@ -6,4 +6,5 @@
 
 [resource]
 script = ExtResource("2_txla2")
-attacks_in_combo = Array[ExtResource("1_j1abr")]([ExtResource("2_14nyn"), ExtResource("2_14nyn"), null])
+attacks_in_combo = Array[ExtResource("1_j1abr")]([ExtResource("2_14nyn"), ExtResource("2_14nyn"), ExtResource("2_14nyn")])
+animation_name = "combo_slippy_trip"
