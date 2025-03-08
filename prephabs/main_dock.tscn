@@ -121,4 +121,5 @@ combo_resources = Array[ExtResource("7_lru2h")]([ExtResource("8_0wops")])
 
 [connection signal="animation_changed" from="AnimationPlayer" to="AnimationPlayer" method="_on_animation_changed"]
 [connection signal="animation_finished" from="AnimationPlayer" to="AnimationPlayer" method="_on_animation_finished"]
+[connection signal="animation_started" from="AnimationPlayer" to="AnimationPlayer" method="_on_animation_started"]
 [connection signal="body_entered" from="Fishing spot" to="." method="_on_fishing_spot_body_entered"]
