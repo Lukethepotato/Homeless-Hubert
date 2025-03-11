@@ -28,6 +28,7 @@ func _play_attack():
 	else:
 		if attack_in_turn_index_finished < PlayerAutoload.attack_resources_in.size() -1:
 			play(combo_checking().animation_name)
+			print("combo attack done")
 			PlayerAutoload.attack_history.clear()
 			attack_in_turn_index_finished += 1
 		else:
@@ -39,18 +40,16 @@ func _play_attack():
 
 
 func _on_animation_finished(anim_name: StringName) -> void:
-	
 	_play_attack()
 	
 func combo_checking() -> player_combo:
 	for i in GlobalsAutoload.combo_node.combo_resources.size():
 		attack_history_with_chosen_attacks = PlayerAutoload.attack_history.duplicate()
-		attack_history_with_chosen_attacks.append_array(PlayerAutoload.attack_resources_in)
+		attack_history_with_chosen_attacks.append(PlayerAutoload.attack_resources_in[attack_in_turn_index_finished])
 		
 		#var attack_history_cut: Array[player_attack]
-		attack_history_cut = attack_history_with_chosen_attacks.slice(PlayerAutoload.attack_history.size()-1, attack_history_with_chosen_attacks.size()).duplicate()
-		if attack_history_cut == GlobalsAutoload.combo_node.combo_resources[i].attacks_in_combo:
-			print("combo returned")
+		attack_history_cut = attack_history_with_chosen_attacks.slice(PlayerAutoload.attack_history.size()-1 - GlobalsAutoload.combo_node.combo_resources[i].attacks_in_combo.size()-1 -1, attack_history_with_chosen_attacks.size())
+		if attack_history_cut.hash() == GlobalsAutoload.combo_node.combo_resources[i].attacks_in_combo.hash():
 			return GlobalsAutoload.combo_node.combo_resources[i]
 			
 	return null
