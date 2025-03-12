@@ -11,12 +11,15 @@ config_version=5
 [application]
 
 config/name="Homeless Hubert's Hamburger Hullabaloo"
+run/main_scene="res://prephabs/main_dock.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
 Dialogic="*res://addons/dialogic/Core/DialogicGameHandler.gd"
+PlayerAutoload="*res://autoloads/player_autoload.gd"
+GlobalsAutoload="*res://autoloads/globals_autoload.gd"
 
 [dialogic]
 
@@ -32,7 +35,9 @@ enabled=PackedStringArray("res://addons/YouCanDoIt/plugin.cfg", "res://addons/di
 [file_customization]
 
 folder_colors={
-"res://Resources/": "red"
+"res://Resources/": "red",
+"res://art/": "orange",
+"res://autoloads/": "gray"
 }
 
 [input]
@@ -46,3 +51,12 @@ dialogic_default_action={
 , Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":0,"pressure":0.0,"pressed":false,"script":null)
 ]
 }
+"Left Click"={
+"deadzone": 0.5,
+"events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":1,"position":Vector2(365, 19),"global_position":Vector2(374, 65),"factor":1.0,"button_index":1,"canceled":false,"pressed":true,"double_click":true,"script":null)
+]
+}
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
