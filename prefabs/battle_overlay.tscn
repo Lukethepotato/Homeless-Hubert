@@ -1,10 +1,10 @@
 [gd_scene load_steps=6 format=3 uid="uid://c5au12ja27aq6"]
 
-[ext_resource type="Script" path="res://prephabs/battle_overlay_main.gd" id="1_gvbtk"]
-[ext_resource type="PackedScene" uid="uid://wc8076dp0nrg" path="res://prephabs/draggable_spot.tscn" id="1_m25ou"]
-[ext_resource type="Script" path="res://prephabs/attack_in_spot_dectector.gd" id="2_co3gh"]
+[ext_resource type="Script" path="res://prefabs/battle_overlay_main.gd" id="1_gvbtk"]
+[ext_resource type="PackedScene" uid="uid://wc8076dp0nrg" path="res://prefabs/draggable_spot.tscn" id="1_m25ou"]
+[ext_resource type="Script" path="res://prefabs/attack_in_spot_dectector.gd" id="2_co3gh"]
 [ext_resource type="Resource" uid="uid://ctrdselwi2kf1" path="res://Resources/Attacks/Player/punch.tres" id="4_mue14"]
-[ext_resource type="Script" path="res://prephabs/health_displays_script.gd" id="5_f07nv"]
+[ext_resource type="Script" path="res://prefabs/health_displays_script.gd" id="5_f07nv"]
 
 [node name="battle_overlay" type="CanvasLayer"]
 script = ExtResource("1_gvbtk")

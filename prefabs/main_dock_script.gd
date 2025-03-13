@@ -1,14 +1,8 @@
 extends Node2D
+
+# This script is attached to the parent node of the main scene. It contains the battle scenarios whilst also handling battle commencement.
+
 @export var battle_scenarios : Array[PackedScene]
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
 
 func _on_fishing_spot_body_entered(body: Node2D) -> void:
 	GlobalsAutoload.current_turn = 0

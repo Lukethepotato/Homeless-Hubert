@@ -1,11 +1,11 @@
 [gd_scene load_steps=16 format=3 uid="uid://cjnea8maf3y5l"]
 
-[ext_resource type="PackedScene" uid="uid://co6wwlpta51be" path="res://prephabs/Hubert.tscn" id="1_n63l7"]
-[ext_resource type="Script" path="res://prephabs/main_dock_script.gd" id="1_wjf3g"]
-[ext_resource type="PackedScene" uid="uid://b1h2w6ctilpdy" path="res://prephabs/battle scenarios/battle Scenario.tscn" id="2_xyfop"]
-[ext_resource type="Script" path="res://prephabs/main_dock_animation_player.gd" id="3_nsanw"]
-[ext_resource type="PackedScene" uid="uid://gpn4laugdwmm" path="res://prephabs/damage_donator.tscn" id="5_krbdy"]
-[ext_resource type="Script" path="res://prephabs/all_combo_container.gd" id="6_33w4j"]
+[ext_resource type="PackedScene" uid="uid://co6wwlpta51be" path="res://prefabs/Hubert.tscn" id="1_n63l7"]
+[ext_resource type="Script" path="res://prefabs/main_dock_script.gd" id="1_wjf3g"]
+[ext_resource type="PackedScene" uid="uid://b1h2w6ctilpdy" path="res://prefabs/battle scenarios/battle Scenario.tscn" id="2_xyfop"]
+[ext_resource type="Script" path="res://prefabs/main_dock_animation_player.gd" id="3_nsanw"]
+[ext_resource type="PackedScene" uid="uid://gpn4laugdwmm" path="res://prefabs/damage_donator.tscn" id="5_krbdy"]
+[ext_resource type="Script" path="res://prefabs/all_combo_container.gd" id="6_33w4j"]
 [ext_resource type="Script" path="res://Resources/combos/player/player_combo.gd" id="7_lru2h"]
 [ext_resource type="Resource" uid="uid://kq1uq0yxny0g" path="res://Resources/combos/player/slippy_trip.tres" id="8_0wops"]
 
@@ -108,11 +108,11 @@ tracks/2/keys = {
 }]
 }
 
-[sub_resource type="Animation" id="Animation_4spdc"]
-resource_name = "new_animation"
-
 [sub_resource type="Animation" id="Animation_gbnay"]
 resource_name = "hubert_start_anim"
+
+[sub_resource type="Animation" id="Animation_4spdc"]
+resource_name = "new_animation"
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_b23nh"]
 _data = {
@@ -158,5 +158,4 @@ combo_resources = Array[ExtResource("7_lru2h")]([ExtResource("8_0wops")])
 
 [connection signal="animation_changed" from="AnimationPlayer" to="AnimationPlayer" method="_on_animation_changed"]
 [connection signal="animation_finished" from="AnimationPlayer" to="AnimationPlayer" method="_on_animation_finished"]
-[connection signal="animation_started" from="AnimationPlayer" to="AnimationPlayer" method="_on_animation_started"]
 [connection signal="body_entered" from="Fishing spot" to="." method="_on_fishing_spot_body_entered"]

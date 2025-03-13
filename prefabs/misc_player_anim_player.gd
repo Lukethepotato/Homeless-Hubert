@@ -4,11 +4,4 @@ extends Node2D
 #make sure to make him idle when hes in a fight by using the global autoload
 #dont want to make hubert move left and right during the enemys turn
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+# What the fuck does this mean Luke? You need to explain this verbally.
