@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cdymqdr452r68"]
 
-[ext_resource type="Script" path="res://prefabs/enemy attack manager stuff/enemy_attack_manager_main.gd" id="1_lfr3i"]
+[ext_resource type="Script" path="res://prephabs/enemy attack manager stuff/enemy_attack_manager_main.gd" id="1_lfr3i"]
 
 [node name="Enemy attack manager" type="Node2D"]
 script = ExtResource("1_lfr3i")

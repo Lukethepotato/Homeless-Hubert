@@ -1,13 +1,14 @@
-[gd_scene load_steps=19 format=3 uid="uid://b1h2w6ctilpdy"]
+[gd_scene load_steps=20 format=3 uid="uid://b1h2w6ctilpdy"]
 
-[ext_resource type="Script" path="res://prefabs/battle scenarios/battle_scenario_anim_player.gd" id="1_82kc4"]
+[ext_resource type="Script" path="res://prephabs/battle scenarios/battle_scenario_anim_player.gd" id="1_82kc4"]
 [ext_resource type="Texture2D" uid="uid://7j27av2hvwmc" path="res://art/temp_assets/Goblin_Idle.png" id="1_myu5w"]
-[ext_resource type="PackedScene" uid="uid://c5au12ja27aq6" path="res://prefabs/battle_overlay.tscn" id="1_pcs3m"]
+[ext_resource type="PackedScene" uid="uid://c5au12ja27aq6" path="res://prephabs/battle_overlay.tscn" id="1_pcs3m"]
 [ext_resource type="Texture2D" uid="uid://bchmb2qxgwmh0" path="res://art/temp_assets/GoldMedium-Sheet.png" id="2_bdd1a"]
-[ext_resource type="Script" path="res://prefabs/battle scenarios/main_enemy_node_script.gd" id="2_cveda"]
-[ext_resource type="PackedScene" uid="uid://cdymqdr452r68" path="res://prefabs/enemy attack manager stuff/enemy_attack_manager.tscn" id="3_6ero3"]
-[ext_resource type="PackedScene" uid="uid://chwxkkpa6v2ik" path="res://prefabs/enemy attack manager stuff/components/attack_pattern.tscn" id="4_bfxgc"]
-[ext_resource type="PackedScene" uid="uid://gpn4laugdwmm" path="res://prefabs/damage_donator.tscn" id="9_nr2w5"]
+[ext_resource type="Script" path="res://prephabs/battle scenarios/main_enemy_node_script.gd" id="2_cveda"]
+[ext_resource type="PackedScene" uid="uid://cdymqdr452r68" path="res://prephabs/enemy attack manager stuff/enemy_attack_manager.tscn" id="3_6ero3"]
+[ext_resource type="PackedScene" uid="uid://chwxkkpa6v2ik" path="res://prephabs/enemy attack manager stuff/components/attack_pattern.tscn" id="4_bfxgc"]
+[ext_resource type="Resource" uid="uid://caqte230he11q" path="res://Resources/Attacks/Enemy/punch.tres" id="6_115l5"]
+[ext_resource type="PackedScene" uid="uid://gpn4laugdwmm" path="res://prephabs/damage_donator.tscn" id="9_nr2w5"]
 
 [sub_resource type="Animation" id="Animation_ulm2a"]
 length = 0.001
@@ -221,6 +222,7 @@ sprite_frames = SubResource("SpriteFrames_wf16b")
 animation = &"Idle"
 
 [node name="Enemy attack manager" parent="Enemy" instance=ExtResource("3_6ero3")]
+fallback_attack = ExtResource("6_115l5")
 
 [node name="Attack pattern" parent="Enemy/Enemy attack manager" instance=ExtResource("4_bfxgc")]
 

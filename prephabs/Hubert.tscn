@@ -1,9 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://co6wwlpta51be"]
+[gd_scene load_steps=16 format=3 uid="uid://co6wwlpta51be"]
 
 [ext_resource type="Texture2D" uid="uid://c6njw0wsgo6vb" path="res://art/temp_assets/Goblin_Forward_Run-Sheet.png" id="1_1xmmu"]
 [ext_resource type="Texture2D" uid="uid://7j27av2hvwmc" path="res://art/temp_assets/Goblin_Idle.png" id="2_x2k4m"]
 [ext_resource type="Texture2D" uid="uid://bap6raewbggi3" path="res://art/temp_assets/Turret_Shoot-Sheet.png" id="3_fssy4"]
-[ext_resource type="Script" path="res://prefabs/misc_player_anim_player.gd" id="3_q40jc"]
+[ext_resource type="Script" path="res://prephabs/misc_player_anim_player.gd" id="3_q40jc"]
+[ext_resource type="Script" path="res://prephabs/hubert.gd" id="4_dhhqc"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3unbv"]
 atlas = ExtResource("1_1xmmu")
@@ -90,11 +91,12 @@ animation = &"combo_slippy_trip"
 autoplay = "Idle"
 frame = 1
 frame_progress = 0.86722
+script = ExtResource("4_dhhqc")
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
 shape = SubResource("CircleShape2D_50020")
 
-[node name="misc player anim player" type="Node2D" parent="."]
+[node name="messabe bord" type="Node2D" parent="."]
 script = ExtResource("3_q40jc")

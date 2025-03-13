@@ -11,7 +11,7 @@ func _ready() -> void:
 
 # Do we really need to check this every frame?
 func _process(delta: float) -> void:
-	if get_parent().currentTexture != null:
+	if get_parent().current_texture != null:
 		slot_full = true
 		PlayerAutoload.attack_resources_in[attack_slot_order] = get_parent().attack_resource_holding
 	else:
