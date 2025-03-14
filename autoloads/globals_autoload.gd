@@ -41,6 +41,7 @@ func _process(delta: float) -> void:
 		#clear_attack_selection.emit()
 		#ambivalent_turn = current_turn
 	if (current_turn > 3):
+		print("current turn = 1 _ globalsAutoload")
 		current_turn = 1
 		
 

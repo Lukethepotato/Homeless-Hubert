@@ -8,7 +8,6 @@ func _ready() -> void:
 	GlobalsAutoload.turn_changed.connect(start_enemy_attack)
 
 func start_enemy_attack() -> void:
-	print("eneny attack")
 	if GlobalsAutoload.current_turn == GlobalsAutoload.enemy_goes_on_turn:
 		var chosen_attack = _return_enemy_attack_choice()
 

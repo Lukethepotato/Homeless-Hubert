@@ -7,6 +7,7 @@ extends CanvasLayer
 func _on_attack_button_pressed() -> void:
 	if (PlayerAutoload.attack_resources_in[0] != null):
 		GlobalsAutoload.current_turn = 2
+		print("current turn = 2 _ overlay")
 
 func _on_clear_choesen_attacks_pressed() -> void:
 	GlobalsAutoload.clear_attack_selection.emit();
