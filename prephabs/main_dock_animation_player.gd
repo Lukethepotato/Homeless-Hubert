@@ -7,7 +7,7 @@ var attack_in_turn_index_finished: int = 0
 @export var attack_history_with_chosen_attacks: Array[player_attack]
 
 func _process(delta: float) -> void:
-	if GlobalsAutoload.current_turn == PlayerAutoload.goes_on_turn:
+	if GlobalsAutoload.current_turn == PlayerAutoload.goes_on_turn:	
 		_play_attack()
 
 # This function calls back to the combo checking function in order to play the chosen attack. If a combo is found, the animation played changes if the combo would be completed by the attack.
