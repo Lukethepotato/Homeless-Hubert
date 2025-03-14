@@ -26,6 +26,12 @@ var timer;
 var ambivalent_turn := -1
 # ! NOT FOR USE AS A WAY TO CHECK THE PREVIOUS TURN, HELP FOR CHECKING IF THE TURN HAS CHANGED
 @export var combo_node: Node2D
+enum location_types 
+{
+	NONE,
+	LOW,
+	HIGH
+}
 
 func _process(delta: float) -> void:
 	if (current_turn != ambivalent_turn && current_turn > 1):

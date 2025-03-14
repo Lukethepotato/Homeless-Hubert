@@ -6,3 +6,5 @@ class_name player_attack
 @export var damage: float = 0
 @export var animation_name: String = ""
 @export var icon_texture: Texture2D
+@export var hit_region := GlobalsAutoload.location_types.HIGH;
+@export var gives_block := GlobalsAutoload.location_types.NONE;

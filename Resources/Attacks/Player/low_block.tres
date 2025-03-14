@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="player_attack" load_steps=2 format=3 uid="uid://dmqgyh8xxlmhk"]
+
+[ext_resource type="Script" path="res://Resources/player_attack_resource.gd" id="1_65oia"]
+
+[resource]
+script = ExtResource("1_65oia")
+damage = 0.0
+animation_name = ""
+hit_region = 2
+gives_block = 1
