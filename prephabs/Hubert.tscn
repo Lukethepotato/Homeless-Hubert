@@ -1,30 +1,26 @@
-[gd_scene load_steps=16 format=3 uid="uid://co6wwlpta51be"]
+[gd_scene load_steps=15 format=3 uid="uid://co6wwlpta51be"]
 
-[ext_resource type="Texture2D" uid="uid://c6njw0wsgo6vb" path="res://art/temp_assets/Goblin_Forward_Run-Sheet.png" id="1_1xmmu"]
+[ext_resource type="Texture2D" uid="uid://ca237n0njexqp" path="res://art/temp_assets/192637.png" id="2_h37bg"]
 [ext_resource type="Texture2D" uid="uid://7j27av2hvwmc" path="res://art/temp_assets/Goblin_Idle.png" id="2_x2k4m"]
 [ext_resource type="Texture2D" uid="uid://bap6raewbggi3" path="res://art/temp_assets/Turret_Shoot-Sheet.png" id="3_fssy4"]
 [ext_resource type="Script" path="res://prephabs/misc_player_anim_player.gd" id="3_q40jc"]
 [ext_resource type="Script" path="res://prephabs/hubert.gd" id="4_dhhqc"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_3unbv"]
-atlas = ExtResource("1_1xmmu")
-region = Rect2(0, 0, 41, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_giyfn"]
+atlas = ExtResource("2_h37bg")
+region = Rect2(945, 86, 105, 86)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_sxewa"]
-atlas = ExtResource("1_1xmmu")
-region = Rect2(41, 0, 41, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_2s5l2"]
+atlas = ExtResource("2_h37bg")
+region = Rect2(210, 172, 105, 86)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_d0wdl"]
-atlas = ExtResource("1_1xmmu")
-region = Rect2(82, 0, 41, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_14vb8"]
+atlas = ExtResource("2_h37bg")
+region = Rect2(315, 172, 105, 86)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_d3mcy"]
-atlas = ExtResource("1_1xmmu")
-region = Rect2(123, 0, 41, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5056w"]
-atlas = ExtResource("1_1xmmu")
-region = Rect2(164, 0, 41, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_wdt48"]
+atlas = ExtResource("2_h37bg")
+region = Rect2(420, 172, 105, 86)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dk3s5"]
 atlas = ExtResource("3_fssy4")
@@ -50,23 +46,20 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_3unbv")
+"texture": SubResource("AtlasTexture_giyfn")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_sxewa")
+"texture": SubResource("AtlasTexture_2s5l2")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_d0wdl")
+"texture": SubResource("AtlasTexture_14vb8")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_d3mcy")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_5056w")
+"texture": SubResource("AtlasTexture_wdt48")
 }],
 "loop": true,
 "name": &"basic_punch",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -87,10 +80,9 @@ animations = [{
 
 [node name="Hubert" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_gomab")
-animation = &"combo_slippy_trip"
+animation = &"basic_punch"
 autoplay = "Idle"
-frame = 1
-frame_progress = 0.86722
+frame_progress = 0.30226
 script = ExtResource("4_dhhqc")
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]

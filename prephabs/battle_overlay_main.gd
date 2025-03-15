@@ -5,7 +5,7 @@ extends CanvasLayer
 # This script 100% can and should be refactored.
 
 func _on_attack_button_pressed() -> void:
-	if (PlayerAutoload.attack_resources_in[0] != null):
+	if (PlayerAutoload.attack_resources_in[0] != null) && GlobalsAutoload.current_turn == 1:
 		GlobalsAutoload.current_turn = 2
 		print("current turn = 2 _ overlay")
 
