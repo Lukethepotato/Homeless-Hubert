@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="player_attack" load_steps=3 format=3 uid="uid://dmqgyh8xxlmhk"]
+
+[ext_resource type="Texture2D" uid="uid://dmapuornrtfpu" path="res://art/temp_assets/images (3).jpg" id="1_7jbyf"]
+[ext_resource type="Script" path="res://Resources/player_attack_resource.gd" id="1_65oia"]
+
+[resource]
+script = ExtResource("1_65oia")
+damage = 0.0
+animation_name = ""
+icon_texture = ExtResource("1_7jbyf")
+hit_region = 0
+gives_block = 1

@@ -13,3 +13,4 @@ func _on_fishing_spot_body_entered(body: Node2D) -> void:
 	#later on the intro cinematic coding would go here
 	
 	GlobalsAutoload.current_turn = 1
+	print("current turn = 1")

@@ -7,7 +7,7 @@ var attack_in_turn_index_finished: int = 0
 @export var attack_history_with_chosen_attacks: Array[player_attack]
 
 func _process(delta: float) -> void:
-	if GlobalsAutoload.current_turn == PlayerAutoload.goes_on_turn:
+	if GlobalsAutoload.current_turn == PlayerAutoload.goes_on_turn:	
 		_play_attack()
 
 # This function calls back to the combo checking function in order to play the chosen attack. If a combo is found, the animation played changes if the combo would be completed by the attack.
@@ -17,24 +17,23 @@ func _play_attack():
 			play(PlayerAutoload.attack_resources_in[attack_in_turn_index_finished].animation_name)
 			PlayerAutoload.attack_history.append(PlayerAutoload.attack_resources_in[attack_in_turn_index_finished])
 			attack_in_turn_index_finished += 1
-			print("play atatck")
 		else:
 			attack_in_turn_index_finished = 0
 			GlobalsAutoload.current_turn += 1
-			print("attacks finished")
+			print("current turn + 1 _ player")
 	else:
 		if attack_in_turn_index_finished < PlayerAutoload.attack_resources_in.size() -1:
 			play(combo_checking().animation_name)
-			print("combo attack done")
 			PlayerAutoload.attack_history.clear()
 			attack_in_turn_index_finished += 1
 		else:
 			attack_in_turn_index_finished = 0
 			GlobalsAutoload.current_turn += 1
-			print("attacks finished")
+			print("current turn + 1 _ player")
 
 func _on_animation_finished(anim_name: StringName) -> void:
-	_play_attack()
+	if GlobalsAutoload.current_turn == PlayerAutoload.goes_on_turn:	
+		_play_attack()
 
 # This function checks if there are any completable combos and returns the proper combo if true.
 func combo_checking() -> player_combo:

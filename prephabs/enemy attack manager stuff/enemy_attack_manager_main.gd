@@ -9,9 +9,15 @@ func _ready() -> void:
 
 func start_enemy_attack() -> void:
 	if GlobalsAutoload.current_turn == GlobalsAutoload.enemy_goes_on_turn:
-		%BattleScen_AnimPlayer.play(_return_enemy_attack_choice().animation_name)
+		var chosen_attack = _return_enemy_attack_choice()
+		
+		await GlobalsAutoload.timer.timeout
+		# need some help here jerm bear
+		
+		%BattleScen_AnimPlayer.play(chosen_attack.animation_name)
+		$"..".attack_history.append(chosen_attack)
 		print("enemy attack")
-
+		
 func _return_enemy_attack_choice() -> enemy_attack:
 	for i in get_child_count():
 		if get_child(i)._attack_verdict() != null:
