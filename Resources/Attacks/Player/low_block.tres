@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("1_65oia")
 damage = 0.0
-animation_name = ""
+animation_name = "hubert_low_block"
 icon_texture = ExtResource("1_7jbyf")
 hit_region = 0
 gives_block = 1

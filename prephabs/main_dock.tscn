@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cjnea8maf3y5l"]
+[gd_scene load_steps=16 format=3 uid="uid://cjnea8maf3y5l"]
 
 [ext_resource type="PackedScene" uid="uid://co6wwlpta51be" path="res://prephabs/Hubert.tscn" id="1_n63l7"]
 [ext_resource type="Script" path="res://prephabs/main_dock_script.gd" id="1_wjf3g"]
@@ -108,11 +108,47 @@ tracks/2/keys = {
 }]
 }
 
+[sub_resource type="Animation" id="Animation_o2w2b"]
+resource_name = "hubert_low_block"
+length = 0.295
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Hubert:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [&"low_block"]
+}
+
+[sub_resource type="Animation" id="Animation_y0cwl"]
+resource_name = "hubert_high_block"
+length = 0.295
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Hubert:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [&"high_block"]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_b23nh"]
 _data = {
 "RESET": SubResource("Animation_vog60"),
 "combo_slippy_trip": SubResource("Animation_l5h7e"),
-"hubert_basic_punch": SubResource("Animation_wnkjl")
+"hubert_basic_punch": SubResource("Animation_wnkjl"),
+"hubert_high_block": SubResource("Animation_y0cwl"),
+"hubert_low_block": SubResource("Animation_o2w2b")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ljyot"]
@@ -132,7 +168,6 @@ script = ExtResource("3_nsanw")
 position = Vector2(453, 318)
 scale = Vector2(2.81022, 2.81022)
 animation = &"Idle"
-frame_progress = 0.0
 
 [node name="Fishing spot" type="Area2D" parent="."]
 

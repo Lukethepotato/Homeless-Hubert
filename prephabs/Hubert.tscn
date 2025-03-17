@@ -1,10 +1,12 @@
-[gd_scene load_steps=15 format=3 uid="uid://co6wwlpta51be"]
+[gd_scene load_steps=17 format=3 uid="uid://co6wwlpta51be"]
 
 [ext_resource type="Texture2D" uid="uid://ca237n0njexqp" path="res://art/temp_assets/192637.png" id="2_h37bg"]
 [ext_resource type="Texture2D" uid="uid://7j27av2hvwmc" path="res://art/temp_assets/Goblin_Idle.png" id="2_x2k4m"]
 [ext_resource type="Texture2D" uid="uid://bap6raewbggi3" path="res://art/temp_assets/Turret_Shoot-Sheet.png" id="3_fssy4"]
 [ext_resource type="Script" path="res://prephabs/misc_player_anim_player.gd" id="3_q40jc"]
 [ext_resource type="Script" path="res://prephabs/hubert.gd" id="4_dhhqc"]
+[ext_resource type="Texture2D" uid="uid://b3t7quusvo7pm" path="res://art/temp_assets/high block.png" id="4_vq6of"]
+[ext_resource type="Texture2D" uid="uid://chf7jlmrp8tit" path="res://art/temp_assets/low block.png" id="5_oy105"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_giyfn"]
 atlas = ExtResource("2_h37bg")
@@ -74,15 +76,30 @@ animations = [{
 "loop": true,
 "name": &"combo_slippy_trip",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_vq6of")
+}],
+"loop": true,
+"name": &"high_block",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_oy105")
+}],
+"loop": false,
+"name": &"low_block",
+"speed": 5.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_50020"]
 
 [node name="Hubert" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_gomab")
-animation = &"basic_punch"
+animation = &"high_block"
 autoplay = "Idle"
-frame_progress = 0.30226
 script = ExtResource("4_dhhqc")
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
