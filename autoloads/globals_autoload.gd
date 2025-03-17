@@ -55,4 +55,5 @@ func timeout(duration := 2.0) -> void:
 	timer = Timer.new();
 	timer.wait_time = duration;
 	timer.one_shot = true;
+	get_tree().root.add_child(timer);
 	timer.start();
