@@ -203,7 +203,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Node2D" type="Node2D"]
+[node name="Battle Scenario" type="Node2D"]
 
 [node name="BattleScen_AnimPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true

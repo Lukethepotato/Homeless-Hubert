@@ -10,6 +10,15 @@ signal turn_changed()
 # Combo data
 @export var all_player_combos: Array[player_combo]
 
+# Game states
+enum game_states {
+	PAUSED,
+	IN_BATTLE,
+	DIALOGUE,
+	ROAMING
+}
+var state = game_states.ROAMING;
+
 var timer;
 @export var current_turn := -1;
 @export var enemy_goes_on_turn = 3
@@ -34,23 +43,34 @@ enum location_types
 }
 
 func _process(delta: float) -> void:
-	if (current_turn != ambivalent_turn && current_turn > 1):
-		turn_changed.emit();
-		ambivalent_turn = current_turn
-		# The following comments are for testing purposes.
-		#clear_attack_selection.emit()
-		#ambivalent_turn = current_turn
-	if (current_turn > 3):
-		print("current turn = 1 _ globalsAutoload")
-		current_turn = 1
-		
+	if state == game_states.IN_BATTLE:
+		if (current_turn != ambivalent_turn && current_turn > 1):
+			turn_changed.emit();
+			ambivalent_turn = current_turn
+			# The following comments are for testing purposes.
+			#clear_attack_selection.emit()
+			#ambivalent_turn = current_turn
+		if (current_turn > 3):
+			print("current turn = 1 _ globalsAutoload")
+			current_turn = 1
+
+# This function initiates a battle, taking in a list of scenarios.
+# Luke, this is replacing the function you had in the main dock script; LMK if there are any issues
+func start_battle(battle_scenarios) -> void:
+	state = game_states.IN_BATTLE;
+	current_turn = 0
+	var rand_battleS_index = randf_range(0, battle_scenarios.size() -1)
+	var instance = battle_scenarios[rand_battleS_index].instantiate()
+	add_child(instance)
+	
+	#later on the intro cinematic coding would go here
+	
+	current_turn = 1
+	print("current turn = 1")
 
 func timeout(duration := 2.0) -> void:
 	# To wait for the end of the timeout, please place the following line in your code:
 	# await globals_autoload.timer.timeout;
-	
-	# I would be lost unless you left this comment I love you and im striving to become more like 
-	# you every day (:
 	
 	timer = Timer.new();
 	timer.wait_time = duration;
