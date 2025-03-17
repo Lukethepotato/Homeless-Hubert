@@ -57,7 +57,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_wdt48")
 }],
-"loop": true,
+"loop": false,
 "name": &"basic_punch",
 "speed": 10.0
 }, {
