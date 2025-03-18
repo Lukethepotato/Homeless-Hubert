@@ -2,6 +2,12 @@ extends Node2D
 
 # This node/script will store information and functions relating to an enemy/enemies.
 
+# LISTEN UP MAGGOT! IF YOU WANT TO ADD TRAITS, FOLLOW THIS GUIDE!
+# FIRST UP, GO TO globals_autoload AND ADD YOUR TRAIT TO THE traits ENUM!!
+# AFTER THAT'S DONE, RETURN TO THIS SCRIPT AND MODIFY THE modify_stats_with_traits FUNCTION!
+# YOU WANT TO ADD A NEW CASE TO THE SWITCH CASE STATEMENT FOR YOUR NEW TRAIT
+# ONCE YOU'RE DONE WITH THAT, YOU'RE FINISHED!!!! GOOD JOB MAGGOT!
+
 # Fish stats
 @export var health: int = 20 # Base health of fish
 @export var traits : Array[int]; # Array containing all of the fish's traits
