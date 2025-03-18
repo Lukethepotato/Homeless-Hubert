@@ -66,6 +66,6 @@ func _reset():
 
 # This function removes the attack selection upon receiving the appropriate signal.
 func _clear_attack_selection_receive():
-	if texture != null && get_parent().attack_resource_give == null:
+	if texture != null && attack_resource != null && get_parent().attack_resource_give == null:
 		attack_resource = null
 		texture = null
