@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ddujcnibjm6ql"
-path="res://.godot/imported/Joe-update.png-aa9e0683f4058215d43bfe8dd9f5de17.ctex"
+uid="uid://nn5jysws1fjs"
+path="res://.godot/imported/Screenshot 2025-03-18 090842.png-ca53184acae1b9e12cb5d2c0f2011dc0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://prefabs/enemy attack manager stuff/Joe-update.png"
-dest_files=["res://.godot/imported/Joe-update.png-aa9e0683f4058215d43bfe8dd9f5de17.ctex"]
+source_file="res://art/temp_assets/Screenshot 2025-03-18 090842.png"
+dest_files=["res://.godot/imported/Screenshot 2025-03-18 090842.png-ca53184acae1b9e12cb5d2c0f2011dc0.ctex"]
 
 [params]
 

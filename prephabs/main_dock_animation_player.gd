@@ -16,6 +16,7 @@ func _play_attack():
 		if attack_in_turn_index_finished < PlayerAutoload.attack_resources_in.size()-1 && PlayerAutoload.attack_resources_in[attack_in_turn_index_finished] != null && current_animation == "":
 			play(PlayerAutoload.attack_resources_in[attack_in_turn_index_finished].animation_name)
 			PlayerAutoload.attack_history.append(PlayerAutoload.attack_resources_in[attack_in_turn_index_finished])
+			PlayerAutoload.current_block = PlayerAutoload.attack_resources_in[attack_in_turn_index_finished].gives_block
 			attack_in_turn_index_finished += 1
 		else:
 			attack_in_turn_index_finished = 0

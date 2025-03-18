@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Homeless Hubert's Hamburger Hunt"
-run/main_scene="res://prefabs/main_dock.tscn"
+run/main_scene="res://prephabs/main_dock.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
