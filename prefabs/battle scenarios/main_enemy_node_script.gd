@@ -14,9 +14,12 @@ extends Node2D
 @export var strength := 1; # Additive factor to damage
 @export var defense := 0; # Subtractive factor from damage taken
 @export var agility := 1; # Additive factor to speed
-@export var luck := 0; # Additive factor to critical chance
+@export var luck := 0; # Additive factor to critical chance (base chance = 1)
 @export var evasion := 0.05; # Written as decimal, chance of dodging out of 1
+
+# Resistances
 @export var disruption_resist := 0.05; # Written as decimal, chance of resisting disruption
+@export var ailment_resist := 0.05; # Written as decimal, chance of resisting ailment
 
 
 @export var current_block := GlobalsAutoload.location_types.NONE
@@ -48,3 +51,26 @@ func modify_stats_with_traits() -> void:
 				pass;
 			GlobalsAutoload.traits.RIGID:
 				pass;
+			GlobalsAutoload.traits.VAMPIRE:
+				# I don't know how you want to implement lifesteal so I'll leave it up to you unless you say otherwise
+				strength += 1;
+				defense -= 4;
+			GlobalsAutoload.traits.FRENZIED:
+				strength += 2;
+				defense -= 2;
+			GlobalsAutoload.traits.CALM:
+				strength -= 2;
+				defense += 2;
+				disruption_resist += 0.05
+			GlobalsAutoload.traits.FERAL:
+				strength += 10
+				defense -= 6;
+				agility -= 2;
+				evasion = 0;
+				disruption_resist = 0;
+			GlobalsAutoload.traits.DEADEYE:
+				strength -= 4
+				luck = 49;
+			GlobalsAutoload.traits.HARDY:
+				disruption_resist += 0.30;
+				ailment_resist += 0.50;
