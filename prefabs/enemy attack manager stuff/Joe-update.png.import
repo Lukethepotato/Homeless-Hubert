@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ddujcnibjm6ql"
-path="res://.godot/imported/Joe-update.png-24c47780140f106cf6c4f0295f2c8acb.ctex"
+path="res://.godot/imported/Joe-update.png-aa9e0683f4058215d43bfe8dd9f5de17.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://prephabs/enemy attack manager stuff/Joe-update.png"
-dest_files=["res://.godot/imported/Joe-update.png-24c47780140f106cf6c4f0295f2c8acb.ctex"]
+source_file="res://prefabs/enemy attack manager stuff/Joe-update.png"
+dest_files=["res://.godot/imported/Joe-update.png-aa9e0683f4058215d43bfe8dd9f5de17.ctex"]
 
 [params]
 
