@@ -6,6 +6,7 @@ extends Node
 signal dropped_UI(attack_resource: player_attack, dropped_where_name: String)
 signal clear_attack_selection()
 signal turn_changed()
+signal health_updated()
 
 # Combo data
 @export var all_player_combos: Array[player_combo]
@@ -66,6 +67,7 @@ func start_battle(battle_scenarios) -> void:
 	#later on the intro cinematic coding would go here
 	
 	current_turn = 1
+	health_updated.emit();
 	print("current turn = 1")
 
 func timeout(duration := 2.0) -> void:

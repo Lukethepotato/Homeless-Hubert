@@ -14,8 +14,9 @@ func _damage_donation(player_damaged: bool, amount: int):
 		var enemy_attack_hist =  GlobalsAutoload.enemy_node.attack_history
 		if GlobalsAutoload.enemy_node.attack_history[enemy_attack_hist.size()- 1].hit_region != PlayerAutoload.current_block: 
 			PlayerAutoload.health -= amount
-		
+	
 	elif player_damaged == false:
 		if PlayerAutoload.attack_history[PlayerAutoload.attack_history.size() -1].hit_region != GlobalsAutoload.enemy_node.current_block:
 			GlobalsAutoload.enemy_node.health -= amount
-		
+	
+	GlobalsAutoload.health_updated.emit();
