@@ -36,11 +36,17 @@ var timer;
 var ambivalent_turn := -1
 # ! NOT FOR USE AS A WAY TO CHECK THE PREVIOUS TURN, HELP FOR CHECKING IF THE TURN HAS CHANGED
 @export var combo_node: Node2D
-enum location_types 
-{
+enum location_types {
 	NONE,
 	LOW,
 	HIGH
+}
+enum traits {
+	SLIPPERY,
+	OBESE,
+	FLEXIBLE,
+	RIGID,
+	INTELLIGENT
 }
 
 func _process(delta: float) -> void:
