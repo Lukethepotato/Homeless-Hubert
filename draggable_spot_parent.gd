@@ -17,8 +17,6 @@ func _ready() -> void:
 	#the resources texture in process
 	# ???
 
-# Again, correct me if I'm wrong, but I don't think this needs to update every frame.
-	
 func _spot_dropped(attack_resource: player_attack, dropped_where_name: String):
 	current_texture = %TextureRect.texture
 	

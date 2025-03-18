@@ -3,8 +3,8 @@
 [ext_resource type="Texture2D" uid="uid://ca237n0njexqp" path="res://art/temp_assets/192637.png" id="2_h37bg"]
 [ext_resource type="Texture2D" uid="uid://7j27av2hvwmc" path="res://art/temp_assets/Goblin_Idle.png" id="2_x2k4m"]
 [ext_resource type="Texture2D" uid="uid://bap6raewbggi3" path="res://art/temp_assets/Turret_Shoot-Sheet.png" id="3_fssy4"]
-[ext_resource type="Script" path="res://prephabs/misc_player_anim_player.gd" id="3_q40jc"]
-[ext_resource type="Script" path="res://prephabs/hubert.gd" id="4_dhhqc"]
+[ext_resource type="Script" path="res://prefabs/misc_player_anim_player.gd" id="3_q40jc"]
+[ext_resource type="Script" path="res://prefabs/hubert.gd" id="4_dhhqc"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_giyfn"]
 atlas = ExtResource("2_h37bg")
@@ -58,7 +58,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_wdt48")
 }],
 "loop": false,
-"name": &"basic_punch",
+"name": &"basic:punch",
 "speed": 10.0
 }, {
 "frames": [{
@@ -72,23 +72,28 @@ animations = [{
 "texture": SubResource("AtlasTexture_tceuy")
 }],
 "loop": true,
-"name": &"combo_slippy_trip",
+"name": &"combo:slippy_trip",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"walk",
 "speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_50020"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_av1s8"]
+size = Vector2(21, 28)
 
-[node name="Hubert" type="AnimatedSprite2D"]
-sprite_frames = SubResource("SpriteFrames_gomab")
-animation = &"basic_punch"
-autoplay = "Idle"
-frame_progress = 0.30226
+[node name="Hubert" type="CharacterBody2D"]
 script = ExtResource("4_dhhqc")
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+[node name="Hubert_Sprites" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_gomab")
+animation = &"Idle"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
-shape = SubResource("CircleShape2D_50020")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 1)
+shape = SubResource("RectangleShape2D_av1s8")
 
 [node name="messabe bord" type="Node2D" parent="."]
 script = ExtResource("3_q40jc")

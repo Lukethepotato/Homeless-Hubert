@@ -1,6 +1,6 @@
 extends Node2D
 
-# This script handles enemy attacking. 
+# This script handles enemy attacking.
 
 @export var fallback_attack: enemy_attack
 
