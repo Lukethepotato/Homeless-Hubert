@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+# This script handles Hubert's movement, gravity, and sprites.
+
 @export var speed := 3
 @export var jump_power := 2
 @export var frame := 1

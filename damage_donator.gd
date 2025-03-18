@@ -3,7 +3,8 @@ extends Node2D
 # This script contains a single "damage donation" function which takes in an integer as the damage dealt in a given attack. The function itself checks which character should receive the damage.
 
 # Maybe rewrite to be less rigid? What if we want an attack to do self damage?
-# it can now,  you now happy cunt?
+# it can now, you happy cunt?
+# kill yourself pussy btw i fixed the grammar of your comment bitch you're welcome
 
 func _damage_donation(player_damaged: bool, amount: int):
 	#The player_damaged parameter determines who the damage will be donated to 
