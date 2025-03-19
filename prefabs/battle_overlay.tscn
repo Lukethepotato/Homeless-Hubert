@@ -20,6 +20,7 @@ scale = Vector2(1.74089, 1.74089)
 
 [node name="attack in spot dectector" type="Node2D" parent="attack_spot2"]
 script = ExtResource("2_co3gh")
+attack_slot_order = 1
 
 [node name="attack_spot" parent="." instance=ExtResource("1_m25ou")]
 offset_left = 140.0
@@ -30,7 +31,6 @@ scale = Vector2(1.74089, 1.74089)
 
 [node name="attack in spot dectector" type="Node2D" parent="attack_spot"]
 script = ExtResource("2_co3gh")
-attack_slot_order = 1
 
 [node name="attack_givers" type="Node" parent="."]
 
