@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://c5au12ja27aq6"]
+[gd_scene load_steps=8 format=3 uid="uid://c5au12ja27aq6"]
 
 [ext_resource type="Script" path="res://prefabs/battle_overlay_main.gd" id="1_gvbtk"]
 [ext_resource type="PackedScene" uid="uid://wc8076dp0nrg" path="res://prefabs/draggable_spot.tscn" id="1_m25ou"]
 [ext_resource type="Script" path="res://prefabs/attack_in_spot_dectector.gd" id="2_co3gh"]
 [ext_resource type="Resource" uid="uid://ctrdselwi2kf1" path="res://Resources/Attacks/Player/punch.tres" id="4_mue14"]
 [ext_resource type="Script" path="res://prefabs/health_displays_script.gd" id="5_f07nv"]
+[ext_resource type="Resource" uid="uid://dmqgyh8xxlmhk" path="res://Resources/Attacks/Player/low_block.tres" id="5_um5jo"]
+[ext_resource type="Resource" uid="uid://bbilq7ugxdnsx" path="res://Resources/Attacks/Player/high_block.tres" id="6_dbajq"]
 
 [node name="battle_overlay" type="CanvasLayer"]
 script = ExtResource("1_gvbtk")
@@ -28,14 +30,33 @@ scale = Vector2(1.74089, 1.74089)
 
 [node name="attack in spot dectector" type="Node2D" parent="attack_spot"]
 script = ExtResource("2_co3gh")
+attack_slot_order = 1
 
-[node name="Attack_give_punch" parent="." instance=ExtResource("1_m25ou")]
-offset_left = 80.0001
-offset_top = 486.0
-offset_right = 80.0001
-offset_bottom = 486.0
-scale = Vector2(4.57047, 4.57047)
+[node name="attack_givers" type="Node" parent="."]
+
+[node name="give_punch" parent="attack_givers" instance=ExtResource("1_m25ou")]
+offset_left = 48.0
+offset_top = 451.0
+offset_right = 48.0
+offset_bottom = 451.0
+scale = Vector2(2.16887, 2.16887)
 attack_resource_to_give = ExtResource("4_mue14")
+
+[node name="give_low_block" parent="attack_givers" instance=ExtResource("1_m25ou")]
+offset_left = 148.0
+offset_top = 451.0
+offset_right = 148.0
+offset_bottom = 451.0
+scale = Vector2(2.23599, 2.23599)
+attack_resource_to_give = ExtResource("5_um5jo")
+
+[node name="give_high_block" parent="attack_givers" instance=ExtResource("1_m25ou")]
+offset_left = 250.0
+offset_top = 451.0
+offset_right = 250.0
+offset_bottom = 451.0
+scale = Vector2(2.23599, 2.23599)
+attack_resource_to_give = ExtResource("6_dbajq")
 
 [node name="attack button" type="Button" parent="."]
 offset_left = 830.0

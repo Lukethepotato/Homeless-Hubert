@@ -13,10 +13,12 @@ func _process(delta: float) -> void:
 # This function calls back to the combo checking function in order to play the chosen attack. If a combo is found, the animation played changes if the combo would be completed by the attack.
 func _play_attack():
 	if combo_checking() == null:
-		if attack_in_turn_index_finished < PlayerAutoload.attack_resources_in.size()-1 && PlayerAutoload.attack_resources_in[attack_in_turn_index_finished] != null && current_animation == "":
+		if attack_in_turn_index_finished < PlayerAutoload.attack_resources_in.size()-1 && PlayerAutoload.attack_resources_in[attack_in_turn_index_finished] != null:
 			play(PlayerAutoload.attack_resources_in[attack_in_turn_index_finished].animation_name)
 			PlayerAutoload.attack_history.append(PlayerAutoload.attack_resources_in[attack_in_turn_index_finished])
+			PlayerAutoload.current_block = PlayerAutoload.attack_resources_in[attack_in_turn_index_finished].gives_block
 			attack_in_turn_index_finished += 1
+			print("player attack play")
 		else:
 			attack_in_turn_index_finished = 0
 			GlobalsAutoload.current_turn += 1

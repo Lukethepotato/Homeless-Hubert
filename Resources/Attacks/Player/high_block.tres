@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="player_attack" load_steps=3 format=3 uid="uid://bbilq7ugxdnsx"]
+
+[ext_resource type="Texture2D" uid="uid://nn5jysws1fjs" path="res://art/temp_assets/Screenshot 2025-03-18 090842.png" id="1_hjuk2"]
+[ext_resource type="Script" path="res://Resources/player_attack_resource.gd" id="2_vqwmj"]
+
+[resource]
+script = ExtResource("2_vqwmj")
+damage = 0.0
+animation_name = "hubert_high_block"
+icon_texture = ExtResource("1_hjuk2")
+hit_region = 0
+gives_block = 2
