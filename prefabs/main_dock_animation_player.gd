@@ -36,7 +36,7 @@ func _play_attack():
 			print("current turn + 1 _ player not compo" + str(GlobalsAutoload.current_turn))
 		gate = true
 	else:
-		if attack_in_turn_index_finished < PlayerAutoload.attack_resources_in.size() -1:
+		if attack_in_turn_index_finished < PlayerAutoload.attack_resources_in.size():
 			play(combo_checking().animation_name)
 			PlayerAutoload.attack_history.clear()
 			attack_in_turn_index_finished += 1
