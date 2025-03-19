@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 Dialogic="*res://addons/dialogic/Core/DialogicGameHandler.gd"
 PlayerAutoload="*res://autoloads/player_autoload.gd"
 GlobalsAutoload="*res://autoloads/globals_autoload.gd"
+BattleAutoload="*res://autoloads/battle_autoload.gd"
 
 [dialogic]
 
