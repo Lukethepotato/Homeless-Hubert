@@ -31,46 +31,46 @@ func _ready() -> void:
 
 # Returns if a fish is able to combo
 func is_fish_intelligent() -> bool:
-	return traits.has(GlobalsAutoload.traits.INTELLIGENT);
+	return traits.has(BattleAutoload.traits.INTELLIGENT);
 
 # Modifies the fish stats based on what traits they have (INTELLIGENT NOT INCLUDED)
 func modify_stats_with_traits() -> void:
 	for fish_trait in traits:
 		match fish_trait:
-			GlobalsAutoload.traits.SLIPPERY:
+			BattleAutoload.traits.SLIPPERY:
 				evasion += 0.20;
 				disruption_resist -= 0.20;
 				if disruption_resist < 0:
 					disruption_resist = 0;
-			GlobalsAutoload.traits.OBESE:
+			BattleAutoload.traits.OBESE:
 				evasion -= 0.20;
 				if evasion < 0:
 					evasion = 0;
 				disruption_resist += 0.20
-			GlobalsAutoload.traits.FLEXIBLE:
+			BattleAutoload.traits.FLEXIBLE:
 				pass;
-			GlobalsAutoload.traits.RIGID:
+			BattleAutoload.traits.RIGID:
 				pass;
-			GlobalsAutoload.traits.VAMPIRE:
+			BattleAutoload.traits.VAMPIRE:
 				# I don't know how you want to implement lifesteal so I'll leave it up to you unless you say otherwise
 				strength += 1;
 				defense -= 4;
-			GlobalsAutoload.traits.FRENZIED:
+			BattleAutoload.traits.FRENZIED:
 				strength += 2;
 				defense -= 2;
-			GlobalsAutoload.traits.CALM:
+			BattleAutoload.traits.CALM:
 				strength -= 2;
 				defense += 2;
 				disruption_resist += 0.05
-			GlobalsAutoload.traits.FERAL:
+			BattleAutoload.traits.FERAL:
 				strength += 10
 				defense -= 6;
 				agility -= 2;
 				evasion = 0;
 				disruption_resist = 0;
-			GlobalsAutoload.traits.DEADEYE:
+			BattleAutoload.traits.DEADEYE:
 				strength -= 4
 				luck = 49;
-			GlobalsAutoload.traits.HARDY:
+			BattleAutoload.traits.HARDY:
 				disruption_resist += 0.30;
 				ailment_resist += 0.50;

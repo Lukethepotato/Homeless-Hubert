@@ -41,19 +41,7 @@ enum location_types {
 	LOW,
 	HIGH
 }
-enum traits {
-	SLIPPERY,
-	OBESE,
-	FLEXIBLE,
-	RIGID,
-	VAMPIRE,
-	FRENZIED,
-	CALM,
-	FERAL,
-	DEADEYE,
-	HARDY,
-	INTELLIGENT
-}
+
 
 func _process(delta: float) -> void:
 	if state == game_states.IN_BATTLE:
