@@ -1,3 +1,4 @@
+class_name Enemy
 extends Node2D
 
 # This node/script will store information and functions relating to an enemy/enemies.
@@ -15,7 +16,7 @@ extends Node2D
 @export var defense := 0; # Subtractive factor from damage taken
 @export var agility := 1; # Additive factor to speed
 @export var luck := 0; # Additive factor to critical chance (base chance = 1)
-@export var evasion := 0.05; # Written as decimal, chance of dodging out of 1
+@export var evasion := 5; # Additive factor to dodge chance (base chance = 0)
 
 # Resistances
 @export var disruption_resist := 0.05; # Written as decimal, chance of resisting disruption
@@ -38,12 +39,12 @@ func modify_stats_with_traits() -> void:
 	for fish_trait in traits:
 		match fish_trait:
 			BattleAutoload.traits.SLIPPERY:
-				evasion += 0.20;
+				evasion += 20;
 				disruption_resist -= 0.20;
 				if disruption_resist < 0:
 					disruption_resist = 0;
 			BattleAutoload.traits.OBESE:
-				evasion -= 0.20;
+				evasion -= 20;
 				if evasion < 0:
 					evasion = 0;
 				disruption_resist += 0.20
