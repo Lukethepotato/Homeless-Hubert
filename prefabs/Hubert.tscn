@@ -3,8 +3,8 @@
 [ext_resource type="Texture2D" uid="uid://ca237n0njexqp" path="res://art/temp_assets/192637.png" id="2_h37bg"]
 [ext_resource type="Texture2D" uid="uid://7j27av2hvwmc" path="res://art/temp_assets/Goblin_Idle.png" id="2_x2k4m"]
 [ext_resource type="Texture2D" uid="uid://bap6raewbggi3" path="res://art/temp_assets/Turret_Shoot-Sheet.png" id="3_fssy4"]
-[ext_resource type="Script" path="res://prephabs/misc_player_anim_player.gd" id="3_q40jc"]
-[ext_resource type="Script" path="res://prephabs/hubert.gd" id="4_dhhqc"]
+[ext_resource type="Script" path="res://prefabs/misc_player_anim_player.gd" id="3_q40jc"]
+[ext_resource type="Script" path="res://prefabs/hubert.gd" id="4_dhhqc"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_upurf"]
 atlas = ExtResource("2_h37bg")

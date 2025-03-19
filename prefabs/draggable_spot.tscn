@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://drag_spot_script.gd" id="1_0oyh1"]
 [ext_resource type="Script" path="res://draggable_spot_parent.gd" id="1_kvsg6"]
-[ext_resource type="PackedScene" uid="uid://cahb7rpax867j" path="res://prephabs/drag_preview.tscn" id="3_4jywp"]
+[ext_resource type="PackedScene" uid="uid://cahb7rpax867j" path="res://prefabs/drag_preview.tscn" id="3_4jywp"]
 
 [node name="draggable_spot" type="Control"]
 layout_mode = 3
