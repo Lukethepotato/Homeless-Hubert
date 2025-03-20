@@ -8,3 +8,4 @@
 script = ExtResource("2_txla2")
 attacks_in_combo = Array[ExtResource("1_j1abr")]([ExtResource("2_14nyn"), ExtResource("2_14nyn"), ExtResource("2_14nyn")])
 animation_name = "combo_slippy_trip"
+description = "Reduces evasion by 20; Counteracts the effects of Slippery fish."
