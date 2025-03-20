@@ -37,7 +37,7 @@ func _play_attack():
 	else:
 		if attack_in_turn_index_finished < PlayerAutoload.attack_resources_in.size():
 			play(combo_checking().animation_name)
-			BattleAutoload.apply_combo_effects("Player", "Enemy", combo_checking());
+			BattleAutoload.apply_combo_effects(combo_checking());
 			attack_in_turn_index_finished += 1
 		else:
 			attack_in_turn_index_finished = 0

@@ -53,5 +53,11 @@ func calculate_damage(base_dmg : int, user, target, can_crit := true, guaranteed
 		print_rich("[color=red][shake amp=50.0 freq=5.0][font_size=20]Evaded: " + str(damage));
 	return damage;
 
-func apply_combo_effects(user : String, target : String, combo : player_combo) -> void:
+func apply_combo_effects(combo : player_combo) -> void:
+	print("Applying combo effects")
 	PlayerAutoload.attack_history.clear()
+	match combo.animation_name:
+		"combo_slippy_trip":
+			print_rich("[color=cornflower_blue][shake amp=50.0 freq=5.0][wave amp=50.0 freq=5.0][font_size=50]Slippy Trip");
+			GlobalsAutoload.enemy_node.traits.erase(traits.SLIPPERY);
+			GlobalsAutoload.enemy_node.health -= 10;

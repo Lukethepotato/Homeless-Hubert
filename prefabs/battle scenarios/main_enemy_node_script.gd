@@ -11,7 +11,7 @@ extends Node2D
 
 # Fish stats
 @export var health: int = 20 # Base health of fish
-@export var traits : Array[int]; # Array containing all of the fish's traits
+@export var traits : Array[BattleAutoload.traits]; # Array containing all of the fish's traits
 @export var strength := 1; # Additive factor to damage
 @export var defense := 0; # Subtractive factor from damage taken
 @export var agility := 1; # Additive factor to speed

@@ -9,7 +9,7 @@ signal turn_changed()
 signal health_updated()
 
 # Combo data
-@export var all_player_combos: Array[player_combo]
+var all_player_combos: Array[player_combo]
 
 # Game states
 enum game_states {
