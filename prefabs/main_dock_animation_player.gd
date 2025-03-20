@@ -16,7 +16,6 @@ var gate := true
 func _process(delta: float) -> void:
 	if GlobalsAutoload.current_turn == PlayerAutoload.goes_on_turn and GlobalsAutoload.state == GlobalsAutoload.game_states.IN_BATTLE && gate:
 		_play_attack()
-		
 
 # This function calls back to the combo checking function in order to play the chosen attack. If a combo is found, the animation played changes if the combo would be completed by the attack.
 func _play_attack():
@@ -29,7 +28,7 @@ func _play_attack():
 			PlayerAutoload.attack_history.append(PlayerAutoload.attack_resources_in[attack_in_turn_index_finished])
 			PlayerAutoload.current_block = PlayerAutoload.attack_resources_in[attack_in_turn_index_finished].gives_block
 			attack_in_turn_index_finished += 1
-			print("player attack play _ attack in turn index = " + str(attack_in_turn_index_finished))	
+			print("player attack play _ attack in turn index = " + str(attack_in_turn_index_finished))
 		else:
 			attack_in_turn_index_finished = 0
 			GlobalsAutoload.current_turn += 1
@@ -38,7 +37,7 @@ func _play_attack():
 	else:
 		if attack_in_turn_index_finished < PlayerAutoload.attack_resources_in.size():
 			play(combo_checking().animation_name)
-			PlayerAutoload.attack_history.clear()
+			BattleAutoload.apply_combo_effects(combo_checking());
 			attack_in_turn_index_finished += 1
 		else:
 			attack_in_turn_index_finished = 0

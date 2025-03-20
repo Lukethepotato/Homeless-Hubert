@@ -216,6 +216,7 @@ script = ExtResource("1_82kc4")
 position = Vector2(0, -109)
 scale = Vector2(2.09681, 2.09681)
 script = ExtResource("2_cveda")
+traits = Array[int]([0])
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Enemy"]
 position = Vector2(430.655, 196.489)

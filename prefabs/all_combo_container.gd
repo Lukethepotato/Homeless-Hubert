@@ -10,4 +10,5 @@ extends Node2D
 #it really an array of resources that each contain an array of the attacks
 
 func _ready() -> void:
-	GlobalsAutoload.combo_node = self
+	GlobalsAutoload.combo_node = self;
+	GlobalsAutoload.all_player_combos = combo_resources;
