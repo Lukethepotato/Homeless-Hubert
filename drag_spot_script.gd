@@ -9,8 +9,6 @@ static var dropped := false
 @export var draggable_UI: bool = true
 @export var attack_resource: player_attack
 
-func _ready() -> void:
-	GlobalsAutoload.clear_attack_selection.connect(_clear_attack_selection_receive)
 
 func _process(delta: float) -> void:
 	if attack_resource != null:
@@ -63,9 +61,3 @@ func _reset():
 		texture = original_texture
 	else:
 		dropped = false
-
-# This function removes the attack selection upon receiving the appropriate signal.
-func _clear_attack_selection_receive():
-	if texture != null && get_parent().attack_resource_to_give == null:
-		attack_resource = null
-		texture = null

@@ -4,7 +4,10 @@ extends Control
 
 @export var texture_to_set: Texture2D
 @export var current_texture: Texture2D
+#this var should be received not changed
+#if you want to change the texture use the texture rect child
 @export var attack_resource_to_give: player_attack
+#this var should be received not changed
 @export var attack_resource_holding: player_attack
 
 func _ready() -> void:
