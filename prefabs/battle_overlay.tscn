@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://c5au12ja27aq6"]
+[gd_scene load_steps=10 format=3 uid="uid://c5au12ja27aq6"]
 
 [ext_resource type="Script" path="res://prefabs/battle_overlay_main.gd" id="1_gvbtk"]
 [ext_resource type="PackedScene" uid="uid://wc8076dp0nrg" path="res://prefabs/draggable_spot.tscn" id="1_m25ou"]
@@ -7,6 +7,8 @@
 [ext_resource type="Script" path="res://prefabs/health_displays_script.gd" id="5_f07nv"]
 [ext_resource type="Resource" uid="uid://dmqgyh8xxlmhk" path="res://Resources/Attacks/Player/low_block.tres" id="5_um5jo"]
 [ext_resource type="Resource" uid="uid://bbilq7ugxdnsx" path="res://Resources/Attacks/Player/high_block.tres" id="6_dbajq"]
+[ext_resource type="StyleBox" uid="uid://344uqy4ps5vx" path="res://Resources/health_bar_bg.tres" id="8_s1ss8"]
+[ext_resource type="StyleBox" uid="uid://cjphvxqj8pv5c" path="res://Resources/health_bar_fill.tres" id="9_numx6"]
 
 [node name="battle_overlay" type="CanvasLayer"]
 script = ExtResource("1_gvbtk")
@@ -91,14 +93,25 @@ offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("5_f07nv")
 
-[node name="Player health" type="RichTextLabel" parent="health displays"]
+[node name="Player healthbar" type="ProgressBar" parent="health displays"]
 layout_mode = 0
-offset_left = 116.0
-offset_top = 17.0
-offset_right = 290.0
-offset_bottom = 150.0
-theme_override_font_sizes/normal_font_size = 101
-text = "7"
+offset_left = 63.0
+offset_top = 66.0
+offset_right = 263.0
+offset_bottom = 96.0
+theme_override_styles/background = ExtResource("8_s1ss8")
+theme_override_styles/fill = ExtResource("9_numx6")
+min_value = 100.0
+value = 100.0
+show_percentage = false
+
+[node name="number" type="RichTextLabel" parent="health displays/Player healthbar"]
+layout_mode = 0
+offset_right = 200.0
+offset_bottom = 30.0
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "[center]7/7"
 
 [node name="Enemy health" type="RichTextLabel" parent="health displays"]
 layout_mode = 0
