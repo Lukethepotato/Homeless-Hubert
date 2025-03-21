@@ -9,6 +9,8 @@ extends Node2D
 # YOU WANT TO ADD A NEW CASE TO THE SWITCH CASE STATEMENT FOR YOUR NEW TRAIT
 # ONCE YOU'RE DONE WITH THAT, YOU'RE FINISHED!!!! GOOD JOB MAGGOT!
 
+@export var fish_name := "FUckin fred";
+
 # Fish stats
 @export var health := 20 # Base health of fish
 @export var max_health := 20 # Maximum health of fish

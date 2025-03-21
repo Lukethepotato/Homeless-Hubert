@@ -19,4 +19,3 @@ func _ready() -> void:
 
 func _spot_dropped(attack_resource: player_attack, dropped_where_name: String):
 	current_texture = %TextureRect.texture
-	

@@ -7,6 +7,7 @@ extends Node
 @export var goes_on_turn: int = 2
 @export var attack_history: Array[player_attack]
 
+@export var player_name := "Hubert";
 
 # Player stats
 @export var health := 15 # Base health of player

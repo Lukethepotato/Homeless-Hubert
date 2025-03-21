@@ -7,7 +7,7 @@ var attack_in_turn_index_finished: int = 0
 @export var attack_history_with_chosen_attacks: Array[player_attack]
 var gate := true
 
-#the gate is kinda a bandade fix of sorts
+#the gate is kinda a bandaid fix of sorts
 #Once I added the await animation finished there was some probblems,
 # because the play attack function was being ran like 7 time at the same time
 #while the it was awaiting 
