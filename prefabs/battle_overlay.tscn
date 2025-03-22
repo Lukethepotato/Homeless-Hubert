@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://c5au12ja27aq6"]
+[gd_scene load_steps=12 format=3 uid="uid://c5au12ja27aq6"]
 
 [ext_resource type="Script" path="res://prefabs/battle_overlay_main.gd" id="1_gvbtk"]
 [ext_resource type="PackedScene" uid="uid://wc8076dp0nrg" path="res://prefabs/draggable_spot.tscn" id="1_m25ou"]
@@ -7,7 +7,8 @@
 [ext_resource type="Script" path="res://prefabs/health_displays_script.gd" id="5_f07nv"]
 [ext_resource type="Resource" uid="uid://dmqgyh8xxlmhk" path="res://Resources/Attacks/Player/low_block.tres" id="5_um5jo"]
 [ext_resource type="Resource" uid="uid://bbilq7ugxdnsx" path="res://Resources/Attacks/Player/high_block.tres" id="6_dbajq"]
-[ext_resource type="Theme" uid="uid://7jevmqcl012f" path="res://Resources/attack_button_theme.tres" id="7_u3x54"]
+[ext_resource type="Theme" uid="uid://cruunmamxcb7o" path="res://Resources/attack_button_theme.tres" id="7_u3x54"]
+[ext_resource type="Theme" uid="uid://7jevmqcl012f" path="res://Resources/clear_button_theme.tres" id="8_8lcn4"]
 [ext_resource type="StyleBox" uid="uid://344uqy4ps5vx" path="res://Resources/health_bar_bg.tres" id="8_s1ss8"]
 [ext_resource type="StyleBox" uid="uid://cjphvxqj8pv5c" path="res://Resources/health_bar_fill.tres" id="9_numx6"]
 
@@ -56,24 +57,24 @@ offset_right = 1110.0
 offset_bottom = 110.0
 
 [node name="give_punch" parent="attack_givers" instance=ExtResource("1_m25ou")]
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 0.0
-offset_bottom = 0.0
+offset_left = -5.0
+offset_top = -5.0
+offset_right = -5.0
+offset_bottom = -5.0
 attack_resource_to_give = ExtResource("4_mue14")
 
 [node name="give_low_block" parent="attack_givers" instance=ExtResource("1_m25ou")]
-offset_left = 125.0
-offset_top = 0.0
-offset_right = 125.0
-offset_bottom = 0.0
+offset_left = 120.0
+offset_top = -5.0
+offset_right = 120.0
+offset_bottom = -5.0
 attack_resource_to_give = ExtResource("5_um5jo")
 
 [node name="give_high_block" parent="attack_givers" instance=ExtResource("1_m25ou")]
-offset_left = 250.0
-offset_top = 0.0
-offset_right = 250.0
-offset_bottom = 0.0
+offset_left = 240.0
+offset_top = -5.0
+offset_right = 240.0
+offset_bottom = -5.0
 attack_resource_to_give = ExtResource("6_dbajq")
 
 [node name="attack button" type="Button" parent="."]
@@ -83,21 +84,23 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -126.0
+offset_left = -150.0
 offset_top = 52.0
-offset_right = 124.0
-offset_bottom = 112.0
+offset_right = 150.0
+offset_bottom = 132.0
 grow_horizontal = 2
 grow_vertical = 0
+pivot_offset = Vector2(150, 40)
 size_flags_horizontal = 0
+theme = ExtResource("7_u3x54")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="attack button"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 10.0
-offset_bottom = 10.0
+offset_top = 20.0
+offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -111,7 +114,7 @@ offset_left = 530.0
 offset_top = 535.0
 offset_right = 621.0
 offset_bottom = 625.0
-theme = ExtResource("7_u3x54")
+theme = ExtResource("8_8lcn4")
 theme_override_font_sizes/font_size = 25
 text = "CLEAR"
 

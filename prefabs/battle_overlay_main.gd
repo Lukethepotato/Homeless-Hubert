@@ -18,8 +18,7 @@ func _on_clear_chosen_attacks_pressed() -> void:
 	PlayerAutoload.attack_resources_in.resize(tempSize)
 	
 	for i in $attack_spots.get_child_count():
-		$attack_spots.get_child(i).attack_resource_holding = null
-		$attack_spots.get_child(i).get_child(1).texture = null
+		$attack_spots.get_child(i).reset();
 	
 	call_deferred("update_button");
 
@@ -36,8 +35,8 @@ func update_button(_fuckts1 = null, _fuckts2 = null):
 		tween.kill();
 	if is_attack_ready():
 		tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO);
-		tween.tween_property($"attack button", "position:y", 450, 0.5).from(800)
+		tween.tween_property($"attack button", "position:y", 440, 0.5).from(700)
 	else:
-		tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO);
-		tween.tween_property($"attack button", "position:y", 800, 0.5)
+		tween = create_tween().set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_QUAD);
+		tween.tween_property($"attack button", "position:y", 700, 0.5)
 	$"attack button".disabled = not is_attack_ready();
