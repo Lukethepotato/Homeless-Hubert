@@ -53,7 +53,7 @@ layout_mode = 0
 offset_left = -40.0
 offset_top = -30.0
 offset_right = 1110.0
-offset_bottom = 105.0
+offset_bottom = 110.0
 
 [node name="give_punch" parent="attack_givers" instance=ExtResource("1_m25ou")]
 offset_left = 0.0
@@ -77,37 +77,43 @@ offset_bottom = 0.0
 attack_resource_to_give = ExtResource("6_dbajq")
 
 [node name="attack button" type="Button" parent="."]
+z_index = -2
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -46.0
-offset_top = -113.0
-offset_right = 44.0
-offset_bottom = -23.0
+offset_left = -126.0
+offset_top = 52.0
+offset_right = 124.0
+offset_bottom = 112.0
 grow_horizontal = 2
 grow_vertical = 0
 size_flags_horizontal = 0
-theme = ExtResource("7_u3x54")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="attack button"]
-layout_mode = 0
-offset_right = 90.0
-offset_bottom = 90.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 10.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
 theme_override_font_sizes/normal_font_size = 40
 bbcode_enabled = true
-text = "[center]
+text = "[center][font_size=25]Commence Attack
 "
 
 [node name="clear chosen attacks" type="Button" parent="."]
-offset_left = 395.0
-offset_top = 450.0
-offset_right = 757.0
-offset_bottom = 510.0
-theme_override_font_sizes/font_size = 36
-text = "clear chosen attacks"
+offset_left = 530.0
+offset_top = 535.0
+offset_right = 621.0
+offset_bottom = 625.0
+theme = ExtResource("7_u3x54")
+theme_override_font_sizes/font_size = 25
+text = "CLEAR"
 
 [node name="health displays" type="Control" parent="."]
 layout_mode = 3

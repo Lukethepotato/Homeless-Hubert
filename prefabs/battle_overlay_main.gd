@@ -1,6 +1,7 @@
 extends CanvasLayer
 
 # This script is attached to the clickable UI of the battle scenario and handles checking both if the attack can be executed as well as clearing attack selection.
+var tween;
 
 func _ready() -> void:
 	GlobalsAutoload.dropped_UI.connect(update_button)
@@ -31,4 +32,12 @@ func is_attack_ready() -> bool:
 
 func update_button(_fuckts1 = null, _fuckts2 = null):
 	print("update button")
+	if tween:
+		tween.kill();
+	if is_attack_ready():
+		tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO);
+		tween.tween_property($"attack button", "position:y", 450, 0.5).from(800)
+	else:
+		tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO);
+		tween.tween_property($"attack button", "position:y", 800, 0.5)
 	$"attack button".disabled = not is_attack_ready();
