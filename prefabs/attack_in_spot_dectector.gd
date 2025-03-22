@@ -16,7 +16,6 @@ func _process(delta: float) -> void:
 		PlayerAutoload.attack_resources_in[attack_slot_order] = get_parent().attack_resource_holding
 	else:
 		slot_full = false
-		
 		if PlayerAutoload.attack_resources_in[attack_slot_order] != null:
 			PlayerAutoload.attack_resources_in[attack_slot_order] = null
 	

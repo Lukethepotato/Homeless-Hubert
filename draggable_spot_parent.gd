@@ -4,8 +4,13 @@ extends Control
 
 @export var texture_to_set: Texture2D
 @export var current_texture: Texture2D
+#this var should be received not changed
+#if you want to change the texture use the texture rect child
 @export var attack_resource_to_give: player_attack
+#this var should be received not changed
 @export var attack_resource_holding: player_attack
+
+var tween
 
 func _ready() -> void:
 	%TextureRect.texture = texture_to_set
@@ -17,6 +22,23 @@ func _ready() -> void:
 	#the resources texture in process
 	# ???
 
+func reset():
+	attack_resource_holding = null
+	if tween:
+		tween.kill();
+	tween = create_tween().set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_SINE).set_parallel(true);
+	tween.tween_property(%TextureRect, "scale", Vector2(0.05,0.05), 0.5).from(Vector2(1,1))
+	tween.tween_property(%TextureRect, "rotation_degrees", 360, 0.5).from(0);
+	await tween.finished;
+	%TextureRect.texture = null;
+	%TextureRect.scale = Vector2(1,1);
+	%TextureRect.rotation_degrees = 0;
+
 func _spot_dropped(attack_resource: player_attack, dropped_where_name: String):
 	current_texture = %TextureRect.texture
-	
+	if dropped_where_name == name:
+		if tween:
+			tween.kill();
+		tween = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_BACK).set_parallel(true);
+		tween.tween_property(%TextureRect, "scale", Vector2(1,1), 0.1).from(Vector2(0.9,0.9))
+		await tween.finished;
