@@ -23,11 +23,11 @@ func _on_clear_chosen_attacks_pressed() -> void:
 	call_deferred("update_button");
 
 func is_attack_ready() -> bool:
-	#for attack in PlayerAutoload.attack_resources_in:
-		#if attack != null:
-			#return true;
-	#return false;
-	return (PlayerAutoload.attack_resources_in[0] != null)
+	for attack in PlayerAutoload.attack_resources_in:
+		if attack != null:
+			return true;
+	return false;
+	#return (PlayerAutoload.attack_resources_in[0] != null or PlayerAutoload.attack_resources_in[1] != null)
 
 func update_button(_fuckts1 = null, _fuckts2 = null):
 	print("update button")
