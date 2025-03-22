@@ -162,6 +162,7 @@ offset_left = -40.0
 offset_top = -30.0
 offset_right = 1110.0
 offset_bottom = 110.0
+color = Color(0.183333, 0.16, 0.2, 1)
 
 [node name="give_punch" parent="bottom_ui/attack_givers" instance=ExtResource("1_m25ou")]
 offset_left = -5.0

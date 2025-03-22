@@ -46,8 +46,10 @@ func _play_attack():
 		gate = true
 
 func _on_animation_finished(anim_name: StringName) -> void:
-	if GlobalsAutoload.current_turn == PlayerAutoload.goes_on_turn && gate:	
+	if GlobalsAutoload.current_turn == PlayerAutoload.goes_on_turn && gate:
 		_play_attack()
+	#else:
+		#play("RESET")
 
 
 # This function checks if there are any completable combos and returns the proper combo if true.
