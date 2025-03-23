@@ -28,6 +28,8 @@ func update_turn_order():
 		if attack != null:
 			player_final_priority += attack.priority;
 	enemy_final_priority += GlobalsAutoload.enemy_node.get_child(1)._return_enemy_attack_choice().priority;
+	print("Player final priority = " + str(player_final_priority));
+	print("Enemy final priority = " + str(enemy_final_priority));
 	if player_final_priority > enemy_final_priority or (player_final_priority == enemy_final_priority and randi_range(1,2) == 1):
 		PlayerAutoload.goes_on_turn = 2;
 		GlobalsAutoload.enemy_goes_on_turn = 3;

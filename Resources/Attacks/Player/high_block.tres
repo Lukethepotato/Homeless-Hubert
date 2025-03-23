@@ -5,7 +5,10 @@
 
 [resource]
 script = ExtResource("2_vqwmj")
-damage = 0.0
+base_damage = 0
+priority = 0
+name = "High Block"
+name_color = Color(1, 1, 1, 1)
 animation_name = "hubert_high_block"
 icon_texture = ExtResource("1_hjuk2")
 hit_region = 0
