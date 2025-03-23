@@ -22,15 +22,13 @@ enum ailments {
 
 # Changes the PlayerAutoload goes_on_turn and the GlobalsAutoload enemy_goes_on_turn according to agility values and attack priority
 func update_turn_order():
-	var player_final_priority = PlayerAutoload.agility;
-	var enemy_final_priority = GlobalsAutoload.enemy_node.agility;
 	for attack in PlayerAutoload.attack_resources_in:
 		if attack != null:
-			player_final_priority += attack.priority;
-	enemy_final_priority += GlobalsAutoload.enemy_node.get_child(1)._return_enemy_attack_choice().priority;
-	print("Player final priority = " + str(player_final_priority));
-	print("Enemy final priority = " + str(enemy_final_priority));
-	if player_final_priority > enemy_final_priority or (player_final_priority == enemy_final_priority and randi_range(1,2) == 1):
+			PlayerAutoload.base_speed += attack.priority;
+	GlobalsAutoload.enemy_node.base_speed += GlobalsAutoload.enemy_node.get_child(1)._return_enemy_attack_choice().priority;
+	print("Player speed = " + str(PlayerAutoload.base_speed));
+	print("Enemy speed = " + str(GlobalsAutoload.enemy_node.base_speed));
+	if PlayerAutoload.base_speed > GlobalsAutoload.enemy_node.base_speed or (PlayerAutoload.base_speed == GlobalsAutoload.enemy_node.base_speed and randi_range(1,2) == 1):
 		PlayerAutoload.goes_on_turn = 2;
 		GlobalsAutoload.enemy_goes_on_turn = 3;
 	else:

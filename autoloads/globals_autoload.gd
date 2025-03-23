@@ -59,6 +59,7 @@ func _process(delta: float) -> void:
 # Luke, this is replacing the function you had in the main dock script; LMK if there are any issues
 func start_battle(battle_scenarios) -> void:
 	state = game_states.IN_BATTLE;
+	PlayerAutoload.base_speed += PlayerAutoload.agility;
 	current_turn = 0
 	var rand_battleS_index = randf_range(0, battle_scenarios.size() -1)
 	var instance = battle_scenarios[rand_battleS_index].instantiate()

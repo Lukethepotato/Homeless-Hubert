@@ -14,6 +14,7 @@ extends Node2D
 # Fish stats
 @export var health := 20 # Base health of fish
 @export var max_health := 20 # Maximum health of fish
+@export var base_speed := 10; # Enemy speed value
 @export var traits : Array[BattleAutoload.traits]; # Array containing all of the fish's traits
 @export var strength := 1; # Additive factor to damage
 @export var defense := 0; # Subtractive factor from damage taken
@@ -31,6 +32,7 @@ extends Node2D
 
 func _ready() -> void:
 	GlobalsAutoload.enemy_node = self;
+	base_speed += agility;
 	modify_stats_with_traits();
 
 # Returns if a fish is able to combo
