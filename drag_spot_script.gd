@@ -8,11 +8,18 @@ static var dropped := false
 @export var drag_preview: PackedScene
 @export var draggable_UI: bool = true
 @export var attack_resource: player_attack
+var mouse_hovering := false;
 
+func _ready() -> void:
+	$"../attack_description".visible = false;
 
 func _process(delta: float) -> void:
 	if attack_resource != null:
 		texture = attack_resource.icon_texture
+	if Input.is_action_pressed("Left Click"):
+		mouse_hovering = false;
+	if mouse_hovering:
+		$"../attack_description".global_position = get_global_mouse_position() - Vector2(0, $"../attack_description".size.y);
 
 # This function gets and returns the data of this spot. It packages a texture, node, preview texture, and attack resource into a dictionary named "data".
 func _get_drag_data(at_position):
@@ -61,3 +68,24 @@ func _reset():
 		texture = original_texture
 	else:
 		dropped = false
+
+
+func _on_mouse_entered() -> void:
+	print("entered")
+	mouse_hovering = true;
+	GlobalsAutoload.timeout(1.0);
+	await GlobalsAutoload.timer.timeout;
+	if mouse_hovering:
+		var text = "[font_size=40][color=" + str(attack_resource.name_color.to_html()) + "]" + attack_resource.name + "[/color][/font_size]"
+		if attack_resource.base_damage > 0:
+			text += "\n[font_size=25]  " + str(attack_resource.base_damage) + " base damage  [/font_size]";
+		text += "\n[font_size=25]  " + str(attack_resource.priority) + " priority  [/font_size]"
+		text += "\n[font_size=15]" + str(attack_resource.description) + "[/font_size]"
+		$"../attack_description"/MarginContainer/description.text = text;
+		$"../attack_description".visible = true;
+
+
+func _on_mouse_exited() -> void:
+	print("exited")
+	mouse_hovering = false;
+	$"../attack_description".visible = false;

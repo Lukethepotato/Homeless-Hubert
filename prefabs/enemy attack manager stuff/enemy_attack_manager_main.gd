@@ -17,7 +17,8 @@ func start_enemy_attack() -> void:
 		%BattleScen_AnimPlayer.play(chosen_attack.animation_name)
 		$"..".attack_history.append(chosen_attack)
 		print("enemy attack")
-		
+	
+
 func _return_enemy_attack_choice() -> enemy_attack:
 	for i in get_child_count():
 		if get_child(i)._attack_verdict() != null:

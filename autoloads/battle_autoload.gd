@@ -20,6 +20,24 @@ enum ailments {
 	DAZE,
 }
 
+# Changes the PlayerAutoload goes_on_turn and the GlobalsAutoload enemy_goes_on_turn according to agility values and attack priority
+func update_turn_order():
+	var player_final_priority = PlayerAutoload.agility;
+	var enemy_final_priority = GlobalsAutoload.enemy_node.agility;
+	for attack in PlayerAutoload.attack_resources_in:
+		if attack != null:
+			player_final_priority += attack.priority;
+	enemy_final_priority += GlobalsAutoload.enemy_node.get_child(1)._return_enemy_attack_choice().priority;
+	print("Player final priority = " + str(player_final_priority));
+	print("Enemy final priority = " + str(enemy_final_priority));
+	if player_final_priority > enemy_final_priority or (player_final_priority == enemy_final_priority and randi_range(1,2) == 1):
+		PlayerAutoload.goes_on_turn = 2;
+		GlobalsAutoload.enemy_goes_on_turn = 3;
+	else:
+		PlayerAutoload.goes_on_turn = 3;
+		GlobalsAutoload.enemy_goes_on_turn = 2;
+	
+
 # Returns a two-item array in the format of [User, Target]
 func convert_strs_to_attack_roles(user : String, target : String) -> Array:
 	var perpetrator;

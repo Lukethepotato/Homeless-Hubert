@@ -1,8 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://wc8076dp0nrg"]
+[gd_scene load_steps=6 format=3 uid="uid://wc8076dp0nrg"]
 
 [ext_resource type="Script" path="res://drag_spot_script.gd" id="1_0oyh1"]
 [ext_resource type="Script" path="res://draggable_spot_parent.gd" id="1_kvsg6"]
 [ext_resource type="PackedScene" uid="uid://cahb7rpax867j" path="res://prefabs/drag_preview.tscn" id="3_4jywp"]
+[ext_resource type="Script" path="res://prefabs/dynamic_sizing.gd" id="4_nbtrg"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w26rm"]
+bg_color = Color(0.15, 0.15, 0.15, 0.784314)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
 
 [node name="draggable_spot" type="Control"]
 layout_mode = 3
@@ -15,6 +23,34 @@ layout_mode = 0
 offset_right = 90.0
 offset_bottom = 90.0
 
+[node name="attack_description" type="Panel" parent="."]
+z_index = 1
+layout_mode = 0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 45.0
+offset_bottom = 45.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_w26rm")
+
+[node name="MarginContainer" type="MarginContainer" parent="attack_description"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 7
+theme_override_constants/margin_top = 7
+theme_override_constants/margin_right = 7
+theme_override_constants/margin_bottom = 7
+
+[node name="description" type="RichTextLabel" parent="attack_description/MarginContainer"]
+clip_contents = false
+layout_mode = 2
+mouse_filter = 2
+bbcode_enabled = true
+fit_content = true
+autowrap_mode = 0
+script = ExtResource("4_nbtrg")
+
 [node name="TextureRect" type="TextureRect" parent="."]
 unique_name_in_owner = true
 layout_mode = 0
@@ -26,3 +62,6 @@ pivot_offset = Vector2(40, 40)
 expand_mode = 1
 script = ExtResource("1_0oyh1")
 drag_preview = ExtResource("3_4jywp")
+
+[connection signal="mouse_entered" from="TextureRect" to="TextureRect" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="TextureRect" to="TextureRect" method="_on_mouse_exited"]

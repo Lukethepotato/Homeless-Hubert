@@ -35,6 +35,7 @@ func intro_tween():
 
 func _on_attack_button_pressed() -> void:
 	if is_attack_ready() && GlobalsAutoload.current_turn == 1:
+		BattleAutoload.update_turn_order();
 		GlobalsAutoload.current_turn = 2
 		print("current turn = 2 _ overlay")
 
