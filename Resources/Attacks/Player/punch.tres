@@ -5,7 +5,8 @@
 
 [resource]
 script = ExtResource("2_q27pf")
-damage = 0.0
+base_damage = 5
+priority = 0
 animation_name = "hubert_basic_punch"
 icon_texture = ExtResource("1_mcpck")
 hit_region = 2
