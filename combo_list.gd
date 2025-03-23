@@ -9,6 +9,7 @@ func _ready() -> void:
 	for i in GlobalsAutoload.all_player_combos.size():
 		var instruction = instructions_phab.instantiate() # Create a new Sprite2D.
 		add_child(instruction)
+		instruction.combo = GlobalsAutoload.all_player_combos[i]
 		instruction.position = Vector2(0, last_ones_spot + incrementation)
 		last_ones_spot = instruction.position.y
 		
