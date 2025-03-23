@@ -204,7 +204,7 @@ pivot_offset = Vector2(150, 40)
 size_flags_horizontal = 0
 theme = ExtResource("7_u3x54")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="bottom_ui/attack button"]
+[node name="commence" type="RichTextLabel" parent="bottom_ui/attack button"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -218,6 +218,32 @@ theme_override_font_sizes/normal_font_size = 40
 bbcode_enabled = true
 text = "[center][font_size=25]Commence Attack
 "
+
+[node name="player_speed" type="RichTextLabel" parent="bottom_ui/attack button"]
+layout_mode = 0
+offset_top = 55.0
+offset_right = 80.0
+offset_bottom = 110.0
+bbcode_enabled = true
+text = "[font_size=25][color=yellow][center]10"
+
+[node name="enemy_speed" type="RichTextLabel" parent="bottom_ui/attack button"]
+layout_mode = 0
+offset_left = 220.0
+offset_top = 55.0
+offset_right = 300.0
+offset_bottom = 110.0
+bbcode_enabled = true
+text = "[font_size=25
+][color=dim_gray][center]8"
+
+[node name="verdict" type="RichTextLabel" parent="bottom_ui/attack button"]
+layout_mode = 0
+offset_top = 55.0
+offset_right = 300.0
+offset_bottom = 110.0
+bbcode_enabled = true
+text = "[center][font_size=25][color=gray]Outspeeding"
 
 [node name="clear chosen attacks" type="Button" parent="bottom_ui"]
 layout_mode = 0

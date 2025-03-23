@@ -7,6 +7,7 @@ signal dropped_UI(attack_resource: player_attack, dropped_where_name: String)
 signal clear_attack_selection()
 signal turn_changed()
 signal health_updated()
+signal done
 
 # Combo data
 var all_player_combos: Array[player_combo]

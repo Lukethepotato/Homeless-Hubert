@@ -38,11 +38,15 @@ func get_player_speed() -> int:
 	for attack in PlayerAutoload.attack_resources_in:
 		if attack != null:
 			speed += attack.priority;
+	if speed < 0:
+		speed = 0;
 	return speed;
 
 func get_enemy_speed() -> int:
 	var speed = GlobalsAutoload.enemy_node.speed;
 	speed += GlobalsAutoload.enemy_node.get_child(1)._return_enemy_attack_choice().priority;
+	if speed < 0:
+		speed = 0;
 	return speed;
 
 # Returns a two-item array in the format of [User, Target]
