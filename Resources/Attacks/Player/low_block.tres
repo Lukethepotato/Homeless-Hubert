@@ -9,6 +9,7 @@ base_damage = 0
 priority = 0
 name = "Low Block"
 name_color = Color(1, 1, 1, 1)
+description = "Activate a low block."
 animation_name = "hubert_low_block"
 icon_texture = ExtResource("1_7jbyf")
 hit_region = 0

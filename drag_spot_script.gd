@@ -11,7 +11,7 @@ static var dropped := false
 var mouse_hovering := false;
 
 func _ready() -> void:
-	$attack_description.visible = false;
+	$"../attack_description".visible = false;
 
 func _process(delta: float) -> void:
 	if attack_resource != null:
@@ -19,7 +19,7 @@ func _process(delta: float) -> void:
 	if Input.is_action_pressed("Left Click"):
 		mouse_hovering = false;
 	if mouse_hovering:
-		$attack_description.global_position = get_global_mouse_position() - Vector2(0, $attack_description.size.y);
+		$"../attack_description".global_position = get_global_mouse_position() - Vector2(0, $"../attack_description".size.y);
 
 # This function gets and returns the data of this spot. It packages a texture, node, preview texture, and attack resource into a dictionary named "data".
 func _get_drag_data(at_position):
@@ -71,6 +71,7 @@ func _reset():
 
 
 func _on_mouse_entered() -> void:
+	print("entered")
 	mouse_hovering = true;
 	GlobalsAutoload.timeout(1.0);
 	await GlobalsAutoload.timer.timeout;
@@ -79,11 +80,12 @@ func _on_mouse_entered() -> void:
 		if attack_resource.base_damage > 0:
 			text += "\n[font_size=25]  " + str(attack_resource.base_damage) + " base damage  [/font_size]";
 		text += "\n[font_size=25]  " + str(attack_resource.priority) + " priority  [/font_size]"
-		$attack_description/MarginContainer/description.text = text;
-		$attack_description.global_position = get_global_mouse_position() - Vector2(0, $attack_description.size.y);
-		$attack_description.visible = true;
+		text += "\n[font_size=15]" + str(attack_resource.description) + "[/font_size]"
+		$"../attack_description"/MarginContainer/description.text = text;
+		$"../attack_description".visible = true;
 
 
 func _on_mouse_exited() -> void:
+	print("exited")
 	mouse_hovering = false;
-	$attack_description.visible = false;
+	$"../attack_description".visible = false;
