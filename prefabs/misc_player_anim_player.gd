@@ -85,3 +85,5 @@ extends Node2D
 #Scooby-Doo re- then realizes that he is the dog reincarnation for Layer 5, and goes back in time to stop Layer 2 and Layer 4 Dukeys from 
 #going back in time in the first place and reinsuring that he becomes Dukey the Dog in the future. Meanwhile, Timothy Turner is the 
 #original dreamer. DO NOT GO TO DREAM LAYER 6. Or else you will meet with a dastardly creature known as Old Man Dookenquences...
+
+# हेलो मैं तुम्हें शौचालय में चोदने वाला हूँ
