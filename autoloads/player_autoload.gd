@@ -12,7 +12,7 @@ extends Node
 # Player stats
 @export var health := 15 # Base health of player
 @export var max_health := 15 # Maximum health of player
-@export var base_speed := 10; # Player speed value
+@export var speed := 10; # Player speed value
 @export var strength := 1; # Additive factor to damage
 @export var defense := 0; # Subtractive factor from damage taken
 @export var agility := 1; # Additive factor to speed

@@ -22,19 +22,28 @@ enum ailments {
 
 # Changes the PlayerAutoload goes_on_turn and the GlobalsAutoload enemy_goes_on_turn according to agility values and attack priority
 func update_turn_order():
-	for attack in PlayerAutoload.attack_resources_in:
-		if attack != null:
-			PlayerAutoload.base_speed += attack.priority;
-	GlobalsAutoload.enemy_node.base_speed += GlobalsAutoload.enemy_node.get_child(1)._return_enemy_attack_choice().priority;
-	print("Player speed = " + str(PlayerAutoload.base_speed));
-	print("Enemy speed = " + str(GlobalsAutoload.enemy_node.base_speed));
-	if PlayerAutoload.base_speed > GlobalsAutoload.enemy_node.base_speed or (PlayerAutoload.base_speed == GlobalsAutoload.enemy_node.base_speed and randi_range(1,2) == 1):
+	PlayerAutoload.speed = get_player_speed();
+	GlobalsAutoload.enemy_node.speed = get_enemy_speed();
+	print("Player speed = " + str(PlayerAutoload.speed));
+	print("Enemy speed = " + str(GlobalsAutoload.enemy_node.speed));
+	if PlayerAutoload.speed > GlobalsAutoload.enemy_node.speed or (PlayerAutoload.speed == GlobalsAutoload.enemy_node.speed and randi_range(1,2) == 1):
 		PlayerAutoload.goes_on_turn = 2;
 		GlobalsAutoload.enemy_goes_on_turn = 3;
 	else:
 		PlayerAutoload.goes_on_turn = 3;
 		GlobalsAutoload.enemy_goes_on_turn = 2;
-	
+
+func get_player_speed() -> int:
+	var speed = PlayerAutoload.speed;
+	for attack in PlayerAutoload.attack_resources_in:
+		if attack != null:
+			speed += attack.priority;
+	return speed;
+
+func get_enemy_speed() -> int:
+	var speed = GlobalsAutoload.enemy_node.speed;
+	speed += GlobalsAutoload.enemy_node.get_child(1)._return_enemy_attack_choice().priority;
+	return speed;
 
 # Returns a two-item array in the format of [User, Target]
 func convert_strs_to_attack_roles(user : String, target : String) -> Array:

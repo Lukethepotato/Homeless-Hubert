@@ -75,7 +75,7 @@ func _on_mouse_entered() -> void:
 	mouse_hovering = true;
 	GlobalsAutoload.timeout(1.0);
 	await GlobalsAutoload.timer.timeout;
-	if mouse_hovering:
+	if mouse_hovering and $"..".attack_resource_to_give != null:
 		var text = "[font_size=40][color=" + str(attack_resource.name_color.to_html()) + "]" + attack_resource.name + "[/color][/font_size]"
 		if attack_resource.base_damage > 0:
 			text += "\n[font_size=25]  " + str(attack_resource.base_damage) + " base damage  [/font_size]";
