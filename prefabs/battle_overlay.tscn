@@ -6,11 +6,11 @@
 [ext_resource type="Resource" uid="uid://ctrdselwi2kf1" path="res://Resources/Attacks/Player/punch.tres" id="4_mue14"]
 [ext_resource type="Script" path="res://prefabs/health_displays_script.gd" id="5_f07nv"]
 [ext_resource type="Resource" uid="uid://dmqgyh8xxlmhk" path="res://Resources/Attacks/Player/low_block.tres" id="5_um5jo"]
-[ext_resource type="Resource" uid="uid://bbilq7ugxdnsx" path="res://Resources/Attacks/Player/high_block.tres" id="6_dbajq"]
+[ext_resource type="Resource" path="res://Resources/Attacks/Player/high_block.tres" id="6_dbajq"]
 [ext_resource type="Theme" uid="uid://cruunmamxcb7o" path="res://Resources/attack_button_theme.tres" id="7_u3x54"]
 [ext_resource type="Theme" uid="uid://7jevmqcl012f" path="res://Resources/clear_button_theme.tres" id="8_8lcn4"]
-[ext_resource type="StyleBox" uid="uid://344uqy4ps5vx" path="res://Resources/health_bar_bg.tres" id="8_s1ss8"]
-[ext_resource type="StyleBox" uid="uid://cjphvxqj8pv5c" path="res://Resources/health_bar_fill.tres" id="9_numx6"]
+[ext_resource type="StyleBox" path="res://Resources/health_bar_bg.tres" id="8_s1ss8"]
+[ext_resource type="StyleBox" path="res://Resources/health_bar_fill.tres" id="9_numx6"]
 [ext_resource type="Texture2D" uid="uid://cwnt6awfx58b3" path="res://art/temp_assets/warning/Warning_0.png" id="12_tvrvu"]
 [ext_resource type="Texture2D" uid="uid://d2ps8jghifg1i" path="res://art/temp_assets/warning/Warning_1.png" id="13_mj8gw"]
 [ext_resource type="Texture2D" uid="uid://cfjijkurimb3" path="res://art/temp_assets/warning/Warning_2.png" id="14_mvf4d"]
@@ -22,7 +22,7 @@
 [ext_resource type="Texture2D" uid="uid://dwijbsscor5s3" path="res://art/temp_assets/warning/Warning_7.png" id="19_1osnx"]
 [ext_resource type="FontFile" uid="uid://dhu6gmktki0sf" path="res://Resources/04B_20__.TTF" id="19_kjs01"]
 [ext_resource type="Texture2D" uid="uid://j2jhl6y0gxro" path="res://art/temp_assets/warning/Warning_8.png" id="20_82861"]
-[ext_resource type="PackedScene" uid="uid://dggc40nhuy740" path="res://prefabs/combo_list.tscn" id="23_elvgn"]
+[ext_resource type="PackedScene" path="res://prefabs/combo_list.tscn" id="23_elvgn"]
 
 [sub_resource type="Gradient" id="Gradient_dgvdj"]
 offsets = PackedFloat32Array(0, 0.512987, 1)

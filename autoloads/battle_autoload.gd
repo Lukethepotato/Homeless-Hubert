@@ -95,7 +95,7 @@ func apply_combo_effects(combo : player_combo) -> void:
 			enemy.traits.erase(traits.SLIPPERY);
 			enemy.health -= 10;
 			enemy.evasion -= 20;
-			enemy.speed -= 5;
+			enemy.speed -= 2;
 			if enemy.evasion < 0:
 				enemy.evasion = 0;
 	GlobalsAutoload.health_updated.emit();
