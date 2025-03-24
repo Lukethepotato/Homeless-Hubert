@@ -5,8 +5,8 @@ class_name player_attack
 
 @export var base_damage := 0; # Base damage of the skill, unaffected by offensive and defensive modifiers
 @export var priority := 0; # Additive priority value used in turn order calculation
-@export var name := "Punch"; # Name
-@export var name_color := Color.WHITE; # Name color
+@export var name := "Punch"; # Name for display
+@export var name_color := Color.WHITE; # Name color used for display
 @export var description := "Basic fist attack. Attack hits high, deals mediocre damage, and has little disruption."; # Description
 @export var animation_name: String = ""; # Name of the animation to be played when the attack commences
 @export var icon_texture: Texture2D; # Name of the texture this attack will use

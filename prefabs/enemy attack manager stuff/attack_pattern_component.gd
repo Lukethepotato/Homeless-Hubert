@@ -5,6 +5,7 @@ extends Node2D
 @export var attack_pattern: Array[enemy_attack]
 var index_on: int = 0
 
+# Returns what attack the enemy is going to use according to its attack pattern
 func _attack_verdict() -> enemy_attack:
 	if index_on == attack_pattern.size() -1:
 		index_on = 0

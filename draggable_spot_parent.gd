@@ -10,7 +10,7 @@ extends Control
 #this var should be received not changed
 @export var attack_resource_holding: player_attack
 
-var tween
+var tween;
 
 func _ready() -> void:
 	%TextureRect.texture = texture_to_set
@@ -22,6 +22,7 @@ func _ready() -> void:
 	#the resources texture in process
 	# ???
 
+# This function resets the displayed data of the draggable spot
 func reset():
 	attack_resource_holding = null
 	if tween:
@@ -34,6 +35,7 @@ func reset():
 	%TextureRect.scale = Vector2(1,1);
 	%TextureRect.rotation_degrees = 0;
 
+# This function handles setting and animating the updated texture of the spot
 func _spot_dropped(attack_resource: player_attack, dropped_where_name: String):
 	current_texture = %TextureRect.texture
 	if dropped_where_name == name:

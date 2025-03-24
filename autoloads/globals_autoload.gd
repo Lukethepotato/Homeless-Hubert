@@ -59,6 +59,7 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("f11"):
 		toggle_fullscreen();
 
+# Checks what window mode the game is and toggles it accordingly
 func toggle_fullscreen():
 	if DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_WINDOWED:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN);
@@ -80,9 +81,10 @@ func start_battle(battle_scenarios) -> void:
 	health_updated.emit();
 	print("current turn = 1")
 
+# Creates a timer with a duration equal to the duration parameter
 func timeout(duration := 2.0) -> void:
 	# To wait for the end of the timeout, please place the following line in your code:
-	# await globals_autoload.timer.timeout;
+	# await GlobalsAutoload.timer.timeout;
 	
 	timer = Timer.new();
 	timer.wait_time = duration;

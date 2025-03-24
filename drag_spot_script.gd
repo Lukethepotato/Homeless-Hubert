@@ -69,7 +69,7 @@ func _reset():
 	else:
 		dropped = false
 
-
+# Detects when the mouse enters the TextureRect and displays the associated information when proper
 func _on_mouse_entered() -> void:
 	print("entered")
 	mouse_hovering = true;
@@ -84,7 +84,7 @@ func _on_mouse_entered() -> void:
 		$"../attack_description"/MarginContainer/description.text = text;
 		$"../attack_description".visible = true;
 
-
+# Detects when the mouse exits the TextureRect
 func _on_mouse_exited() -> void:
 	print("exited")
 	mouse_hovering = false;

@@ -33,6 +33,7 @@ func update_turn_order():
 		PlayerAutoload.goes_on_turn = 3;
 		GlobalsAutoload.enemy_goes_on_turn = 2;
 
+# Returns what the player's speed would be for this turn
 func get_player_speed() -> int:
 	var speed = PlayerAutoload.speed;
 	for attack in PlayerAutoload.attack_resources_in:
@@ -42,6 +43,7 @@ func get_player_speed() -> int:
 		speed = 0;
 	return speed;
 
+# Returns what the enemy's speed would be for this turn
 func get_enemy_speed() -> int:
 	var speed = GlobalsAutoload.enemy_node.speed;
 	speed += GlobalsAutoload.enemy_node.get_child(1)._return_enemy_attack_choice().priority;
@@ -93,6 +95,7 @@ func apply_combo_effects(combo : player_combo) -> void:
 			enemy.traits.erase(traits.SLIPPERY);
 			enemy.health -= 10;
 			enemy.evasion -= 20;
+			enemy.speed -= 5;
 			if enemy.evasion < 0:
 				enemy.evasion = 0;
 	GlobalsAutoload.health_updated.emit();
