@@ -27,10 +27,11 @@ func intro_tween():
 	tween.tween_property($battle_intro/ColorRect, "modulate:a", 0, 0.2)
 	tween.tween_property($battle_intro/Warning, "modulate:a", 0, 0.2)
 	await tween.finished;
+	$info_displays.fetch_names();
 	$battle_intro.visible = false;
 	tween.kill();
 	tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO).set_parallel(true);
-	tween.tween_property($attack_spots, "position:y", 0, 0.5).from(-400)
+	tween.tween_property($attack_spots, "position", Vector2(70,20), 0.5).from(Vector2(70,-400))
 	tween.tween_property($info_displays, "position:y", 0, 0.5).from(-400)
 	tween.tween_property($bottom_ui, "position:y", 0, 0.5).from(300)
 
@@ -103,6 +104,6 @@ func update_button_speed_text():
 	else:
 		player_text = "[font_size=25][color=dim_gray][center]" + str(BattleAutoload.get_player_speed());
 		enemy_text = "[font_size=25][color=yellow][center]" + str(BattleAutoload.get_enemy_speed());
-		$"bottom_ui/attack button/verdict".text = "[font_size=25][color=web_maroon][center]Slower";
+		$"bottom_ui/attack button/verdict".text = "[font_size=25][color=red][center]Slower";
 	$"bottom_ui/attack button/player_speed".text = player_text
 	$"bottom_ui/attack button/enemy_speed".text = enemy_text
