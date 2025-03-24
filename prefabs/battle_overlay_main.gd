@@ -12,9 +12,12 @@ func _ready() -> void:
 	call_deferred("intro_tween");
 	update_button();
 
-func intro_tween():
+func reset_tween():
 	if tween:
 		tween.kill();
+
+func intro_tween():
+	reset_tween()
 	$battle_intro.visible = true;
 	tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO).set_parallel(true);
 	tween.tween_property($battle_intro/ColorRect, "modulate:a", 1, 0.5).from(0)
@@ -22,14 +25,14 @@ func intro_tween():
 	$battle_intro/AnimatedSprite2D.play("Warning");
 	GlobalsAutoload.timeout(1.666667);
 	await GlobalsAutoload.timer.timeout;
-	tween.kill();
+	reset_tween();
 	tween = create_tween().set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_EXPO).set_parallel(true);
 	tween.tween_property($battle_intro/ColorRect, "modulate:a", 0, 0.2)
 	tween.tween_property($battle_intro/Warning, "modulate:a", 0, 0.2)
 	await tween.finished;
 	$info_displays.fetch_names();
 	$battle_intro.visible = false;
-	tween.kill();
+	reset_tween();
 	tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO).set_parallel(true);
 	tween.tween_property($attack_spots, "position", Vector2(70,20), 0.5).from(Vector2(70,-400))
 	tween.tween_property($info_displays, "position:y", 0, 0.5).from(-400)
@@ -41,6 +44,9 @@ func _on_attack_button_pressed() -> void:
 		GlobalsAutoload.current_turn = 2
 		print("current turn = 2 _ overlay")
 		$"bottom_ui/attack button".disabled = true;
+		reset_tween()
+		tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO);
+		tween.tween_property($"bottom_ui/attack button", "position:y", 450, 0.5).from(410)
 
 func _on_clear_chosen_attacks_pressed() -> void:
 	if GlobalsAutoload.current_turn == 1:
@@ -61,8 +67,7 @@ func is_attack_ready() -> bool:
 
 func update_button(_fuckts1 = null, _fuckts2 = null):
 	print("update button")
-	if tween:
-		tween.kill();
+	reset_tween();
 	if is_attack_ready():
 		# The following line is a Big 'Ol Band-Aid Fix (trademark pending)
 		await GlobalsAutoload.done;
@@ -77,15 +82,8 @@ func update_button(_fuckts1 = null, _fuckts2 = null):
 func discreet_speed_update():
 	print(str(GlobalsAutoload.current_turn) + " Turn - Discreet Speed Update")
 	if GlobalsAutoload.current_turn == 4:
-		if tween:
-			tween.kill();
-		tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO);
-		tween.tween_property($"bottom_ui/attack button", "position:y", 450, 0.5).from(410)
-		await tween.finished;
 		update_button_speed_text();
-		GlobalsAutoload.timeout(0.25);
-		await GlobalsAutoload.timer.timeout;
-		tween.kill();
+		reset_tween()
 		tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO);
 		tween.tween_property($"bottom_ui/attack button", "position:y", 410, 0.5)
 		$"bottom_ui/attack button".disabled = false;

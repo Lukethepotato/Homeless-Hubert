@@ -43,7 +43,6 @@ enum location_types {
 	HIGH
 }
 
-
 func _process(delta: float) -> void:
 	if state == game_states.IN_BATTLE:
 		if (current_turn != ambivalent_turn && current_turn > 1):
@@ -56,8 +55,17 @@ func _process(delta: float) -> void:
 			print("current turn = 1 _ globalsAutoload")
 			current_turn = 1
 
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("f11"):
+		toggle_fullscreen();
+
+func toggle_fullscreen():
+	if DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_WINDOWED:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN);
+	else:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED);
+
 # This function initiates a battle, taking in a list of scenarios.
-# Luke, this is replacing the function you had in the main dock script; LMK if there are any issues
 func start_battle(battle_scenarios) -> void:
 	state = game_states.IN_BATTLE;
 	PlayerAutoload.speed += PlayerAutoload.agility;
