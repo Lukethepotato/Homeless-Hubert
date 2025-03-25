@@ -25,3 +25,4 @@ func update_health() -> void:
 func fetch_names():
 	$player_info/player_name.text = "[left][font_size=25][color="+ str(PlayerAutoload.name_color.to_html()) + "]" + PlayerAutoload.player_name;
 	$enemy_info/enemy_name.text = "[right][font_size=25][color="+ str(GlobalsAutoload.enemy_node.name_color.to_html()) + "]" + GlobalsAutoload.enemy_node.fish_name;
+	

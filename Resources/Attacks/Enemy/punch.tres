@@ -1,10 +1,13 @@
-[gd_resource type="Resource" script_class="enemy_attack" load_steps=2 format=3 uid="uid://caqte230he11q"]
+[gd_resource type="Resource" script_class="enemy_attack" load_steps=3 format=3 uid="uid://caqte230he11q"]
 
 [ext_resource type="Script" path="res://Resources/enemy_attack_resource.gd" id="1_bws00"]
+[ext_resource type="Texture2D" uid="uid://bfg26vder6en3" path="res://art/temp_assets/bg3pUNCH.PNG" id="1_r75og"]
 
 [resource]
 script = ExtResource("1_bws00")
-damage = 0
+base_damage = 0
+priority = 0
 animation_name = "enemy_attack"
 hit_region = 2
 gives_block = 0
+preview_texture = ExtResource("1_r75og")

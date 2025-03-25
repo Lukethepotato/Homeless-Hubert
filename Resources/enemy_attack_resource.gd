@@ -8,3 +8,4 @@ class_name enemy_attack
 @export var animation_name: String = ""; # Name of the animation to be played when the attack commences
 @export var hit_region := GlobalsAutoload.location_types.HIGH; # Region wherein this attack will strike
 @export var gives_block := GlobalsAutoload.location_types.NONE; # Type of block the attack will give after finishing
+@export var preview_texture: Texture2D #this is the texture that is shown to show the enemeys next attack

@@ -7,11 +7,13 @@ var tween;
 func _ready() -> void:
 	GlobalsAutoload.dropped_UI.connect(update_button)
 	GlobalsAutoload.turn_changed.connect(speed_update);
+	GlobalsAutoload.turn_changed.connect(enemy_attack_preview)
 	$attack_spots.position.y = -400;
 	$info_displays.position.y = -400;
 	$bottom_ui.position.y = 300;
 	call_deferred("intro_tween");
 	update_button();
+	enemy_attack_preview()
 
 # Function I made just bc i had to keep typing this over and over so to save time i made it a function
 func reset_tween():
@@ -112,3 +114,6 @@ func update_button_speed_text():
 		$"bottom_ui/attack button/verdict".text = "[font_size=25][color=red][center]Slower";
 	$"bottom_ui/attack button/player_speed".text = player_text
 	$"bottom_ui/attack button/enemy_speed".text = enemy_text
+	
+func enemy_attack_preview():
+	$enemy_attack_preview/TextureRect.texture = GlobalsAutoload.enemy_node.upcoming_attack.preview_texture

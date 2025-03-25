@@ -9,6 +9,9 @@ signal turn_changed()
 signal health_updated()
 signal done
 
+signal current_turn_reset()
+#called whenever turns set back to 1
+
 # Combo data
 var all_player_combos: Array[player_combo]
 
@@ -33,6 +36,8 @@ var timer;
 #3 = second participant attack*
 #*(could be player or fish depending on speed)
 
+#if checking turn on the turn changed signal, use turn 4 instead
+
 @export var enemy_node: Node2D
 var ambivalent_turn := -1
 # ! NOT FOR USE AS A WAY TO CHECK THE PREVIOUS TURN, HELP FOR CHECKING IF THE TURN HAS CHANGED
@@ -54,6 +59,7 @@ func _process(delta: float) -> void:
 		if (current_turn > 3):
 			print("current turn = 1 _ globalsAutoload")
 			current_turn = 1
+			current_turn_reset.emit()
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("f11"):
@@ -74,8 +80,6 @@ func start_battle(battle_scenarios) -> void:
 	var rand_battleS_index = randf_range(0, battle_scenarios.size() -1)
 	var instance = battle_scenarios[rand_battleS_index].instantiate()
 	add_child(instance)
-	
-	#later on the intro cinematic coding would go here
 	
 	current_turn = 1
 	health_updated.emit();
