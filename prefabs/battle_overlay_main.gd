@@ -73,7 +73,6 @@ func is_attack_ready() -> bool:
 
 # Updates the attack button, tweening it in and updating its text if necessary
 func update_button(_fuckts1 = null, _fuckts2 = null):
-	print("update button")
 	reset_tween();
 	if is_attack_ready():
 		# The following line is a Big 'Ol Band-Aid Fix (trademark pending)
@@ -88,7 +87,6 @@ func update_button(_fuckts1 = null, _fuckts2 = null):
 
 # Un-disables the attack button after the turn resets
 func speed_update():
-	print(str(GlobalsAutoload.current_turn) + " Turn - Discreet Speed Update")
 	if GlobalsAutoload.current_turn == 4:
 		update_button_speed_text();
 		reset_tween()
