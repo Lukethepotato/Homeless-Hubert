@@ -59,7 +59,7 @@ func combo_checking() -> player_combo:
 		if (attack_in_turn_index_finished < PlayerAutoload.attack_resources_in.size()):
 			attack_history_with_chosen_attacks.append(PlayerAutoload.attack_resources_in[attack_in_turn_index_finished])
 		
-		attack_history_cut = attack_history_with_chosen_attacks.slice(PlayerAutoload.attack_history.size()-1 - GlobalsAutoload.combo_node.combo_resources[i].attacks_in_combo.size()-1-1, attack_history_with_chosen_attacks.size())
+		attack_history_cut = attack_history_with_chosen_attacks.slice(attack_history_with_chosen_attacks.size() - GlobalsAutoload.combo_node.combo_resources[i].attacks_in_combo.size(), attack_history_with_chosen_attacks.size())
 		if attack_history_cut.hash() == GlobalsAutoload.combo_node.combo_resources[i].attacks_in_combo.hash():
 			return GlobalsAutoload.combo_node.combo_resources[i]
 	return null
