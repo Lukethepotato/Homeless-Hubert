@@ -9,11 +9,13 @@ extends Node2D
 # YOU WANT TO ADD A NEW CASE TO THE SWITCH CASE STATEMENT FOR YOUR NEW TRAIT
 # ONCE YOU'RE DONE WITH THAT, YOU'RE FINISHED!!!! GOOD JOB MAGGOT!
 
-@export var fish_name := "FUckin fred";
+@export var fish_name := "Fuckin evil fred"; # Name of the fish
+@export var name_color := Color.RED; # Color of the fish's name used for display
 
 # Fish stats
 @export var health := 20 # Base health of fish
 @export var max_health := 20 # Maximum health of fish
+@export var speed := 10; # Enemy speed value
 @export var traits : Array[BattleAutoload.traits]; # Array containing all of the fish's traits
 @export var strength := 1; # Additive factor to damage
 @export var defense := 0; # Subtractive factor from damage taken
@@ -25,12 +27,12 @@ extends Node2D
 @export var disruption_resist := 0.05; # Written as decimal, chance of resisting disruption
 @export var ailment_resist := 0.05; # Written as decimal, chance of resisting ailment
 
-
 @export var current_block := GlobalsAutoload.location_types.NONE
 @export var attack_history: Array[enemy_attack]
 
 func _ready() -> void:
 	GlobalsAutoload.enemy_node = self;
+	speed += agility;
 	modify_stats_with_traits();
 
 # Returns if a fish is able to combo

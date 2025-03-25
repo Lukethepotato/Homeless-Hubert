@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://c5au12ja27aq6"]
+[gd_scene load_steps=27 format=3 uid="uid://c5au12ja27aq6"]
 
 [ext_resource type="Script" path="res://prefabs/battle_overlay_main.gd" id="1_gvbtk"]
 [ext_resource type="PackedScene" uid="uid://wc8076dp0nrg" path="res://prefabs/draggable_spot.tscn" id="1_m25ou"]
@@ -6,11 +6,11 @@
 [ext_resource type="Resource" uid="uid://ctrdselwi2kf1" path="res://Resources/Attacks/Player/punch.tres" id="4_mue14"]
 [ext_resource type="Script" path="res://prefabs/health_displays_script.gd" id="5_f07nv"]
 [ext_resource type="Resource" uid="uid://dmqgyh8xxlmhk" path="res://Resources/Attacks/Player/low_block.tres" id="5_um5jo"]
-[ext_resource type="Resource" uid="uid://bbilq7ugxdnsx" path="res://Resources/Attacks/Player/high_block.tres" id="6_dbajq"]
+[ext_resource type="Resource" path="res://Resources/Attacks/Player/high_block.tres" id="6_dbajq"]
 [ext_resource type="Theme" uid="uid://cruunmamxcb7o" path="res://Resources/attack_button_theme.tres" id="7_u3x54"]
 [ext_resource type="Theme" uid="uid://7jevmqcl012f" path="res://Resources/clear_button_theme.tres" id="8_8lcn4"]
-[ext_resource type="StyleBox" uid="uid://344uqy4ps5vx" path="res://Resources/health_bar_bg.tres" id="8_s1ss8"]
-[ext_resource type="StyleBox" uid="uid://cjphvxqj8pv5c" path="res://Resources/health_bar_fill.tres" id="9_numx6"]
+[ext_resource type="StyleBox" path="res://Resources/health_bar_bg.tres" id="8_s1ss8"]
+[ext_resource type="StyleBox" path="res://Resources/health_bar_fill.tres" id="9_numx6"]
 [ext_resource type="Texture2D" uid="uid://cwnt6awfx58b3" path="res://art/temp_assets/warning/Warning_0.png" id="12_tvrvu"]
 [ext_resource type="Texture2D" uid="uid://d2ps8jghifg1i" path="res://art/temp_assets/warning/Warning_1.png" id="13_mj8gw"]
 [ext_resource type="Texture2D" uid="uid://cfjijkurimb3" path="res://art/temp_assets/warning/Warning_2.png" id="14_mvf4d"]
@@ -22,6 +22,7 @@
 [ext_resource type="Texture2D" uid="uid://dwijbsscor5s3" path="res://art/temp_assets/warning/Warning_7.png" id="19_1osnx"]
 [ext_resource type="FontFile" uid="uid://dhu6gmktki0sf" path="res://Resources/04B_20__.TTF" id="19_kjs01"]
 [ext_resource type="Texture2D" uid="uid://j2jhl6y0gxro" path="res://art/temp_assets/warning/Warning_8.png" id="20_82861"]
+[ext_resource type="PackedScene" uid="uid://dggc40nhuy740" path="res://prefabs/combo_list.tscn" id="23_elvgn"]
 
 [sub_resource type="Gradient" id="Gradient_dgvdj"]
 offsets = PackedFloat32Array(0, 0.512987, 1)
@@ -119,8 +120,11 @@ script = ExtResource("1_gvbtk")
 [node name="attack_spots" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 70.0
+offset_top = 20.0
+offset_right = 110.0
+offset_bottom = 60.0
+scale = Vector2(0.9, 0.9)
 
 [node name="attack_spot0" parent="attack_spots" instance=ExtResource("1_m25ou")]
 offset_left = 138.0
@@ -196,20 +200,20 @@ anchor_bottom = 1.0
 offset_left = 406.0
 offset_top = 660.0
 offset_right = 706.0
-offset_bottom = 740.0
+offset_bottom = 790.0
 grow_horizontal = 2
 grow_vertical = 0
 pivot_offset = Vector2(150, 40)
 size_flags_horizontal = 0
 theme = ExtResource("7_u3x54")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="bottom_ui/attack button"]
+[node name="commence" type="RichTextLabel" parent="bottom_ui/attack button"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_top = 20.0
-offset_bottom = 20.0
+offset_bottom = -55.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -217,6 +221,32 @@ theme_override_font_sizes/normal_font_size = 40
 bbcode_enabled = true
 text = "[center][font_size=25]Commence Attack
 "
+
+[node name="player_speed" type="RichTextLabel" parent="bottom_ui/attack button"]
+layout_mode = 0
+offset_top = 55.0
+offset_right = 80.0
+offset_bottom = 110.0
+bbcode_enabled = true
+text = "[font_size=25][color=yellow][center]10"
+
+[node name="enemy_speed" type="RichTextLabel" parent="bottom_ui/attack button"]
+layout_mode = 0
+offset_left = 220.0
+offset_top = 55.0
+offset_right = 300.0
+offset_bottom = 110.0
+bbcode_enabled = true
+text = "[font_size=25
+][color=dim_gray][center]8"
+
+[node name="verdict" type="RichTextLabel" parent="bottom_ui/attack button"]
+layout_mode = 0
+offset_top = 55.0
+offset_right = 300.0
+offset_bottom = 110.0
+bbcode_enabled = true
+text = "[center][font_size=25][color=gray]Outspeeding"
 
 [node name="clear chosen attacks" type="Button" parent="bottom_ui"]
 layout_mode = 0
@@ -235,18 +265,34 @@ offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("5_f07nv")
 
-[node name="Player healthbar" type="ProgressBar" parent="info_displays"]
+[node name="player_info" type="Panel" parent="info_displays"]
 layout_mode = 0
-offset_left = 75.0
-offset_top = 60.0
-offset_right = 275.0
-offset_bottom = 90.0
+offset_left = 60.0
+offset_top = 30.0
+offset_right = 270.0
+offset_bottom = 120.0
+
+[node name="player_name" type="RichTextLabel" parent="info_displays/player_info"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 205.0
+offset_bottom = 45.0
+bbcode_enabled = true
+text = "[left][font_size=25]Fuckin"
+
+[node name="player_healthbar" type="ProgressBar" parent="info_displays/player_info"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 50.0
+offset_right = 205.0
+offset_bottom = 80.0
 theme_override_styles/background = ExtResource("8_s1ss8")
 theme_override_styles/fill = ExtResource("9_numx6")
 value = 100.0
 show_percentage = false
 
-[node name="number" type="RichTextLabel" parent="info_displays/Player healthbar"]
+[node name="number" type="RichTextLabel" parent="info_displays/player_info/player_healthbar"]
 layout_mode = 0
 offset_right = 200.0
 offset_bottom = 30.0
@@ -254,18 +300,34 @@ theme_override_font_sizes/normal_font_size = 20
 bbcode_enabled = true
 text = "[center]7/7"
 
-[node name="Enemy healthbar" type="ProgressBar" parent="info_displays"]
+[node name="enemy_info" type="Panel" parent="info_displays"]
 layout_mode = 0
-offset_left = 846.0
-offset_top = 66.0
-offset_right = 1046.0
-offset_bottom = 96.0
+offset_left = 882.0
+offset_top = 30.0
+offset_right = 1092.0
+offset_bottom = 120.0
+
+[node name="enemy_name" type="RichTextLabel" parent="info_displays/enemy_info"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 205.0
+offset_bottom = 45.0
+bbcode_enabled = true
+text = "[right][font_size=25]Fuckin"
+
+[node name="enemy_healthbar" type="ProgressBar" parent="info_displays/enemy_info"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 50.0
+offset_right = 205.0
+offset_bottom = 80.0
 theme_override_styles/background = ExtResource("8_s1ss8")
 theme_override_styles/fill = ExtResource("9_numx6")
 value = 100.0
 show_percentage = false
 
-[node name="number" type="RichTextLabel" parent="info_displays/Enemy healthbar"]
+[node name="number" type="RichTextLabel" parent="info_displays/enemy_info/enemy_healthbar"]
 layout_mode = 0
 offset_right = 200.0
 offset_bottom = 30.0
@@ -315,6 +377,8 @@ theme_override_fonts/normal_font = ExtResource("19_kjs01")
 bbcode_enabled = true
 text = "[center][font_size=85
 ][shake amp=50.0][wave amp=25.5][color=crimson]!  WARNING  !"
+
+[node name="Combo list" parent="." instance=ExtResource("23_elvgn")]
 
 [connection signal="pressed" from="bottom_ui/attack button" to="." method="_on_attack_button_pressed"]
 [connection signal="pressed" from="bottom_ui/clear chosen attacks" to="." method="_on_clear_chosen_attacks_pressed"]

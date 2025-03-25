@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://dggc40nhuy740"]
+
+[ext_resource type="Script" path="res://combo_list.gd" id="1_waog7"]
+[ext_resource type="PackedScene" uid="uid://b2l18kh3781b" path="res://prefabs/combo_instructions.tscn" id="2_4o604"]
+
+[node name="Combo list" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 55.0
+offset_bottom = 40.0
+script = ExtResource("1_waog7")
+instructions_phab = ExtResource("2_4o604")
+incrementation = 5.0
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1154.0
+offset_bottom = 121.0
+color = Color(1, 1, 1, 0.266667)

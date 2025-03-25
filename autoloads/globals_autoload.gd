@@ -7,6 +7,7 @@ signal dropped_UI(attack_resource: player_attack, dropped_where_name: String)
 signal clear_attack_selection()
 signal turn_changed()
 signal health_updated()
+signal done
 
 # Combo data
 var all_player_combos: Array[player_combo]
@@ -42,7 +43,6 @@ enum location_types {
 	HIGH
 }
 
-
 func _process(delta: float) -> void:
 	if state == game_states.IN_BATTLE:
 		if (current_turn != ambivalent_turn && current_turn > 1):
@@ -55,10 +55,21 @@ func _process(delta: float) -> void:
 			print("current turn = 1 _ globalsAutoload")
 			current_turn = 1
 
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("f11"):
+		toggle_fullscreen();
+
+# Checks what window mode the game is and toggles it accordingly
+func toggle_fullscreen():
+	if DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_WINDOWED:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN);
+	else:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED);
+
 # This function initiates a battle, taking in a list of scenarios.
-# Luke, this is replacing the function you had in the main dock script; LMK if there are any issues
 func start_battle(battle_scenarios) -> void:
 	state = game_states.IN_BATTLE;
+	PlayerAutoload.speed += PlayerAutoload.agility;
 	current_turn = 0
 	var rand_battleS_index = randf_range(0, battle_scenarios.size() -1)
 	var instance = battle_scenarios[rand_battleS_index].instantiate()
@@ -70,9 +81,10 @@ func start_battle(battle_scenarios) -> void:
 	health_updated.emit();
 	print("current turn = 1")
 
+# Creates a timer with a duration equal to the duration parameter
 func timeout(duration := 2.0) -> void:
 	# To wait for the end of the timeout, please place the following line in your code:
-	# await globals_autoload.timer.timeout;
+	# await GlobalsAutoload.timer.timeout;
 	
 	timer = Timer.new();
 	timer.wait_time = duration;

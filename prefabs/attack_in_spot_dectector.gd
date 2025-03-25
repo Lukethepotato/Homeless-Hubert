@@ -5,6 +5,7 @@ extends Node2D
 @export var attack_slot_order: int = 0
 @export var slot_full: bool = false
 
+
 func _ready() -> void:
 	#GlobalsAutoload.dropped_UI.connect(dropped_in_spot_signal_receive)
 	pass
@@ -14,6 +15,7 @@ func _process(delta: float) -> void:
 	if get_parent().current_texture != null:
 		slot_full = true
 		PlayerAutoload.attack_resources_in[attack_slot_order] = get_parent().attack_resource_holding
+		GlobalsAutoload.done.emit()
 	else:
 		slot_full = false
 		if PlayerAutoload.attack_resources_in[attack_slot_order] != null:

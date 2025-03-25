@@ -7,11 +7,13 @@ extends Node
 @export var goes_on_turn: int = 2
 @export var attack_history: Array[player_attack]
 
-@export var player_name := "Hubert";
+@export var player_name := "Hubert"; # Name of the player
+@export var name_color := Color.WHITE; # Color of the player's name used for display
 
 # Player stats
 @export var health := 15 # Base health of player
 @export var max_health := 15 # Maximum health of player
+@export var speed := 10; # Player speed value
 @export var strength := 1; # Additive factor to damage
 @export var defense := 0; # Subtractive factor from damage taken
 @export var agility := 1; # Additive factor to speed

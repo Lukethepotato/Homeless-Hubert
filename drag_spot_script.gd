@@ -60,7 +60,7 @@ func _drop_data(_pos, data):
 			get_parent().attack_resource_holding = data["attack_resource"]
 			GlobalsAutoload.emit_signal("dropped_UI", data["attack_resource"], get_parent().name)
 		dropped = true
-		print("dropped on " + name)
+		#print("dropped on " + name)
 
 # This function resets the spot to its original texture.
 func _reset():
@@ -69,13 +69,13 @@ func _reset():
 	else:
 		dropped = false
 
-
+# Detects when the mouse enters the TextureRect and displays the associated information when proper
 func _on_mouse_entered() -> void:
-	print("entered")
+	#print("entered")
 	mouse_hovering = true;
 	GlobalsAutoload.timeout(1.0);
 	await GlobalsAutoload.timer.timeout;
-	if mouse_hovering:
+	if mouse_hovering and $"..".attack_resource_to_give != null:
 		var text = "[font_size=40][color=" + str(attack_resource.name_color.to_html()) + "]" + attack_resource.name + "[/color][/font_size]"
 		if attack_resource.base_damage > 0:
 			text += "\n[font_size=25]  " + str(attack_resource.base_damage) + " base damage  [/font_size]";
@@ -84,8 +84,8 @@ func _on_mouse_entered() -> void:
 		$"../attack_description"/MarginContainer/description.text = text;
 		$"../attack_description".visible = true;
 
-
+# Detects when the mouse exits the TextureRect
 func _on_mouse_exited() -> void:
-	print("exited")
+	#print("exited")
 	mouse_hovering = false;
 	$"../attack_description".visible = false;

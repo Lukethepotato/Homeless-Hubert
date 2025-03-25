@@ -15,6 +15,7 @@ func _process(delta: float) -> void:
 	apply_gravity(delta);
 	move_and_slide();
 
+# Updates Hubert's y-velocity according to the Project's gravity setting
 func apply_gravity(delta: float):
 	var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 	if not is_on_floor():

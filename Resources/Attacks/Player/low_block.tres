@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("1_65oia")
 base_damage = 0
-priority = 0
+priority = 2
 name = "Low Block"
 name_color = Color(1, 1, 1, 1)
 description = "Activate a low block."

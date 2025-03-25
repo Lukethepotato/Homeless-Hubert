@@ -22,21 +22,34 @@ enum ailments {
 
 # Changes the PlayerAutoload goes_on_turn and the GlobalsAutoload enemy_goes_on_turn according to agility values and attack priority
 func update_turn_order():
-	var player_final_priority = PlayerAutoload.agility;
-	var enemy_final_priority = GlobalsAutoload.enemy_node.agility;
-	for attack in PlayerAutoload.attack_resources_in:
-		if attack != null:
-			player_final_priority += attack.priority;
-	enemy_final_priority += GlobalsAutoload.enemy_node.get_child(1)._return_enemy_attack_choice().priority;
-	print("Player final priority = " + str(player_final_priority));
-	print("Enemy final priority = " + str(enemy_final_priority));
-	if player_final_priority > enemy_final_priority or (player_final_priority == enemy_final_priority and randi_range(1,2) == 1):
+	PlayerAutoload.speed = get_player_speed();
+	GlobalsAutoload.enemy_node.speed = get_enemy_speed();
+	print("Player speed = " + str(PlayerAutoload.speed));
+	print("Enemy speed = " + str(GlobalsAutoload.enemy_node.speed));
+	if PlayerAutoload.speed > GlobalsAutoload.enemy_node.speed or (PlayerAutoload.speed == GlobalsAutoload.enemy_node.speed and randi_range(1,2) == 1):
 		PlayerAutoload.goes_on_turn = 2;
 		GlobalsAutoload.enemy_goes_on_turn = 3;
 	else:
 		PlayerAutoload.goes_on_turn = 3;
 		GlobalsAutoload.enemy_goes_on_turn = 2;
-	
+
+# Returns what the player's speed would be for this turn
+func get_player_speed() -> int:
+	var speed = PlayerAutoload.speed;
+	for attack in PlayerAutoload.attack_resources_in:
+		if attack != null:
+			speed += attack.priority;
+	if speed < 0:
+		speed = 0;
+	return speed;
+
+# Returns what the enemy's speed would be for this turn
+func get_enemy_speed() -> int:
+	var speed = GlobalsAutoload.enemy_node.speed;
+	speed += GlobalsAutoload.enemy_node.get_child(1)._return_enemy_attack_choice().priority;
+	if speed < 0:
+		speed = 0;
+	return speed;
 
 # Returns a two-item array in the format of [User, Target]
 func convert_strs_to_attack_roles(user : String, target : String) -> Array:
@@ -82,6 +95,7 @@ func apply_combo_effects(combo : player_combo) -> void:
 			enemy.traits.erase(traits.SLIPPERY);
 			enemy.health -= 10;
 			enemy.evasion -= 20;
+			enemy.speed -= 2;
 			if enemy.evasion < 0:
 				enemy.evasion = 0;
 	GlobalsAutoload.health_updated.emit();
