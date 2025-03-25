@@ -116,4 +116,4 @@ func update_button_speed_text():
 	$"bottom_ui/attack button/enemy_speed".text = enemy_text
 	
 func enemy_attack_preview():
-	$enemy_attack_preview/TextureRect.texture = GlobalsAutoload.enemy_node.upcoming_attack.preview_texture
+	$enemy_attack_spots/enemy_attack_preview/TextureRect.texture = GlobalsAutoload.enemy_node.upcoming_attack.preview_texture
