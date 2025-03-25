@@ -19,6 +19,6 @@ offset_right = 75.0
 offset_bottom = 40.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 bbcode_enabled = true
-text = "[color=yellow]punch punch[/color] kick"
+text = "punch punch kick"
 fit_content = true
 autowrap_mode = 0

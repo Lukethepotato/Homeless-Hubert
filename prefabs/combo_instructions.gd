@@ -1,54 +1,63 @@
 extends Control
 @export var combo: player_combo
-var attack_history_with_chosen_attacks
 var attack_history_cut
 
-@export var order_done_in_combo := 0
+@export var attacks_done_in_combo := 0
 
 @export var before_bbCode: String
 @export var after_bbCode: String
+var combo_slice
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	GlobalsAutoload.connect("turn_changed", _slice_checking)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	var text: String = before_bbCode
+	var text: String =""
+	
+	if attacks_done_in_combo > 0:
+		text= before_bbCode
+		
+	
 	for i in combo.attacks_in_combo.size():
+		#text += combo.attacks_in_combo[i].name
 		text += combo.attacks_in_combo[i].name
 
-		if order_done_in_combo == i:
-			text += after_bbCode
 		
+		if attacks_done_in_combo-1 == i:
+			text += after_bbCode
+			
+		_slice_checking()
 
 	$RichTextLabel.text = text 
-
-func combo_checking():
+	
+func _slice_checking():
 	for i in combo.attacks_in_combo.size():
-		var reset_choice: bool
-		if i == 0:
-			reset_choice = true
-		else:
-			reset_choice = false
-		if combo_checking1(combo.attacks_in_combo[i], reset_choice) != combo:
-			order_done_in_combo += 1
+		var attack_hist_size = PlayerAutoload.attack_history.size()
+		var beebo = PlayerAutoload.attack_history.duplicate()
+		var combo_attacks_size = combo.attacks_in_combo.size()
+		
+		if combo_attacks_size < attack_hist_size:
+			combo_attacks_size = attack_hist_size
+		attack_history_cut = beebo.slice(attack_hist_size - combo_attacks_size,attack_hist_size - combo_attacks_size + i)
+		print("begin value = " + str(attack_hist_size - combo_attacks_size) + "end value = " + str(attack_hist_size - combo.attacks_in_combo.size() + i))
+		
+		
+		combo_slice = combo.attacks_in_combo.slice(0,i+1)
+		
+		if attack_history_cut == combo_slice:
+			attacks_done_in_combo = i +1
+			print("checked and history fit in combo up to " + str(attacks_done_in_combo))
 			
-	PlayerAutoload.attack_history.slice(PlayerAutoload.attack_history.size())
+		elif attack_history_cut != combo_slice:
+			if attack_history_cut.size() < combo.attacks_in_combo.size():
+				print("checked ____history to small at"+ str(attacks_done_in_combo))
+				break
+			else:
+				attacks_done_in_combo = 0
+				print("checked ____not right attack at"+ str(attacks_done_in_combo))
+				break
 	
-	#return GlobalsAutoload.combo_node.combo_resources[i]
-	
-func combo_checking1(attack_to_check: player_attack, reset := true) -> player_combo:
-	for i in GlobalsAutoload.combo_node.combo_resources.size():
-		
-		if reset:
-			attack_history_with_chosen_attacks = PlayerAutoload.attack_history.duplicate()
-		
-		attack_history_with_chosen_attacks.append(attack_to_check)
-		
-		#var attack_history_cut: Array[player_attack]
-		attack_history_cut = attack_history_with_chosen_attacks.slice(PlayerAutoload.attack_history.size()-1 - GlobalsAutoload.combo_node.combo_resources[i].attacks_in_combo.size()-1-1, attack_history_with_chosen_attacks.size())
-		if attack_history_cut.hash() == GlobalsAutoload.combo_node.combo_resources[i].attacks_in_combo.hash():
-			return GlobalsAutoload.combo_node.combo_resources[i]
-	return null
