@@ -5,14 +5,14 @@ extends CanvasLayer
 var tween;
 
 func _ready() -> void:
-	GlobalsAutoload.dropped_UI.connect(update_button)
+	GlobalsAutoload.dropped_UI.connect(update_button);
 	GlobalsAutoload.turn_changed.connect(turn_change);
+	$enemy_attack_spots.visible = false;
 	$attack_spots.position.y = -400;
 	$info_displays.position.y = -400;
 	$bottom_ui.position.y = 300;
 	call_deferred("intro_tween");
 	update_button();
-	enemy_attack_preview()
 
 # Function I made just bc i had to keep typing this over and over so to save time i made it a function
 func reset_tween():
@@ -36,6 +36,7 @@ func intro_tween():
 	await tween.finished;
 	$info_displays.fetch_names();
 	$battle_intro.visible = false;
+	enemy_attack_preview()
 	reset_tween();
 	tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO).set_parallel(true);
 	tween.tween_property($attack_spots, "position", Vector2(70,20), 0.5).from(Vector2(70,-400))
@@ -51,6 +52,7 @@ func _on_attack_button_pressed() -> void:
 		tween.tween_property($"bottom_ui/attack button", "position:y", 450, 0.2).from(410)
 		await tween.finished;
 		tween_in_bars();
+		hide_enemy_attack_preview();
 		await tween.finished;
 		GlobalsAutoload.timeout(0.2);
 		await GlobalsAutoload.timer.timeout;
@@ -95,11 +97,11 @@ func update_button(_fuckts1 = null, _fuckts2 = null):
 func turn_change():
 	if GlobalsAutoload.current_turn == 4:
 		tween_out_bars();
+		enemy_attack_preview();
 		await tween.finished;
 		GlobalsAutoload.timeout(0.4);
 		await GlobalsAutoload.timer.timeout;
 		speed_update();
-		enemy_attack_preview();
 
 # Un-disables the attack button after the turn resets
 func speed_update():
@@ -153,3 +155,16 @@ func tween_out_bars():
 
 func enemy_attack_preview():
 	$enemy_attack_spots/enemy_attack_preview/TextureRect.texture = GlobalsAutoload.enemy_node.upcoming_attack.preview_texture
+	$enemy_attack_spots/enemy_attack_preview.position.y = 250;
+	$enemy_attack_spots/enemy_attack_preview.scale = Vector2(0.01,0.01);
+	$enemy_attack_spots.visible = true;
+	var tween2 = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO).set_parallel(true);
+	tween2.tween_property($enemy_attack_spots/enemy_attack_preview, "position:y", 150, 0.5);
+	tween2.tween_property($enemy_attack_spots/enemy_attack_preview, "scale", Vector2(0.9,0.9), 0.5);
+
+func hide_enemy_attack_preview():
+	var tween2 = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO).set_parallel(true);
+	tween2.tween_property($enemy_attack_spots/enemy_attack_preview, "position:y", 250, 0.5);
+	tween2.tween_property($enemy_attack_spots/enemy_attack_preview, "scale", Vector2(0.01,0.01), 0.5);
+	await tween2.finished;
+	$enemy_attack_spots.visible = false;
