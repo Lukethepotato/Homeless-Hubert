@@ -11,9 +11,3 @@ offset_bottom = 40.0
 script = ExtResource("1_waog7")
 instructions_phab = ExtResource("2_4o604")
 incrementation = 5.0
-
-[node name="ColorRect" type="ColorRect" parent="."]
-layout_mode = 0
-offset_right = 1154.0
-offset_bottom = 121.0
-color = Color(1, 1, 1, 0.266667)

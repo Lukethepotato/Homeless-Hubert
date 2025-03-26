@@ -1,6 +1,6 @@
 extends Panel
 
-
+# This script contains the enemy attack description popup logic
 
 var mouse_hovering;
 
