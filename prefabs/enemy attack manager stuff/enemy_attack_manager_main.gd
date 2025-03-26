@@ -30,8 +30,10 @@ func _update_upcoming_attack():
 # Returns which enemy_attack the enemy will use this turn
 func _return_enemy_attack_choice() -> enemy_attack:
 	for i in get_child_count():
-		if get_child(i)._attack_verdict() != null:
-			return get_child(i)._attack_verdict()
+		var returned_attack :enemy_attack = get_child(i)._attack_verdict()
+		if returned_attack != null:
+			print("attack verdict returned " + returned_attack.name)
+			return returned_attack
 			#goes through each child in order and sees if it returns an attack
 			#if it does it returns that attack
 	return fallback_attack;

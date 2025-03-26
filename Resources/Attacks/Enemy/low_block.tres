@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="enemy_attack" load_steps=3 format=3 uid="uid://bh16ayv08j586"]
+
+[ext_resource type="Texture2D" uid="uid://dmapuornrtfpu" path="res://art/temp_assets/images (3).jpg" id="1_7tyqd"]
+[ext_resource type="Script" path="res://Resources/enemy_attack_resource.gd" id="2_4seqh"]
+
+[resource]
+script = ExtResource("2_4seqh")
+base_damage = 0
+priority = 2
+name = "Low Block"
+name_color = Color(1, 1, 1, 1)
+description = "Activates a low block"
+animation_name = "enemy_low_block"
+hit_region = 0
+gives_block = 1
+preview_texture = ExtResource("1_7tyqd")
