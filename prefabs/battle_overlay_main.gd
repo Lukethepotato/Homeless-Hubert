@@ -133,7 +133,7 @@ func tween_in_bars():
 	reset_tween();
 	tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD).set_parallel(true);
 	tween.tween_property($attack_spots, "position", Vector2(-300,20), 0.2)
-	tween.tween_property($info_displays, "position:y", 80, 0.2)
+	tween.tween_property($info_displays, "position:y", 90, 0.2)
 	tween.tween_property($bottom_ui, "position:y", 300, 0.2)
 	#await tween.finished;
 	#tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD).set_parallel(true);
