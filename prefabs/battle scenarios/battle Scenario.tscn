@@ -232,4 +232,7 @@ fallback_attack = ExtResource("6_115l5")
 
 [node name="damage_donator" parent="." instance=ExtResource("9_nr2w5")]
 
+[node name="midpoint" type="Node2D" parent="."]
+position = Vector2(576, 324)
+
 [connection signal="animation_finished" from="BattleScen_AnimPlayer" to="BattleScen_AnimPlayer" method="_on_animation_finished"]

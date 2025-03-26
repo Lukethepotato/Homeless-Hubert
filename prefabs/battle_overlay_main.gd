@@ -88,7 +88,7 @@ func update_button(_fuckts1 = null, _fuckts2 = null):
 	reset_tween();
 	if is_attack_ready():
 		# The following line is a Big 'Ol Band-Aid Fix (trademark pending)
-		await GlobalsAutoload.done;
+		await GlobalsAutoload.done_updating_attacks;
 		call_deferred("update_button_speed_text")
 		tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO);
 		tween.tween_property($"bottom_ui/attack button", "position:y", 410, 0.5).from(700)

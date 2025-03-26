@@ -15,7 +15,7 @@ func _process(delta: float) -> void:
 	if get_parent().current_texture != null:
 		slot_full = true
 		PlayerAutoload.attack_resources_in[attack_slot_order] = get_parent().attack_resource_holding
-		GlobalsAutoload.done.emit()
+		GlobalsAutoload.done_updating_attacks.emit()
 	else:
 		slot_full = false
 		if PlayerAutoload.attack_resources_in[attack_slot_order] != null:
