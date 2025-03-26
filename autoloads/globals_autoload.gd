@@ -94,4 +94,5 @@ func timeout(duration := 2.0) -> void:
 	timer.wait_time = duration;
 	timer.one_shot = true;
 	get_tree().root.add_child(timer);
+	timer.timeout.connect(timer.queue_free)
 	timer.start();

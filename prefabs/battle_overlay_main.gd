@@ -145,9 +145,9 @@ func tween_out_bars():
 	tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD).set_parallel(true);
 	tween.tween_property($bars/bottom_bar, "position:y", 750, 0.25)
 	tween.tween_property($bars/top_bar, "position:y", -182, 0.25)
-	tween.tween_property($attack_spots, "position", Vector2(70,20), 0.2)
-	tween.tween_property($info_displays, "position:y", 0, 0.2)
-	tween.tween_property($bottom_ui, "position:y", 0, 0.2)
+	tween.tween_property($attack_spots, "position", Vector2(70,20), 0.25)
+	tween.tween_property($info_displays, "position:y", 0, 0.25)
+	tween.tween_property($bottom_ui, "position:y", 0, 0.25)
 	await tween.finished;
 	$bars.visible = false;
 

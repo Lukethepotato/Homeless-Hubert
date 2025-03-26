@@ -460,6 +460,7 @@ color = Color(0, 0, 0, 1)
 
 [node name="lightning" type="ColorRect" parent="bars/bottom_bar"]
 material = SubResource("ShaderMaterial_e7qlj")
+layout_mode = 0
 offset_left = 1152.0
 offset_top = -20.0
 offset_right = 1192.0
