@@ -1,12 +1,15 @@
-[gd_scene load_steps=27 format=3 uid="uid://c5au12ja27aq6"]
+[gd_scene load_steps=41 format=3 uid="uid://c5au12ja27aq6"]
 
 [ext_resource type="Script" path="res://prefabs/battle_overlay_main.gd" id="1_gvbtk"]
 [ext_resource type="PackedScene" uid="uid://wc8076dp0nrg" path="res://prefabs/draggable_spot.tscn" id="1_m25ou"]
 [ext_resource type="Script" path="res://prefabs/attack_in_spot_dectector.gd" id="2_co3gh"]
+[ext_resource type="StyleBox" uid="uid://bx6agehovky2h" path="res://Resources/draggable_spot_bg.tres" id="4_06bac"]
 [ext_resource type="Resource" uid="uid://ctrdselwi2kf1" path="res://Resources/Attacks/Player/punch.tres" id="4_mue14"]
 [ext_resource type="Script" path="res://prefabs/health_displays_script.gd" id="5_f07nv"]
 [ext_resource type="Resource" uid="uid://dmqgyh8xxlmhk" path="res://Resources/Attacks/Player/low_block.tres" id="5_um5jo"]
+[ext_resource type="Script" path="res://prefabs/enemy_attack_popup.gd" id="5_xe672"]
 [ext_resource type="Resource" uid="uid://bbilq7ugxdnsx" path="res://Resources/Attacks/Player/high_block.tres" id="6_dbajq"]
+[ext_resource type="Script" path="res://prefabs/dynamic_sizing.gd" id="6_wcuem"]
 [ext_resource type="Theme" uid="uid://cruunmamxcb7o" path="res://Resources/attack_button_theme.tres" id="7_u3x54"]
 [ext_resource type="Theme" uid="uid://7jevmqcl012f" path="res://Resources/clear_button_theme.tres" id="8_8lcn4"]
 [ext_resource type="StyleBox" uid="uid://344uqy4ps5vx" path="res://Resources/health_bar_bg.tres" id="8_s1ss8"]
@@ -22,7 +25,16 @@
 [ext_resource type="Texture2D" uid="uid://dwijbsscor5s3" path="res://art/temp_assets/warning/Warning_7.png" id="19_1osnx"]
 [ext_resource type="FontFile" uid="uid://dhu6gmktki0sf" path="res://Resources/04B_20__.TTF" id="19_kjs01"]
 [ext_resource type="Texture2D" uid="uid://j2jhl6y0gxro" path="res://art/temp_assets/warning/Warning_8.png" id="20_82861"]
+[ext_resource type="Shader" path="res://Resources/lightning.gdshader" id="23_5qd2d"]
 [ext_resource type="PackedScene" uid="uid://dggc40nhuy740" path="res://prefabs/combo_list.tscn" id="23_elvgn"]
+[ext_resource type="Script" path="res://prefabs/combo_window_popup.gd" id="27_66brq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_56c83"]
+bg_color = Color(0.15, 0.15, 0.15, 0.784314)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
 
 [sub_resource type="Gradient" id="Gradient_dgvdj"]
 offsets = PackedFloat32Array(0, 0.512987, 1)
@@ -114,6 +126,55 @@ animations = [{
 "speed": 12.0
 }]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g5n02"]
+bg_color = Color(0.87, 0.77256, 0.6612, 0.784314)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p0q46"]
+bg_color = Color(0.870588, 0.772549, 0.662745, 0.784314)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ffafr"]
+bg_color = Color(0.165656, 0.165656, 0.165656, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="Gradient" id="Gradient_ymiyd"]
+offsets = PackedFloat32Array(0.2, 0.4, 0.5, 0.6, 0.8)
+colors = PackedColorArray(0.65, 0.766667, 1, 0, 0, 0.466667, 0.7, 0.627451, 1, 1, 1, 1, 0, 0.466667, 0.7, 0.627451, 0.65, 0.766667, 1, 0)
+metadata/_snap_enabled = true
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_xfhef"]
+gradient = SubResource("Gradient_ymiyd")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_fkor4"]
+noise_type = 3
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_vn61m"]
+seamless = true
+noise = SubResource("FastNoiseLite_fkor4")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_e7qlj"]
+shader = ExtResource("23_5qd2d")
+shader_parameter/width = 0.21
+shader_parameter/fix_start = false
+shader_parameter/fix_end = false
+shader_parameter/inverted = true
+shader_parameter/line_gradient = SubResource("GradientTexture1D_xfhef")
+shader_parameter/speed = 3.035
+shader_parameter/variation = 0.1
+shader_parameter/scale = 5.618
+shader_parameter/repeats = 3.66
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_vn61m")
+
 [node name="battle_overlay" type="CanvasLayer"]
 script = ExtResource("1_gvbtk")
 
@@ -145,33 +206,58 @@ offset_bottom = 132.0
 script = ExtResource("2_co3gh")
 attack_slot_order = 1
 
-[node name="enemy_attack_spots" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="enemy_attack_spots" type="CanvasLayer" parent="."]
+layer = -1
 
-[node name="enemy_attack_preview" type="Control" parent="enemy_attack_spots"]
-layout_mode = 3
-anchors_preset = 0
-offset_left = 852.0
-offset_top = 147.0
-offset_right = 924.0
-offset_bottom = 219.0
+[node name="enemy_attack_preview" type="Panel" parent="enemy_attack_spots"]
+offset_left = 860.0
+offset_top = 150.0
+offset_right = 950.0
+offset_bottom = 240.0
+scale = Vector2(0.9, 0.9)
+pivot_offset = Vector2(45, 45)
+theme_override_styles/panel = ExtResource("4_06bac")
+script = ExtResource("5_xe672")
 
 [node name="TextureRect" type="TextureRect" parent="enemy_attack_spots/enemy_attack_preview"]
 layout_mode = 0
-offset_left = 27.0
-offset_top = -7.99999
-offset_right = 67.0
-offset_bottom = 32.0
-scale = Vector2(2.10401, 2.10401)
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 85.0
+offset_bottom = 85.0
+
+[node name="attack_description" type="Panel" parent="enemy_attack_spots/enemy_attack_preview/TextureRect"]
+z_index = 1
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_56c83")
+
+[node name="MarginContainer" type="MarginContainer" parent="enemy_attack_spots/enemy_attack_preview/TextureRect/attack_description"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 7
+theme_override_constants/margin_top = 7
+theme_override_constants/margin_right = 7
+theme_override_constants/margin_bottom = 7
+
+[node name="description" type="RichTextLabel" parent="enemy_attack_spots/enemy_attack_preview/TextureRect/attack_description/MarginContainer"]
+clip_contents = false
+layout_mode = 2
+mouse_filter = 2
+bbcode_enabled = true
+fit_content = true
+autowrap_mode = 0
+script = ExtResource("6_wcuem")
 
 [node name="bottom_ui" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+mouse_filter = 1
 
 [node name="attack_givers" type="Control" parent="bottom_ui"]
 layout_mode = 3
@@ -285,6 +371,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+mouse_filter = 1
 script = ExtResource("5_f07nv")
 
 [node name="player_info" type="Panel" parent="info_displays"]
@@ -400,7 +487,80 @@ bbcode_enabled = true
 text = "[center][font_size=85
 ][shake amp=50.0][wave amp=25.5][color=crimson]!  WARNING  !"
 
-[node name="Combo list" parent="." instance=ExtResource("23_elvgn")]
+[node name="combo_thing" type="Panel" parent="."]
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 45.0
+offset_bottom = 45.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_g5n02")
+script = ExtResource("27_66brq")
 
+[node name="combo_container" type="Panel" parent="combo_thing"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_p0q46")
+
+[node name="Combo list" parent="combo_thing/combo_container" instance=ExtResource("23_elvgn")]
+visible = false
+offset_left = -5.0
+offset_top = -5.0
+offset_right = 50.0
+offset_bottom = 35.0
+mouse_filter = 1
+
+[node name="bars" type="Panel" parent="combo_thing"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 17.5
+offset_right = 35.0
+offset_bottom = 22.5
+pivot_offset = Vector2(15, 2.5)
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_ffafr")
+
+[node name="bars" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="top_bar" type="ColorRect" parent="bars"]
+layout_mode = 0
+offset_top = -182.0
+offset_right = 1152.0
+offset_bottom = -102.0
+color = Color(0, 0, 0, 1)
+
+[node name="lightning" type="ColorRect" parent="bars/top_bar"]
+material = SubResource("ShaderMaterial_e7qlj")
+layout_mode = 0
+offset_left = 1152.0
+offset_top = 62.0
+offset_right = 1192.0
+offset_bottom = 1214.0
+rotation = 1.5708
+
+[node name="bottom_bar" type="ColorRect" parent="bars"]
+layout_mode = 0
+offset_top = 750.0
+offset_right = 1152.0
+offset_bottom = 830.0
+color = Color(0, 0, 0, 1)
+
+[node name="lightning" type="ColorRect" parent="bars/bottom_bar"]
+material = SubResource("ShaderMaterial_e7qlj")
+layout_mode = 0
+offset_left = 1152.0
+offset_top = -20.0
+offset_right = 1192.0
+offset_bottom = 1132.0
+rotation = 1.5708
+
+[connection signal="mouse_entered" from="enemy_attack_spots/enemy_attack_preview/TextureRect" to="enemy_attack_spots/enemy_attack_preview" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="enemy_attack_spots/enemy_attack_preview/TextureRect" to="enemy_attack_spots/enemy_attack_preview" method="_on_mouse_exited"]
 [connection signal="pressed" from="bottom_ui/attack button" to="." method="_on_attack_button_pressed"]
 [connection signal="pressed" from="bottom_ui/clear chosen attacks" to="." method="_on_clear_chosen_attacks_pressed"]
+[connection signal="gui_input" from="combo_thing" to="combo_thing" method="_on_gui_input"]

@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://wc8076dp0nrg"]
+[gd_scene load_steps=7 format=3 uid="uid://wc8076dp0nrg"]
 
 [ext_resource type="Script" path="res://drag_spot_script.gd" id="1_0oyh1"]
 [ext_resource type="Script" path="res://draggable_spot_parent.gd" id="1_kvsg6"]
+[ext_resource type="StyleBox" uid="uid://bx6agehovky2h" path="res://Resources/draggable_spot_bg.tres" id="2_bvog4"]
 [ext_resource type="PackedScene" uid="uid://cahb7rpax867j" path="res://prefabs/drag_preview.tscn" id="3_4jywp"]
 [ext_resource type="Script" path="res://prefabs/dynamic_sizing.gd" id="4_nbtrg"]
 
@@ -20,8 +21,10 @@ script = ExtResource("1_kvsg6")
 [node name="Panel" type="Panel" parent="."]
 z_index = -1
 layout_mode = 0
+offset_top = 1.0
 offset_right = 90.0
-offset_bottom = 90.0
+offset_bottom = 91.0
+theme_override_styles/panel = ExtResource("2_bvog4")
 
 [node name="attack_description" type="Panel" parent="."]
 z_index = 1

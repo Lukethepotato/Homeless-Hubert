@@ -7,7 +7,9 @@ signal dropped_UI(attack_resource: player_attack, dropped_where_name: String)
 signal clear_attack_selection()
 signal turn_changed()
 signal health_updated()
-signal done
+signal battle_start()
+signal battle_end()
+signal done_updating_attacks()
 
 signal current_turn_reset()
 #called whenever turns set back to 1
@@ -48,6 +50,8 @@ enum location_types {
 	HIGH
 }
 
+var current_battle_scenario;
+
 func _process(delta: float) -> void:
 	if state == game_states.IN_BATTLE:
 		if (current_turn != ambivalent_turn && current_turn > 1):
@@ -80,6 +84,8 @@ func start_battle(battle_scenarios) -> void:
 	var rand_battleS_index = randf_range(0, battle_scenarios.size() -1)
 	var instance = battle_scenarios[rand_battleS_index].instantiate()
 	add_child(instance)
+	current_battle_scenario = instance;
+	battle_start.emit();
 	
 	current_turn = 1
 	health_updated.emit();
@@ -94,4 +100,5 @@ func timeout(duration := 2.0) -> void:
 	timer.wait_time = duration;
 	timer.one_shot = true;
 	get_tree().root.add_child(timer);
+	timer.timeout.connect(timer.queue_free)
 	timer.start();
