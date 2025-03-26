@@ -402,5 +402,25 @@ text = "[center][font_size=85
 
 [node name="Combo list" parent="." instance=ExtResource("23_elvgn")]
 
+[node name="bars" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="top_bar" type="ColorRect" parent="bars"]
+layout_mode = 0
+offset_top = -182.0
+offset_right = 1152.0
+offset_bottom = -102.0
+color = Color(0, 0, 0, 1)
+
+[node name="bottom_bar" type="ColorRect" parent="bars"]
+layout_mode = 0
+offset_top = 750.0
+offset_right = 1152.0
+offset_bottom = 830.0
+color = Color(0, 0, 0, 1)
+
 [connection signal="pressed" from="bottom_ui/attack button" to="." method="_on_attack_button_pressed"]
 [connection signal="pressed" from="bottom_ui/clear chosen attacks" to="." method="_on_clear_chosen_attacks_pressed"]

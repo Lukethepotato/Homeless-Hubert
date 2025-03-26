@@ -2,6 +2,9 @@ extends Node
 
 # This script contains miscellaneous data and functions pertaining to battles and battle calculations
 
+
+signal attack_ready;
+
 enum traits {
 	SLIPPERY,
 	OBESE,
@@ -19,6 +22,9 @@ enum ailments {
 	POISON,
 	DAZE,
 }
+
+#func initiate_combat():
+	
 
 # Changes the PlayerAutoload goes_on_turn and the GlobalsAutoload enemy_goes_on_turn according to agility values and attack priority
 func update_turn_order():
