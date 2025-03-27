@@ -97,10 +97,10 @@ func update_button(_fuckts1 = null, _fuckts2 = null):
 func turn_change():
 	if GlobalsAutoload.current_turn == 4:
 		tween_out_bars();
-		enemy_attack_preview();
 		await tween.finished;
 		GlobalsAutoload.timeout(0.4);
 		await GlobalsAutoload.timer.timeout;
+		enemy_attack_preview();
 		speed_update();
 
 # Un-disables the attack button after the turn resets
