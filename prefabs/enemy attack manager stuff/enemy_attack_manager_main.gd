@@ -20,9 +20,16 @@ func start_enemy_attack() -> void:
 		await GlobalsAutoload.timer.timeout
 		
 		%BattleScen_AnimPlayer.play(get_parent().upcoming_attack.animation_name)
+		update_block()
 		$"..".attack_history.append(get_parent().upcoming_attack)
 		print("enemy attack")
-		
+	
+func update_block():
+	if get_parent().upcoming_attack.gives_block != 3:
+		get_parent().current_block = get_parent().upcoming_attack.gives_block
+		#sets the block to upcoming attacks block unless its set to ignore
+	
+	
 func _update_upcoming_attack():
 	#if player choosing attacks turn decide the attack for next turn
 		get_parent().upcoming_attack = _return_enemy_attack_choice()

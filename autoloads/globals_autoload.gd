@@ -45,7 +45,8 @@ var ambivalent_turn := -1
 enum location_types {
 	NONE,
 	LOW,
-	HIGH
+	HIGH,
+	IGNORE
 }
 
 func _process(delta: float) -> void:
