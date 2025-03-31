@@ -7,10 +7,10 @@
 script = ExtResource("1_bws00")
 base_damage = 10
 priority = 0
-name = "Fishy Bash"
-name_color = Color(5.39064e-06, 0.58786, 0.759833, 1)
+name = "Punch"
+name_color = Color(1, 1, 1, 1)
 description = "Basic attack. Attack hits high and deals 10 damage."
 animation_name = "enemy_attack"
-hit_region = 2
-gives_block = 0
+hit_region = 3
+gives_block = 3
 preview_texture = ExtResource("1_r75og")

@@ -9,6 +9,7 @@ base_damage = 5
 priority = 0
 name = "Punch"
 name_color = Color(1, 0, 0, 1)
+description = "Basic fist attack. Attack hits high, deals mediocre damage, and has little disruption."
 animation_name = "hubert_basic_punch"
 icon_texture = ExtResource("1_mcpck")
 hit_region = 2

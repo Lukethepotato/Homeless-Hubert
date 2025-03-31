@@ -47,7 +47,8 @@ var ambivalent_turn := -1
 enum location_types {
 	NONE,
 	LOW,
-	HIGH
+	HIGH,
+	IGNORE
 }
 
 var current_battle_scenario;
@@ -90,6 +91,19 @@ func start_battle(battle_scenarios) -> void:
 	current_turn = 1
 	health_updated.emit();
 	print("current turn = 1")
+	
+func convert_to_elavation(input: location_types) -> location_types:		
+	#input a location and returns its elavation counterpart
+	if input == location_types.LOW:
+		return location_types.HIGH
+		
+	elif input == location_types.HIGH:
+		return location_types.LOW
+	
+	else:
+		return input
+		#if you where to input "none" or "ignore" it would just return it back
+	
 
 # Creates a timer with a duration equal to the duration parameter
 func timeout(duration := 2.0) -> void:
