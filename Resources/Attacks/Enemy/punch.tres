@@ -11,6 +11,6 @@ name = "Punch"
 name_color = Color(1, 1, 1, 1)
 description = "Basic attack. Attack hits high and deals 10 damage."
 animation_name = "enemy_attack"
-hit_region = 2
+hit_region = 3
 gives_block = 3
 preview_texture = ExtResource("1_r75og")
