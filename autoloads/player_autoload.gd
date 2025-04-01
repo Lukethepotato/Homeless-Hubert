@@ -9,6 +9,7 @@ extends Node
 
 @export var player_name := "Hubert"; # Name of the player
 @export var name_color := Color.WHITE; # Color of the player's name used for display
+@export var position := Vector2(0,0); # Position of player for damage popup numbers
 
 # Player stats
 @export var health := 15 # Base health of player
@@ -17,7 +18,7 @@ extends Node
 @export var strength := 1; # Additive factor to damage
 @export var defense := 0; # Subtractive factor from damage taken
 @export var agility := 1; # Additive factor to speed
-@export var luck := 0; # Additive factor to critical chance (base chance = 1)
+@export var luck := 99; # Additive factor to critical chance (base chance = 1)
 @export var evasion := 1; # Additive factor to dodge chance (base chance = 0)
 
 # Resistances

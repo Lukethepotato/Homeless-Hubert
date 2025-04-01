@@ -89,3 +89,5 @@ extends Node2D
 # हेलो मैं तुम्हें शौचालय में चोदने वाला हूँ
 
 #I CANT STOP LOOKING AT IT! ITS JIGGLING! JEREMY ITS JIGGLING
+
+# Where's my copy of The Metamorphosis and Other Short Stories by Franz Kafka, Mark?

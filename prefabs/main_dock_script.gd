@@ -7,3 +7,4 @@ extends Node2D
 func _on_fishing_spot_body_entered(body: Node2D) -> void:
 	if body.name == "Hubert":
 		GlobalsAutoload.start_battle(battle_scenarios);
+		PlayerAutoload.position = $Hubert.position

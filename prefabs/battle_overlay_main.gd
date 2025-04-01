@@ -7,6 +7,7 @@ var tween;
 func _ready() -> void:
 	GlobalsAutoload.dropped_UI.connect(update_button);
 	GlobalsAutoload.turn_changed.connect(turn_change);
+	BattleAutoload.damage_dealt.connect(damage_popup);
 	$enemy_attack_spots.visible = false;
 	$combo_thing.visible = false;
 	$attack_spots.position.y = -400;
@@ -172,3 +173,23 @@ func hide_enemy_attack_preview():
 	tween2.tween_property($enemy_attack_spots/enemy_attack_preview, "scale", Vector2(0.01,0.01), 0.5);
 	await tween2.finished;
 	$enemy_attack_spots.visible = false;
+
+func damage_popup(damage : int, target, crit := false, evade := false):
+	var text = RichTextLabel.new();
+	text.bbcode_enabled = true;
+	text.fit_content = true;
+	text.autowrap_mode = TextServer.AUTOWRAP_OFF;
+	var color = "white"
+	var fontsize = 25;
+	var mod = ""
+	if crit:
+		color = "gold"
+		fontsize = 40;
+		mod = "Critical!"
+	if evade:
+		color = "red"
+		fontsize = 30;
+		mod = "Evade!"
+	text.text = "[center][color=" + str(color) + "][font_size=" + str(fontsize) + "]" + mod + str(damage);
+	add_child(text);
+	text.position = target.position;
