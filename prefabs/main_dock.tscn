@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://cjnea8maf3y5l"]
+[gd_scene load_steps=21 format=3 uid="uid://cjnea8maf3y5l"]
 
 [ext_resource type="PackedScene" uid="uid://co6wwlpta51be" path="res://prefabs/Hubert.tscn" id="1_n63l7"]
 [ext_resource type="Script" path="res://prefabs/main_dock_script.gd" id="1_wjf3g"]
@@ -210,10 +210,53 @@ tracks/2/keys = {
 }]
 }
 
+[sub_resource type="Animation" id="Animation_rm7sm"]
+resource_name = "hubert_basic_chop"
+step = 0.0666667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Hubert/Hubert_Sprites:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"basic:chop"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hubert/Hubert_Sprites:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.133333, 0.2, 0.266667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("damage_donator")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.266667),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": ["Player", "Enemy", 5],
+"method": &"_damage_donation"
+}]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_b23nh"]
 _data = {
 "RESET": SubResource("Animation_vog60"),
 "combo_slippy_trip": SubResource("Animation_l5h7e"),
+"hubert_basic_chop": SubResource("Animation_rm7sm"),
 "hubert_basic_kick": SubResource("Animation_ms2gy"),
 "hubert_basic_punch": SubResource("Animation_wnkjl"),
 "hubert_high_block": SubResource("Animation_r0b40"),

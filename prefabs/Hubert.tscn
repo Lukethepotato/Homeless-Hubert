@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://co6wwlpta51be"]
+[gd_scene load_steps=30 format=3 uid="uid://co6wwlpta51be"]
 
 [ext_resource type="Texture2D" uid="uid://ca237n0njexqp" path="res://art/temp_assets/192637.png" id="2_h37bg"]
 [ext_resource type="Texture2D" uid="uid://7j27av2hvwmc" path="res://art/temp_assets/Goblin_Idle.png" id="2_x2k4m"]
@@ -6,6 +6,26 @@
 [ext_resource type="Script" path="res://prefabs/misc_player_anim_player.gd" id="3_q40jc"]
 [ext_resource type="Script" path="res://prefabs/hubert.gd" id="4_dhhqc"]
 [ext_resource type="Texture2D" uid="uid://bo3kr2xfcjpn0" path="res://art/temp_assets/192652.png" id="4_tvrug"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x81rd"]
+atlas = ExtResource("4_tvrug")
+region = Rect2(801, 78, 89, 78)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o4fwj"]
+atlas = ExtResource("4_tvrug")
+region = Rect2(178, 156, 89, 78)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_onlj3"]
+atlas = ExtResource("4_tvrug")
+region = Rect2(89, 156, 89, 78)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t6i5v"]
+atlas = ExtResource("4_tvrug")
+region = Rect2(267, 156, 89, 78)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hr1cr"]
+atlas = ExtResource("4_tvrug")
+region = Rect2(356, 156, 89, 78)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_upurf"]
 atlas = ExtResource("2_h37bg")
@@ -79,6 +99,26 @@ animations = [{
 }],
 "loop": true,
 "name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x81rd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o4fwj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_onlj3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t6i5v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hr1cr")
+}],
+"loop": false,
+"name": &"basic:chop",
 "speed": 5.0
 }, {
 "frames": [{
@@ -168,8 +208,8 @@ script = ExtResource("4_dhhqc")
 
 [node name="Hubert_Sprites" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_gomab")
-animation = &"basic:kick"
-frame = 6
+animation = &"basic:chop"
+frame = 4
 frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
