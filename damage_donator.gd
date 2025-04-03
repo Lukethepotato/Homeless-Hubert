@@ -12,9 +12,15 @@ func _damage_donation(user : String, target : String, base_dmg: int, combo : pla
 	
 	var roles0_hit_region = roles[0].attack_history[roles[0].attack_history.size() - 1].hit_region 
 	
+	
 	if roles0_hit_region == GlobalsAutoload.location_types.IGNORE:
-		roles0_hit_region = GlobalsAutoload.convert_to_elavation(roles[0].current_block)	
-	#if the attacks region is set to ignore it sets the var attack region to the current elvation
+		if roles[0].current_block != GlobalsAutoload.location_types.NONE: 
+			roles0_hit_region = GlobalsAutoload.convert_to_elavation(roles[0].current_block)	
+			#if the attacks region is set to ignore it sets the var attack region to the current elvation
+		else:
+			roles0_hit_region = GlobalsAutoload.location_types.HIGH
+			#if the fish is in the middle and the attack region is ignore it will default to its
+			#attack location to high
 	
 	
 	if roles[0] != roles[1]:
