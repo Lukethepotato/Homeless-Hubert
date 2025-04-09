@@ -1,0 +1,105 @@
+[gd_scene load_steps=6 format=3 uid="uid://dr3l6ybshccr7"]
+
+[ext_resource type="Texture2D" uid="uid://elvflalqk6l3" path="res://art/temp_assets/IMG_9613.jpeg" id="1_mkh2l"]
+[ext_resource type="Script" path="res://menu_scene.gd" id="1_wft0e"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_djmvq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_mkh2l")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0cpt7"]
+bg_color = Color(0.210507, 0.210507, 0.210507, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_muixq"]
+bg_color = Color(0.389287, 0.389287, 0.389286, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+corner_detail = 1
+
+[node name="menu_scene" type="Node2D"]
+script = ExtResource("1_wft0e")
+
+[node name="hubert_start_animation" type="AnimatedSprite2D" parent="."]
+position = Vector2(307, 400)
+scale = Vector2(0.736157, 0.736157)
+sprite_frames = SubResource("SpriteFrames_djmvq")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 583.0
+offset_bottom = 177.0
+
+[node name="game_name" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = -1.0
+offset_top = 16.0
+offset_right = 622.0
+offset_bottom = 173.0
+theme_override_font_sizes/font_size = 55
+text = "HOMELESS HUBERT'S HAMBURGER HUNT"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Panel" type="Panel" parent="."]
+offset_left = 627.0
+offset_top = 17.0
+offset_right = 1134.0
+offset_bottom = 627.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_0cpt7")
+
+[node name="play_button" type="Button" parent="."]
+offset_left = 651.0
+offset_top = 51.0
+offset_right = 1112.0
+offset_bottom = 169.0
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxFlat_muixq")
+text = "START GAME"
+autowrap_mode = 3
+
+[node name="options_button" type="Button" parent="."]
+offset_left = 652.0
+offset_top = 197.0
+offset_right = 1113.0
+offset_bottom = 315.0
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxFlat_muixq")
+text = "OPTIONS"
+
+[node name="credits_button" type="Button" parent="."]
+offset_left = 651.0
+offset_top = 341.0
+offset_right = 1112.0
+offset_bottom = 459.0
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxFlat_muixq")
+text = "CREDITS"
+
+[node name="exit_button" type="Button" parent="."]
+offset_left = 653.0
+offset_top = 484.0
+offset_right = 1114.0
+offset_bottom = 602.0
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxFlat_muixq")
+text = "EXIT"
+
+[connection signal="pressed" from="play_button" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="options_button" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="credits_button" to="." method="_on_credits_button_pressed"]
+[connection signal="pressed" from="exit_button" to="." method="_on_exit_button_pressed"]
