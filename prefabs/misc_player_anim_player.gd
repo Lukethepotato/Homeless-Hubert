@@ -1,4 +1,8 @@
 extends Node2D
+#IN CASE LUKE WANTS A PRINT RICH AND HE FORGETS (:
+#print_rich("[color=yellow] put text here! [/color]")
+
+
 #Jermey can you put an enum here for the states of movment
 #and make the animation player play them based on them
 #make sure to make him idle when hes in a fight by using the global autoload

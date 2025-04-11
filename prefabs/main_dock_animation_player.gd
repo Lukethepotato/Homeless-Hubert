@@ -19,8 +19,8 @@ func _process(delta: float) -> void:
 
 # This function calls back to the combo checking function in order to play the chosen attack. If a combo is found, the animation played changes if the combo would be completed by the attack.
 func _play_attack():
-	_rush()
 	gate = false
+	_rush()
 	if is_playing():
 		await animation_finished
 	if combo_checking() == null:
@@ -33,6 +33,7 @@ func _play_attack():
 		else:
 			attack_in_turn_index_finished = 0
 			GlobalsAutoload.current_turn += 1
+			_rush()
 			print("current turn + 1 _ player not compo" + str(GlobalsAutoload.current_turn))
 		gate = true
 	else:
@@ -43,6 +44,7 @@ func _play_attack():
 		else:
 			attack_in_turn_index_finished = 0
 			GlobalsAutoload.current_turn += 1
+			_rush()
 			print("current turn + 1 _ player compo")
 		gate = true
 
@@ -53,7 +55,11 @@ func _on_animation_finished(anim_name: StringName) -> void:
 		#play("RESET")
 		
 func _rush(): 
-	play("hubert_rush_forward")
+	print_rich("[color=yellow] RUSH[/color]")
+	if GlobalsAutoload.current_turn == PlayerAutoload.goes_on_turn:
+		play("hubert_rush_forward")
+	else:
+		play("hubert_rush_backward")
 
 
 # This function checks if there are any completable combos and returns the proper combo if true.

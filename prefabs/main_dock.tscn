@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://cjnea8maf3y5l"]
+[gd_scene load_steps=23 format=3 uid="uid://cjnea8maf3y5l"]
 
 [ext_resource type="PackedScene" uid="uid://co6wwlpta51be" path="res://prefabs/Hubert.tscn" id="1_n63l7"]
 [ext_resource type="Script" path="res://prefabs/main_dock_script.gd" id="1_wjf3g"]
@@ -36,6 +36,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hubert/Hubert_Sprites:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_l5h7e"]
@@ -254,6 +266,33 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_qlxsy"]
 resource_name = "hubert_rush_forward"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Hubert/Hubert_Sprites:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(18.3792, 4.5948),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(200, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_n7dfo"]
+resource_name = "hubert_rush_backward"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Hubert/Hubert_Sprites:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.9),
+"transitions": PackedFloat32Array(0.267944, 0.0625),
+"update": 0,
+"values": [Vector2(200, 0), Vector2(0, 0)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_b23nh"]
 _data = {
@@ -264,6 +303,7 @@ _data = {
 "hubert_basic_punch": SubResource("Animation_wnkjl"),
 "hubert_high_block": SubResource("Animation_r0b40"),
 "hubert_low_block": SubResource("Animation_dym15"),
+"hubert_rush_backward": SubResource("Animation_n7dfo"),
 "hubert_rush_forward": SubResource("Animation_qlxsy")
 }
 
