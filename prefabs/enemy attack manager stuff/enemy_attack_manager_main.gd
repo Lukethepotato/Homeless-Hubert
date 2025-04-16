@@ -18,7 +18,7 @@ func start_enemy_attack() -> void:
 		
 		GlobalsAutoload.timeout(.5)
 		await GlobalsAutoload.timer.timeout
-		update_attack_region()
+		
 		%BattleScen_AnimPlayer.play(get_parent().upcoming_attack.animation_name)
 		update_block()
 		$"..".attack_history.append(get_parent().upcoming_attack)
@@ -29,14 +29,10 @@ func update_block():
 		get_parent().current_block = get_parent().upcoming_attack.gives_block
 		#sets the block to upcoming attacks block unless its set to ignore
 	
+	
 func _update_upcoming_attack():
 	#if player choosing attacks turn decide the attack for next turn
-	get_parent().upcoming_attack = _return_enemy_attack_choice()
-	
-func update_attack_region():
-	if get_parent().upcoming_attack.hit_region == GlobalsAutoload.location_types.IGNORE:
-		get_parent().upcoming_attack.hit_region = GlobalsAutoload.convert_to_elavation(get_parent().current_block)
-		
+		get_parent().upcoming_attack = _return_enemy_attack_choice()
 
 # Returns which enemy_attack the enemy will use this turn
 func _return_enemy_attack_choice() -> enemy_attack:
