@@ -19,7 +19,6 @@ func _process(delta: float) -> void:
 
 # This function calls back to the combo checking function in order to play the chosen attack. If a combo is found, the animation played changes if the combo would be completed by the attack.
 func _play_attack():
-	_rush()
 	gate = false
 	if is_playing():
 		await animation_finished
@@ -51,9 +50,6 @@ func _on_animation_finished(anim_name: StringName) -> void:
 		_play_attack()
 	#else:
 		#play("RESET")
-		
-func _rush(): 
-	play("hubert_rush_forward")
 
 
 # This function checks if there are any completable combos and returns the proper combo if true.
