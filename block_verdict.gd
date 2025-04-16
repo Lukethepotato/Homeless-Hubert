@@ -22,7 +22,7 @@ func _attack_verdict() -> enemy_attack:
 		if GlobalsAutoload.enemy_node.block_inclination > rand_numb:
 		#this decides what type of block will be done
 			if  GlobalsAutoload.enemy_node.current_block == blocks[1].gives_block:
-				print("blocks same so no dice")
+				#print("blocks same so no dice")
 				return null
 				#if its already in that block it wont return it
 			else:
@@ -30,7 +30,7 @@ func _attack_verdict() -> enemy_attack:
 				#returns high block
 		else:
 			if  GlobalsAutoload.enemy_node.current_block == blocks[0].gives_block:
-				print("blocks same so no dice")
+				#print("blocks same so no dice")
 				return null
 				#if its already in that block it wont return it
 			else:
