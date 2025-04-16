@@ -5,6 +5,7 @@ extends AnimationPlayer
 var attack_in_turn_index_finished: int = 0
 @export var attack_history_cut: Array[player_attack]
 @export var attack_history_with_chosen_attacks: Array[player_attack]
+
 var gate := true
 
 #the gate is kinda a bandaid fix of sorts
@@ -20,11 +21,17 @@ func _process(delta: float) -> void:
 # This function calls back to the combo checking function in order to play the chosen attack. If a combo is found, the animation played changes if the combo would be completed by the attack.
 func _play_attack():
 	gate = false
-	_rush()
 	if is_playing():
 		await animation_finished
 	if combo_checking() == null:
 		if attack_in_turn_index_finished < PlayerAutoload.attack_resources_in.size() && PlayerAutoload.attack_resources_in[attack_in_turn_index_finished] != null:
+			#if the attacks done amount is less then the amount of attacks the player has chose then the next attack will play
+			#and there no combo being done
+			if attack_in_turn_index_finished == 0:
+				_rush()
+				await animation_finished
+				#if first attack rush forward animation play and then wait for it to end to do rest
+			
 			play(PlayerAutoload.attack_resources_in[attack_in_turn_index_finished].animation_name)
 			PlayerAutoload.attack_history.append(PlayerAutoload.attack_resources_in[attack_in_turn_index_finished])
 			PlayerAutoload.current_block = PlayerAutoload.attack_resources_in[attack_in_turn_index_finished].gives_block
@@ -35,30 +42,36 @@ func _play_attack():
 			GlobalsAutoload.current_turn += 1
 			_rush()
 			print("current turn + 1 _ player not compo" + str(GlobalsAutoload.current_turn))
+			#attacks done so huberts rushes back
 		gate = true
 	else:
 		if attack_in_turn_index_finished < PlayerAutoload.attack_resources_in.size():
+			#does last check here if can do attack for combo
 			play(combo_checking().animation_name)
 			BattleAutoload.apply_combo_effects(combo_checking());
 			attack_in_turn_index_finished += 1
+			_rush()
+			#combo done so huberts rushes back
 		else:
 			attack_in_turn_index_finished = 0
 			GlobalsAutoload.current_turn += 1
-			_rush()
 			print("current turn + 1 _ player compo")
+			_rush()
+			#attacks done so huberts rushes back
 		gate = true
 
 func _on_animation_finished(anim_name: StringName) -> void:
 	if GlobalsAutoload.current_turn == PlayerAutoload.goes_on_turn && gate:
 		_play_attack()
-	#else:
-		#play("RESET")
+		#any attacks after first triggered here
+		
 		
 func _rush(): 
 	print_rich("[color=yellow] RUSH[/color]")
-	if GlobalsAutoload.current_turn == PlayerAutoload.goes_on_turn:
+	if GlobalsAutoload.current_turn == PlayerAutoload.goes_on_turn :
 		play("hubert_rush_forward")
 	else:
+		
 		play("hubert_rush_backward")
 
 
