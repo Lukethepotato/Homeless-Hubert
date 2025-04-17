@@ -51,6 +51,9 @@ enum location_types {
 	IGNORE
 }
 
+# this is a lil note for lukey poo who forgets how to print Rich
+# print_rich("[color=gold][wave amp=50.0 freq=5.0][font_size=20] PUT TEXT HERE ");
+
 var current_battle_scenario;
 
 func _process(delta: float) -> void:
