@@ -78,6 +78,20 @@ tracks/1/keys = {
 "update": 1,
 "values": [&"combo:slippy_trip"]
 }
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("damage_donator")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_apply_combo_effects"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_rm7sm"]
 resource_name = "hubert_basic_chop"
@@ -264,21 +278,6 @@ tracks/1/keys = {
 "values": [&"basic:low_block"]
 }
 
-[sub_resource type="Animation" id="Animation_qlxsy"]
-resource_name = "hubert_rush_forward"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Hubert/Hubert_Sprites:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.766667),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(175, 0)]
-}
-
 [sub_resource type="Animation" id="Animation_v167h"]
 resource_name = "hubert_rush_back"
 tracks/0/type = "value"
@@ -292,6 +291,21 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(175, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_qlxsy"]
+resource_name = "hubert_rush_forward"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Hubert/Hubert_Sprites:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.766667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(175, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_b23nh"]
@@ -318,6 +332,7 @@ script = ExtResource("1_wjf3g")
 battle_scenarios = Array[PackedScene]([ExtResource("2_xyfop")])
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
 libraries = {
 "": SubResource("AnimationLibrary_b23nh")
 }
@@ -333,6 +348,7 @@ frame = 0
 frame_progress = 0.0
 
 [node name="main_camera" type="Camera2D" parent="Hubert"]
+unique_name_in_owner = true
 script = ExtResource("5_ts60k")
 
 [node name="dock" type="StaticBody2D" parent="."]

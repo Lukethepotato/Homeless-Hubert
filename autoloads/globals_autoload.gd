@@ -13,6 +13,9 @@ signal done_updating_attacks()
 
 signal current_turn_reset()
 #called whenever turns set back to 1
+signal shake_camera(shake_amount: float)
+#40 good default shake_amount
+
 
 # Combo data
 var all_player_combos: Array[player_combo]

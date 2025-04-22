@@ -39,13 +39,17 @@ func _play_attack():
 	else:
 		if attack_in_turn_index_finished < PlayerAutoload.attack_resources_in.size():
 			play(combo_checking().animation_name)
-			BattleAutoload.apply_combo_effects(combo_checking());
+			PlayerAutoload.current_combo = combo_checking()
+			#apply combo effects is in damage donator and called from the animation
 			attack_in_turn_index_finished += 1
 		else:
 			attack_in_turn_index_finished = 0
 			GlobalsAutoload.current_turn += 1
 			print("current turn + 1 _ player compo")
 		gate = true
+		
+		
+
 
 func _on_animation_finished(anim_name: StringName) -> void:
 	if GlobalsAutoload.current_turn == PlayerAutoload.goes_on_turn && gate:

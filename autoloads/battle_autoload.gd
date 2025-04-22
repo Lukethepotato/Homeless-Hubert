@@ -104,4 +104,5 @@ func apply_combo_effects(combo : player_combo) -> void:
 			enemy.speed -= 2;
 			if enemy.evasion < 0:
 				enemy.evasion = 0;
+			GlobalsAutoload.shake_camera.emit(200000000)
 	GlobalsAutoload.health_updated.emit();
