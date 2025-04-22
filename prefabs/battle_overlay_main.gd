@@ -134,9 +134,6 @@ func update_button_speed_text():
 		$"bottom_ui/attack button/verdict".text = "[font_size=25][color=red][center]Slower";
 	$"bottom_ui/attack button/player_speed".text = player_text
 	$"bottom_ui/attack button/enemy_speed".text = enemy_text
-	print_rich("[color=gold][wave amp=50.0 freq=5.0][font_size=20] UPDATE SPEED AND BUTTONS TEXYT");
-	print_rich("[color=gold][wave amp=50.0 freq=5.0][font_size=20] player speed=  " + str(BattleAutoload.get_player_speed()) );
-	print_rich("[color=gold][wave amp=50.0 freq=5.0][font_size=20] enemy speed=  " + str(BattleAutoload.get_enemy_speed()) );
 
 func tween_in_bars():
 	$bars.visible = true;

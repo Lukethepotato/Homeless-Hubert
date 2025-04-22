@@ -371,6 +371,7 @@ shape = SubResource("RectangleShape2D_ljyot")
 one_way_collision_margin = 0.0
 
 [node name="damage_donator" parent="." instance=ExtResource("5_krbdy")]
+camera_shake_mult = 1.0
 
 [node name="all combo container" type="Node2D" parent="."]
 script = ExtResource("6_33w4j")

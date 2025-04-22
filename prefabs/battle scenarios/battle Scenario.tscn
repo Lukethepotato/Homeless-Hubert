@@ -337,6 +337,7 @@ position = Vector2(275.657, 143.551)
 [node name="battle_overlay" parent="." instance=ExtResource("1_pcs3m")]
 
 [node name="damage_donator" parent="." instance=ExtResource("9_nr2w5")]
+camera_shake_mult = 2.0
 
 [node name="midpoint" type="Node2D" parent="."]
 position = Vector2(576, 324)
