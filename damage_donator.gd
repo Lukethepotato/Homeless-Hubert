@@ -27,10 +27,11 @@ func _damage_donation(user : String, target : String, base_dmg: int, combo : pla
 	if roles[0] != roles[1]:
 		if roles0_hit_region != roles[1].current_block: 
 			roles[1].health -= damage_to_deal;
+			GlobalsAutoload.shake_camera.emit(100 * damage_to_deal)
 	else:
 		roles[1].health -= damage_to_deal;
+		GlobalsAutoload.shake_camera.emit(100 * damage_to_deal)
 	
-	GlobalsAutoload.shake_camera.emit(100 * damage_to_deal)
 	GlobalsAutoload.health_updated.emit();
 	
 func _apply_combo_effects():
