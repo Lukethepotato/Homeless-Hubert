@@ -52,7 +52,8 @@ func get_player_speed() -> int:
 # Returns what the enemy's speed would be for this turn
 func get_enemy_speed() -> int:
 	var speed = GlobalsAutoload.enemy_node.speed;
-	speed += GlobalsAutoload.enemy_node.get_child(1)._return_enemy_attack_choice().priority;
+	speed += GlobalsAutoload.enemy_node.upcoming_attack.priority;
+	#return attack choice gives diffrent things
 	if speed < 0:
 		speed = 0;
 	return speed;
