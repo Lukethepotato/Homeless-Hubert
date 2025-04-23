@@ -117,6 +117,7 @@ func speed_update():
 
 # Updates the speed displayed under "Commence Attack" on the attack button
 func update_button_speed_text():
+	
 	var player_text;
 	var enemy_text;
 	if BattleAutoload.get_player_speed() > BattleAutoload.get_enemy_speed():

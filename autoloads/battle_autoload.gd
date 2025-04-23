@@ -52,7 +52,9 @@ func get_player_speed() -> int:
 # Returns what the enemy's speed would be for this turn
 func get_enemy_speed() -> int:
 	var speed = GlobalsAutoload.enemy_node.speed;
-	speed += GlobalsAutoload.enemy_node.get_child(1)._return_enemy_attack_choice().priority;
+	speed += GlobalsAutoload.enemy_node.upcoming_attack.priority;
+	#return attack choice doenst give the actual attack done just a possibilty
+	#using upcoming_attack gets the actuall one
 	if speed < 0:
 		speed = 0;
 	return speed;
@@ -104,4 +106,5 @@ func apply_combo_effects(combo : player_combo) -> void:
 			enemy.speed -= 2;
 			if enemy.evasion < 0:
 				enemy.evasion = 0;
+			GlobalsAutoload.shake_camera.emit(20)
 	GlobalsAutoload.health_updated.emit();

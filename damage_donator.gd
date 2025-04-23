@@ -1,4 +1,5 @@
 extends Node2D
+@export var camera_shake_mult: float
 
 # This script contains a single "damage donation" function which takes in an integer as the damage dealt in a given attack. The function itself checks which character should receive the damage.
 
@@ -26,7 +27,13 @@ func _damage_donation(user : String, target : String, base_dmg: int, combo : pla
 	if roles[0] != roles[1]:
 		if roles0_hit_region != roles[1].current_block: 
 			roles[1].health -= damage_to_deal;
+			GlobalsAutoload.shake_camera.emit(camera_shake_mult * damage_to_deal)
 	else:
 		roles[1].health -= damage_to_deal;
+		GlobalsAutoload.shake_camera.emit(camera_shake_mult * damage_to_deal)
 	
 	GlobalsAutoload.health_updated.emit();
+	
+func _apply_combo_effects():
+	BattleAutoload.apply_combo_effects(PlayerAutoload.current_combo)
+	

@@ -6,6 +6,8 @@ extends Node
 @export var attack_resources_in: Array[player_attack]
 @export var goes_on_turn: int = 2
 @export var attack_history: Array[player_attack]
+@export var current_combo: player_combo
+#this is set when the combo combo is played in the main dock animation player
 
 @export var player_name := "Hubert"; # Name of the player
 @export var name_color := Color.WHITE; # Color of the player's name used for display

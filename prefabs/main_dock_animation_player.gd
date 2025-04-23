@@ -19,6 +19,8 @@ func _process(delta: float) -> void:
 
 # This function calls back to the combo checking function in order to play the chosen attack. If a combo is found, the animation played changes if the combo would be completed by the attack.
 func _play_attack():
+	if attack_in_turn_index_finished == 0:
+		rush("forward")
 	gate = false
 	if is_playing():
 		await animation_finished
@@ -37,22 +39,38 @@ func _play_attack():
 	else:
 		if attack_in_turn_index_finished < PlayerAutoload.attack_resources_in.size():
 			play(combo_checking().animation_name)
-			BattleAutoload.apply_combo_effects(combo_checking());
+			PlayerAutoload.current_combo = combo_checking()
+			#apply combo effects is in damage donator and called from the animation
 			attack_in_turn_index_finished += 1
 		else:
 			attack_in_turn_index_finished = 0
 			GlobalsAutoload.current_turn += 1
 			print("current turn + 1 _ player compo")
 		gate = true
+		
+		
+
 
 func _on_animation_finished(anim_name: StringName) -> void:
 	if GlobalsAutoload.current_turn == PlayerAutoload.goes_on_turn && gate:
 		_play_attack()
+		
+	if attack_in_turn_index_finished > PlayerAutoload.attack_resources_in.size() -1:
+		rush("back")
+		
 	#else:
 		#play("RESET")
+		
+func rush(option: String):
+	if option == "forward":
+		print_rich("[color=gold][wave amp=50.0 freq=5.0][font_size=20] rush forward");
+		play("hubert_rush_forward")
+	elif option == "back":
+		print_rich("[color=gold][wave amp=50.0 freq=5.0][font_size=20] rush back");
+		play("hubert_rush_back")
 
 
-# This function checks if there are any completable combos and returns the proper combo if true.
+# This function checks idf there are any completable combos and returns the proper combo if true.
 func combo_checking() -> player_combo:
 	for i in GlobalsAutoload.combo_node.combo_resources.size():
 		attack_history_with_chosen_attacks = PlayerAutoload.attack_history.duplicate()
