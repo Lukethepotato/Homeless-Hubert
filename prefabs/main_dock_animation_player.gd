@@ -13,12 +13,35 @@ var gate := true
 #while the it was awaiting 
 #the gate makes sure the function is only ran one at a time
 
+func _ready():
+	GlobalsAutoload.turn_changed.connect(_play_attack())
+
 func _process(delta: float) -> void:
 	if GlobalsAutoload.current_turn == PlayerAutoload.goes_on_turn and GlobalsAutoload.state == GlobalsAutoload.game_states.IN_BATTLE && gate:
 		_play_attack()
 
-# This function calls back to the combo checking function in order to play the chosen attack. If a combo is found, the animation played changes if the combo would be completed by the attack.
+
 func _play_attack():
+	if GlobalsAutoload.current_turn == PlayerAutoload.goes_on_turn and GlobalsAutoload.state == GlobalsAutoload.game_states.IN_BATTLE:
+		while attack_in_turn_index_finished < PlayerAutoload.attack_resources_in.size():
+			var animation_to_play: String
+			if combo_checking() == null:
+				animation_to_play = PlayerAutoload.attack_resources_in[attack_in_turn_index_finished].animation_name
+			else:
+				animation_to_play = combo_checking().animation_name
+			
+			play(animation_to_play)
+			PlayerAutoload.attack_history.append(PlayerAutoload.attack_resources_in[attack_in_turn_index_finished])
+			PlayerAutoload.current_block = PlayerAutoload.attack_resources_in[attack_in_turn_index_finished].gives_block
+			PlayerAutoload.current_combo = combo_checking()
+			attack_in_turn_index_finished += 1
+			
+		GlobalsAutoload.current_turn += 1
+	else:
+		return
+	
+# This function calls back to the combo checking function in order to play the chosen attack. If a combo is found, the animation played changes if the combo would be completed by the attack.
+func _play_attack1():
 	if attack_in_turn_index_finished == 0:
 		rush("forward")
 	gate = false
@@ -52,11 +75,7 @@ func _play_attack():
 
 
 func _on_animation_finished(anim_name: StringName) -> void:
-	if GlobalsAutoload.current_turn == PlayerAutoload.goes_on_turn && gate:
-		_play_attack()
-		
-	if attack_in_turn_index_finished > PlayerAutoload.attack_resources_in.size() -1:
-		rush("back")
+	pass
 		
 	#else:
 		#play("RESET")
