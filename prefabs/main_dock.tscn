@@ -344,7 +344,7 @@ size = Vector2(185, 159)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_poeum"]
 shader = ExtResource("11_m8xgj")
-shader_parameter/chaos = 2.0
+shader_parameter/chaos = 1.0
 shader_parameter/radius = 0.696
 shader_parameter/attenuation = 3.42
 
