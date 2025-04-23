@@ -371,8 +371,6 @@ frame_progress = 0.0
 [node name="main_camera" type="Camera2D" parent="Hubert"]
 unique_name_in_owner = true
 script = ExtResource("5_ts60k")
-randomStrength = null
-shakeFade = null
 
 [node name="dock" type="StaticBody2D" parent="."]
 position = Vector2(331, 464)

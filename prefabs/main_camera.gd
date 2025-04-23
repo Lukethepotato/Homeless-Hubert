@@ -10,7 +10,7 @@ var shake_strength: float = 0.0
 
 func _ready() -> void:
 	GlobalsAutoload.shake_camera.connect(apply_shake)
-	.connect(battle_camera)
+	GlobalsAutoload.battle_start.connect(battle_camera)
 
 func _process(delta):
 	if shake_strength > 0:

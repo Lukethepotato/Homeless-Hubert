@@ -14,71 +14,43 @@ var gate := true
 #the gate makes sure the function is only ran one at a time
 
 func _ready():
-	GlobalsAutoload.turn_changed.connect(_play_attack())
-
-func _process(delta: float) -> void:
-	if GlobalsAutoload.current_turn == PlayerAutoload.goes_on_turn and GlobalsAutoload.state == GlobalsAutoload.game_states.IN_BATTLE && gate:
-		_play_attack()
+	GlobalsAutoload.turn_changed.connect(_play_attack)
+	
 
 
 func _play_attack():
 	if GlobalsAutoload.current_turn == PlayerAutoload.goes_on_turn and GlobalsAutoload.state == GlobalsAutoload.game_states.IN_BATTLE:
+		#this function is called on turn change
+		#so this if makes sure its the players turn and the state is right
+		
+		rush("forward")
+		await animation_finished
+		#rush forward is called then once the animation is over the rest of the stuff will play out
+		
 		while attack_in_turn_index_finished < PlayerAutoload.attack_resources_in.size():
+		#this while loop is where the attack is played and it runs once for each attack resource spot
+		
 			var animation_to_play: String
+			#this string is changed to attacks anaimation name
 			if combo_checking() == null:
 				animation_to_play = PlayerAutoload.attack_resources_in[attack_in_turn_index_finished].animation_name
 			else:
 				animation_to_play = combo_checking().animation_name
+				#if combo checking returns somthing the animation_to_play string gets set to the combo instead
 			
 			play(animation_to_play)
 			PlayerAutoload.attack_history.append(PlayerAutoload.attack_resources_in[attack_in_turn_index_finished])
 			PlayerAutoload.current_block = PlayerAutoload.attack_resources_in[attack_in_turn_index_finished].gives_block
 			PlayerAutoload.current_combo = combo_checking()
 			attack_in_turn_index_finished += 1
+			await animation_finished
+			#once the loop is over it waits to loop again until the current attack anim is done
 			
 		GlobalsAutoload.current_turn += 1
-	else:
-		return
-	
-# This function calls back to the combo checking function in order to play the chosen attack. If a combo is found, the animation played changes if the combo would be completed by the attack.
-func _play_attack1():
-	if attack_in_turn_index_finished == 0:
-		rush("forward")
-	gate = false
-	if is_playing():
-		await animation_finished
-	if combo_checking() == null:
-		if attack_in_turn_index_finished < PlayerAutoload.attack_resources_in.size() && PlayerAutoload.attack_resources_in[attack_in_turn_index_finished] != null:
-			play(PlayerAutoload.attack_resources_in[attack_in_turn_index_finished].animation_name)
-			PlayerAutoload.attack_history.append(PlayerAutoload.attack_resources_in[attack_in_turn_index_finished])
-			PlayerAutoload.current_block = PlayerAutoload.attack_resources_in[attack_in_turn_index_finished].gives_block
-			attack_in_turn_index_finished += 1
-			print("player attack play _ attack in turn index = " + str(attack_in_turn_index_finished))
-		else:
-			attack_in_turn_index_finished = 0
-			GlobalsAutoload.current_turn += 1
-			print("current turn + 1 _ player not compo" + str(GlobalsAutoload.current_turn))
-		gate = true
-	else:
-		if attack_in_turn_index_finished < PlayerAutoload.attack_resources_in.size():
-			play(combo_checking().animation_name)
-			PlayerAutoload.current_combo = combo_checking()
-			#apply combo effects is in damage donator and called from the animation
-			attack_in_turn_index_finished += 1
-		else:
-			attack_in_turn_index_finished = 0
-			GlobalsAutoload.current_turn += 1
-			print("current turn + 1 _ player compo")
-		gate = true
-		
-		
+		attack_in_turn_index_finished = 0
+		rush("back")
+		#once everything is all done and all the little varibles are happy and cozy the player rushes back
 
-
-func _on_animation_finished(anim_name: StringName) -> void:
-	pass
-		
-	#else:
-		#play("RESET")
 		
 func rush(option: String):
 	if option == "forward":
