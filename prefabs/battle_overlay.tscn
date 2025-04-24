@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://c5au12ja27aq6"]
+[gd_scene load_steps=44 format=3 uid="uid://c5au12ja27aq6"]
 
 [ext_resource type="Script" path="res://prefabs/battle_overlay_main.gd" id="1_gvbtk"]
 [ext_resource type="PackedScene" uid="uid://wc8076dp0nrg" path="res://prefabs/draggable_spot.tscn" id="1_m25ou"]
@@ -17,6 +17,7 @@
 [ext_resource type="Resource" uid="uid://m35p04sdk2yq" path="res://Resources/Attacks/Player/kick.tres" id="10_7etti"]
 [ext_resource type="Resource" uid="uid://drn7eou7eggjf" path="res://Resources/Attacks/Player/chop.tres" id="11_iequ2"]
 [ext_resource type="Texture2D" uid="uid://cwnt6awfx58b3" path="res://art/temp_assets/warning/Warning_0.png" id="12_tvrvu"]
+[ext_resource type="Resource" uid="uid://ciwc8kbn5hw2w" path="res://Resources/Attacks/Player/low.tres" id="12_vcibc"]
 [ext_resource type="Texture2D" uid="uid://d2ps8jghifg1i" path="res://art/temp_assets/warning/Warning_1.png" id="13_mj8gw"]
 [ext_resource type="Texture2D" uid="uid://cfjijkurimb3" path="res://art/temp_assets/warning/Warning_2.png" id="14_mvf4d"]
 [ext_resource type="Texture2D" uid="uid://rq8dxtvwg60k" path="res://art/temp_assets/warning/Warning_3.png" id="15_dxc4w"]
@@ -312,6 +313,13 @@ offset_top = -5.0
 offset_right = 613.0
 offset_bottom = -4.0
 attack_resource_to_give = ExtResource("11_iequ2")
+
+[node name="give_low" parent="bottom_ui/attack_givers" instance=ExtResource("1_m25ou")]
+offset_left = 723.0
+offset_top = -3.0
+offset_right = 724.0
+offset_bottom = -2.0
+attack_resource_to_give = ExtResource("12_vcibc")
 
 [node name="attack button" type="Button" parent="bottom_ui"]
 z_index = -2

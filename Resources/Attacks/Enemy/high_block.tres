@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="enemy_attack" load_steps=3 format=3 uid="uid://dclukfn5jb5fe"]
 
-[ext_resource type="Texture2D" uid="uid://dmapuornrtfpu" path="res://art/temp_assets/images (3).jpg" id="1_q7i2d"]
+[ext_resource type="Texture2D" uid="uid://b8rmobp2l2nr5" path="res://art/temp_assets/FISH RISE.png" id="1_ijjd7"]
 [ext_resource type="Script" path="res://Resources/enemy_attack_resource.gd" id="2_44gmn"]
 
 [resource]
@@ -13,4 +13,5 @@ description = "Activates a high block"
 animation_name = "enemy_high_block"
 hit_region = 0
 gives_block = 2
-preview_texture = ExtResource("1_q7i2d")
+preview_texture = ExtResource("1_ijjd7")
+victim_speed_apply = 0

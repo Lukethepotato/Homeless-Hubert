@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="enemy_attack" load_steps=3 format=3 uid="uid://bh16ayv08j586"]
 
-[ext_resource type="Texture2D" uid="uid://dmapuornrtfpu" path="res://art/temp_assets/images (3).jpg" id="1_7tyqd"]
+[ext_resource type="Texture2D" uid="uid://dpjs7txthidhb" path="res://art/temp_assets/fish fall.png" id="1_6pyuy"]
 [ext_resource type="Script" path="res://Resources/enemy_attack_resource.gd" id="2_4seqh"]
 
 [resource]
@@ -13,4 +13,5 @@ description = "Activates a low block"
 animation_name = "enemy_low_block"
 hit_region = 0
 gives_block = 1
-preview_texture = ExtResource("1_7tyqd")
+preview_texture = ExtResource("1_6pyuy")
+victim_speed_apply = 0

@@ -108,3 +108,13 @@ func apply_combo_effects(combo : player_combo) -> void:
 				enemy.evasion = 0;
 			GlobalsAutoload.shake_camera.emit(20)
 	GlobalsAutoload.health_updated.emit();
+	
+func apply_attack_effects(attack: player_attack) -> void:
+	print_rich("[color=cornflower_blue][shake amp=50.0 freq=5.0][wave amp=50.0 freq=5.0][font_size=50]applying attack effects");
+	var enemy = GlobalsAutoload.enemy_node
+	match attack.animation_name:
+		"hubert_basic_low":
+			enemy.speed -= attack.victim_speed_apply;
+	
+		
+			

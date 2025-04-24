@@ -27,9 +27,12 @@ func _damage_donation(user : String, target : String, base_dmg: int, combo : pla
 	if roles[0] != roles[1]:
 		if roles0_hit_region != roles[1].current_block: 
 			roles[1].health -= damage_to_deal;
+			
+			
 			GlobalsAutoload.shake_camera.emit(camera_shake_mult * damage_to_deal)
 	else:
 		roles[1].health -= damage_to_deal;
+		roles[1].speed -= roles[0].victim_speed_apply
 		GlobalsAutoload.shake_camera.emit(camera_shake_mult * damage_to_deal)
 	
 	GlobalsAutoload.health_updated.emit();

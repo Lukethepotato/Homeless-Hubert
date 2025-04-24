@@ -12,3 +12,6 @@ class_name player_attack
 @export var icon_texture: Texture2D; # Name of the texture this attack will use
 @export var hit_region := GlobalsAutoload.location_types.HIGH; # Region wherein this attack will strike
 @export var gives_block := GlobalsAutoload.location_types.NONE; # Type of block the attack will give after finishing
+
+#these are values to be applied to the victim on attack
+@export var victim_speed_apply:= 0 #subtracted from perps speed value on attack
