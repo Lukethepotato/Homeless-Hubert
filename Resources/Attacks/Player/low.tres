@@ -14,4 +14,4 @@ animation_name = "hubert_basic_low"
 icon_texture = ExtResource("1_my5bl")
 hit_region = 1
 gives_block = 0
-victim_speed_apply = -5
+victim_speed_subtract = 4

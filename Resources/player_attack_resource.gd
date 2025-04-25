@@ -14,4 +14,4 @@ class_name player_attack
 @export var gives_block := GlobalsAutoload.location_types.NONE; # Type of block the attack will give after finishing
 
 #these are values to be applied to the victim on attack
-@export var victim_speed_apply:= 0 #subtracted from perps speed value on attack
+@export var victim_speed_subtract:= 0 #subtracted from perps speed value on attack

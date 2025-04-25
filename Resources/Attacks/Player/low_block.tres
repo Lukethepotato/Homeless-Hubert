@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("1_65oia")
 base_damage = 0
-priority = 2
+priority = -2
 name = "Low Block"
 name_color = Color(1, 1, 1, 1)
 description = "Activate a low block."
@@ -14,4 +14,4 @@ animation_name = "hubert_low_block"
 icon_texture = ExtResource("1_vytor")
 hit_region = 0
 gives_block = 1
-victim_speed_apply = 0
+victim_speed_subtract = 0

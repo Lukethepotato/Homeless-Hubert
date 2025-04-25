@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://co6wwlpta51be"]
+[gd_scene load_steps=37 format=3 uid="uid://co6wwlpta51be"]
 
 [ext_resource type="Texture2D" uid="uid://ca237n0njexqp" path="res://art/temp_assets/192637.png" id="2_h37bg"]
 [ext_resource type="Texture2D" uid="uid://7j27av2hvwmc" path="res://art/temp_assets/Goblin_Idle.png" id="2_x2k4m"]
@@ -58,6 +58,34 @@ region = Rect2(712, 156, 89, 78)
 [sub_resource type="AtlasTexture" id="AtlasTexture_lfhul"]
 atlas = ExtResource("4_tvrug")
 region = Rect2(801, 156, 89, 78)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bqrdp"]
+atlas = ExtResource("2_h37bg")
+region = Rect2(0, 258, 105, 86)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ciy7f"]
+atlas = ExtResource("2_h37bg")
+region = Rect2(105, 258, 105, 86)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vjlrd"]
+atlas = ExtResource("2_h37bg")
+region = Rect2(210, 258, 105, 86)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dar5l"]
+atlas = ExtResource("2_h37bg")
+region = Rect2(315, 258, 105, 86)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m4d4d"]
+atlas = ExtResource("2_h37bg")
+region = Rect2(420, 258, 105, 86)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q6i36"]
+atlas = ExtResource("2_h37bg")
+region = Rect2(525, 258, 105, 86)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ctqhx"]
+atlas = ExtResource("2_h37bg")
+region = Rect2(630, 258, 105, 86)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_abd70"]
 atlas = ExtResource("2_h37bg")
@@ -157,6 +185,32 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_bqrdp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ciy7f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vjlrd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dar5l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m4d4d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q6i36")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ctqhx")
+}],
+"loop": true,
+"name": &"basic:low",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_abd70")
 }],
 "loop": false,
@@ -208,9 +262,7 @@ script = ExtResource("4_dhhqc")
 
 [node name="Hubert_Sprites" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_gomab")
-animation = &"basic:chop"
-frame = 4
-frame_progress = 1.0
+animation = &"basic:punch"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, 10.5)

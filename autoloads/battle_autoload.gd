@@ -109,12 +109,21 @@ func apply_combo_effects(combo : player_combo) -> void:
 			GlobalsAutoload.shake_camera.emit(20)
 	GlobalsAutoload.health_updated.emit();
 	
-func apply_attack_effects(attack: player_attack) -> void:
+func apply_attack_effects(attack_name: String) -> void:
+	# somthing to note
+	
+	#since this is called from the damage donator both the player and the enemy call this (because of the roles)
+	
+	#so i use a string since i can just input the attacks animation name no matter if its a enemy or player attack
 	print_rich("[color=cornflower_blue][shake amp=50.0 freq=5.0][wave amp=50.0 freq=5.0][font_size=50]applying attack effects");
 	var enemy = GlobalsAutoload.enemy_node
-	match attack.animation_name:
-		"hubert_basic_low":
-			enemy.speed -= attack.victim_speed_apply;
 	
-		
+	match attack_name:
+		"hubert_basic_low":
+			var attack_resource = PlayerAutoload.attack_history[PlayerAutoload.attack_history.size() -1]
+			enemy.speed -= attack_resource.victim_speed_subtract;
 			
+	match attack_name:
+		"some enemy attack":
+			PlayerAutoload.speed -= 0;
+			#Example of how enemys attack work

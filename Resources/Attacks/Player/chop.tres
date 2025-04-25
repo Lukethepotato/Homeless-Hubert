@@ -14,4 +14,4 @@ animation_name = "hubert_basic_chop"
 icon_texture = ExtResource("1_38o7c")
 hit_region = 2
 gives_block = 0
-victim_speed_apply = 0
+victim_speed_subtract = 2
