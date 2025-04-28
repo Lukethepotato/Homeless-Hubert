@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("2_y3f1y")
 base_damage = 5
-priority = 0
+priority = -2
 name = "sweep"
 name_color = Color(1, 0, 0, 1)
 description = "basic shove. Hits high and decreases defense"
@@ -15,3 +15,4 @@ icon_texture = ExtResource("1_tj2co")
 hit_region = 1
 gives_block = 0
 victim_speed_subtract = 0
+victim_defense_subtract = 5

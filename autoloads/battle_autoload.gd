@@ -123,7 +123,10 @@ func apply_attack_effects(attack_name: String) -> void:
 			var attack_resource = PlayerAutoload.attack_history[PlayerAutoload.attack_history.size() -1]
 			enemy.speed -= attack_resource.victim_speed_subtract;
 			
-	match attack_name:
+		"hubert_basic_shove","hubert_basic_sweep":
+			var attack_resource = PlayerAutoload.attack_history[PlayerAutoload.attack_history.size() -1]
+			enemy.defense -= attack_resource.victim_defense_subtract
+		
 		"some enemy attack":
 			PlayerAutoload.speed -= 0;
 			#Example of how enemys attack work

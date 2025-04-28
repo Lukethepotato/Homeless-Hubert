@@ -15,3 +15,4 @@ class_name player_attack
 
 #these are values to be applied to the victim on attack
 @export var victim_speed_subtract:= 0 #subtracted from perps speed value on attack
+@export var victim_defense_subtract:= 0

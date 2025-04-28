@@ -288,54 +288,54 @@ offset_right = -5.0
 offset_bottom = -5.0
 attack_resource_to_give = ExtResource("4_mue14")
 
-[node name="give_low_block" parent="bottom_ui/attack_givers" instance=ExtResource("1_m25ou")]
-offset_left = 120.0
-offset_top = -5.0
-offset_right = 120.0
-offset_bottom = -5.0
-attack_resource_to_give = ExtResource("5_um5jo")
-
-[node name="give_high_block" parent="bottom_ui/attack_givers" instance=ExtResource("1_m25ou")]
-offset_left = 240.0
-offset_top = -5.0
-offset_right = 240.0
-offset_bottom = -5.0
-attack_resource_to_give = ExtResource("6_dbajq")
-
-[node name="give_kick" parent="bottom_ui/attack_givers" instance=ExtResource("1_m25ou")]
-offset_left = 351.0
-offset_top = -5.0
-offset_right = 352.0
-offset_bottom = -4.0
-attack_resource_to_give = ExtResource("10_7etti")
-
 [node name="give_chop" parent="bottom_ui/attack_givers" instance=ExtResource("1_m25ou")]
-offset_left = 612.0
-offset_top = -5.0
-offset_right = 613.0
-offset_bottom = -4.0
+offset_left = 106.0
+offset_top = -4.0
+offset_right = 107.0
+offset_bottom = -3.0
 attack_resource_to_give = ExtResource("11_iequ2")
 
-[node name="give_low" parent="bottom_ui/attack_givers" instance=ExtResource("1_m25ou")]
-offset_left = 723.0
+[node name="give_shove" parent="bottom_ui/attack_givers" instance=ExtResource("1_m25ou")]
+offset_left = 229.0
+offset_top = -5.0
+offset_right = 230.0
+offset_bottom = -4.0
+attack_resource_to_give = ExtResource("13_7te1u")
+
+[node name="give_high_block" parent="bottom_ui/attack_givers" instance=ExtResource("1_m25ou")]
+offset_left = 359.0
+offset_top = -4.0
+offset_right = 359.0
+offset_bottom = -4.0
+attack_resource_to_give = ExtResource("6_dbajq")
+
+[node name="give_low_block" parent="bottom_ui/attack_givers" instance=ExtResource("1_m25ou")]
+offset_left = 617.0
 offset_top = -3.0
-offset_right = 724.0
+offset_right = 617.0
+offset_bottom = -3.0
+attack_resource_to_give = ExtResource("5_um5jo")
+
+[node name="give_kick" parent="bottom_ui/attack_givers" instance=ExtResource("1_m25ou")]
+offset_left = 741.0
+offset_top = -3.0
+offset_right = 742.0
+offset_bottom = -2.0
+attack_resource_to_give = ExtResource("10_7etti")
+
+[node name="give_low" parent="bottom_ui/attack_givers" instance=ExtResource("1_m25ou")]
+offset_left = 861.0
+offset_top = -3.0
+offset_right = 862.0
 offset_bottom = -2.0
 attack_resource_to_give = ExtResource("12_vcibc")
 
 [node name="give_sweep" parent="bottom_ui/attack_givers" instance=ExtResource("1_m25ou")]
-offset_left = 941.0
+offset_left = 992.0
 offset_top = -2.0
-offset_right = 942.0
+offset_right = 993.0
 offset_bottom = -1.0
 attack_resource_to_give = ExtResource("14_yp1qv")
-
-[node name="give_shove" parent="bottom_ui/attack_givers" instance=ExtResource("1_m25ou")]
-offset_left = 836.0
-offset_top = -3.0
-offset_right = 837.0
-offset_bottom = -2.0
-attack_resource_to_give = ExtResource("13_7te1u")
 
 [node name="attack button" type="Button" parent="bottom_ui"]
 z_index = -2
