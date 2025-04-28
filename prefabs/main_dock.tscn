@@ -499,7 +499,6 @@ scale = Vector2(2.81022, 2.81022)
 
 [node name="Hubert_Sprites" parent="Hubert" index="0"]
 animation = &"Idle"
-frame = 0
 frame_progress = 0.0
 
 [node name="main_camera" type="Camera2D" parent="Hubert"]

@@ -387,8 +387,7 @@ script = ExtResource("4_dhhqc")
 [node name="Hubert_Sprites" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_gomab")
 animation = &"basic:sweep"
-frame = 3
-frame_progress = 0.11758
+frame_progress = 0.0647049
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, 10.5)

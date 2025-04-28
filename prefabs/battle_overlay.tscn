@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://c5au12ja27aq6"]
+[gd_scene load_steps=46 format=3 uid="uid://c5au12ja27aq6"]
 
 [ext_resource type="Script" path="res://prefabs/battle_overlay_main.gd" id="1_gvbtk"]
 [ext_resource type="PackedScene" uid="uid://wc8076dp0nrg" path="res://prefabs/draggable_spot.tscn" id="1_m25ou"]
@@ -21,6 +21,7 @@
 [ext_resource type="Resource" uid="uid://d3ujm2fjw1s3r" path="res://Resources/Attacks/Player/shove.tres" id="13_7te1u"]
 [ext_resource type="Texture2D" uid="uid://d2ps8jghifg1i" path="res://art/temp_assets/warning/Warning_1.png" id="13_mj8gw"]
 [ext_resource type="Texture2D" uid="uid://cfjijkurimb3" path="res://art/temp_assets/warning/Warning_2.png" id="14_mvf4d"]
+[ext_resource type="Resource" uid="uid://dlo7o8xx87g8g" path="res://Resources/Attacks/Player/sweep.tres" id="14_yp1qv"]
 [ext_resource type="Texture2D" uid="uid://rq8dxtvwg60k" path="res://art/temp_assets/warning/Warning_3.png" id="15_dxc4w"]
 [ext_resource type="Texture2D" uid="uid://wfkpgntuiyl4" path="res://art/temp_assets/warning/Warning_4.png" id="16_xetax"]
 [ext_resource type="Texture2D" uid="uid://pvfshchjs4fa" path="res://art/temp_assets/warning/Warning_5.png" id="17_gpdid"]
@@ -322,18 +323,18 @@ offset_right = 724.0
 offset_bottom = -2.0
 attack_resource_to_give = ExtResource("12_vcibc")
 
-[node name="give_push" parent="bottom_ui/attack_givers" instance=ExtResource("1_m25ou")]
-offset_left = 833.0
-offset_top = -3.0
-offset_right = 834.0
-offset_bottom = -2.0
-attack_resource_to_give = ExtResource("13_7te1u")
-
 [node name="give_sweep" parent="bottom_ui/attack_givers" instance=ExtResource("1_m25ou")]
-offset_left = 949.0
+offset_left = 941.0
 offset_top = -2.0
-offset_right = 950.0
+offset_right = 942.0
 offset_bottom = -1.0
+attack_resource_to_give = ExtResource("14_yp1qv")
+
+[node name="give_shove" parent="bottom_ui/attack_givers" instance=ExtResource("1_m25ou")]
+offset_left = 836.0
+offset_top = -3.0
+offset_right = 837.0
+offset_bottom = -2.0
 attack_resource_to_give = ExtResource("13_7te1u")
 
 [node name="attack button" type="Button" parent="bottom_ui"]
