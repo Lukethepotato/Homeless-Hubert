@@ -29,7 +29,7 @@ func _get_drag_data(at_position):
 		preview.connect("dragDrop", _reset)
 		 
 		preview.texture = texture
-		preview.scale = drag_text_size
+		#preview.scale = drag_text_size
 		add_child(preview)
 		
 		#print("picked up " + name)

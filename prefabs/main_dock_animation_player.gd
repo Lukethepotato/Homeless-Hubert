@@ -5,13 +5,6 @@ extends AnimationPlayer
 var attack_in_turn_index_finished: int = 0
 @export var attack_history_cut: Array[player_attack]
 @export var attack_history_with_chosen_attacks: Array[player_attack]
-var gate := true
-
-#the gate is kinda a bandaid fix of sorts
-#Once I added the await animation finished there was some probblems,
-# because the play attack function was being ran like 7 time at the same time
-#while the it was awaiting 
-#the gate makes sure the function is only ran one at a time
 
 func _ready():
 	GlobalsAutoload.turn_changed.connect(_play_attack)
@@ -31,12 +24,12 @@ func _play_attack():
 		#this while loop is where the attack is played and it runs once for each attack resource spot
 		
 			var animation_to_play: String
-			#this string is changed to attacks anaimation name
+			#this string is changed to the upcoming attack's animation name
 			if combo_checking() == null:
 				animation_to_play = PlayerAutoload.attack_resources_in[attack_in_turn_index_finished].animation_name
 			else:
 				animation_to_play = combo_checking().animation_name
-				#if combo checking returns somthing the animation_to_play string gets set to the combo instead
+				#if combo checking returns somthing. The "animation_to_play" string gets set to the combo's animation name instead
 			
 			play(animation_to_play)
 			PlayerAutoload.attack_history.append(PlayerAutoload.attack_resources_in[attack_in_turn_index_finished])
