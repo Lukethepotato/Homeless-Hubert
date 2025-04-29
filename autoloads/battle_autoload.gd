@@ -21,6 +21,7 @@ enum traits {
 enum ailments {
 	POISON,
 	DAZE,
+	STAGGERED
 }
 
 #func initiate_combat():
