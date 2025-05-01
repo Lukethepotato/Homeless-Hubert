@@ -337,7 +337,7 @@ position = Vector2(275.657, 143.551)
 
 [node name="Ailments_parent" parent="Enemy" instance=ExtResource("9_wqr2g")]
 unique_name_in_owner = true
-scale = Vector2(1, 1)
+target = "Enemy"
 
 [node name="battle_overlay" parent="." instance=ExtResource("1_pcs3m")]
 

@@ -31,9 +31,12 @@ extends Node2D
 @export var current_block := GlobalsAutoload.location_types.NONE
 @export var attack_history: Array[enemy_attack]
 @export var block_inclination: float = 5
+
+@export var ailment_parent_node: Node2D
 #number must be from 0 to 10, higher means more likly high block. The lower means more likly low block
 func _init() -> void:
 	GlobalsAutoload.enemy_node = self;
+	ailment_parent_node = %Ailments_parent
 
 func _ready() -> void:
 	speed += agility;

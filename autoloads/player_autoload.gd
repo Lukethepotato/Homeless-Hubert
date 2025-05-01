@@ -29,6 +29,7 @@ extends Node
 @export var current_block := GlobalsAutoload.location_types.NONE
 #the idea is that every attack you do will determine a block state that hubert will do
 #and the curent state huberts in is just stored here
+@export var ailment_parent_node: Node2D
 
 
 func _ready() -> void:

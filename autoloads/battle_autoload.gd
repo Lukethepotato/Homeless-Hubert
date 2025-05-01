@@ -121,17 +121,15 @@ func apply_attack_effects(attack_name: String, user: String, target: String) -> 
 	#so i use a string since i can just input the attacks animation name no matter if its a enemy or player attack
 	var roles = BattleAutoload.convert_strs_to_attack_roles(user, target)
 	
-	
+	var last_attack = roles[0].attack_history[roles[0].attack_history.size() -1]
 	
 	match attack_name:
 		"hubert_basic_low":
-			var attack_resource = roles[0].attack_history[roles[0].attack_history.size() -1]
-			roles[1].speed -= attack_resource.victim_speed_subtract;
+			roles[1].speed -= last_attack.victim_speed_subtract;
 			
 		"hubert_basic_shove","hubert_basic_sweep":
-			var attack_resource = roles[0].attack_history[roles[0].attack_history.size() -1]
-			roles[1].defense -= attack_resource.victim_defense_subtract
+			roles[1].defense -= last_attack.victim_defense_subtract
 		
-		#"enemy_attack":
-			
+		"enemy_attack":
+			roles[1].ailment_parent_node._instantiate_ailment(last_attack.ailment_give)
 			#Example of how enemys attack work

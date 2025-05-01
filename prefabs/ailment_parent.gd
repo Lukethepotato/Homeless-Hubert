@@ -1,9 +1,16 @@
 extends Node2D
 @export var ailment_component_prephab: PackedScene
+@export var target: String # must be set to either "Player" or "Enemy" (if in enemy scene use "Enemy" and vise versa)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	if target == "Player":
+		PlayerAutoload.ailment_parent_node = self
+	elif target == "Enemy":
+		GlobalsAutoload.enemy_node.ailment_parent_node = self
+	else:
+		print_rich("[color=red][shake amp=50.0 freq=5.0][wave amp=50.0 freq=5.0][font_size=50]YOU IDIOT YOU DIDNT ASSIGN THE AILMENT A TARGET");
+		# Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

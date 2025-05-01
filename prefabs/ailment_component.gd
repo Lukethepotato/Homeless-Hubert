@@ -1,7 +1,6 @@
 extends Node2D
 @export var current_ailment: ailments = null #if its null nothing happens
 @export var turns_left: int
-@export var target: String #must be set to either "Player" or "Enemy"#turn in which everything happens
 @export var target_data = null
 @export var damage_donar_node: Node2D
 
@@ -18,7 +17,7 @@ func _process(delta: float) -> void:
 	pass
 	
 func _damage_take_per_turn():
-	damage_donar_node._damage_donation(target,target, current_ailment.damage_take_per_turn)
+	damage_donar_node._damage_donation(get_parent().target,get_parent().target, current_ailment.damage_take_per_turn)
 	print_rich("[color=cornflower_blue][shake amp=50.0 freq=5.0][wave amp=50.0 freq=5.0][font_size=50]ailment damage");
 	
 func _turn_change():
@@ -43,7 +42,7 @@ func _can_change_block() -> bool:
 	
 func _update_block_lock():
 	if turns_left == current_ailment.turn_amount:
-		if target == "Enemy":
+		if get_parent().target == "Enemy":
 			if target_data.current_block != current_ailment.lock_block:
 				if current_ailment.lock_block == GlobalsAutoload.location_types.LOW:
 					target_data.upcoming_attack = enemy_blocks[0]
@@ -56,7 +55,7 @@ func _update_block_lock():
 	
 
 func _begin_ailment(ailment_chosen: ailments):
-	target_data = BattleAutoload.convert_strs_to_attack_roles(target,target)
+	target_data = BattleAutoload.convert_strs_to_attack_roles(get_parent().target,get_parent().target)
 	target_data = target_data[0]
 	print_rich("[color=cornflower_blue][shake amp=50.0 freq=5.0][wave amp=50.0 freq=5.0][font_size=50]ailement begin");
 	current_ailment = ailment_chosen
