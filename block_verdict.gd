@@ -15,7 +15,7 @@ func _process(delta: float) -> void:
 	
 func _attack_verdict() -> enemy_attack:
 	var rand_numb = randf_range(0, 10)
-	if rand_numb > block_chance:
+	if rand_numb > block_chance && %Ailments_parent._can_change_block():
 	#this decides which block will be done
 		rand_numb = randf_range(0,10)
 		

@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_iupam")
 turn_amount = 2
-lock_block = 0
+lock_block = 1
 lock_attack = false
-damage_take_per_turn = 0
+damage_take_per_turn = 5
 animation_name = ""

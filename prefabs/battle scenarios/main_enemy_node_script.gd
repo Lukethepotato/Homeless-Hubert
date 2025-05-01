@@ -27,7 +27,7 @@ extends Node2D
 @export var disruption_resist := 0.05; # Written as decimal, chance of resisting disruption
 @export var ailment_resist := 0.05; # Written as decimal, chance of resisting ailment
 
-@export var upcoming_attack: enemy_attack
+@export var upcoming_attack: enemy_attack = null
 @export var current_block := GlobalsAutoload.location_types.NONE
 @export var attack_history: Array[enemy_attack]
 @export var block_inclination: float = 5
