@@ -27,17 +27,24 @@ extends Node2D
 @export var disruption_resist := 0.05; # Written as decimal, chance of resisting disruption
 @export var ailment_resist := 0.05; # Written as decimal, chance of resisting ailment
 
-@export var upcoming_attack: enemy_attack
+@export var upcoming_attack: enemy_attack = null
 @export var current_block := GlobalsAutoload.location_types.NONE
 @export var attack_history: Array[enemy_attack]
 @export var block_inclination: float = 5
+@export var goes_on_turn: int
+
+@export var ailment_component_node: Node2D
 #number must be from 0 to 10, higher means more likly high block. The lower means more likly low block
 func _init() -> void:
 	GlobalsAutoload.enemy_node = self;
 
 func _ready() -> void:
+	ailment_component_node = %Ailments_parent
 	speed += agility;
 	modify_stats_with_traits();
+	
+func _process(delta: float) -> void:
+	goes_on_turn = GlobalsAutoload.enemy_goes_on_turn
 
 # Returns if a fish is able to combo
 func is_fish_intelligent() -> bool:

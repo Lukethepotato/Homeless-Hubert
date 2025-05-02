@@ -21,6 +21,7 @@ enum traits {
 enum ailments {
 	POISON,
 	DAZE,
+	STAGGERED
 }
 
 #func initiate_combat():
@@ -106,27 +107,41 @@ func apply_combo_effects(combo : player_combo) -> void:
 			enemy.speed -= 2;
 			if enemy.evasion < 0:
 				enemy.evasion = 0;
+			
+			enemy.find_child("Ailments_parent")._instantiate_ailment(combo.ailment_give)
+			
 			GlobalsAutoload.shake_camera.emit(20)
 	GlobalsAutoload.health_updated.emit();
 	
-func apply_attack_effects(attack_name: String) -> void:
+func _non_attack_animations(anim_player_node: AnimationPlayer, ailments_parent: Node2D):
+	#plays all the non attack related animations on the enemy and player
+	
+	#its called from each of their respective animation players
+	if GlobalsAutoload.current_turn != PlayerAutoload.goes_on_turn:
+		if anim_player_node.is_playing() == false:
+			if ailments_parent._animtion_decision() != "":
+				anim_player_node.play(ailments_parent._animtion_decision())
+			else:
+				anim_player_node.play("idle")
+	
+func apply_attack_effects(attack_name: String, user: String, target: String) -> void:
 	# somthing to note
 	
 	#since this is called from the damage donator both the player and the enemy call this (because of the roles)
 	
 	#so i use a string since i can just input the attacks animation name no matter if its a enemy or player attack
-	print_rich("[color=cornflower_blue][shake amp=50.0 freq=5.0][wave amp=50.0 freq=5.0][font_size=50]applying attack effects");
-	var enemy = GlobalsAutoload.enemy_node
+	var roles = BattleAutoload.convert_strs_to_attack_roles(user, target)
+	
+	var last_attack = roles[0].attack_history[roles[0].attack_history.size() -1]
 	
 	match attack_name:
 		"hubert_basic_low":
-			var attack_resource = PlayerAutoload.attack_history[PlayerAutoload.attack_history.size() -1]
-			enemy.speed -= attack_resource.victim_speed_subtract;
+			roles[1].speed -= last_attack.victim_speed_subtract;
 			
 		"hubert_basic_shove","hubert_basic_sweep":
-			var attack_resource = PlayerAutoload.attack_history[PlayerAutoload.attack_history.size() -1]
-			enemy.defense -= attack_resource.victim_defense_subtract
+			roles[1].defense -= last_attack.victim_defense_subtract
 		
-		"some enemy attack":
-			PlayerAutoload.speed -= 0;
+		"enemy_attack":
+			pass
+			#roles[1].ailment_component_node._instantiate_ailment(last_attack.ailment_give)
 			#Example of how enemys attack work

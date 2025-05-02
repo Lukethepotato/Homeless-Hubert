@@ -14,4 +14,5 @@ animation_name = "hubert_basic_punch"
 icon_texture = ExtResource("1_vkxop")
 hit_region = 2
 gives_block = 0
-victim_speed_apply = 0
+victim_speed_subtract = 0
+victim_defense_subtract = 0

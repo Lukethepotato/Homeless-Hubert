@@ -19,7 +19,7 @@ func start_enemy_attack() -> void:
 		GlobalsAutoload.timeout(.5)
 		await GlobalsAutoload.timer.timeout
 		
-		%BattleScen_AnimPlayer.play(get_parent().upcoming_attack.animation_name)
+		%AnimPlayer.play(get_parent().upcoming_attack.animation_name)
 		update_block()
 		$"..".attack_history.append(get_parent().upcoming_attack)
 		print("enemy attack")

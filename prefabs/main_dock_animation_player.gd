@@ -9,7 +9,8 @@ var attack_in_turn_index_finished: int = 0
 func _ready():
 	GlobalsAutoload.turn_changed.connect(_play_attack)
 	
-
+func _process(delta: float):
+	BattleAutoload._non_attack_animations(self, %Ailments_parent)
 
 func _play_attack():
 	if GlobalsAutoload.current_turn == PlayerAutoload.goes_on_turn and GlobalsAutoload.state == GlobalsAutoload.game_states.IN_BATTLE:

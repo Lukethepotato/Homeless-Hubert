@@ -1,0 +1,351 @@
+[gd_scene load_steps=24 format=3 uid="uid://b1h2w6ctilpdy"]
+
+[ext_resource type="Script" path="res://prefabs/battle scenarios/battle_scenario_anim_player.gd" id="1_82kc4"]
+[ext_resource type="Texture2D" uid="uid://7j27av2hvwmc" path="res://art/temp_assets/Goblin_Idle.png" id="1_myu5w"]
+[ext_resource type="PackedScene" uid="uid://c5au12ja27aq6" path="res://prefabs/battle_overlay.tscn" id="1_pcs3m"]
+[ext_resource type="Texture2D" uid="uid://bchmb2qxgwmh0" path="res://art/temp_assets/GoldMedium-Sheet.png" id="2_bdd1a"]
+[ext_resource type="Script" path="res://prefabs/battle scenarios/main_enemy_node_script.gd" id="2_cveda"]
+[ext_resource type="PackedScene" uid="uid://cdymqdr452r68" path="res://prefabs/enemy attack manager stuff/enemy_attack_manager.tscn" id="3_6ero3"]
+[ext_resource type="PackedScene" uid="uid://chwxkkpa6v2ik" path="res://prefabs/enemy attack manager stuff/components/attack_pattern.tscn" id="4_bfxgc"]
+[ext_resource type="Resource" uid="uid://caqte230he11q" path="res://Resources/Attacks/Enemy/punch.tres" id="6_115l5"]
+[ext_resource type="PackedScene" uid="uid://diqklicqc4obv" path="res://prefabs/enemy attack manager stuff/components/block_verdict.tscn" id="8_ynsp4"]
+[ext_resource type="PackedScene" uid="uid://gpn4laugdwmm" path="res://prefabs/damage_donator.tscn" id="9_nr2w5"]
+[ext_resource type="PackedScene" uid="uid://dda28oxypebnr" path="res://prefabs/ailment_parent.tscn" id="9_wqr2g"]
+
+[sub_resource type="Animation" id="Animation_ulm2a"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Enemy/AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Idle"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Enemy/AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Enemy/AnimatedSprite2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(430.655, 196.489)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Enemy:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -109)]
+}
+
+[sub_resource type="Animation" id="Animation_q4lvm"]
+resource_name = "enemy_attack"
+step = 0.0833333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Enemy/AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Attack"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Enemy/AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0833333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Enemy/AnimatedSprite2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.833333),
+"transitions": PackedFloat32Array(6.06287, 0.901251, 0.901251, 0.241484),
+"update": 0,
+"values": [Vector2(430.655, 196.489), Vector2(112.075, 196.489), Vector2(112.075, 196.489), Vector2(430.655, 196.489)]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("damage_donator")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.25),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": ["Enemy", "Player", 10],
+"method": &"_damage_donation"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_sjc6m"]
+resource_name = "enemy_high_block"
+step = 0.0833333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Enemy/AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"low block"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Enemy/AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Enemy:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(0.732043, 3.73213),
+"update": 0,
+"values": [Vector2(0, -109), Vector2(0, -47)]
+}
+
+[sub_resource type="Animation" id="Animation_vx7bh"]
+resource_name = "enemy_idle"
+length = 0.333342
+loop_mode = 1
+step = 0.0833333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Enemy/AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Idle"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Enemy/AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0833333, 0.166667, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [3, 1, 2, 3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Enemy/AnimatedSprite2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(403.39, 196.489)]
+}
+
+[sub_resource type="Animation" id="Animation_42vyt"]
+resource_name = "enemy_low_block"
+step = 0.0833333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Enemy/AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"low block"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Enemy/AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Enemy:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(0.732043, 3.73213),
+"update": 0,
+"values": [Vector2(0, -109), Vector2(0, -265)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6epbw"]
+_data = {
+"RESET": SubResource("Animation_ulm2a"),
+"enemy_attack": SubResource("Animation_q4lvm"),
+"enemy_high_block": SubResource("Animation_sjc6m"),
+"enemy_idle": SubResource("Animation_vx7bh"),
+"enemy_low_block": SubResource("Animation_42vyt")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fqp72"]
+atlas = ExtResource("2_bdd1a")
+region = Rect2(0, 0, 63, 63)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gehgg"]
+atlas = ExtResource("2_bdd1a")
+region = Rect2(63, 0, 63, 63)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y4mif"]
+atlas = ExtResource("2_bdd1a")
+region = Rect2(126, 0, 63, 63)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oi25f"]
+atlas = ExtResource("2_bdd1a")
+region = Rect2(189, 0, 63, 63)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sw8jd"]
+atlas = ExtResource("2_bdd1a")
+region = Rect2(252, 0, 63, 63)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wf16b"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_myu5w")
+}],
+"loop": true,
+"name": &"Attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fqp72")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gehgg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y4mif")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oi25f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sw8jd")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_myu5w")
+}],
+"loop": false,
+"name": &"low block",
+"speed": 5.0
+}]
+
+[node name="Battle Scenario" type="Node2D"]
+
+[node name="AnimPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_6epbw")
+}
+script = ExtResource("1_82kc4")
+
+[node name="Enemy" type="Node2D" parent="."]
+position = Vector2(0, -109)
+scale = Vector2(2.09681, 2.09681)
+script = ExtResource("2_cveda")
+traits = Array[int]([0])
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Enemy"]
+position = Vector2(430.655, 196.489)
+sprite_frames = SubResource("SpriteFrames_wf16b")
+animation = &"Idle"
+
+[node name="Enemy attack manager" parent="Enemy" instance=ExtResource("3_6ero3")]
+fallback_attack = ExtResource("6_115l5")
+
+[node name="block_verdict" parent="Enemy/Enemy attack manager" instance=ExtResource("8_ynsp4")]
+position = Vector2(275.657, 143.551)
+
+[node name="Attack pattern" parent="Enemy/Enemy attack manager" instance=ExtResource("4_bfxgc")]
+
+[node name="Ailments_parent" parent="Enemy" instance=ExtResource("9_wqr2g")]
+unique_name_in_owner = true
+scale = Vector2(1, 1)
+
+[node name="battle_overlay" parent="." instance=ExtResource("1_pcs3m")]
+
+[node name="damage_donator" parent="." instance=ExtResource("9_nr2w5")]
+unique_name_in_owner = true
+camera_shake_mult = 2.0
+
+[node name="midpoint" type="Node2D" parent="."]
+position = Vector2(576, 324)
+
+[connection signal="animation_finished" from="AnimPlayer" to="AnimPlayer" method="_on_animation_finished"]
