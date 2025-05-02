@@ -121,8 +121,11 @@ func _non_attack_animations(anim_player_node: AnimationPlayer, ailments_parent: 
 		if anim_player_node.is_playing() == false:
 			if ailments_parent._animtion_decision() != "":
 				anim_player_node.play(ailments_parent._animtion_decision())
+			
+			# there would also be the little attacked animations here
 			else:
 				anim_player_node.play("idle")
+				
 	
 func apply_attack_effects(attack_name: String, user: String, target: String) -> void:
 	# somthing to note
