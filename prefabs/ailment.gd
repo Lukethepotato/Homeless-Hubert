@@ -1,5 +1,5 @@
 extends Node2D
-@export var current_ailment: ailments = null #if its null nothing happens
+@export var current_ailment: ailment = null #if its null nothing happens
 @export var turns_left: int
 @export var target_data = null
 @export var damage_donor_node: Node2D
@@ -56,9 +56,8 @@ func _update_block_lock():
 func _animtion_play_attempt():
 	get_parent()._animtion_decision()
 			
-	
 
-func _begin_ailment(ailment_chosen: ailments):
+func _begin_ailment(ailment_chosen: ailment):
 	target_data = BattleAutoload.convert_strs_to_attack_roles(get_parent().target,get_parent().target)
 	target_data = target_data[0]
 	print_rich("[color=cornflower_blue][shake amp=50.0 freq=5.0][wave amp=50.0 freq=5.0][font_size=50]ailement begin");

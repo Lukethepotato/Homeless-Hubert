@@ -7,6 +7,7 @@
 script = ExtResource("2_ojj2n")
 base_damage = 5
 priority = -1
+stance_disruption_mod = 20000.0
 name = "Shove"
 name_color = Color(1, 0, 0, 1)
 description = "basic shove. Hits high and decreases defense"

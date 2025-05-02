@@ -83,11 +83,11 @@ func calculate_damage(base_dmg : int, user, target, can_crit := true, guaranteed
 	var damage := base_dmg;
 	var crit = false;
 	var evade = false;
-	#print("Base damage: " + str(damage))
+	print("Base damage: " + str(damage))
 	damage += user.strength;
-	#print("Strength damage: " + str(damage))
+	print("Strength damage: " + str(damage))
 	damage -= target.defense;
-	#print("Defense damage: " + str(damage))
+	print("Defense damage: " + str(damage))
 	if randi_range(1+user.luck, 100) >= 100 and can_crit:
 		damage *= 2.5;
 		print_rich("[color=gold][wave amp=50.0 freq=5.0][font_size=20]Critical: " + str(damage));
@@ -109,6 +109,7 @@ func apply_combo_effects(combo : player_combo) -> void:
 			print_rich("[color=cornflower_blue][shake amp=50.0 freq=5.0][wave amp=50.0 freq=5.0][font_size=50]Slippy Trip");
 			enemy.traits.erase(traits.SLIPPERY);
 			enemy.health -= 10;
+			enemy.poise -= 10; # TEMPORARY
 			BattleAutoload.damage_dealt.emit(10, enemy, false, false);
 			enemy.evasion -= 20;
 			enemy.speed -= 2;
@@ -144,13 +145,14 @@ func apply_attack_effects(attack_name: String, user: String, target: String) -> 
 	
 	var last_attack = roles[0].attack_history[roles[0].attack_history.size() -1]
 	
+	roles[1].speed -= last_attack.victim_speed_subtract;
+	roles[1].defense -= last_attack.victim_defense_subtract
+	# You should use the switch statement for unique effects like ailments rather than just a variable every attack has
 	match attack_name:
 		"hubert_basic_low":
-			roles[1].speed -= last_attack.victim_speed_subtract;
-			
+			pass
 		"hubert_basic_shove","hubert_basic_sweep":
-			roles[1].defense -= last_attack.victim_defense_subtract
-		
+			pass
 		"enemy_attack":
 			pass
 			#roles[1].ailment_component_node._instantiate_ailment(last_attack.ailment_give)

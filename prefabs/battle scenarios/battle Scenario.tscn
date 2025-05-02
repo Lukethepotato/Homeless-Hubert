@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://b1h2w6ctilpdy"]
+[gd_scene load_steps=29 format=3 uid="uid://b1h2w6ctilpdy"]
 
 [ext_resource type="Script" path="res://prefabs/battle scenarios/battle_scenario_anim_player.gd" id="1_82kc4"]
 [ext_resource type="Texture2D" uid="uid://7j27av2hvwmc" path="res://art/temp_assets/Goblin_Idle.png" id="1_myu5w"]
@@ -11,7 +11,8 @@
 [ext_resource type="Resource" uid="uid://caqte230he11q" path="res://Resources/Attacks/Enemy/punch.tres" id="6_115l5"]
 [ext_resource type="PackedScene" uid="uid://diqklicqc4obv" path="res://prefabs/enemy attack manager stuff/components/block_verdict.tscn" id="8_ynsp4"]
 [ext_resource type="PackedScene" uid="uid://gpn4laugdwmm" path="res://prefabs/damage_donator.tscn" id="9_nr2w5"]
-[ext_resource type="PackedScene" path="res://prefabs/ailment_component.tscn" id="9_wqr2g"]
+[ext_resource type="PackedScene" uid="uid://dda28oxypebnr" path="res://prefabs/ailment_component.tscn" id="9_wqr2g"]
+[ext_resource type="PackedScene" uid="uid://dmcs2y0srdycl" path="res://prefabs/ailment.tscn" id="11_le8ai"]
 
 [sub_resource type="Animation" id="Animation_ulm2a"]
 length = 0.001
@@ -49,7 +50,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(430.655, 196.489)]
+"values": [Vector2(0, 0)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -61,7 +62,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, -109)]
+"values": [Vector2(860, 350)]
 }
 
 [sub_resource type="Animation" id="Animation_q4lvm"]
@@ -101,7 +102,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.25, 0.5, 0.833333),
 "transitions": PackedFloat32Array(6.06287, 0.901251, 0.901251, 0.241484),
 "update": 0,
-"values": [Vector2(430.655, 196.489), Vector2(112.075, 196.489), Vector2(112.075, 196.489), Vector2(430.655, 196.489)]
+"values": [Vector2(0, 0), Vector2(-280, 0), Vector2(-280, 0), Vector2(0, 0)]
 }
 tracks/3/type = "method"
 tracks/3/imported = false
@@ -155,7 +156,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.25),
 "transitions": PackedFloat32Array(0.732043, 3.73213),
 "update": 0,
-"values": [Vector2(0, -109), Vector2(0, -47)]
+"values": [Vector2(860, 350), Vector2(860, 375)]
 }
 
 [sub_resource type="Animation" id="Animation_42vyt"]
@@ -195,37 +196,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.25),
 "transitions": PackedFloat32Array(0.732043, 3.73213),
 "update": 0,
-"values": [Vector2(0, -109), Vector2(0, -265)]
-}
-
-[sub_resource type="Animation" id="Animation_fot5b"]
-resource_name = "staggered"
-length = 0.333342
-loop_mode = 1
-step = 0.0833333
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Enemy/AnimatedSprite2D:animation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"staggered"]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Enemy/AnimatedSprite2D:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.166667),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [0, 1]
+"values": [Vector2(860, 350), Vector2(860, 325)]
 }
 
 [sub_resource type="Animation" id="Animation_vx7bh"]
@@ -267,7 +238,37 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(403.39, 196.489)]
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_fot5b"]
+resource_name = "staggered"
+length = 0.333342
+loop_mode = 1
+step = 0.0833333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Enemy/AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"staggered"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Enemy/AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.166667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6epbw"]
@@ -368,13 +369,12 @@ libraries = {
 script = ExtResource("1_82kc4")
 
 [node name="Enemy" type="Node2D" parent="."]
-position = Vector2(0, -109)
+position = Vector2(860, 350)
 scale = Vector2(2.09681, 2.09681)
 script = ExtResource("2_cveda")
 traits = Array[int]([0])
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Enemy"]
-position = Vector2(430.655, 196.489)
 sprite_frames = SubResource("SpriteFrames_wf16b")
 animation = &"Idle"
 
@@ -388,6 +388,7 @@ position = Vector2(275.657, 143.551)
 
 [node name="Ailments_parent" parent="Enemy" instance=ExtResource("9_wqr2g")]
 unique_name_in_owner = true
+ailment_component_prefab = ExtResource("11_le8ai")
 target = "Enemy"
 
 [node name="battle_overlay" parent="." instance=ExtResource("1_pcs3m")]

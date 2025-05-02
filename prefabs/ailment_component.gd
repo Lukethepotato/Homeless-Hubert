@@ -1,5 +1,5 @@
 extends Node2D
-@export var ailment_component_prephab: PackedScene
+@export var ailment_component_prefab: PackedScene
 @export var target: String # must be set to either "Player" or "Enemy" (if in enemy scene use "Enemy" and vise versa)
 @export var target_data = null
 @export var current_ailment_anim: Node2D = null
@@ -16,7 +16,7 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
-	
+
 func _animtion_decision() -> String:
 	var current_ailment_winner: Node2D = null
 	for i in get_child_count():
@@ -32,9 +32,9 @@ func _animtion_decision() -> String:
 		
 	else:
 		return ""
-	
-	
-	
+
+
+
 	#if GlobalsAutoload.current_turn == target_data.goes_on_turn:
 			#if (ailment_competitor.current_ailment.animation_priority >= current_ailment_anim.current_ailment.animation_priority) || current_ailment_anim == null:
 				#%AnimPlayer.play(ailment_competitor.current_ailment.animation_name)
@@ -49,8 +49,8 @@ func _can_change_block() -> bool:
 
 	
 
-func _instantiate_ailment(ailment_chosen: ailments):
-	var new_ailment = ailment_component_prephab.instantiate()
+func _instantiate_ailment(ailment_chosen: ailment):
+	var new_ailment = ailment_component_prefab.instantiate()
 	add_child(new_ailment)
 	new_ailment._begin_ailment(ailment_chosen)
 	new_ailment.damage_donor_node = %damage_donator #i give it the node this way because the intianted nodes cant call it

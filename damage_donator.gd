@@ -8,26 +8,26 @@ extends Node2D
 
 func _damage_donation(user : String, target : String, base_dmg: int, combo : player_combo = null, can_crit := true, guaranteed_hit := false):
 	var roles = BattleAutoload.convert_strs_to_attack_roles(user, target)
-	
 	var damage_to_deal = BattleAutoload.calculate_damage(base_dmg, roles[0], roles[1], can_crit, guaranteed_hit);
+	var user_attack_region = roles[0].attack_history[roles[0].attack_history.size() - 1].hit_region 
 	
-	var roles0_hit_region = roles[0].attack_history[roles[0].attack_history.size() - 1].hit_region 
-	
-	
-	if roles0_hit_region == GlobalsAutoload.location_types.IGNORE:
+	if user_attack_region == GlobalsAutoload.location_types.IGNORE:
 		if roles[0].current_block != GlobalsAutoload.location_types.NONE: 
-			roles0_hit_region = GlobalsAutoload.convert_to_elavation(roles[0].current_block)	
+			user_attack_region = GlobalsAutoload.convert_to_elavation(roles[0].current_block)	
 			#if the attacks region is set to ignore it sets the var attack region to the current elvation
 		else:
-			roles0_hit_region = GlobalsAutoload.location_types.HIGH
+			user_attack_region = GlobalsAutoload.location_types.HIGH
 			#if the fish is in the middle and the attack region is ignore it will default to its
 			#attack location to high
 	
-	
 	if roles[0] != roles[1]:
-		if roles0_hit_region != roles[1].current_block: 
+		if user_attack_region != roles[1].current_block: 
 			var last_attack_done = roles[0].attack_history[roles[0].attack_history.size() -1]
 			roles[1].health -= damage_to_deal;
+			roles[1].poise -= damage_to_deal * last_attack_done.stance_disruption_mod
+			print("Poise : " + str(roles[1].poise))
+			if roles[1].poise <= 0:
+				roles[1].ailment_component_node._instantiate_ailment(load("res://Resources/ailments/staggered.tres"))
 			BattleAutoload.apply_attack_effects(last_attack_done.animation_name, user, target)
 			
 			GlobalsAutoload.shake_camera.emit(camera_shake_mult * damage_to_deal)

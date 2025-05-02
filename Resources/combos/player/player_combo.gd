@@ -6,4 +6,4 @@ class_name player_combo
 @export var attacks_in_combo : Array[player_attack]
 @export var animation_name := ""
 @export var description := "";
-@export var ailment_give : ailments = null
+@export var ailment_give : ailment = null
