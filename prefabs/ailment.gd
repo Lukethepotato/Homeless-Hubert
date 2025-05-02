@@ -54,7 +54,7 @@ func _update_block_lock():
 		
 			#if the lock block is set to none then they will simply just not be able to move
 func _animtion_play_attempt():
-	get_parent()._animtion_decision(self)
+	get_parent()._animtion_decision()
 			
 	
 

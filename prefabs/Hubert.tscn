@@ -1,13 +1,24 @@
-[gd_scene load_steps=55 format=3 uid="uid://co6wwlpta51be"]
+[gd_scene load_steps=57 format=3 uid="uid://co6wwlpta51be"]
 
 [ext_resource type="Texture2D" uid="uid://ca237n0njexqp" path="res://art/temp_assets/192637.png" id="2_h37bg"]
-[ext_resource type="Texture2D" uid="uid://7j27av2hvwmc" path="res://art/temp_assets/Goblin_Idle.png" id="2_x2k4m"]
 [ext_resource type="Texture2D" uid="uid://bap6raewbggi3" path="res://art/temp_assets/Turret_Shoot-Sheet.png" id="3_fssy4"]
 [ext_resource type="Script" path="res://prefabs/misc_player_anim_player.gd" id="3_q40jc"]
 [ext_resource type="Script" path="res://prefabs/hubert.gd" id="4_dhhqc"]
 [ext_resource type="Texture2D" uid="uid://bo3kr2xfcjpn0" path="res://art/temp_assets/192652.png" id="4_tvrug"]
 [ext_resource type="Texture2D" uid="uid://o8aoifn8pokw" path="res://art/temp_assets/PC Computer - Code Shifter - Sol Badguy.png" id="5_3ng8d"]
 [ext_resource type="Texture2D" uid="uid://uki73r6adt2h" path="res://art/temp_assets/192641.png" id="6_drfky"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_st2ld"]
+atlas = ExtResource("5_3ng8d")
+region = Rect2(92, 188, 46, 47)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7xcbw"]
+atlas = ExtResource("5_3ng8d")
+region = Rect2(138, 188, 46, 47)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ilpdm"]
+atlas = ExtResource("5_3ng8d")
+region = Rect2(184, 188, 46, 47)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_x81rd"]
 atlas = ExtResource("4_tvrug")
@@ -189,7 +200,13 @@ region = Rect2(260, 0, 130, 117)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_x2k4m")
+"texture": SubResource("AtlasTexture_st2ld")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7xcbw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ilpdm")
 }],
 "loop": true,
 "name": &"Idle",
@@ -386,8 +403,7 @@ script = ExtResource("4_dhhqc")
 
 [node name="Hubert_Sprites" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_gomab")
-animation = &"basic:sweep"
-frame_progress = 0.0647049
+animation = &"Idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, 10.5)

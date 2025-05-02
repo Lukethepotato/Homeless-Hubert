@@ -17,11 +17,28 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 	
-func _animtion_decision(ailment_competitor: Node2D):
-	if GlobalsAutoload.current_turn == target_data.goes_on_turn:
-			if (ailment_competitor.current_ailment.animation_priority >= current_ailment_anim.current_ailment.animation_priority) || current_ailment_anim == null:
-				%AnimPlayer.play(ailment_competitor.current_ailment.animation_name)
-				ailment_competitor = current_ailment_anim
+func _animtion_decision() -> String:
+	var current_ailment_winner: Node2D = null
+	for i in get_child_count():
+		
+		var ailment_competitor: Node2D = get_child(i)
+		if ailment_competitor != null:
+			if ailment_competitor.current_ailment.animation_name != "":
+				if current_ailment_winner == null || (ailment_competitor.current_ailment.animation_priority >= current_ailment_winner.current_ailment.animation_priority):
+					current_ailment_winner = ailment_competitor
+		
+	if current_ailment_winner != null:
+		return current_ailment_winner.current_ailment.animation_name
+		
+	else:
+		return ""
+	
+	
+	
+	#if GlobalsAutoload.current_turn == target_data.goes_on_turn:
+			#if (ailment_competitor.current_ailment.animation_priority >= current_ailment_anim.current_ailment.animation_priority) || current_ailment_anim == null:
+				#%AnimPlayer.play(ailment_competitor.current_ailment.animation_name)
+				#ailment_competitor = current_ailment_anim
 
 func _can_change_block() -> bool:
 	if get_child(0) != null:

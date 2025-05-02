@@ -9,7 +9,8 @@ var attack_in_turn_index_finished: int = 0
 func _ready():
 	GlobalsAutoload.turn_changed.connect(_play_attack)
 	
-
+func _process(delta: float):
+	BattleAutoload._non_attack_animations(self, %Ailments_parent)
 
 func _play_attack():
 	if GlobalsAutoload.current_turn == PlayerAutoload.goes_on_turn and GlobalsAutoload.state == GlobalsAutoload.game_states.IN_BATTLE:
@@ -52,11 +53,6 @@ func rush(option: String):
 	elif option == "back":
 		print_rich("[color=gold][wave amp=50.0 freq=5.0][font_size=20] rush back");
 		play("hubert_rush_back")
-
-func _battle_idle():
-	if GlobalsAutoload.current_turn != PlayerAutoload.goes_on_turn
-		if is_playing() == false:
-		
 
 
 # This function checks idf there are any completable combos and returns the proper combo if true.
