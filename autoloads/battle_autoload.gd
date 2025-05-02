@@ -77,6 +77,29 @@ func convert_strs_to_attack_roles(user : String, target : String) -> Array:
 		victim = GlobalsAutoload.enemy_node;
 	
 	return [perpetrator, victim]
+	
+	
+func _non_attack_animations(anim_player_node: AnimationPlayer, ailments_parent: Node2D):
+	#plays all the non attack related animations on the enemy and player
+	
+	#its called from each of their respective animation players
+	
+	#NOTE FOR FURTUE LUKE: instead of just checking if the anim node is playing 
+	#you gotta make like an array of animations its okay for the animator to overide
+	#then make a for loop that traveres said array and if the current animation playing is in the array
+	#then what ever non attack animation overides the current animation
+	if GlobalsAutoload.current_turn != PlayerAutoload.goes_on_turn:
+		if anim_player_node.is_playing() == false:
+			if ailments_parent._animtion_decision() != "":
+				anim_player_node.play(ailments_parent._animtion_decision())
+				print("play ail_battleAuyto")
+			
+			# there would also be the little attacked animations here
+			else:
+				anim_player_node.play("idle")
+				print("play idle_battleAuyto")
+			
+	
 
 # Calculates the damage that should be dealt. Extraneous parameters to be placed after the first three
 func calculate_damage(base_dmg : int, user, target, can_crit := true, guaranteed_hit := false) -> int:
@@ -119,19 +142,6 @@ func apply_combo_effects(combo : player_combo) -> void:
 			
 			GlobalsAutoload.shake_camera.emit(20)
 	GlobalsAutoload.health_updated.emit();
-	
-func _non_attack_animations(anim_player_node: AnimationPlayer, ailments_parent: Node2D):
-	#plays all the non attack related animations on the enemy and player
-	
-	#its called from each of their respective animation players
-	if GlobalsAutoload.current_turn != PlayerAutoload.goes_on_turn:
-		if anim_player_node.is_playing() == false:
-			if ailments_parent._animtion_decision() != "":
-				anim_player_node.play(ailments_parent._animtion_decision())
-			
-			# there would also be the little attacked animations here
-			else:
-				anim_player_node.play("idle")
 				
 	
 func apply_attack_effects(attack_name: String, user: String, target: String) -> void:

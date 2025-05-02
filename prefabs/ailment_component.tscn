@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dda28oxypebnr"]
 
 [ext_resource type="Script" path="res://prefabs/ailment_component.gd" id="1_8g1sk"]
-[ext_resource type="PackedScene" uid="uid://6scxq4knsrn2" path="res://prefabs/ailment.tscn" id="2_guwxj"]
+[ext_resource type="PackedScene" uid="uid://dmcs2y0srdycl" path="res://prefabs/ailment.tscn" id="2_guwxj"]
 
 [node name="Ailments_component" type="Node2D"]
 script = ExtResource("1_8g1sk")

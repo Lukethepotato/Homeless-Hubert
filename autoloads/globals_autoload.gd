@@ -71,6 +71,8 @@ func _process(delta: float) -> void:
 			print("current turn = 1 _ globalsAutoload")
 			current_turn = 1
 			current_turn_reset.emit()
+			
+		
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("f11"):

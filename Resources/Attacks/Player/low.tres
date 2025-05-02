@@ -15,3 +15,4 @@ icon_texture = ExtResource("1_my5bl")
 hit_region = 1
 gives_block = 0
 victim_speed_subtract = 4
+victim_defense_subtract = 0
