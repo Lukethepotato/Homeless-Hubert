@@ -1,16 +1,18 @@
 [gd_resource type="Resource" script_class="player_attack" load_steps=3 format=3 uid="uid://dmqgyh8xxlmhk"]
 
-[ext_resource type="Texture2D" uid="uid://dmapuornrtfpu" path="res://art/temp_assets/images (3).jpg" id="1_7jbyf"]
 [ext_resource type="Script" path="res://Resources/player_attack_resource.gd" id="1_65oia"]
+[ext_resource type="Texture2D" uid="uid://bpbx6eonlk5xa" path="res://art/temp_assets/lower_block.png" id="1_vytor"]
 
 [resource]
 script = ExtResource("1_65oia")
 base_damage = 0
-priority = 2
+priority = -2
 name = "Low Block"
 name_color = Color(1, 1, 1, 1)
 description = "Activate a low block."
 animation_name = "hubert_low_block"
-icon_texture = ExtResource("1_7jbyf")
+icon_texture = ExtResource("1_vytor")
 hit_region = 0
 gives_block = 1
+victim_speed_subtract = 0
+victim_defense_subtract = 0

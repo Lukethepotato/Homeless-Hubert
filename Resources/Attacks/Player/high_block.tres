@@ -1,16 +1,18 @@
 [gd_resource type="Resource" script_class="player_attack" load_steps=3 format=3 uid="uid://bbilq7ugxdnsx"]
 
-[ext_resource type="Texture2D" uid="uid://nn5jysws1fjs" path="res://art/temp_assets/Screenshot 2025-03-18 090842.png" id="1_hjuk2"]
+[ext_resource type="Texture2D" uid="uid://yao4xxby2u3q" path="res://art/temp_assets/upper_block.png" id="1_uk7wy"]
 [ext_resource type="Script" path="res://Resources/player_attack_resource.gd" id="2_vqwmj"]
 
 [resource]
 script = ExtResource("2_vqwmj")
 base_damage = 0
-priority = -2
+priority = 0
 name = "High Block"
 name_color = Color(1, 1, 1, 1)
 description = "Activate a high block."
 animation_name = "hubert_high_block"
-icon_texture = ExtResource("1_hjuk2")
+icon_texture = ExtResource("1_uk7wy")
 hit_region = 0
 gives_block = 2
+victim_speed_subtract = 0
+victim_defense_subtract = 0

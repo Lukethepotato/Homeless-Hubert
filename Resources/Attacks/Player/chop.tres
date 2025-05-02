@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="player_attack" load_steps=3 format=3 uid="uid://drn7eou7eggjf"]
+
+[ext_resource type="Texture2D" uid="uid://b22a68ac7qntc" path="res://art/temp_assets/chop.png" id="1_38o7c"]
+[ext_resource type="Script" path="res://Resources/player_attack_resource.gd" id="1_p7trt"]
+
+[resource]
+script = ExtResource("1_p7trt")
+base_damage = 0
+priority = 5
+name = "Chop"
+name_color = Color(1, 1, 1, 1)
+description = "Speedy attack. Attack hits high, deals bad damage, and has little disruption."
+animation_name = "hubert_basic_chop"
+icon_texture = ExtResource("1_38o7c")
+hit_region = 2
+gives_block = 0
+victim_speed_subtract = 2
+victim_defense_subtract = 0

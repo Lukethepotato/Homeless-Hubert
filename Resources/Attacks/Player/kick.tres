@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="player_attack" load_steps=3 format=3 uid="uid://m35p04sdk2yq"]
+
+[ext_resource type="Script" path="res://Resources/player_attack_resource.gd" id="1_0fi5c"]
+[ext_resource type="Texture2D" uid="uid://pe8j4lbek0ef" path="res://art/temp_assets/KICK.png" id="1_sepw8"]
+
+[resource]
+script = ExtResource("1_0fi5c")
+base_damage = 6
+priority = -2
+name = "kick"
+name_color = Color(1, 1, 1, 1)
+description = "Basic fist attack. Attack hits high, deals mediocre damage, and has little disruption."
+animation_name = "hubert_basic_kick"
+icon_texture = ExtResource("1_sepw8")
+hit_region = 1
+gives_block = 0

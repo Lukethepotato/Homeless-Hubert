@@ -13,6 +13,9 @@ signal done_updating_attacks()
 
 signal current_turn_reset()
 #called whenever turns set back to 1
+signal shake_camera(shake_amount: float)
+#40 good default shake_amount
+
 
 # Combo data
 var all_player_combos: Array[player_combo]
@@ -50,6 +53,9 @@ enum location_types {
 	HIGH,
 	IGNORE
 }
+
+# this is a lil note for lukey poo who forgets how to print Rich
+# print_rich("[color=gold][wave amp=50.0 freq=5.0][font_size=20] PUT TEXT HERE ");
 
 var current_battle_scenario;
 

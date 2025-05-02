@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://d1la71l041tvl"]
+
+[node name="ColorRect" type="ColorRect"]
+z_index = -1
+use_parent_material = true
+anchors_preset = -1
+anchor_left = 0.0171875
+anchor_top = -0.0444444
+anchor_right = 0.765625
+anchor_bottom = 0.739815
+offset_left = -1.78125
+offset_top = -3.8147e-05
+offset_right = -1.78125
+offset_bottom = -6.10352e-05
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+metadata/_edit_use_anchors_ = true
