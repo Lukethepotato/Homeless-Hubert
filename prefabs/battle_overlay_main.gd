@@ -7,6 +7,7 @@ var tween;
 func _ready() -> void:
 	GlobalsAutoload.dropped_UI.connect(update_button);
 	GlobalsAutoload.turn_changed.connect(turn_change);
+	BattleAutoload.damage_dealt.connect(damage_popup);
 	$enemy_attack_spots.visible = false;
 	$combo_thing.visible = false;
 	$attack_spots.position.y = -400;
@@ -173,3 +174,34 @@ func hide_enemy_attack_preview():
 	tween2.tween_property($enemy_attack_spots/enemy_attack_preview, "scale", Vector2(0.01,0.01), 0.5);
 	await tween2.finished;
 	$enemy_attack_spots.visible = false;
+
+func damage_popup(damage : int, target, crit := false, evade := false):
+	# Create Lambda function apply_popin
+	var apply_popin = func (text : RichTextLabel):
+		var offset_gravity = 50
+		var pos_offset = Vector2(randi_range(-1 * offset_gravity, offset_gravity), randi_range(-1 * offset_gravity, offset_gravity))
+		var tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BOUNCE)
+		tween.tween_property(text, "global_position", text.global_position + pos_offset, 0.5);
+	
+	var text = RichTextLabel.new();
+	text.bbcode_enabled = true;
+	text.fit_content = true;
+	text.autowrap_mode = TextServer.AUTOWRAP_OFF;
+	var color = "white"
+	var fontsize = 25;
+	if crit:
+		color = "gold"
+		fontsize = 40;
+	if evade:
+		color = "red"
+		fontsize = 30;
+	text.text = "[center][outline_size=" + str(fontsize/10) + "][outline_color=black][color=" + str(color) + "][font_size=" + str(fontsize) + "]" + str(damage);
+	add_child(text);
+	text.position = target.position;
+	apply_popin.call(text);
+	GlobalsAutoload.timeout(1);
+	await GlobalsAutoload.timer.timeout;
+	var tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO)
+	tween.tween_property(text, "modulate:a", 0, 0.5);
+	await tween.finished;
+	text.queue_free()

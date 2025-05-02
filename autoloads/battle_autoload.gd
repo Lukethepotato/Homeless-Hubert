@@ -4,6 +4,7 @@ extends Node
 
 
 signal attack_ready;
+signal damage_dealt(damage : int, target, crit : bool, evade : bool);
 
 enum traits {
 	SLIPPERY,
@@ -80,6 +81,8 @@ func convert_strs_to_attack_roles(user : String, target : String) -> Array:
 # Calculates the damage that should be dealt. Extraneous parameters to be placed after the first three
 func calculate_damage(base_dmg : int, user, target, can_crit := true, guaranteed_hit := false) -> int:
 	var damage := base_dmg;
+	var crit = false;
+	var evade = false;
 	#print("Base damage: " + str(damage))
 	damage += user.strength;
 	#print("Strength damage: " + str(damage))
@@ -88,9 +91,12 @@ func calculate_damage(base_dmg : int, user, target, can_crit := true, guaranteed
 	if randi_range(1+user.luck, 100) >= 100 and can_crit:
 		damage *= 2.5;
 		print_rich("[color=gold][wave amp=50.0 freq=5.0][font_size=20]Critical: " + str(damage));
+		crit = true;
 	if target.evasion > 0 and randi_range(target.evasion, 100) >= 100 and not guaranteed_hit:
 		damage = 0;
 		print_rich("[color=red][shake amp=50.0 freq=5.0][font_size=20]Evaded: " + str(damage));
+		evade = true;
+	BattleAutoload.damage_dealt.emit(damage, target, crit, evade);
 	return damage;
 
 # This function does the combo effects
@@ -103,6 +109,7 @@ func apply_combo_effects(combo : player_combo) -> void:
 			print_rich("[color=cornflower_blue][shake amp=50.0 freq=5.0][wave amp=50.0 freq=5.0][font_size=50]Slippy Trip");
 			enemy.traits.erase(traits.SLIPPERY);
 			enemy.health -= 10;
+			BattleAutoload.damage_dealt.emit(10, enemy, false, false);
 			enemy.evasion -= 20;
 			enemy.speed -= 2;
 			if enemy.evasion < 0:
