@@ -131,5 +131,6 @@ func apply_attack_effects(attack_name: String, user: String, target: String) -> 
 			roles[1].defense -= last_attack.victim_defense_subtract
 		
 		"enemy_attack":
-			roles[1].ailment_parent_node._instantiate_ailment(last_attack.ailment_give)
+			pass
+			#roles[1].ailment_component_node._instantiate_ailment(last_attack.ailment_give)
 			#Example of how enemys attack work

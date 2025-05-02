@@ -1,10 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://6scxq4knsrn2"]
+[gd_scene load_steps=3 format=3 uid="uid://dda28oxypebnr"]
 
-[ext_resource type="Script" path="res://prefabs/ailment_component.gd" id="1_46htw"]
-[ext_resource type="Script" path="res://Resources/enemy_attack_resource.gd" id="2_hr6uv"]
-[ext_resource type="Resource" uid="uid://bh16ayv08j586" path="res://Resources/Attacks/Enemy/low_block.tres" id="3_cdra2"]
-[ext_resource type="Resource" uid="uid://dclukfn5jb5fe" path="res://Resources/Attacks/Enemy/high_block.tres" id="4_rf1mh"]
+[ext_resource type="Script" path="res://prefabs/ailment_component.gd" id="1_8g1sk"]
+[ext_resource type="PackedScene" uid="uid://6scxq4knsrn2" path="res://prefabs/ailment.tscn" id="2_guwxj"]
 
-[node name="Ailment component" type="Node2D"]
-script = ExtResource("1_46htw")
-enemy_blocks = Array[ExtResource("2_hr6uv")]([ExtResource("3_cdra2"), ExtResource("4_rf1mh")])
+[node name="Ailments_component" type="Node2D"]
+script = ExtResource("1_8g1sk")
+ailment_component_prephab = ExtResource("2_guwxj")

@@ -53,6 +53,11 @@ func rush(option: String):
 		print_rich("[color=gold][wave amp=50.0 freq=5.0][font_size=20] rush back");
 		play("hubert_rush_back")
 
+func _battle_idle():
+	if GlobalsAutoload.current_turn != PlayerAutoload.goes_on_turn
+		if is_playing() == false:
+		
+
 
 # This function checks idf there are any completable combos and returns the proper combo if true.
 func combo_checking() -> player_combo:

@@ -8,4 +8,5 @@ turn_amount = 2
 lock_block = 1
 lock_attack = false
 damage_take_per_turn = 5
-animation_name = ""
+animation_name = "staggered"
+animation_priority = 5
