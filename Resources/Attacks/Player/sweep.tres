@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="player_attack" load_steps=3 format=3 uid="uid://dlo7o8xx87g8g"]
+
+[ext_resource type="Texture2D" uid="uid://blckmnwvf8056" path="res://art/temp_assets/SWEEP.png" id="1_tj2co"]
+[ext_resource type="Script" path="res://Resources/player_attack_resource.gd" id="2_y3f1y"]
+
+[resource]
+script = ExtResource("2_y3f1y")
+base_damage = 5
+priority = -2
+name = "sweep"
+name_color = Color(1, 0, 0, 1)
+description = "basic shove. Hits high and decreases defense"
+animation_name = "hubert_basic_sweep"
+icon_texture = ExtResource("1_tj2co")
+hit_region = 1
+gives_block = 0
+victim_speed_subtract = 0
+victim_defense_subtract = 5

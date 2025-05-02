@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="player_attack" load_steps=3 format=3 uid="uid://ctrdselwi2kf1"]
 
-[ext_resource type="Texture2D" uid="uid://bfg26vder6en3" path="res://art/temp_assets/bg3pUNCH.PNG" id="1_mcpck"]
+[ext_resource type="Texture2D" uid="uid://b7qganws4fj86" path="res://art/temp_assets/pucnh.png" id="1_vkxop"]
 [ext_resource type="Script" path="res://Resources/player_attack_resource.gd" id="2_q27pf"]
 
 [resource]
@@ -11,6 +11,7 @@ name = "Punch"
 name_color = Color(1, 0, 0, 1)
 description = "Basic fist attack. Attack hits high, deals mediocre damage, and has little disruption."
 animation_name = "hubert_basic_punch"
-icon_texture = ExtResource("1_mcpck")
+icon_texture = ExtResource("1_vkxop")
 hit_region = 2
 gives_block = 0
+victim_speed_apply = 0

@@ -93,3 +93,6 @@ extends Node2D
 # हेलो मैं तुम्हें शौचालय में चोदने वाला हूँ
 
 #I CANT STOP LOOKING AT IT! ITS JIGGLING! JEREMY ITS JIGGLING
+
+#thank you jerm dog for helping me reset everything
+#im in UTAH HORAH

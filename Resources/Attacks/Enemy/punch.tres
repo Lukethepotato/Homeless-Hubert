@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="enemy_attack" load_steps=3 format=3 uid="uid://caqte230he11q"]
 
 [ext_resource type="Script" path="res://Resources/enemy_attack_resource.gd" id="1_bws00"]
-[ext_resource type="Texture2D" uid="uid://bfg26vder6en3" path="res://art/temp_assets/bg3pUNCH.PNG" id="1_r75og"]
+[ext_resource type="Texture2D" uid="uid://dpd7iqa735x25" path="res://art/temp_assets/FISHE_PUNC.png" id="1_j18qp"]
 
 [resource]
 script = ExtResource("1_bws00")
@@ -13,4 +13,5 @@ description = "Basic attack. Attack hits high and deals 10 damage."
 animation_name = "enemy_attack"
 hit_region = 3
 gives_block = 3
-preview_texture = ExtResource("1_r75og")
+preview_texture = ExtResource("1_j18qp")
+victim_speed_apply = 0

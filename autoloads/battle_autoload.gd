@@ -52,7 +52,9 @@ func get_player_speed() -> int:
 # Returns what the enemy's speed would be for this turn
 func get_enemy_speed() -> int:
 	var speed = GlobalsAutoload.enemy_node.speed;
-	speed += GlobalsAutoload.enemy_node.get_child(1)._return_enemy_attack_choice().priority;
+	speed += GlobalsAutoload.enemy_node.upcoming_attack.priority;
+	#return attack choice doenst give the actual attack done just a possibilty
+	#using upcoming_attack gets the actuall one
 	if speed < 0:
 		speed = 0;
 	return speed;
@@ -104,4 +106,27 @@ func apply_combo_effects(combo : player_combo) -> void:
 			enemy.speed -= 2;
 			if enemy.evasion < 0:
 				enemy.evasion = 0;
+			GlobalsAutoload.shake_camera.emit(20)
 	GlobalsAutoload.health_updated.emit();
+	
+func apply_attack_effects(attack_name: String) -> void:
+	# somthing to note
+	
+	#since this is called from the damage donator both the player and the enemy call this (because of the roles)
+	
+	#so i use a string since i can just input the attacks animation name no matter if its a enemy or player attack
+	print_rich("[color=cornflower_blue][shake amp=50.0 freq=5.0][wave amp=50.0 freq=5.0][font_size=50]applying attack effects");
+	var enemy = GlobalsAutoload.enemy_node
+	
+	match attack_name:
+		"hubert_basic_low":
+			var attack_resource = PlayerAutoload.attack_history[PlayerAutoload.attack_history.size() -1]
+			enemy.speed -= attack_resource.victim_speed_subtract;
+			
+		"hubert_basic_shove","hubert_basic_sweep":
+			var attack_resource = PlayerAutoload.attack_history[PlayerAutoload.attack_history.size() -1]
+			enemy.defense -= attack_resource.victim_defense_subtract
+		
+		"some enemy attack":
+			PlayerAutoload.speed -= 0;
+			#Example of how enemys attack work
