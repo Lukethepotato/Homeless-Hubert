@@ -106,6 +106,7 @@ func apply_combo_effects(combo : player_combo) -> void:
 			print_rich("[color=cornflower_blue][shake amp=50.0 freq=5.0][wave amp=50.0 freq=5.0][font_size=50]Slippy Trip");
 			enemy.traits.erase(traits.SLIPPERY);
 			enemy.health -= 10;
+			BattleAutoload.damage_dealt.emit(10, enemy, false, false);
 			enemy.evasion -= 20;
 			enemy.speed -= 2;
 			if enemy.evasion < 0:
