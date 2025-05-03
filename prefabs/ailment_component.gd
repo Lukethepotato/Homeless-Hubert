@@ -30,11 +30,9 @@ func _animtion_decision() -> String:
 					
 		
 	if current_ailment_winner != null:
-		print("play current ailment")
 		return current_ailment_winner.current_ailment.animation_name
 		
 	else:
-		print("none to play")
 		return ""
 	
 	
