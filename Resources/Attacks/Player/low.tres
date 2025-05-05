@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="player_attack" load_steps=3 format=3 uid="uid://c1hffnrmhanep"]
+[gd_resource type="Resource" script_class="player_attack" load_steps=3 format=3 uid="uid://ciwc8kbn5hw2w"]
 
 [ext_resource type="Texture2D" uid="uid://cybicylycfjhr" path="res://art/temp_assets/LOW.png" id="1_my5bl"]
 [ext_resource type="Script" path="res://Resources/player_attack_resource.gd" id="2_gxsux"]
