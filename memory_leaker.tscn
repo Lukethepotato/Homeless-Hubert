@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://7fhj6oa1eno0"]
+
+[ext_resource type="Script" path="res://memory_leaker.gd" id="1_5g3wq"]
+
+[node name="MemoryLeaker" type="Node"]
+script = ExtResource("1_5g3wq")
