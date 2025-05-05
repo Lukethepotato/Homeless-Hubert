@@ -181,8 +181,9 @@ func damage_popup(damage : int, target, crit := false, evade := false):
 		var offset_gravity = 50
 		var pos_offset = Vector2(randi_range(-1 * offset_gravity, offset_gravity), randi_range(-1 * offset_gravity, offset_gravity))
 		var tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BOUNCE)
-		tween.tween_property(text, "global_position", text.global_position + pos_offset, 0.5);
+		tween.tween_property(text, "global_position", text.global_position + pos_offset, 0.5)#.from(text.global_position + pos_offset - Vector2(10,10));
 	
+	print("popup")
 	var text = RichTextLabel.new();
 	text.bbcode_enabled = true;
 	text.fit_content = true;

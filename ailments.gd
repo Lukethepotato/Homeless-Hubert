@@ -1,5 +1,5 @@
 extends Resource
-class_name ailments
+class_name ailment
 
 @export var turn_amount: int = 2
 @export var lock_block: GlobalsAutoload.location_types #if ignore then not locked

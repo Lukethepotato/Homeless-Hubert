@@ -15,6 +15,7 @@ extends Node2D
 # Fish stats
 @export var health := 20 # Base health of fish
 @export var max_health := 20 # Maximum health of fish
+@export var poise := 100; # Percentage stance value; when poise hits 0, character is staggered
 @export var speed := 10; # Enemy speed value
 @export var traits : Array[BattleAutoload.traits]; # Array containing all of the fish's traits
 @export var strength := 1; # Additive factor to damage

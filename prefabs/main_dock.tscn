@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://cjnea8maf3y5l"]
+[gd_scene load_steps=31 format=3 uid="uid://cjnea8maf3y5l"]
 
 [ext_resource type="PackedScene" uid="uid://co6wwlpta51be" path="res://prefabs/Hubert.tscn" id="1_n63l7"]
 [ext_resource type="Script" path="res://prefabs/main_dock_script.gd" id="1_wjf3g"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://prefabs/main_camera.gd" id="5_ts60k"]
 [ext_resource type="Script" path="res://prefabs/all_combo_container.gd" id="6_33w4j"]
 [ext_resource type="PackedScene" uid="uid://dda28oxypebnr" path="res://prefabs/ailment_component.tscn" id="6_c1jcg"]
+[ext_resource type="PackedScene" uid="uid://dmcs2y0srdycl" path="res://prefabs/ailment.tscn" id="7_07ds8"]
 [ext_resource type="Script" path="res://Resources/combos/player/player_combo.gd" id="7_lru2h"]
 [ext_resource type="Resource" uid="uid://kq1uq0yxny0g" path="res://Resources/combos/player/slippy_trip.tres" id="8_0wops"]
 [ext_resource type="Shader" path="res://prefabs/ChromaticAb.gdshader" id="11_m8xgj"]
@@ -535,6 +536,7 @@ script = ExtResource("5_ts60k")
 
 [node name="Ailments_parent" parent="Hubert" instance=ExtResource("6_c1jcg")]
 unique_name_in_owner = true
+ailment_component_prefab = ExtResource("7_07ds8")
 target = "Player"
 
 [node name="dock" type="StaticBody2D" parent="."]
