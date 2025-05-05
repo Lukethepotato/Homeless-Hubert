@@ -14,21 +14,12 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-	
-func _damage_take_per_turn():
-	damage_donor_node._damage_donation(get_parent().target,get_parent().target, current_ailment.damage_take_per_turn)
-	print_rich("[color=cornflower_blue][shake amp=50.0 freq=5.0][wave amp=50.0 freq=5.0][font_size=50]ailment damage");
 	
 func _turn_change():
 	if turns_left <= 0:
-		current_ailment = null
 		print_rich("[color=cornflower_blue][shake amp=50.0 freq=5.0][wave amp=50.0 freq=5.0][font_size=50]ailement end");
 		queue_free()
-	
-	if current_ailment != null:
-		_animtion_play_attempt()
+	elif current_ailment != null:
 		_damage_take_per_turn()
 		_update_block_lock()
 		turns_left -= 1;
@@ -42,6 +33,10 @@ func _can_change_block() -> bool:
 	return true
 	#for the enemy this is called on the block verdict componet and it makes sure they wont change block
 	
+func _damage_take_per_turn():
+	damage_donor_node._damage_donation(get_parent().target,get_parent().target, current_ailment.damage_take_per_turn)
+	print_rich("[color=cornflower_blue][shake amp=50.0 freq=5.0][wave amp=50.0 freq=5.0][font_size=50]ailment damage");
+	
 func _update_block_lock():
 	if turns_left == current_ailment.turn_amount:
 		if get_parent().target == "Enemy":
@@ -53,8 +48,6 @@ func _update_block_lock():
 					target_data.upcoming_attack = enemy_blocks[1]
 		
 			#if the lock block is set to none then they will simply just not be able to move
-func _animtion_play_attempt():
-	get_parent()._animtion_decision()
 			
 	
 

@@ -14,3 +14,5 @@ animation_name = "hubert_basic_kick"
 icon_texture = ExtResource("1_sepw8")
 hit_region = 1
 gives_block = 0
+victim_speed_subtract = 0
+victim_defense_subtract = 0

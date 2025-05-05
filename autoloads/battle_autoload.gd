@@ -77,6 +77,28 @@ func convert_strs_to_attack_roles(user : String, target : String) -> Array:
 		victim = GlobalsAutoload.enemy_node;
 	
 	return [perpetrator, victim]
+	
+	
+func _non_attack_animations(anim_player_node: AnimationPlayer, ailments_parent: Node2D):
+	#plays all the non attack related animations on the enemy and player
+	
+	#its called from each of their respective animation players
+	
+	var overridables: Array[String] = ["idle","staggered"] #this contains all the animations names that are ok to overide]
+	#for example:
+	#"idle" is there because animations like the damaged one would probally happen while there in the idle animation
+	#and therefore it would need to be overided to play
+	
+	if GlobalsAutoload.current_turn != PlayerAutoload.goes_on_turn:
+		if anim_player_node.is_playing() == false || overridables.has(anim_player_node.current_animation):
+			if ailments_parent._animtion_decision() != "":
+				anim_player_node.play(ailments_parent._animtion_decision())
+			
+			# there would also be the little attacked animations here
+			else:
+				anim_player_node.play("idle")
+			
+	
 
 # Calculates the damage that should be dealt. Extraneous parameters to be placed after the first three
 func calculate_damage(base_dmg : int, user, target, can_crit := true, guaranteed_hit := false) -> int:
@@ -119,19 +141,6 @@ func apply_combo_effects(combo : player_combo) -> void:
 			
 			GlobalsAutoload.shake_camera.emit(20)
 	GlobalsAutoload.health_updated.emit();
-	
-func _non_attack_animations(anim_player_node: AnimationPlayer, ailments_parent: Node2D):
-	#plays all the non attack related animations on the enemy and player
-	
-	#its called from each of their respective animation players
-	if GlobalsAutoload.current_turn != PlayerAutoload.goes_on_turn:
-		if anim_player_node.is_playing() == false:
-			if ailments_parent._animtion_decision() != "":
-				anim_player_node.play(ailments_parent._animtion_decision())
-			
-			# there would also be the little attacked animations here
-			else:
-				anim_player_node.play("idle")
 				
 	
 func apply_attack_effects(attack_name: String, user: String, target: String) -> void:

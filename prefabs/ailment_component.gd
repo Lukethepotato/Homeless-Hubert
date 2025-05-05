@@ -26,6 +26,8 @@ func _animtion_decision() -> String:
 			if ailment_competitor.current_ailment.animation_name != "":
 				if current_ailment_winner == null || (ailment_competitor.current_ailment.animation_priority >= current_ailment_winner.current_ailment.animation_priority):
 					current_ailment_winner = ailment_competitor
+					
+					
 		
 	if current_ailment_winner != null:
 		return current_ailment_winner.current_ailment.animation_name
