@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="ailments" load_steps=2 format=3 uid="uid://dqd5hkyqexcn5"]
 
-[ext_resource type="Script" path="res://ailments.gd" id="1_iupam"]
+[ext_resource type="Script" path="res://ailment.gd" id="1_iupam"]
 
 [resource]
 script = ExtResource("1_iupam")
