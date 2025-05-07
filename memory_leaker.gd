@@ -1,7 +1,8 @@
 extends Node
 
 func _ready() -> void:
-	$AudioStreamPlayer.play()
+	if get_child_count() > 0:
+		$AudioStreamPlayer.play()
 
 func _process(delta: float) -> void:
 	GlobalsAutoload.toggle_fullscreen()
