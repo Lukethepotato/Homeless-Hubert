@@ -1,6 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://7fhj6oa1eno0"]
+[gd_scene load_steps=3 format=3 uid="uid://7fhj6oa1eno0"]
 
 [ext_resource type="Script" path="res://memory_leaker.gd" id="1_5g3wq"]
+[ext_resource type="AudioStream" uid="uid://prgekonfs276" path="res://art/sfx/pathetic-screaming-sound-effect-312867.mp3" id="2_shhnt"]
 
 [node name="MemoryLeaker" type="Node"]
 script = ExtResource("1_5g3wq")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_shhnt")
+parameters/looping = true
