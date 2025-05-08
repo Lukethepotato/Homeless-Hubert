@@ -7,6 +7,7 @@
 script = ExtResource("2_vqwmj")
 base_damage = 0
 priority = 0
+stance_disruption_mod = 1.0
 name = "High Block"
 name_color = Color(1, 1, 1, 1)
 description = "Activate a high block."
@@ -14,5 +15,6 @@ animation_name = "hubert_high_block"
 icon_texture = ExtResource("1_uk7wy")
 hit_region = 0
 gives_block = 2
+enables_rush = false
 victim_speed_subtract = 0
 victim_defense_subtract = 0

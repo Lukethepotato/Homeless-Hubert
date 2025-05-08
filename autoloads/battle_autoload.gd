@@ -88,9 +88,14 @@ func _non_attack_animations(anim_player_node: AnimationPlayer, ailments_parent: 
 	#for example:
 	#"idle" is there because animations like the damaged one would probally happen while there in the idle animation
 	#and therefore it would need to be overided to play
+	var unoverridables: Array[String] = ["hubert_low_block","hubert_high_block"] #these animations wont end as long another attack isnt played
+	var last_attack_name: String = ""
+	
+	if PlayerAutoload.attack_history.is_empty() == false:
+		last_attack_name = PlayerAutoload.attack_history[PlayerAutoload.attack_history.size() -1].animation_name
 	
 	if GlobalsAutoload.current_turn != PlayerAutoload.goes_on_turn:
-		if anim_player_node.is_playing() == false || overridables.has(anim_player_node.current_animation):
+		if anim_player_node.is_playing() == false && unoverridables.has(last_attack_name) == false || overridables.has(anim_player_node.current_animation):
 			if ailments_parent._animtion_decision() != "":
 				anim_player_node.play(ailments_parent._animtion_decision())
 			

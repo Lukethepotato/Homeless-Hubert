@@ -13,6 +13,7 @@ class_name player_attack
 @export var icon_texture: Texture2D; # Name of the texture this attack will use
 @export var hit_region := GlobalsAutoload.location_types.HIGH; # Region wherein this attack will strike
 @export var gives_block := GlobalsAutoload.location_types.NONE; # Type of block the attack will give after finishing
+@export var enables_rush: bool = true #if this is the first attack it will rush if true and stay still if not
 
 #these are values to be applied to the victim on attack
 @export var victim_speed_subtract := 0;
