@@ -34,5 +34,5 @@ extends Node
 @export var ailment_component_node: Node2D
 
 
-func _ready() -> void:
-	attack_resources_in.resize(2)
+#func _ready() -> void:
+	#attack_resources_in.resize(4)
