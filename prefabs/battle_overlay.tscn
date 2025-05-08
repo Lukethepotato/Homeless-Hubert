@@ -211,26 +211,6 @@ offset_bottom = 132.0
 script = ExtResource("2_co3gh")
 attack_slot_order = 1
 
-[node name="attack_spot2" parent="attack_spots" instance=ExtResource("1_m25ou")]
-offset_left = 338.889
-offset_top = 106.667
-offset_right = 338.889
-offset_bottom = 106.667
-
-[node name="attack in spot detetor" type="Node2D" parent="attack_spots/attack_spot2"]
-script = ExtResource("2_co3gh")
-attack_slot_order = 2
-
-[node name="attack_spot3" parent="attack_spots" instance=ExtResource("1_m25ou")]
-offset_left = 437.778
-offset_top = 81.1111
-offset_right = 437.778
-offset_bottom = 81.1111
-
-[node name="attack in spot detetor" type="Node2D" parent="attack_spots/attack_spot3"]
-script = ExtResource("2_co3gh")
-attack_slot_order = 3
-
 [node name="enemy_attack_spots" type="CanvasLayer" parent="."]
 layer = -1
 

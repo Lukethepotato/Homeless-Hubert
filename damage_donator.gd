@@ -8,7 +8,7 @@ extends Node2D
 
 func _damage_donation(user : String, target : String, base_dmg: int, combo : player_combo = null, can_crit := true, guaranteed_hit := false):
 	var roles = BattleAutoload.convert_strs_to_attack_roles(user, target)
-	var damage_to_deal = BattleAutoload.calculate_damage(base_dmg, roles[0], roles[1], can_crit, guaranteed_hit);
+	var damage_to_deal = 0
 	var user_attack_region = roles[0].attack_history[roles[0].attack_history.size() - 1].hit_region 
 	
 	if user_attack_region == GlobalsAutoload.location_types.IGNORE:
@@ -22,6 +22,8 @@ func _damage_donation(user : String, target : String, base_dmg: int, combo : pla
 	
 	if roles[0] != roles[1]:
 		if user_attack_region != roles[1].current_block: 
+			damage_to_deal = BattleAutoload.calculate_damage(base_dmg, roles[0], roles[1], can_crit, guaranteed_hit);
+			
 			var last_attack_done = roles[0].attack_history[roles[0].attack_history.size() -1]
 			roles[1].health -= damage_to_deal;
 			roles[1].poise -= damage_to_deal * last_attack_done.stance_disruption_mod
@@ -32,6 +34,8 @@ func _damage_donation(user : String, target : String, base_dmg: int, combo : pla
 			
 			GlobalsAutoload.shake_camera.emit(camera_shake_mult * damage_to_deal)
 	else:
+		damage_to_deal = BattleAutoload.calculate_damage(base_dmg, roles[0], roles[1], can_crit, guaranteed_hit);
+		
 		roles[1].health -= damage_to_deal;
 		GlobalsAutoload.shake_camera.emit(camera_shake_mult * damage_to_deal)
 	
