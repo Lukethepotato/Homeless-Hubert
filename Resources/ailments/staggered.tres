@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="ailments" load_steps=2 format=3 uid="uid://dqd5hkyqexcn5"]
+[gd_resource type="Resource" script_class="ailment" load_steps=2 format=3 uid="uid://dqd5hkyqexcn5"]
 
 [ext_resource type="Script" path="res://ailment.gd" id="1_iupam"]
 
@@ -6,7 +6,7 @@
 script = ExtResource("1_iupam")
 turn_amount = 2
 lock_block = 1
-lock_attack = true
+force_attack = "none"
 damage_take_per_turn = 0
 animation_name = "staggered"
 animation_priority = 5
