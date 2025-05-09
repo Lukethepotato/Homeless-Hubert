@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://diingtdlh2ju8"]
+
+[ext_resource type="Script" path="res://loading_overlay.gd" id="1_jap88"]
+[ext_resource type="Texture2D" uid="uid://b4ob8yflapdc0" path="res://art/temp_assets/shut her.jpg" id="2_6t8yg"]
+
+[node name="loading_overlay" type="CanvasLayer"]
+script = ExtResource("1_jap88")
+
+[node name="background" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_6t8yg")
+
+[node name="loading_text" type="RichTextLabel" parent="."]
+offset_right = 1152.0
+offset_bottom = 648.0
+bbcode_enabled = true
+text = "[font_size=100.0][center][outline_color=black][outline_size=25.0][wave amp=25.0 freq=5.0][font glyph_spacing=5.0, top_spacing=250]loading..."

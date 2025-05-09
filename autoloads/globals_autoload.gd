@@ -16,7 +16,6 @@ signal current_turn_reset()
 signal shake_camera(shake_amount: float)
 #40 good default shake_amount
 
-
 # Combo data
 var all_player_combos: Array[player_combo]
 
@@ -28,6 +27,10 @@ enum game_states {
 	ROAMING
 }
 var state = game_states.ROAMING;
+
+var loading_overlay_path = load("res://loading_overlay.tscn");
+signal overlay_done;
+signal end_load
 
 var timer;
 @export var current_turn := -1;
@@ -71,8 +74,6 @@ func _process(delta: float) -> void:
 			print("current turn = 1 _ globalsAutoload")
 			current_turn = 1
 			current_turn_reset.emit()
-			
-		
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("f11"):
@@ -111,7 +112,10 @@ func convert_to_elavation(input: location_types) -> location_types:
 	else:
 		return input
 		#if you where to input "none" or "ignore" it would just return it back
-	
+
+func begin_load():
+	var loading_overlay = loading_overlay_path.instantiate();
+	get_tree().get_root().add_child(loading_overlay)
 
 # Creates a timer with a duration equal to the duration parameter
 func timeout(duration := 2.0) -> void:

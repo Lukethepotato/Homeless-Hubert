@@ -1,15 +1,9 @@
 extends Node2D
 
+# This script manages the main menu node
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	set_menu()
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
 
 func set_menu() -> void:
 	$Panel.position = Vector2(627,17)
@@ -18,18 +12,16 @@ func set_menu() -> void:
 	$credits_button.position = Vector2(651, 341)
 	$exit_button.position = Vector2(651, 484)
 
-
 func _on_play_button_pressed() -> void:
-	pass # Replace with function body.
-
+	GlobalsAutoload.begin_load();
+	await GlobalsAutoload.overlay_done
+	get_tree().change_scene_to_file("res://prefabs/main_dock.tscn")
 
 func _on_options_button_pressed() -> void:
-	pass # Replace with function body.
-
+	pass
 
 func _on_credits_button_pressed() -> void:
-	pass # Replace with function body.
-
+	pass
 
 func _on_exit_button_pressed() -> void:
 	get_tree().quit()
