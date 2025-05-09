@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="enemy_attack" load_steps=3 format=3 uid="uid://cc8fra8may3cv"]
+
+[ext_resource type="Texture2D" uid="uid://cn2ttlk6ngbmp" path="res://art/temp_assets/none_attackl1.png" id="1_p130n"]
+[ext_resource type="Script" path="res://Resources/enemy_attack_resource.gd" id="2_hk3og"]
+
+[resource]
+script = ExtResource("2_hk3og")
+base_damage = 0
+priority = 0
+stance_disruption_mod = 0.0
+name = "None"
+name_color = Color(1, 1, 1, 1)
+description = "skips turn"
+animation_name = "none"
+hit_region = 3
+gives_block = 3
+preview_texture = ExtResource("1_p130n")
+victim_speed_subtract = 0
+victim_defense_subtract = 0
+victim_speed_apply = 0

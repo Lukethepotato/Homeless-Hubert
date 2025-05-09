@@ -26,7 +26,7 @@ func _damage_donation(user : String, target : String, base_dmg: int, combo : pla
 			
 			var last_attack_done = roles[0].attack_history[roles[0].attack_history.size() -1]
 			roles[1].health -= damage_to_deal;
-			roles[1].poise -= damage_to_deal * last_attack_done.stance_disruption_mod
+			roles[1].poise -= damage_to_deal * last_attack_done.stance_disruption_modd
 			print("Poise : " + str(roles[1].poise))
 			if roles[1].poise <= 0:
 				roles[1].ailment_component_node._instantiate_ailment(load("res://Resources/ailments/staggered.tres"))

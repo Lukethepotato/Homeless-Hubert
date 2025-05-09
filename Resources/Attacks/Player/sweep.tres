@@ -15,5 +15,6 @@ animation_name = "hubert_basic_sweep"
 icon_texture = ExtResource("1_tj2co")
 hit_region = 1
 gives_block = 0
+enables_rush = true
 victim_speed_subtract = 0
 victim_defense_subtract = 5
