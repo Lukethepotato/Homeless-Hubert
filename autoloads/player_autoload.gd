@@ -32,6 +32,7 @@ extends Node
 #the idea is that every attack you do will determine a block state that hubert will do
 #and the curent state huberts in is just stored here
 @export var ailment_component_node: Node2D
+@export var attacks_per_turn: int = 2
 
 
 #func _ready() -> void:

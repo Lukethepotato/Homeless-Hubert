@@ -54,7 +54,9 @@ func get_player_speed() -> int:
 # Returns what the enemy's speed would be for this turn
 func get_enemy_speed() -> int:
 	var speed = GlobalsAutoload.enemy_node.speed;
-	speed += GlobalsAutoload.enemy_node.upcoming_attack.priority;
+	for attack in GlobalsAutoload.enemy_node.attack_resources_in:
+		if attack != null:
+			speed += attack.priority;
 	#return attack choice doenst give the actual attack done just a possibilty
 	#using upcoming_attack gets the actuall one
 	if speed < 0:
@@ -104,6 +106,18 @@ func _non_attack_animations(anim_player_node: AnimationPlayer, ailments_parent: 
 				anim_player_node.play("idle")
 			
 	
+#instantiates new attack spots as child of parent chosen and resizes the attack resource size to the attacks per turn value
+func setting_attack_spots(attack_spot_node: PackedScene, parent: CanvasLayer, user: String):
+	var user_data = BattleAutoload.convert_strs_to_attack_roles(user, user)[0]
+	user_data.attack_resources_in.resize(user_data.attacks_per_turn)
+	
+	for i in user_data.attacks_per_turn:
+		var new_attack_spot = attack_spot_node.instantiate()
+		parent.add_child(new_attack_spot)
+		
+
+	
+
 
 # Calculates the damage that should be dealt. Extraneous parameters to be placed after the first three
 func calculate_damage(base_dmg : int, user, target, can_crit := true, guaranteed_hit := false) -> int:

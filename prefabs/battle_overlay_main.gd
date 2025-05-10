@@ -8,7 +8,6 @@ func _ready() -> void:
 	GlobalsAutoload.dropped_UI.connect(update_button);
 	GlobalsAutoload.turn_changed.connect(turn_change);
 	BattleAutoload.damage_dealt.connect(damage_popup);
-	PlayerAutoload.attack_resources_in.resize($attack_spots.get_child_count())
 	$enemy_attack_spots.visible = false;
 	$combo_thing.visible = false;
 	$attack_spots.position.y = -400;

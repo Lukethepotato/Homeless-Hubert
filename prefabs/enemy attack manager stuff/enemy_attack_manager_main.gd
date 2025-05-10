@@ -3,6 +3,7 @@ extends Node2D
 # This script handles enemy attacking.
 
 @export var fallback_attack: enemy_attack
+@export var attack_in_turn_index_finished: int = 0
 
 func _ready() -> void:
 	GlobalsAutoload.turn_changed.connect(start_enemy_attack)
@@ -19,20 +20,30 @@ func start_enemy_attack() -> void:
 		GlobalsAutoload.timeout(.5)
 		await GlobalsAutoload.timer.timeout
 		
-		%AnimPlayer.play(get_parent().upcoming_attack.animation_name)
-		update_block()
-		$"..".attack_history.append(get_parent().upcoming_attack)
-		print("enemy attack")
+		while attack_in_turn_index_finished < get_parent().attack_resources_in.size():
+		
+			%AnimPlayer.play(get_parent().attack_resources_in[attack_in_turn_index_finished ].animation_name)
+			update_block()
+			$"..".attack_history.append(get_parent().attack_resources_in[attack_in_turn_index_finished])
+			print("enemy attack")
+			attack_in_turn_index_finished += 1
+			await %AnimPlayer.animation_finished
+			
+		GlobalsAutoload.current_turn += 1
+		attack_in_turn_index_finished = 0
+		
+		
 	
 func update_block():
-	if get_parent().upcoming_attack.gives_block != 3:
-		get_parent().current_block = get_parent().upcoming_attack.gives_block
+	if get_parent().attack_resources_in[attack_in_turn_index_finished].gives_block != GlobalsAutoload.location_types.IGNORE:
+		get_parent().current_block = get_parent().attack_resources_in[attack_in_turn_index_finished].gives_block
 		#sets the block to upcoming attacks block unless its set to ignore
 	
 	
 func _update_upcoming_attack():
 	#if player choosing attacks turn decide the attack for next turn
-		get_parent().upcoming_attack = _return_enemy_attack_choice()
+	for i in get_parent().attack_resources_in.size():
+		get_parent().attack_resources_in[i] = _return_enemy_attack_choice()
 
 # Returns which enemy_attack the enemy will use this turn
 func _return_enemy_attack_choice() -> enemy_attack:

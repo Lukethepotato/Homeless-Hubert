@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://bcatpgv1dc31f"]
+
+[ext_resource type="Script" path="res://draggable_spot_parent.gd" id="1_a1bpg"]
+[ext_resource type="Script" path="res://prefabs/attack_in_spot_dectector.gd" id="2_mwje1"]
+
+[node name="attack_spot" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 138.0
+offset_top = 157.0
+offset_right = 138.0
+offset_bottom = 157.0
+script = ExtResource("1_a1bpg")
+
+[node name="attack in spot detector2" type="Node2D" parent="."]
+script = ExtResource("2_mwje1")
