@@ -4,7 +4,8 @@ extends CanvasLayer
 @export var user: String
 
 # Called when the node enters the scene tree for the first time.
-func _init() -> void:
+func _ready() -> void:
+	print("attack spots called from " + get_name())
 	call_setting_attack_spots()
 	GlobalsAutoload.turn_changed.connect(call_setting_attack_spots); # Replace with function body.
 
