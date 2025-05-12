@@ -1,16 +1,74 @@
-[gd_scene load_steps=3 format=3 uid="uid://bcatpgv1dc31f"]
+[gd_scene load_steps=8 format=3 uid="uid://d2e8x7dtb8rnb"]
 
-[ext_resource type="Script" path="res://draggable_spot_parent.gd" id="1_a1bpg"]
-[ext_resource type="Script" path="res://prefabs/attack_in_spot_dectector.gd" id="2_mwje1"]
+[ext_resource type="Script" path="res://draggable_spot_parent.gd" id="1_8fppo"]
+[ext_resource type="StyleBox" uid="uid://bx6agehovky2h" path="res://Resources/draggable_spot_bg.tres" id="2_l3ej8"]
+[ext_resource type="Script" path="res://prefabs/dynamic_sizing.gd" id="3_h4q2l"]
+[ext_resource type="Script" path="res://drag_spot_script.gd" id="4_6nue0"]
+[ext_resource type="PackedScene" uid="uid://cahb7rpax867j" path="res://prefabs/drag_preview.tscn" id="5_w0cn1"]
+[ext_resource type="Script" path="res://prefabs/attack_in_spot_dectector.gd" id="6_o8gop"]
 
-[node name="attack_spot" type="Control"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w26rm"]
+bg_color = Color(0.15, 0.15, 0.15, 0.784314)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[node name="draggable_spot" type="Control"]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 138.0
-offset_top = 157.0
-offset_right = 138.0
-offset_bottom = 157.0
-script = ExtResource("1_a1bpg")
+script = ExtResource("1_8fppo")
 
-[node name="attack in spot detector2" type="Node2D" parent="."]
-script = ExtResource("2_mwje1")
+[node name="Panel" type="Panel" parent="."]
+z_index = -1
+layout_mode = 0
+offset_top = 1.0
+offset_right = 90.0
+offset_bottom = 91.0
+theme_override_styles/panel = ExtResource("2_l3ej8")
+
+[node name="attack_description" type="Panel" parent="."]
+z_index = 1
+layout_mode = 0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 45.0
+offset_bottom = 45.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_w26rm")
+
+[node name="MarginContainer" type="MarginContainer" parent="attack_description"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 7
+theme_override_constants/margin_top = 7
+theme_override_constants/margin_right = 7
+theme_override_constants/margin_bottom = 7
+
+[node name="description" type="RichTextLabel" parent="attack_description/MarginContainer"]
+clip_contents = false
+layout_mode = 2
+mouse_filter = 2
+bbcode_enabled = true
+fit_content = true
+autowrap_mode = 0
+script = ExtResource("3_h4q2l")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 85.0
+offset_bottom = 85.0
+pivot_offset = Vector2(40, 40)
+expand_mode = 1
+script = ExtResource("4_6nue0")
+drag_preview = ExtResource("5_w0cn1")
+
+[node name="attack in spot detector" type="Node2D" parent="."]
+script = ExtResource("6_o8gop")
+
+[connection signal="mouse_entered" from="TextureRect" to="TextureRect" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="TextureRect" to="TextureRect" method="_on_mouse_exited"]

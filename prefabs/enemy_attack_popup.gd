@@ -1,4 +1,4 @@
-extends Panel
+extends Control
 
 # This script contains the enemy attack description popup logic
 

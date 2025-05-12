@@ -1,4 +1,4 @@
-extends CanvasLayer
+extends Control
 
 @export var attack_spot_node: PackedScene
 @export var user: String

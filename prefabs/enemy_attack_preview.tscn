@@ -21,14 +21,14 @@ scale = Vector2(0.9, 0.9)
 pivot_offset = Vector2(45, 45)
 script = ExtResource("1_0scgt")
 
-[node name="TextureRect2" type="TextureRect" parent="."]
+[node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 0
 offset_left = 5.0
 offset_top = 5.0
 offset_right = 85.0
 offset_bottom = 85.0
 
-[node name="attack_description" type="Panel" parent="TextureRect2"]
+[node name="attack_description" type="Panel" parent="TextureRect"]
 z_index = 1
 layout_mode = 0
 offset_right = 40.0
@@ -36,7 +36,7 @@ offset_bottom = 40.0
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_7tjh5")
 
-[node name="MarginContainer" type="MarginContainer" parent="TextureRect2/attack_description"]
+[node name="MarginContainer" type="MarginContainer" parent="TextureRect/attack_description"]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -45,7 +45,7 @@ theme_override_constants/margin_top = 7
 theme_override_constants/margin_right = 7
 theme_override_constants/margin_bottom = 7
 
-[node name="description" type="RichTextLabel" parent="TextureRect2/attack_description/MarginContainer"]
+[node name="description" type="RichTextLabel" parent="TextureRect/attack_description/MarginContainer"]
 clip_contents = false
 layout_mode = 2
 mouse_filter = 2

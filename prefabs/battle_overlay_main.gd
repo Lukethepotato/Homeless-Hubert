@@ -10,7 +10,7 @@ func _ready() -> void:
 	BattleAutoload.damage_dealt.connect(damage_popup);
 	$enemy_attack_spots.visible = false;
 	$combo_thing.visible = false;
-	$attack_spots.position.y = -400;
+	#$attack_spots.position.yy = -400;
 	$info_displays.position.y = -400;
 	$bottom_ui.position.y = 300;
 	call_deferred("intro_tween");

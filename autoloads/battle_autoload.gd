@@ -107,7 +107,7 @@ func _non_attack_animations(anim_player_node: AnimationPlayer, ailments_parent: 
 			
 	
 #instantiates new attack spots as child of parent chosen and resizes the attack resource size to the attacks per turn value
-func setting_attack_spots(attack_spot_node: PackedScene, parent: CanvasLayer, user: String):
+func setting_attack_spots(attack_spot_node: PackedScene, parent: Control, user: String):
 	var user_data = BattleAutoload.convert_strs_to_attack_roles(user, user)[0]
 	user_data.attack_resources_in.resize(user_data.attacks_per_turn)
 	
