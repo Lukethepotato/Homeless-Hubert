@@ -176,6 +176,7 @@ shader_parameter/noise_texture = SubResource("NoiseTexture2D_vn61m")
 script = ExtResource("1_gvbtk")
 
 [node name="attack_spots" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 scale = Vector2(0.9, 0.9)
@@ -186,6 +187,7 @@ orgin_pos = Vector2(110, 204)
 pos_change = Vector2(100, -20)
 
 [node name="enemy_attack_spots" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("4_qu6is")

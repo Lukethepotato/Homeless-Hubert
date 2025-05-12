@@ -40,7 +40,9 @@ func intro_tween():
 	$battle_intro.visible = false;
 	$combo_thing.modulate.a = 0;
 	$combo_thing.visible = true;
+	$attack_spots.visible = true;
 	enemy_attack_preview()
+	
 	reset_tween();
 	tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO).set_parallel(true);
 	tween.tween_property($attack_spots, "position", Vector2(70,20), 0.5).from(Vector2(70,-400))
@@ -172,12 +174,12 @@ func enemy_attack_preview():
 		tween2.tween_property($enemy_attack_spots.get_child(i), "scale", Vector2(0.9,0.9), 0.5);
 
 func hide_enemy_attack_preview():
+	var tween2 = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO).set_parallel(true);
 	for i in $enemy_attack_spots.get_child_count():
-		var tween2 = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO).set_parallel(true);
 		tween2.tween_property($enemy_attack_spots.get_child(i), "position:y", 250, 0.5);
 		tween2.tween_property($enemy_attack_spots.get_child(i), "scale", Vector2(0.01,0.01), 0.5);
-		await tween2.finished;
-		$enemy_attack_spots.visible = false;
+	await tween2.finished;
+	$enemy_attack_spots.visible = false;
 
 func damage_popup(damage : int, target, crit := false, evade := false):
 	# Create Lambda function apply_popin
