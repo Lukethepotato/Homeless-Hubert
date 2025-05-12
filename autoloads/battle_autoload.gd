@@ -107,13 +107,21 @@ func _non_attack_animations(anim_player_node: AnimationPlayer, ailments_parent: 
 			
 	
 #instantiates new attack spots as child of parent chosen and resizes the attack resource size to the attacks per turn value
-func setting_attack_spots(attack_spot_node: PackedScene, parent: Control, user: String):
+func setting_attack_spots(attack_spot_node: PackedScene, parent: Control, user: String, orgin_pos: Vector2, pos_change: Vector2):
 	var user_data = BattleAutoload.convert_strs_to_attack_roles(user, user)[0]
 	user_data.attack_resources_in.resize(user_data.attacks_per_turn)
 	
-	for i in user_data.attacks_per_turn:
-		var new_attack_spot = attack_spot_node.instantiate()
-		parent.add_child(new_attack_spot)
+	if parent.get_child_count() != user_data.attacks_per_turn:
+		if parent.get_child_count() > 0:
+			for i in parent.get_child_count():
+				parent.get_child(i).queue_free()
+		
+		for i in user_data.attacks_per_turn:
+			var new_attack_spot = attack_spot_node.instantiate()
+			parent.add_child(new_attack_spot)
+			
+			new_attack_spot.position = orgin_pos
+			new_attack_spot.position += (pos_change) * i
 		
 
 	

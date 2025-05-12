@@ -7,6 +7,7 @@ extends Node2D
 
 
 func _ready() -> void:
+	attack_slot_order = get_parent().get_index()
 	#GlobalsAutoload.dropped_UI.connect(dropped_in_spot_signal_receive)
 	pass
 

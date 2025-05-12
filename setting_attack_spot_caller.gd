@@ -2,6 +2,8 @@ extends Control
 
 @export var attack_spot_node: PackedScene
 @export var user: String
+@export var orgin_pos: Vector2
+@export var pos_change: Vector2
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -15,4 +17,4 @@ func _process(delta: float) -> void:
 	pass
 	
 func call_setting_attack_spots():
-	BattleAutoload.setting_attack_spots(attack_spot_node, self, user)
+	BattleAutoload.setting_attack_spots(attack_spot_node, self, user, orgin_pos, pos_change)

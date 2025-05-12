@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://hol15swe4yf"]
+[gd_scene load_steps=5 format=3 uid="uid://hol15swe4yf"]
 
 [ext_resource type="Script" path="res://prefabs/enemy_attack_popup.gd" id="1_0scgt"]
+[ext_resource type="StyleBox" uid="uid://bx6agehovky2h" path="res://Resources/draggable_spot_bg.tres" id="2_6tnpg"]
 [ext_resource type="Script" path="res://prefabs/dynamic_sizing.gd" id="2_jmhmg"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7tjh5"]
@@ -20,6 +21,13 @@ offset_bottom = 240.0
 scale = Vector2(0.9, 0.9)
 pivot_offset = Vector2(45, 45)
 script = ExtResource("1_0scgt")
+
+[node name="Panel" type="Panel" parent="."]
+z_index = -1
+offset_top = 1.0
+offset_right = 90.0
+offset_bottom = 91.0
+theme_override_styles/panel = ExtResource("2_6tnpg")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 0
