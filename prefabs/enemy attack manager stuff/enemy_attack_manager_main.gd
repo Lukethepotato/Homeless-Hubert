@@ -43,7 +43,10 @@ func update_block():
 func _update_upcoming_attack():
 	#if player choosing attacks turn decide the attack for next turn
 	for i in get_parent().attack_resources_in.size():
-		get_parent().attack_resources_in[i] = _return_enemy_attack_choice()
+		if %Ailments_parent._attack_decision() != "" && i == 0:
+			get_parent().attack_resources_in[i] = %Ailments_parent._attack_decision()
+		else:
+			get_parent().attack_resources_in[i] = _return_enemy_attack_choice()
 
 # Returns which enemy_attack the enemy will use this turn
 func _return_enemy_attack_choice() -> enemy_attack:
