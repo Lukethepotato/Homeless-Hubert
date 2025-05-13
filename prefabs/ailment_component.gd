@@ -16,6 +16,18 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
+	
+# returns the attack name for the most recents ailments force attack var (if there is none return "")
+func _attack_decision() -> String:
+	var current_attack_winner: String = ""
+	if get_child(0)!= null:
+		for i in get_child_count():
+			
+			if get_child(i).current_ailment.force_attack != "":
+				current_attack_winner = get_child(i).current_ailment.force_attack
+		
+	return current_attack_winner
+			
 
 func _animtion_decision() -> String:
 	var current_ailment_winner: Node2D = null
