@@ -1,15 +1,14 @@
-[gd_scene load_steps=46 format=3 uid="uid://cknmpdmv3eqkh"]
+[gd_scene load_steps=44 format=3 uid="uid://cknmpdmv3eqkh"]
 
 [ext_resource type="Script" path="res://prefabs/battle_overlay_main.gd" id="1_gvbtk"]
 [ext_resource type="PackedScene" uid="uid://wc8076dp0nrg" path="res://prefabs/draggable_spot.tscn" id="1_m25ou"]
-[ext_resource type="Script" path="res://prefabs/attack_in_spot_dectector.gd" id="2_co3gh"]
-[ext_resource type="StyleBox" uid="uid://bx6agehovky2h" path="res://Resources/draggable_spot_bg.tres" id="4_06bac"]
+[ext_resource type="PackedScene" uid="uid://d2e8x7dtb8rnb" path="res://prefabs/player_attack_spot.tscn" id="3_swkf3"]
 [ext_resource type="Resource" uid="uid://ctrdselwi2kf1" path="res://Resources/Attacks/Player/punch.tres" id="4_mue14"]
+[ext_resource type="Script" path="res://setting_attack_spot_caller.gd" id="4_qu6is"]
 [ext_resource type="Script" path="res://prefabs/health_displays_script.gd" id="5_f07nv"]
 [ext_resource type="Resource" uid="uid://dmqgyh8xxlmhk" path="res://Resources/Attacks/Player/low_block.tres" id="5_um5jo"]
-[ext_resource type="Script" path="res://prefabs/enemy_attack_popup.gd" id="5_xe672"]
+[ext_resource type="PackedScene" uid="uid://hol15swe4yf" path="res://prefabs/enemy_attack_preview.tscn" id="5_yl1wh"]
 [ext_resource type="Resource" uid="uid://bbilq7ugxdnsx" path="res://Resources/Attacks/Player/high_block.tres" id="6_dbajq"]
-[ext_resource type="Script" path="res://prefabs/dynamic_sizing.gd" id="6_wcuem"]
 [ext_resource type="Theme" uid="uid://cruunmamxcb7o" path="res://Resources/attack_button_theme.tres" id="7_u3x54"]
 [ext_resource type="Theme" uid="uid://7jevmqcl012f" path="res://Resources/clear_button_theme.tres" id="8_8lcn4"]
 [ext_resource type="StyleBox" uid="uid://344uqy4ps5vx" path="res://Resources/health_bar_bg.tres" id="8_s1ss8"]
@@ -33,13 +32,6 @@
 [ext_resource type="Shader" path="res://Resources/lightning.gdshader" id="23_5qd2d"]
 [ext_resource type="PackedScene" uid="uid://dggc40nhuy740" path="res://prefabs/combo_list.tscn" id="23_elvgn"]
 [ext_resource type="Script" path="res://prefabs/combo_window_popup.gd" id="27_66brq"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_56c83"]
-bg_color = Color(0.15, 0.15, 0.15, 0.784314)
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
 
 [sub_resource type="Gradient" id="Gradient_dgvdj"]
 offsets = PackedFloat32Array(0, 0.512987, 1)
@@ -184,78 +176,25 @@ shader_parameter/noise_texture = SubResource("NoiseTexture2D_vn61m")
 script = ExtResource("1_gvbtk")
 
 [node name="attack_spots" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 0
-offset_left = 70.0
-offset_top = 20.0
-offset_right = 110.0
-offset_bottom = 60.0
 scale = Vector2(0.9, 0.9)
+script = ExtResource("4_qu6is")
+attack_spot_node = ExtResource("3_swkf3")
+user = "Player"
+orgin_pos = Vector2(110, 204)
+pos_offset = Vector2(100, -20)
 
-[node name="attack_spot0" parent="attack_spots" instance=ExtResource("1_m25ou")]
-offset_left = 138.0
-offset_top = 157.0
-offset_right = 138.0
-offset_bottom = 157.0
-
-[node name="attack in spot detector" type="Node2D" parent="attack_spots/attack_spot0"]
-script = ExtResource("2_co3gh")
-
-[node name="attack_spot1" parent="attack_spots" instance=ExtResource("1_m25ou")]
-offset_left = 240.0
-offset_top = 132.0
-offset_right = 240.0
-offset_bottom = 132.0
-
-[node name="attack in spot detetor" type="Node2D" parent="attack_spots/attack_spot1"]
-script = ExtResource("2_co3gh")
-attack_slot_order = 1
-
-[node name="enemy_attack_spots" type="CanvasLayer" parent="."]
-layer = -1
-
-[node name="enemy_attack_preview" type="Panel" parent="enemy_attack_spots"]
-offset_left = 860.0
-offset_top = 150.0
-offset_right = 950.0
-offset_bottom = 240.0
-scale = Vector2(0.9, 0.9)
-pivot_offset = Vector2(45, 45)
-theme_override_styles/panel = ExtResource("4_06bac")
-script = ExtResource("5_xe672")
-
-[node name="TextureRect" type="TextureRect" parent="enemy_attack_spots/enemy_attack_preview"]
-layout_mode = 0
-offset_left = 5.0
-offset_top = 5.0
-offset_right = 85.0
-offset_bottom = 85.0
-
-[node name="attack_description" type="Panel" parent="enemy_attack_spots/enemy_attack_preview/TextureRect"]
-z_index = 1
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_56c83")
-
-[node name="MarginContainer" type="MarginContainer" parent="enemy_attack_spots/enemy_attack_preview/TextureRect/attack_description"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-theme_override_constants/margin_left = 7
-theme_override_constants/margin_top = 7
-theme_override_constants/margin_right = 7
-theme_override_constants/margin_bottom = 7
-
-[node name="description" type="RichTextLabel" parent="enemy_attack_spots/enemy_attack_preview/TextureRect/attack_description/MarginContainer"]
-clip_contents = false
-layout_mode = 2
-mouse_filter = 2
-bbcode_enabled = true
-fit_content = true
-autowrap_mode = 0
-script = ExtResource("6_wcuem")
+[node name="enemy_attack_spots" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("4_qu6is")
+attack_spot_node = ExtResource("5_yl1wh")
+user = "Enemy"
+orgin_pos = Vector2(750, 204)
+pos_offset = Vector2(100, -20)
 
 [node name="bottom_ui" type="Control" parent="."]
 layout_mode = 3
@@ -599,8 +538,6 @@ offset_right = 1192.0
 offset_bottom = 1132.0
 rotation = 1.5708
 
-[connection signal="mouse_entered" from="enemy_attack_spots/enemy_attack_preview/TextureRect" to="enemy_attack_spots/enemy_attack_preview" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="enemy_attack_spots/enemy_attack_preview/TextureRect" to="enemy_attack_spots/enemy_attack_preview" method="_on_mouse_exited"]
 [connection signal="pressed" from="bottom_ui/attack button" to="." method="_on_attack_button_pressed"]
 [connection signal="pressed" from="bottom_ui/clear chosen attacks" to="." method="_on_clear_chosen_attacks_pressed"]
 [connection signal="gui_input" from="combo_thing" to="combo_thing" method="_on_gui_input"]

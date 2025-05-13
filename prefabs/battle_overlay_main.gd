@@ -8,10 +8,9 @@ func _ready() -> void:
 	GlobalsAutoload.dropped_UI.connect(update_button);
 	GlobalsAutoload.turn_changed.connect(turn_change);
 	BattleAutoload.damage_dealt.connect(damage_popup);
-	PlayerAutoload.attack_resources_in.resize($attack_spots.get_child_count())
 	$enemy_attack_spots.visible = false;
 	$combo_thing.visible = false;
-	$attack_spots.position.y = -400;
+	#$attack_spots.position.yy = -400;
 	$info_displays.position.y = -400;
 	$bottom_ui.position.y = 300;
 	call_deferred("intro_tween");
@@ -41,7 +40,9 @@ func intro_tween():
 	$battle_intro.visible = false;
 	$combo_thing.modulate.a = 0;
 	$combo_thing.visible = true;
+	$attack_spots.visible = true;
 	enemy_attack_preview()
+	
 	reset_tween();
 	tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO).set_parallel(true);
 	tween.tween_property($attack_spots, "position", Vector2(70,20), 0.5).from(Vector2(70,-400))
@@ -87,9 +88,11 @@ func is_attack_ready() -> bool:
 
 # Updates the attack button, tweening it in and updating its text if necessary
 func update_button(_fuckts1 = null, _fuckts2 = null):
+	print("update button")
 	reset_tween();
 	if is_attack_ready():
 		# The following line is a Big 'Ol Band-Aid Fix (trademark pending)
+		print("wait for is done updating attacks")
 		await GlobalsAutoload.done_updating_attacks;
 		call_deferred("update_button_speed_text")
 		tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO);
@@ -161,18 +164,19 @@ func tween_out_bars():
 	$bars.visible = false;
 
 func enemy_attack_preview():
-	$enemy_attack_spots/enemy_attack_preview/TextureRect.texture = GlobalsAutoload.enemy_node.upcoming_attack.preview_texture
-	$enemy_attack_spots/enemy_attack_preview.position.y = 250;
-	$enemy_attack_spots/enemy_attack_preview.scale = Vector2(0.01,0.01);
-	$enemy_attack_spots.visible = true;
-	var tween2 = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO).set_parallel(true);
-	tween2.tween_property($enemy_attack_spots/enemy_attack_preview, "position:y", 150, 0.5);
-	tween2.tween_property($enemy_attack_spots/enemy_attack_preview, "scale", Vector2(0.9,0.9), 0.5);
+	for i in $enemy_attack_spots.get_child_count():
+		$enemy_attack_spots.get_child(i).get_child(1).texture = GlobalsAutoload.enemy_node.attack_resources_in[i].preview_texture #the get child(0) is supposed to get the texture rect
+		$enemy_attack_spots.get_child(i).scale = Vector2(0.01,0.01);
+		$enemy_attack_spots.visible = true;
+		var tween2 = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO).set_parallel(true);
+		tween2.tween_property($enemy_attack_spots.get_child(i), "position:y", 150, 0.5);
+		tween2.tween_property($enemy_attack_spots.get_child(i), "scale", Vector2(0.9,0.9), 0.5);
 
 func hide_enemy_attack_preview():
 	var tween2 = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO).set_parallel(true);
-	tween2.tween_property($enemy_attack_spots/enemy_attack_preview, "position:y", 250, 0.5);
-	tween2.tween_property($enemy_attack_spots/enemy_attack_preview, "scale", Vector2(0.01,0.01), 0.5);
+	for i in $enemy_attack_spots.get_child_count():
+		tween2.tween_property($enemy_attack_spots.get_child(i), "position:y", 250, 0.5);
+		tween2.tween_property($enemy_attack_spots.get_child(i), "scale", Vector2(0.01,0.01), 0.5);
 	await tween2.finished;
 	$enemy_attack_spots.visible = false;
 

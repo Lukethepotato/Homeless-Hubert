@@ -1,4 +1,4 @@
-extends Panel
+extends Control
 
 # This script contains the enemy attack description popup logic
 
@@ -19,11 +19,11 @@ func _on_mouse_entered() -> void:
 	GlobalsAutoload.timeout(1.0);
 	await GlobalsAutoload.timer.timeout;
 	if mouse_hovering and GlobalsAutoload.current_turn == 1:
-		var text = "[font_size=40][color=" + str(GlobalsAutoload.enemy_node.upcoming_attack.name_color.to_html()) + "]" + GlobalsAutoload.enemy_node.upcoming_attack.name + "[/color][/font_size]"
-		if GlobalsAutoload.enemy_node.upcoming_attack.base_damage > 0:
-			text += "\n[font_size=25]  " + str(GlobalsAutoload.enemy_node.upcoming_attack.base_damage) + " base damage  [/font_size]";
-		text += "\n[font_size=25]  " + str(GlobalsAutoload.enemy_node.upcoming_attack.priority) + " priority  [/font_size]"
-		text += "\n[font_size=15]" + str(GlobalsAutoload.enemy_node.upcoming_attack.description) + "[/font_size]"
+		var text = "[font_size=40][color=" + str(GlobalsAutoload.enemy_node.attack_resources_in[get_parent().get_index()].name_color.to_html()) + "]" + GlobalsAutoload.enemy_node.upcoming_attack.name + "[/color][/font_size]"
+		if GlobalsAutoload.enemy_node.attack_resources_in[get_parent().get_index()].attack_resources_in[get_parent().get_index()].base_damage > 0:
+			text += "\n[font_size=25]  " + str(GlobalsAutoload.enemy_node.attack_resources_in[get_parent().get_index()].base_damage) + " base damage  [/font_size]";
+		text += "\n[font_size=25]  " + str(GlobalsAutoload.enemy_node.attack_resources_in[get_parent().get_index()].priority) + " priority  [/font_size]"
+		text += "\n[font_size=15]" + str(GlobalsAutoload.enemy_node.attack_resources_in[get_parent().get_index()].description) + "[/font_size]"
 		$TextureRect/attack_description/MarginContainer/description.text = text;
 		$TextureRect/attack_description.visible = true;
 

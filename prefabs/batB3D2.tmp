@@ -1,0 +1,541 @@
+[gd_scene load_steps=44 format=3 uid="uid://cknmpdmv3eqkh"]
+
+[ext_resource type="Script" path="res://prefabs/battle_overlay_main.gd" id="1_gvbtk"]
+[ext_resource type="PackedScene" uid="uid://wc8076dp0nrg" path="res://prefabs/draggable_spot.tscn" id="1_m25ou"]
+[ext_resource type="PackedScene" uid="uid://d2e8x7dtb8rnb" path="res://prefabs/player_attack_spot.tscn" id="3_swkf3"]
+[ext_resource type="Resource" uid="uid://ctrdselwi2kf1" path="res://Resources/Attacks/Player/punch.tres" id="4_mue14"]
+[ext_resource type="Script" path="res://setting_attack_spot_caller.gd" id="4_qu6is"]
+[ext_resource type="Script" path="res://prefabs/health_displays_script.gd" id="5_f07nv"]
+[ext_resource type="Resource" uid="uid://dmqgyh8xxlmhk" path="res://Resources/Attacks/Player/low_block.tres" id="5_um5jo"]
+[ext_resource type="PackedScene" uid="uid://hol15swe4yf" path="res://prefabs/enemy_attack_preview.tscn" id="5_yl1wh"]
+[ext_resource type="Resource" uid="uid://bbilq7ugxdnsx" path="res://Resources/Attacks/Player/high_block.tres" id="6_dbajq"]
+[ext_resource type="Theme" uid="uid://cruunmamxcb7o" path="res://Resources/attack_button_theme.tres" id="7_u3x54"]
+[ext_resource type="Theme" uid="uid://7jevmqcl012f" path="res://Resources/clear_button_theme.tres" id="8_8lcn4"]
+[ext_resource type="StyleBox" uid="uid://344uqy4ps5vx" path="res://Resources/health_bar_bg.tres" id="8_s1ss8"]
+[ext_resource type="StyleBox" uid="uid://cjphvxqj8pv5c" path="res://Resources/health_bar_fill.tres" id="9_numx6"]
+[ext_resource type="Resource" uid="uid://m35p04sdk2yq" path="res://Resources/Attacks/Player/kick.tres" id="10_7etti"]
+[ext_resource type="Resource" uid="uid://drn7eou7eggjf" path="res://Resources/Attacks/Player/chop.tres" id="11_iequ2"]
+[ext_resource type="Texture2D" uid="uid://cwnt6awfx58b3" path="res://art/temp_assets/warning/Warning_0.png" id="12_tvrvu"]
+[ext_resource type="Resource" uid="uid://ciwc8kbn5hw2w" path="res://Resources/Attacks/Player/low.tres" id="12_vcibc"]
+[ext_resource type="Resource" uid="uid://d3ujm2fjw1s3r" path="res://Resources/Attacks/Player/shove.tres" id="13_7te1u"]
+[ext_resource type="Texture2D" uid="uid://d2ps8jghifg1i" path="res://art/temp_assets/warning/Warning_1.png" id="13_mj8gw"]
+[ext_resource type="Texture2D" uid="uid://cfjijkurimb3" path="res://art/temp_assets/warning/Warning_2.png" id="14_mvf4d"]
+[ext_resource type="Resource" uid="uid://dlo7o8xx87g8g" path="res://Resources/Attacks/Player/sweep.tres" id="14_yp1qv"]
+[ext_resource type="Texture2D" uid="uid://rq8dxtvwg60k" path="res://art/temp_assets/warning/Warning_3.png" id="15_dxc4w"]
+[ext_resource type="Texture2D" uid="uid://wfkpgntuiyl4" path="res://art/temp_assets/warning/Warning_4.png" id="16_xetax"]
+[ext_resource type="Texture2D" uid="uid://pvfshchjs4fa" path="res://art/temp_assets/warning/Warning_5.png" id="17_gpdid"]
+[ext_resource type="Texture2D" uid="uid://5lgjx5k1xgdm" path="res://art/temp_assets/warning/Warning_6.png" id="18_46qip"]
+[ext_resource type="Texture2D" uid="uid://c0gnkajy06j6s" path="res://art/temp_assets/warning/empty.png" id="18_e2g00"]
+[ext_resource type="Texture2D" uid="uid://dwijbsscor5s3" path="res://art/temp_assets/warning/Warning_7.png" id="19_1osnx"]
+[ext_resource type="FontFile" uid="uid://dhu6gmktki0sf" path="res://Resources/04B_20__.TTF" id="19_kjs01"]
+[ext_resource type="Texture2D" uid="uid://j2jhl6y0gxro" path="res://art/temp_assets/warning/Warning_8.png" id="20_82861"]
+[ext_resource type="Shader" path="res://Resources/lightning.gdshader" id="23_5qd2d"]
+[ext_resource type="PackedScene" uid="uid://dggc40nhuy740" path="res://prefabs/combo_list.tscn" id="23_elvgn"]
+[ext_resource type="Script" path="res://prefabs/combo_window_popup.gd" id="27_66brq"]
+
+[sub_resource type="Gradient" id="Gradient_dgvdj"]
+offsets = PackedFloat32Array(0, 0.512987, 1)
+colors = PackedColorArray(0.05, 0.0075, 0.0075, 0.784314, 0.2, 0.0333333, 0, 0.882353, 0.05, 0, 0, 0.784314)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_t2bkv"]
+gradient = SubResource("Gradient_dgvdj")
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bxp4c"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_tvrvu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_mj8gw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_mvf4d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_dxc4w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_xetax")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_gpdid")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_dxc4w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_xetax")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_gpdid")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_dxc4w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_xetax")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_gpdid")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_dxc4w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_xetax")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_gpdid")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_dxc4w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_xetax")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_gpdid")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_dxc4w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_xetax")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_gpdid")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_46qip")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_1osnx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_82861")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_e2g00")
+}],
+"loop": false,
+"name": &"Warning",
+"speed": 12.0
+}]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g5n02"]
+bg_color = Color(0.87, 0.77256, 0.6612, 0.784314)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p0q46"]
+bg_color = Color(0.870588, 0.772549, 0.662745, 0.784314)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ffafr"]
+bg_color = Color(0.165656, 0.165656, 0.165656, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="Gradient" id="Gradient_ymiyd"]
+offsets = PackedFloat32Array(0.2, 0.4, 0.5, 0.6, 0.8)
+colors = PackedColorArray(0.65, 0.766667, 1, 0, 0, 0.466667, 0.7, 0.627451, 1, 1, 1, 1, 0, 0.466667, 0.7, 0.627451, 0.65, 0.766667, 1, 0)
+metadata/_snap_enabled = true
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_xfhef"]
+gradient = SubResource("Gradient_ymiyd")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_fkor4"]
+noise_type = 3
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_vn61m"]
+seamless = true
+noise = SubResource("FastNoiseLite_fkor4")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_e7qlj"]
+shader = ExtResource("23_5qd2d")
+shader_parameter/width = 0.21
+shader_parameter/fix_start = false
+shader_parameter/fix_end = false
+shader_parameter/inverted = true
+shader_parameter/line_gradient = SubResource("GradientTexture1D_xfhef")
+shader_parameter/speed = 3.035
+shader_parameter/variation = 0.1
+shader_parameter/scale = 5.618
+shader_parameter/repeats = 3.66
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_vn61m")
+
+[node name="battle_overlay" type="CanvasLayer"]
+script = ExtResource("1_gvbtk")
+
+[node name="attack_spots" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+scale = Vector2(0.9, 0.9)
+script = ExtResource("4_qu6is")
+attack_spot_node = ExtResource("3_swkf3")
+user = "Player"
+orgin_pos = Vector2(110, 204)
+pos_change = Vector2(100, -20)
+
+[node name="enemy_attack_spots" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("4_qu6is")
+attack_spot_node = ExtResource("5_yl1wh")
+user = "Enemy"
+orgin_pos = Vector2(889, 204)
+pos_change = Vector2(100, -20)
+
+[node name="bottom_ui" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 1
+
+[node name="attack_givers" type="Control" parent="bottom_ui"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 40.0
+offset_top = 540.0
+offset_right = 40.0
+offset_bottom = 540.0
+
+[node name="ui_bg" type="ColorRect" parent="bottom_ui/attack_givers"]
+z_index = -1
+layout_mode = 0
+offset_left = -40.0
+offset_top = -30.0
+offset_right = 1110.0
+offset_bottom = 110.0
+color = Color(0.183333, 0.16, 0.2, 1)
+
+[node name="give_punch" parent="bottom_ui/attack_givers" instance=ExtResource("1_m25ou")]
+offset_left = -5.0
+offset_top = -5.0
+offset_right = -5.0
+offset_bottom = -5.0
+attack_resource_to_give = ExtResource("4_mue14")
+
+[node name="give_chop" parent="bottom_ui/attack_givers" instance=ExtResource("1_m25ou")]
+offset_left = 106.0
+offset_top = -4.0
+offset_right = 107.0
+offset_bottom = -3.0
+attack_resource_to_give = ExtResource("11_iequ2")
+
+[node name="give_shove" parent="bottom_ui/attack_givers" instance=ExtResource("1_m25ou")]
+offset_left = 229.0
+offset_top = -5.0
+offset_right = 230.0
+offset_bottom = -4.0
+attack_resource_to_give = ExtResource("13_7te1u")
+
+[node name="give_high_block" parent="bottom_ui/attack_givers" instance=ExtResource("1_m25ou")]
+offset_left = 359.0
+offset_top = -4.0
+offset_right = 359.0
+offset_bottom = -4.0
+attack_resource_to_give = ExtResource("6_dbajq")
+
+[node name="give_low_block" parent="bottom_ui/attack_givers" instance=ExtResource("1_m25ou")]
+offset_left = 617.0
+offset_top = -3.0
+offset_right = 617.0
+offset_bottom = -3.0
+attack_resource_to_give = ExtResource("5_um5jo")
+
+[node name="give_kick" parent="bottom_ui/attack_givers" instance=ExtResource("1_m25ou")]
+offset_left = 741.0
+offset_top = -3.0
+offset_right = 742.0
+offset_bottom = -2.0
+attack_resource_to_give = ExtResource("10_7etti")
+
+[node name="give_low" parent="bottom_ui/attack_givers" instance=ExtResource("1_m25ou")]
+offset_left = 861.0
+offset_top = -3.0
+offset_right = 862.0
+offset_bottom = -2.0
+attack_resource_to_give = ExtResource("12_vcibc")
+
+[node name="give_sweep" parent="bottom_ui/attack_givers" instance=ExtResource("1_m25ou")]
+offset_left = 992.0
+offset_top = -2.0
+offset_right = 993.0
+offset_bottom = -1.0
+attack_resource_to_give = ExtResource("14_yp1qv")
+
+[node name="attack button" type="Button" parent="bottom_ui"]
+z_index = -2
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 406.0
+offset_top = 660.0
+offset_right = 706.0
+offset_bottom = 790.0
+grow_horizontal = 2
+grow_vertical = 0
+pivot_offset = Vector2(150, 40)
+size_flags_horizontal = 0
+theme = ExtResource("7_u3x54")
+
+[node name="commence" type="RichTextLabel" parent="bottom_ui/attack button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 20.0
+offset_bottom = -55.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 40
+bbcode_enabled = true
+text = "[center][font_size=25]Commence Attack
+"
+
+[node name="player_speed" type="RichTextLabel" parent="bottom_ui/attack button"]
+layout_mode = 0
+offset_top = 55.0
+offset_right = 80.0
+offset_bottom = 110.0
+bbcode_enabled = true
+text = "[font_size=25][color=yellow][center]10"
+
+[node name="enemy_speed" type="RichTextLabel" parent="bottom_ui/attack button"]
+layout_mode = 0
+offset_left = 220.0
+offset_top = 55.0
+offset_right = 300.0
+offset_bottom = 110.0
+bbcode_enabled = true
+text = "[font_size=25
+][color=dim_gray][center]8"
+
+[node name="verdict" type="RichTextLabel" parent="bottom_ui/attack button"]
+layout_mode = 0
+offset_top = 55.0
+offset_right = 300.0
+offset_bottom = 110.0
+bbcode_enabled = true
+text = "[center][font_size=25][color=gray]Outspeeding"
+
+[node name="clear chosen attacks" type="Button" parent="bottom_ui"]
+layout_mode = 0
+offset_left = 530.0
+offset_top = 535.0
+offset_right = 621.0
+offset_bottom = 625.0
+theme = ExtResource("8_8lcn4")
+theme_override_font_sizes/font_size = 25
+text = "CLEAR"
+
+[node name="info_displays" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 1
+script = ExtResource("5_f07nv")
+
+[node name="player_info" type="Panel" parent="info_displays"]
+layout_mode = 0
+offset_left = 60.0
+offset_top = 30.0
+offset_right = 270.0
+offset_bottom = 120.0
+
+[node name="player_name" type="RichTextLabel" parent="info_displays/player_info"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 205.0
+offset_bottom = 45.0
+bbcode_enabled = true
+text = "[left][font_size=25]Fuckin"
+
+[node name="player_healthbar" type="ProgressBar" parent="info_displays/player_info"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 50.0
+offset_right = 205.0
+offset_bottom = 80.0
+theme_override_styles/background = ExtResource("8_s1ss8")
+theme_override_styles/fill = ExtResource("9_numx6")
+value = 100.0
+show_percentage = false
+
+[node name="number" type="RichTextLabel" parent="info_displays/player_info/player_healthbar"]
+layout_mode = 0
+offset_right = 200.0
+offset_bottom = 30.0
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "[center]7/7"
+
+[node name="enemy_info" type="Panel" parent="info_displays"]
+layout_mode = 0
+offset_left = 882.0
+offset_top = 30.0
+offset_right = 1092.0
+offset_bottom = 120.0
+
+[node name="enemy_name" type="RichTextLabel" parent="info_displays/enemy_info"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 205.0
+offset_bottom = 45.0
+bbcode_enabled = true
+text = "[right][font_size=25]Fuckin"
+
+[node name="enemy_healthbar" type="ProgressBar" parent="info_displays/enemy_info"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 50.0
+offset_right = 205.0
+offset_bottom = 80.0
+theme_override_styles/background = ExtResource("8_s1ss8")
+theme_override_styles/fill = ExtResource("9_numx6")
+value = 100.0
+show_percentage = false
+
+[node name="number" type="RichTextLabel" parent="info_displays/enemy_info/enemy_healthbar"]
+layout_mode = 0
+offset_right = 200.0
+offset_bottom = 30.0
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "[center]7/7"
+
+[node name="battle_intro" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="ColorRect" type="TextureRect" parent="battle_intro"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -648.0
+offset_right = -40.0
+offset_bottom = 1112.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -1.5708
+pivot_offset = Vector2(648, 0)
+mouse_filter = 2
+texture = SubResource("GradientTexture1D_t2bkv")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="battle_intro"]
+position = Vector2(578, 324)
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_bxp4c")
+animation = &"Warning"
+frame = 24
+frame_progress = 1.0
+
+[node name="Warning" type="RichTextLabel" parent="battle_intro"]
+clip_contents = false
+layout_mode = 0
+offset_top = 274.0
+offset_right = 1152.0
+offset_bottom = 374.0
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("19_kjs01")
+bbcode_enabled = true
+text = "[center][font_size=85
+][shake amp=50.0][wave amp=25.5][color=crimson]!  WARNING  !"
+
+[node name="combo_thing" type="Panel" parent="."]
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 45.0
+offset_bottom = 45.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_g5n02")
+script = ExtResource("27_66brq")
+
+[node name="combo_container" type="Panel" parent="combo_thing"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_p0q46")
+
+[node name="Combo list" parent="combo_thing/combo_container" instance=ExtResource("23_elvgn")]
+visible = false
+offset_left = -5.0
+offset_top = -5.0
+offset_right = 50.0
+offset_bottom = 35.0
+mouse_filter = 1
+
+[node name="bars" type="Panel" parent="combo_thing"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 17.5
+offset_right = 35.0
+offset_bottom = 22.5
+pivot_offset = Vector2(15, 2.5)
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_ffafr")
+
+[node name="bars" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="top_bar" type="ColorRect" parent="bars"]
+layout_mode = 0
+offset_top = -182.0
+offset_right = 1152.0
+offset_bottom = -102.0
+color = Color(0, 0, 0, 1)
+
+[node name="lightning" type="ColorRect" parent="bars/top_bar"]
+material = SubResource("ShaderMaterial_e7qlj")
+layout_mode = 0
+offset_left = 1152.0
+offset_top = 62.0
+offset_right = 1192.0
+offset_bottom = 1214.0
+rotation = 1.5708
+
+[node name="bottom_bar" type="ColorRect" parent="bars"]
+layout_mode = 0
+offset_top = 750.0
+offset_right = 1152.0
+offset_bottom = 830.0
+color = Color(0, 0, 0, 1)
+
+[node name="lightning" type="ColorRect" parent="bars/bottom_bar"]
+material = SubResource("ShaderMaterial_e7qlj")
+layout_mode = 0
+offset_left = 1152.0
+offset_top = -20.0
+offset_right = 1192.0
+offset_bottom = 1132.0
+rotation = 1.5708
+
+[connection signal="pressed" from="bottom_ui/attack button" to="." method="_on_attack_button_pressed"]
+[connection signal="pressed" from="bottom_ui/clear chosen attacks" to="." method="_on_clear_chosen_attacks_pressed"]
+[connection signal="gui_input" from="combo_thing" to="combo_thing" method="_on_gui_input"]

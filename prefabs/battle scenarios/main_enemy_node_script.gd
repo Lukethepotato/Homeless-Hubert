@@ -28,18 +28,21 @@ extends Node2D
 @export var disruption_resist := 0.05; # Written as decimal, chance of resisting disruption
 @export var ailment_resist := 0.05; # Written as decimal, chance of resisting ailment
 
-@export var upcoming_attack: enemy_attack = null
+@export var attack_resources_in: Array[enemy_attack]
 @export var current_block := GlobalsAutoload.location_types.NONE
 @export var attack_history: Array[enemy_attack]
 @export var block_inclination: float = 5
 @export var goes_on_turn: int
+@export var attacks_per_turn: int = 3 #the value must be typed here cuz _init magic bullshit
 
 @export var ailment_component_node: Node2D
 #number must be from 0 to 10, higher means more likly high block. The lower means more likly low block
 func _init() -> void:
 	GlobalsAutoload.enemy_node = self;
+	attack_resources_in.resize(attacks_per_turn)
 
 func _ready() -> void:
+	attack_resources_in.resize(attacks_per_turn)
 	ailment_component_node = %Ailments_parent
 	speed += agility;
 	modify_stats_with_traits();

@@ -5,8 +5,4 @@ extends AnimationPlayer
 func _process(delta: float) -> void:
 	BattleAutoload._non_attack_animations(self, %Ailments_parent)
 	
-
-func _on_animation_finished(anim_name: StringName) -> void:
-	if GlobalsAutoload.current_turn == GlobalsAutoload.enemy_goes_on_turn:
-		GlobalsAutoload.current_turn += 1
-		print("current turn + 1 _ enemy") # Replace with function body.
+# Replace with function body.
