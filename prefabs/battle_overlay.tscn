@@ -184,7 +184,7 @@ script = ExtResource("4_qu6is")
 attack_spot_node = ExtResource("3_swkf3")
 user = "Player"
 orgin_pos = Vector2(110, 204)
-pos_change = Vector2(100, -20)
+pos_offset = Vector2(100, -20)
 
 [node name="enemy_attack_spots" type="Control" parent="."]
 visible = false
@@ -194,7 +194,7 @@ script = ExtResource("4_qu6is")
 attack_spot_node = ExtResource("5_yl1wh")
 user = "Enemy"
 orgin_pos = Vector2(889, 204)
-pos_change = Vector2(100, -20)
+pos_offset = Vector2(100, -20)
 
 [node name="bottom_ui" type="Control" parent="."]
 layout_mode = 3

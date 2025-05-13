@@ -35,5 +35,6 @@ extends Node
 @export var attacks_per_turn: int = 2
 
 
+
 #func _ready() -> void:
 	#attack_resources_in.resize(4)

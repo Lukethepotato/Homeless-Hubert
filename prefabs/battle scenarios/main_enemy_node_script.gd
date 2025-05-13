@@ -33,7 +33,7 @@ extends Node2D
 @export var attack_history: Array[enemy_attack]
 @export var block_inclination: float = 5
 @export var goes_on_turn: int
-@export var attacks_per_turn: int = 2
+@export var attacks_per_turn: int = 5 #the value must be typed here cuz init magic bullshit
 
 @export var ailment_component_node: Node2D
 #number must be from 0 to 10, higher means more likly high block. The lower means more likly low block
@@ -42,6 +42,7 @@ func _init() -> void:
 	attack_resources_in.resize(attacks_per_turn)
 
 func _ready() -> void:
+	attack_resources_in.resize(attacks_per_turn)
 	ailment_component_node = %Ailments_parent
 	speed += agility;
 	modify_stats_with_traits();
