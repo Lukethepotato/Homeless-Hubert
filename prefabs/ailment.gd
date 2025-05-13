@@ -43,10 +43,10 @@ func _update_block_lock():
 		if get_parent().target == "Enemy":
 			if target_data.current_block != current_ailment.lock_block:
 				if current_ailment.lock_block == GlobalsAutoload.location_types.LOW:
-					target_data.upcoming_attack = enemy_blocks[0]
+					target_data.attack_resources_in[0] = enemy_blocks[0]
 				
 				elif  current_ailment.lock_block == GlobalsAutoload.location_types.HIGH:
-					target_data.upcoming_attack = enemy_blocks[1]
+					target_data.attack_resources_in[0] = enemy_blocks[1]
 		
 			#if the lock block is set to none then they will simply just not be able to move
 			

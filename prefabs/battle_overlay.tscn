@@ -193,7 +193,7 @@ anchors_preset = 0
 script = ExtResource("4_qu6is")
 attack_spot_node = ExtResource("5_yl1wh")
 user = "Enemy"
-orgin_pos = Vector2(889, 204)
+orgin_pos = Vector2(750, 204)
 pos_offset = Vector2(100, -20)
 
 [node name="bottom_ui" type="Control" parent="."]
