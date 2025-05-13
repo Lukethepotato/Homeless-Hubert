@@ -24,6 +24,7 @@ script = ExtResource("1_0scgt")
 
 [node name="Panel" type="Panel" parent="."]
 z_index = -1
+layout_mode = 0
 offset_top = 1.0
 offset_right = 90.0
 offset_bottom = 91.0
