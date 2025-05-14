@@ -1,4 +1,4 @@
-extends Resource
+extends attack_parent
 class_name enemy_attack
 
 # This is a flexible resource that stores the data for enemy attacks. This is a loose template; further complexity can be added at the coder's discretion.
