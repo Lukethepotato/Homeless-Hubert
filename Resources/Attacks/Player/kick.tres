@@ -5,13 +5,15 @@
 
 [resource]
 script = ExtResource("1_0fi5c")
+enables_rush = true
+icon_texture = ExtResource("1_sepw8")
 base_damage = 6
 priority = -2
+stance_disruption_mod = 1.0
 name = "kick"
 name_color = Color(1, 1, 1, 1)
 description = "Basic fist attack. Attack hits high, deals mediocre damage, and has little disruption."
 animation_name = "hubert_basic_kick"
-icon_texture = ExtResource("1_sepw8")
 hit_region = 1
 gives_block = 0
 victim_speed_subtract = 0

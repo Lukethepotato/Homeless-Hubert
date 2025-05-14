@@ -5,13 +5,15 @@
 
 [resource]
 script = ExtResource("1_p7trt")
+enables_rush = true
+icon_texture = ExtResource("1_38o7c")
 base_damage = 0
 priority = 5
+stance_disruption_mod = 1.0
 name = "Chop"
 name_color = Color(1, 1, 1, 1)
 description = "Speedy attack. Attack hits high, deals bad damage, and has little disruption."
 animation_name = "hubert_basic_chop"
-icon_texture = ExtResource("1_38o7c")
 hit_region = 2
 gives_block = 0
 victim_speed_subtract = 2

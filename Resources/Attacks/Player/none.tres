@@ -5,6 +5,8 @@
 
 [resource]
 script = ExtResource("2_3d5fu")
+enables_rush = false
+icon_texture = ExtResource("1_xh0j4")
 base_damage = 0
 priority = 0
 stance_disruption_mod = 0.0
@@ -12,9 +14,7 @@ name = "sweep"
 name_color = Color(1, 0, 0, 1)
 description = "basic shove. Hits high and decreases defense"
 animation_name = "none"
-icon_texture = ExtResource("1_xh0j4")
 hit_region = 1
 gives_block = 0
-enables_rush = false
 victim_speed_subtract = 0
 victim_defense_subtract = 5
