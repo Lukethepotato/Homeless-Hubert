@@ -5,13 +5,15 @@
 
 [resource]
 script = ExtResource("2_q27pf")
+enables_rush = true
+icon_texture = ExtResource("1_vkxop")
 base_damage = 5
 priority = 0
+stance_disruption_mod = 1.0
 name = "Punch"
 name_color = Color(1, 0, 0, 1)
 description = "Basic fist attack. Attack hits high, deals mediocre damage, and has little disruption."
 animation_name = "hubert_basic_punch"
-icon_texture = ExtResource("1_vkxop")
 hit_region = 2
 gives_block = 0
 victim_speed_subtract = 0

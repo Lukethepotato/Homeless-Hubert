@@ -5,6 +5,8 @@
 
 [resource]
 script = ExtResource("1_65oia")
+enables_rush = false
+icon_texture = ExtResource("1_vytor")
 base_damage = 0
 priority = -2
 stance_disruption_mod = 1.0
@@ -12,9 +14,7 @@ name = "Low Block"
 name_color = Color(1, 1, 1, 1)
 description = "Activate a low block."
 animation_name = "hubert_low_block"
-icon_texture = ExtResource("1_vytor")
 hit_region = 0
 gives_block = 1
-enables_rush = false
 victim_speed_subtract = 0
 victim_defense_subtract = 0

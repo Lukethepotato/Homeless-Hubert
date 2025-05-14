@@ -5,13 +5,15 @@
 
 [resource]
 script = ExtResource("2_gxsux")
+enables_rush = true
+icon_texture = ExtResource("1_my5bl")
 base_damage = 0
 priority = -1
+stance_disruption_mod = 1.0
 name = "Low"
 name_color = Color(1, 1, 1, 1)
 description = "Lowers enemy speed"
 animation_name = "hubert_basic_low"
-icon_texture = ExtResource("1_my5bl")
 hit_region = 1
 gives_block = 0
 victim_speed_subtract = 4
