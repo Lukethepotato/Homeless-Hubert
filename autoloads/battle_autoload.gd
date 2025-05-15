@@ -130,6 +130,8 @@ func setting_attack_spots(attack_spot_node: PackedScene, parent: Control, user: 
 			new_attack_spot.position = orgin_pos
 			new_attack_spot.position += (pos_offset) * i
 		
+#this updates the size of the users attack_resources_in size to its intended amount
+#all things substantaly that change the size should be here
 func attack_resources_in_size_update(user: String):
 	var user_data = BattleAutoload.convert_strs_to_attack_roles(user, user)[0]
 	var resize_to: int = user_data.attacks_per_turn
@@ -139,10 +141,6 @@ func attack_resources_in_size_update(user: String):
 		
 	user_data.attack_resources_in.resize(resize_to)
 	
-	
-	
-
-
 # Calculates the damage that should be dealt. Extraneous parameters to be placed after the first three
 func calculate_damage(base_dmg : int, user, target, can_crit := true, guaranteed_hit := false) -> int:
 	var damage := base_dmg;
