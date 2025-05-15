@@ -3,7 +3,7 @@ extends Node
 
 # This is a global script which contains critical miscellaneous information. It also contains (will contain) useful functions which should be universally accessible.
 
-signal dropped_UI(attack_resource: player_attack, dropped_where_name: String)
+signal dropped_UI(attack_resource: attack_parent, dropped_where_name: String)
 signal clear_attack_selection()
 signal turn_changed()
 signal health_updated()

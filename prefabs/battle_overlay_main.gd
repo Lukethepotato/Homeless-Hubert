@@ -165,7 +165,7 @@ func tween_out_bars():
 
 func enemy_attack_preview():
 	for i in $enemy_attack_spots.get_child_count():
-		$enemy_attack_spots.get_child(i).get_child(1).texture = GlobalsAutoload.enemy_node.attack_resources_in[i].preview_texture #the get child(0) is supposed to get the texture rect
+		$enemy_attack_spots.get_child(i).get_child(1).texture = GlobalsAutoload.enemy_node.attack_resources_in[i].icon_texture#the get child(0) is supposed to get the texture rect
 		$enemy_attack_spots.get_child(i).scale = Vector2(0.01,0.01);
 		$enemy_attack_spots.visible = true;
 		var tween2 = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO).set_parallel(true);

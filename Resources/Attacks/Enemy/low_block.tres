@@ -5,6 +5,8 @@
 
 [resource]
 script = ExtResource("2_4seqh")
+victim_speed_apply = 0
+icon_texture = ExtResource("1_wwpjc")
 base_damage = 0
 priority = 2
 stance_disruption_mod = 1.0
@@ -14,7 +16,5 @@ description = "Activates a low block"
 animation_name = "enemy_low_block"
 hit_region = 0
 gives_block = 1
-preview_texture = ExtResource("1_wwpjc")
 victim_speed_subtract = 0
 victim_defense_subtract = 0
-victim_speed_apply = 0

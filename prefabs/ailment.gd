@@ -4,7 +4,7 @@ extends Node2D
 @export var target_data = null
 @export var damage_donor_node: Node2D
 
-@export var enemy_blocks: Array[enemy_attack]
+@export var enemy_blocks: Array[attack_parent]
 @export var animation_player: AnimationPlayer
 
 

@@ -3,9 +3,9 @@ extends Node
 
 # This is a global script which contains most of the details about the Player character. If needed, it will also contain functions that need to be universally accessible.
 
-@export var attack_resources_in: Array[player_attack]
+@export var attack_resources_in: Array[attack_parent]
 @export var goes_on_turn: int = 2
-@export var attack_history: Array[player_attack]
+@export var attack_history: Array[attack_parent]
 @export var current_combo: player_combo
 #this is set when the combo combo is played in the main dock animation player
 

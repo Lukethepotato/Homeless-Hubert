@@ -1,19 +1,20 @@
-[gd_resource type="Resource" script_class="enemy_attack" load_steps=4 format=3 uid="uid://caqte230he11q"]
+[gd_resource type="Resource" script_class="enemy_attack" load_steps=3 format=3 uid="uid://caqte230he11q"]
 
 [ext_resource type="Script" path="res://Resources/enemy_attack_resource.gd" id="1_bws00"]
 [ext_resource type="Texture2D" uid="uid://dpd7iqa735x25" path="res://art/temp_assets/FISHE_PUNC.png" id="1_j18qp"]
-[ext_resource type="Resource" uid="uid://dqd5hkyqexcn5" path="res://Resources/ailments/staggered.tres" id="1_te71v"]
 
 [resource]
 script = ExtResource("1_bws00")
+victim_speed_apply = 0
+icon_texture = ExtResource("1_j18qp")
 base_damage = 10
 priority = 0
+stance_disruption_mod = 1.0
 name = "Punch"
 name_color = Color(1, 1, 1, 1)
 description = "Basic attack. Attack hits high and deals 10 damage."
 animation_name = "enemy_attack"
 hit_region = 3
 gives_block = 3
-preview_texture = ExtResource("1_j18qp")
-ailment_give = ExtResource("1_te71v")
-victim_speed_apply = 0
+victim_speed_subtract = 0
+victim_defense_subtract = 0

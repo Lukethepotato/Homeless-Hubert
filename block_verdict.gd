@@ -2,7 +2,7 @@ extends Node2D
 @export var block_chance: float = 5
 #number must be from 0 to 10, the higher the more likly they block
 
-@export var blocks: Array[enemy_attack]
+@export var blocks: Array[attack_parent]
 #low block is the 0 index and high is the 1 index
 
 func _ready() -> void:
@@ -13,7 +13,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 	
-func _attack_verdict() -> enemy_attack:
+func _attack_verdict() -> attack_parent:
 	var rand_numb = randf_range(0, 10)
 	if rand_numb > block_chance && %Ailments_parent._can_change_block():
 	#this decides which block will be done

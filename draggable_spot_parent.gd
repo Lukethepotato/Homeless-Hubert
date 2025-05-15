@@ -6,9 +6,9 @@ extends Control
 @export var current_texture: Texture2D
 #this var should be received not changed
 #if you want to change the texture use the texture rect child
-@export var attack_resource_to_give: player_attack
+@export var attack_resource_to_give: attack_parent
 #this var should be received not changed
-@export var attack_resource_holding: player_attack
+@export var attack_resource_holding: attack_parent
 
 var tween;
 
@@ -36,7 +36,7 @@ func reset():
 	%TextureRect.rotation_degrees = 0;
 
 # This function handles setting and animating the updated texture of the spot
-func _spot_dropped(attack_resource: player_attack, dropped_where_name: String):
+func _spot_dropped(attack_resource: attack_parent, dropped_where_name: String):
 	current_texture = %TextureRect.texture
 	if dropped_where_name == name:
 		if tween:

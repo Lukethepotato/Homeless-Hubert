@@ -7,7 +7,7 @@ static var dropped := false
 @export var drag_text_size: Vector2 = Vector2(1,1)
 @export var drag_preview: PackedScene
 @export var draggable_UI: bool = true
-@export var attack_resource: player_attack
+@export var attack_resource: attack_parent
 var mouse_hovering := false;
 
 func _ready() -> void:

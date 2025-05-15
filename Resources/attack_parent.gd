@@ -1,6 +1,7 @@
 extends Resource
 class_name attack_parent
 
+@export var icon_texture: Texture2D; # Name of the texture this attack will use
 @export var base_damage := 0; # Base damage of the skill, unaffected by offensive and defensive modifiers
 @export var priority := 0; # Additive priority value used in turn order calculation
 @export var stance_disruption_mod := 1.0; # Multiplicative modifier for the amount of poise damage dealt by attack

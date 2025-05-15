@@ -22,6 +22,6 @@ func _process(delta: float) -> void:
 		if PlayerAutoload.attack_resources_in[attack_slot_order] != null:
 			PlayerAutoload.attack_resources_in[attack_slot_order] = null
 	
-#func dropped_in_spot_signal_receive(attack_resource: player_attack, dropped_where_name:String):
+#func dropped_in_spot_signal_receive(attack_resource: attack_parent, dropped_where_name:String):
 	#if (get_parent().name == dropped_where_name):
 		#PlayerAutoload.attack_resources_in[attack_slot_order] = attack_resource

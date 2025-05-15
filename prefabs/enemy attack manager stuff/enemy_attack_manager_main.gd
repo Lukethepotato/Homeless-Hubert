@@ -2,7 +2,7 @@ extends Node2D
 
 # This script handles enemy attacking.
 
-@export var fallback_attack: enemy_attack
+@export var fallback_attack: attack_parent
 @export var attack_in_turn_index_finished: int = 0
 
 func _ready() -> void:
@@ -48,10 +48,10 @@ func _update_upcoming_attack():
 		else:
 			get_parent().attack_resources_in[i] = _return_enemy_attack_choice()
 
-# Returns which enemy_attack the enemy will use this turn
-func _return_enemy_attack_choice() -> enemy_attack:
+# Returns which attack_parent the enemy will use this turn
+func _return_enemy_attack_choice() -> attack_parent:
 	for i in get_child_count():
-		var returned_attack :enemy_attack = get_child(i)._attack_verdict()
+		var returned_attack :attack_parent = get_child(i)._attack_verdict()
 		if returned_attack != null:
 			print("attack verdict returned " + returned_attack.name)
 			return returned_attack

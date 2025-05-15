@@ -28,9 +28,9 @@ extends Node2D
 @export var disruption_resist := 0.05; # Written as decimal, chance of resisting disruption
 @export var ailment_resist := 0.05; # Written as decimal, chance of resisting ailment
 
-@export var attack_resources_in: Array[enemy_attack]
+@export var attack_resources_in: Array[attack_parent]
 @export var current_block := GlobalsAutoload.location_types.NONE
-@export var attack_history: Array[enemy_attack]
+@export var attack_history: Array[attack_parent]
 @export var block_inclination: float = 5
 @export var goes_on_turn: int
 @export var attacks_per_turn: int = 3 #the value must be typed here cuz _init magic bullshit

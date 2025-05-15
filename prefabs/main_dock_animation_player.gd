@@ -3,8 +3,8 @@ extends AnimationPlayer
 # This script handles the animations and attacking for the player character.
 
 var attack_in_turn_index_finished: int = 0
-@export var attack_history_cut: Array[player_attack]
-@export var attack_history_with_chosen_attacks: Array[player_attack]
+@export var attack_history_cut: Array[attack_parent]
+@export var attack_history_with_chosen_attacks: Array[attack_parent]
 @export var is_forward: bool = false
 
 func _ready():
