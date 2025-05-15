@@ -81,11 +81,12 @@ func convert_strs_to_attack_roles(user : String, target : String) -> Array:
 	return [perpetrator, victim]
 	
 	
-func _non_attack_animations(anim_player_node: AnimationPlayer, ailments_parent: Node2D):
+func _non_attack_animations(anim_player_node: AnimationPlayer, ailments_parent: Node2D, user: String):
 	#plays all the non attack related animations on the enemy and player
 	
 	#its called from each of their respective animation players
 	
+	var user_data = BattleAutoload.convert_strs_to_attack_roles(user, user)[0]
 	var overridables: Array[String] = ["idle","staggered"] #this contains all the animations names that are ok to overide]
 	#for example:
 	#"idle" is there because animations like the damaged one would probally happen while there in the idle animation
@@ -93,37 +94,52 @@ func _non_attack_animations(anim_player_node: AnimationPlayer, ailments_parent: 
 	var unoverridables: Array[String] = ["hubert_low_block","hubert_high_block"] #these animations wont end as long another attack isnt played
 	var last_attack_name: String = ""
 	
-	if PlayerAutoload.attack_history.is_empty() == false:
-		last_attack_name = PlayerAutoload.attack_history[PlayerAutoload.attack_history.size() -1].animation_name
+	if user_data.attack_history.is_empty() == false:
+		last_attack_name = user_data.attack_history[user_data.attack_history.size() -1].animation_name
 	
-	if GlobalsAutoload.current_turn != PlayerAutoload.goes_on_turn:
+	if GlobalsAutoload.current_turn != user_data.goes_on_turn:
 		if anim_player_node.is_playing() == false && unoverridables.has(last_attack_name) == false || overridables.has(anim_player_node.current_animation):
 			if ailments_parent._animtion_decision() != "":
 				anim_player_node.play(ailments_parent._animtion_decision())
+				
+				print("animtion non attack play staggered " )
 			
 			# there would also be the little attacked animations here
 			else:
 				anim_player_node.play("idle")
+				
+				print("animtion non attack play idle" )
 			
 	
 #instantiates new attack spots as child of parent chosen and resizes the attack resource size to the attacks per turn value
 func setting_attack_spots(attack_spot_node: PackedScene, parent: Control, user: String, orgin_pos: Vector2, pos_offset: Vector2):
 	var user_data = BattleAutoload.convert_strs_to_attack_roles(user, user)[0]
-	user_data.attack_resources_in.resize(user_data.attacks_per_turn)
+	attack_resources_in_size_update(user)
+	var attacks_per_turn: int = user_data.attack_resources_in.size()
 	
-	if parent.get_child_count() != user_data.attacks_per_turn:
+	
+	if parent.get_child_count() != attacks_per_turn:
 		if parent.get_child_count() > 0:
 			for i in parent.get_child_count():
 				parent.get_child(i).queue_free()
 		
-		for i in user_data.attacks_per_turn:
+		for i in attacks_per_turn:
 			var new_attack_spot = attack_spot_node.instantiate()
 			parent.add_child(new_attack_spot)
 			
 			new_attack_spot.position = orgin_pos
 			new_attack_spot.position += (pos_offset) * i
 		
-
+func attack_resources_in_size_update(user: String):
+	var user_data = BattleAutoload.convert_strs_to_attack_roles(user, user)[0]
+	var resize_to: int = user_data.attacks_per_turn
+	
+	if user_data.ailment_component_node != null && user_data.ailment_component_node._attacks_per_turn_possible() > 0:
+		resize_to = user_data.ailment_component_node._attacks_per_turn_possible()
+		
+	user_data.attack_resources_in.resize(resize_to)
+	
+	
 	
 
 
