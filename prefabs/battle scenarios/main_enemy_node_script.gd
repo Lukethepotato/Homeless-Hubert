@@ -33,7 +33,8 @@ extends Node2D
 @export var attack_history: Array[attack_parent]
 @export var block_inclination: float = 5
 @export var goes_on_turn: int
-@export var attacks_per_turn: int = 3 #the value must be typed here cuz _init magic bullshit
+
+@export var attacks_per_turn: int = 3 #the value must be typed here cuz _init magic bullshit #attack resources in size defaults to this
 
 @export var ailment_component_node: Node2D
 #number must be from 0 to 10, higher means more likly high block. The lower means more likly low block

@@ -101,14 +101,10 @@ func _non_attack_animations(anim_player_node: AnimationPlayer, ailments_parent: 
 		if anim_player_node.is_playing() == false && unoverridables.has(last_attack_name) == false || overridables.has(anim_player_node.current_animation):
 			if ailments_parent._animtion_decision() != "":
 				anim_player_node.play(ailments_parent._animtion_decision())
-				
-				print("animtion non attack play staggered " )
 			
 			# there would also be the little attacked animations here
 			else:
 				anim_player_node.play("idle")
-				
-				print("animtion non attack play idle" )
 			
 	
 #instantiates new attack spots as child of parent chosen and resizes the attack resource size to the attacks per turn value

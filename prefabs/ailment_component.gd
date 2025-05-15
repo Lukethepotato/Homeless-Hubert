@@ -18,12 +18,12 @@ func _process(delta: float) -> void:
 	pass
 	
 # returns the attack name for the most recents ailments force attack var (if there is none return "")
-func _attack_decision() -> String:
-	var current_attack_winner: String = ""
+func _attack_decision() -> attack_parent:
+	var current_attack_winner: attack_parent = null
 	if get_child(0)!= null:
 		for i in get_child_count():
 			
-			if get_child(i).current_ailment.force_attack != "":
+			if get_child(i).current_ailment.force_attack != null && get_child(i).turns_left > 0:
 				current_attack_winner = get_child(i).current_ailment.force_attack
 		
 	return current_attack_winner

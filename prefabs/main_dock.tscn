@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://cjnea8maf3y5l"]
+[gd_scene load_steps=32 format=3 uid="uid://cjnea8maf3y5l"]
 
 [ext_resource type="PackedScene" uid="uid://co6wwlpta51be" path="res://prefabs/Hubert.tscn" id="1_n63l7"]
 [ext_resource type="Script" path="res://prefabs/main_dock_script.gd" id="1_wjf3g"]
@@ -486,6 +486,9 @@ tracks/1/keys = {
 "values": [&"Idle"]
 }
 
+[sub_resource type="Animation" id="Animation_fn40m"]
+resource_name = "none"
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_b23nh"]
 _data = {
 "RESET": SubResource("Animation_vog60"),
@@ -500,7 +503,8 @@ _data = {
 "hubert_low_block": SubResource("Animation_dym15"),
 "hubert_rush_back": SubResource("Animation_v167h"),
 "hubert_rush_forward": SubResource("Animation_qlxsy"),
-"idle": SubResource("Animation_ku6bo")
+"idle": SubResource("Animation_ku6bo"),
+"none": SubResource("Animation_fn40m")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vft4o"]
