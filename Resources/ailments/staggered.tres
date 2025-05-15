@@ -10,3 +10,4 @@ force_attack = "none"
 damage_take_per_turn = 0
 animation_name = "staggered"
 animation_priority = 5
+attacks_per_turn_set = 1

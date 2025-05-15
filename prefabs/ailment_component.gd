@@ -60,6 +60,17 @@ func _can_change_block() -> bool:
 			if get_child(i).current_ailment.lock_block != GlobalsAutoload.location_types.IGNORE:
 				return false
 	return true
+	
+# returns the amount of the most recent ailment with a "attacks_per_turn_set" value higher than 0
+func _attacks_per_turn_possible() -> int:
+	var amount: int = 0
+	if get_child(0)!= null:
+		for i in get_child_count():
+			
+			if get_child(i).current_ailment.attacks_per_turn_set > 0 && get_child(i).turns_left > 0:
+				amount = get_child(i).current_ailment.attacks_per_turn_set 
+		
+	return amount
 
 	
 

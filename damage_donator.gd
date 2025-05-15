@@ -30,6 +30,7 @@ func _damage_donation(user : String, target : String, base_dmg: int, combo : pla
 			print("Poise : " + str(roles[1].poise))
 			if roles[1].poise <= 0:
 				roles[1].ailment_component_node._instantiate_ailment(load("res://Resources/ailments/staggered.tres"))
+				# reset poise back somehow (:
 			BattleAutoload.apply_attack_effects(last_attack_done.animation_name, user, target)
 			
 			GlobalsAutoload.shake_camera.emit(camera_shake_mult * damage_to_deal)
