@@ -81,7 +81,7 @@ func _on_clear_chosen_attacks_pressed() -> void:
 
 # Returns if all player attack slots are filled
 func is_attack_ready() -> bool:
-	for attack in PlayerAutoload.attack_resources_in:
+	for attack in PlayerAutoload.attack_resources_in.size():
 		if attack != null:
 			return true;
 	return false;

@@ -196,10 +196,12 @@ func apply_attack_effects(attack_name: String, user: String, target: String) -> 
 	# You should use the switch statement for unique effects like ailments rather than just a variable every attack has
 	match attack_name:
 		"hubert_basic_low":
-			pass
+			roles[0].ailment_component_node._instantiate_ailment(load("res://Resources/ailments/staggered.tres"))
 		"hubert_basic_shove","hubert_basic_sweep":
 			pass
 		"enemy_attack":
 			pass
+			
+			
 			#roles[1].ailment_component_node._instantiate_ailment(last_attack.ailment_give)
 			#Example of how enemys attack work

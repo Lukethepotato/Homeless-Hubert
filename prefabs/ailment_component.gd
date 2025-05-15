@@ -20,11 +20,10 @@ func _process(delta: float) -> void:
 # returns the attack name for the most recents ailments force attack var (if there is none return "")
 func _attack_decision() -> attack_parent:
 	var current_attack_winner: attack_parent = null
-	if get_child(0)!= null:
-		for i in get_child_count():
+	for i in get_child_count():
 			
-			if get_child(i).current_ailment.force_attack != null && get_child(i).turns_left > 0:
-				current_attack_winner = get_child(i).current_ailment.force_attack
+		if get_child(i).current_ailment.force_attack != null && get_child(i).turns_left > 0:
+			current_attack_winner = get_child(i).current_ailment.force_attack
 		
 	return current_attack_winner
 			
@@ -55,20 +54,18 @@ func _animtion_decision() -> String:
 				#ailment_competitor = current_ailment_anim
 
 func _can_change_block() -> bool:
-	if get_child(0) != null:
-		for i in get_child_count():
-			if get_child(i).current_ailment.lock_block != GlobalsAutoload.location_types.IGNORE:
-				return false
+	for i in get_child_count():
+		if get_child(i).current_ailment.lock_block != GlobalsAutoload.location_types.IGNORE:
+			return false
 	return true
 	
 # returns the amount of the most recent ailment with a "attacks_per_turn_set" value higher than 0
 func _attacks_per_turn_possible() -> int:
 	var amount: int = 0
-	if get_child(0)!= null:
-		for i in get_child_count():
+	for i in get_child_count():
 			
-			if get_child(i).current_ailment.attacks_per_turn_set > 0 && get_child(i).turns_left > 0:
-				amount = get_child(i).current_ailment.attacks_per_turn_set 
+		if get_child(i).current_ailment.attacks_per_turn_set > 0 && get_child(i).turns_left > 0:
+			amount = get_child(i).current_ailment.attacks_per_turn_set 
 		
 	return amount
 

@@ -7,12 +7,18 @@ extends Node2D
 
 
 func _ready() -> void:
-	attack_slot_order = get_parent().get_index()
+	update_slot_order()
+	GlobalsAutoload.current_turn_reset.connect(update_slot_order)
+	
 	#GlobalsAutoload.dropped_UI.connect(dropped_in_spot_signal_receive)
-	pass
+	
 
+func update_slot_order():
+	attack_slot_order = get_parent().get_index()
 # Do we really need to check this every frame?
 func _process(delta: float) -> void:
+	update_slot_order()
+	#attack_slot_order = get_parent().get_index()
 	if get_parent().current_texture != null:
 		slot_full = true
 		PlayerAutoload.attack_resources_in[attack_slot_order] = get_parent().attack_resource_holding

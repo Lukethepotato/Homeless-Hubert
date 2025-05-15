@@ -68,6 +68,7 @@ script = ExtResource("4_6nue0")
 drag_preview = ExtResource("5_w0cn1")
 
 [node name="attack in spot detector" type="Node2D" parent="."]
+process_priority = -5
 script = ExtResource("6_o8gop")
 
 [connection signal="mouse_entered" from="TextureRect" to="TextureRect" method="_on_mouse_entered"]
