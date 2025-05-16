@@ -29,8 +29,8 @@ func _damage_donation(user : String, target : String, base_dmg: int, combo : pla
 			roles[1].poise -= damage_to_deal * last_attack_done.stance_disruption_mod
 			print("Poise : " + str(roles[1].poise))
 			if roles[1].poise <= 0:
-				pass
-				#roles[1].ailment_component_node._instantiate_ailment(load("res://Resources/ailments/staggered.tres"))
+				#pass
+				roles[1].ailment_component_node._instantiate_ailment(load("res://Resources/ailments/staggered.tres"))
 				# reset poise back somehow (:
 			BattleAutoload.apply_attack_effects(last_attack_done.animation_name, user, target)
 			

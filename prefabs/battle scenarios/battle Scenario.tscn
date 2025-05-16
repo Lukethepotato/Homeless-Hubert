@@ -205,6 +205,9 @@ tracks/1/keys = {
 "values": [3, 1, 2, 3]
 }
 
+[sub_resource type="Animation" id="Animation_c8hus"]
+resource_name = "none"
+
 [sub_resource type="Animation" id="Animation_fot5b"]
 resource_name = "staggered"
 length = 0.333342
@@ -234,9 +237,6 @@ tracks/1/keys = {
 "update": 1,
 "values": [0, 1]
 }
-
-[sub_resource type="Animation" id="Animation_c8hus"]
-resource_name = "none"
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6epbw"]
 _data = {

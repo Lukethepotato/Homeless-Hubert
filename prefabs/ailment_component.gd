@@ -19,22 +19,25 @@ func _process(delta: float) -> void:
 	pass
 	
 func _turn_change():
-	_player_attack_force()
+	pass
+#	_player_attack_force()
 	
 
-func _player_attack_force():
-	if _attack_decision() != null:
-		target_data.attack_spots_parent.get_child(0).change_attack_in_spot(_attack_decision(), true)
+#func _player_attack_force():
+	#if _attack_decision() != null && target == "player":
+	#	target_data.attack_spots_parent.get_child(0).change_attack_in_spot(_attack_decision(), true)
 	
 # returns the attack name for the most recents ailments force attack var (if there is none return "")
-func _attack_decision() -> attack_parent:
-	var current_attack_winner: attack_parent = null
+func _attack_decision() -> Array[attack_parent]:
+	var all_forced_attacks: Array[attack_parent]
+	
 	for i in get_child_count():
 			
 		if get_child(i).current_ailment.force_attack != null && get_child(i).turns_left > 0:
-			current_attack_winner = get_child(i).current_ailment.force_attack
+			all_forced_attacks.append(get_child(i).current_ailment.force_attack)
+			
 		
-	return current_attack_winner
+	return all_forced_attacks
 			
 
 func _animtion_decision() -> String:

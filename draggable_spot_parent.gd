@@ -42,7 +42,6 @@ func change_attack_in_spot(attack_change: attack_parent, lock: bool):
 	%TextureRect.attack_resource = attack_change
 	%TextureRect.locked = lock
 	print("change attack in spot")
-	
 
 # This function handles setting and animating the updated texture of the spot
 func _spot_dropped(attack_resource: attack_parent, dropped_where_name: String):
