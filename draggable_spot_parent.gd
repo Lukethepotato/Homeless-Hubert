@@ -34,6 +34,15 @@ func reset():
 	%TextureRect.texture = null;
 	%TextureRect.scale = Vector2(1,1);
 	%TextureRect.rotation_degrees = 0;
+	
+func change_attack_in_spot(attack_change: attack_parent, lock: bool):
+	PlayerAutoload.attack_resources_in[get_index()]
+	attack_resource_holding = attack_change
+	%TextureRect.texture = attack_change.icon_texture
+	%TextureRect.attack_resource = attack_change
+	%TextureRect.locked = lock
+	print("change attack in spot")
+	
 
 # This function handles setting and animating the updated texture of the spot
 func _spot_dropped(attack_resource: attack_parent, dropped_where_name: String):

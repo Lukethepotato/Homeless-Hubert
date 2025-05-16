@@ -6,6 +6,7 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	GlobalsAutoload.turn_changed.connect(_turn_change)
 	target_data = BattleAutoload.convert_strs_to_attack_roles(target, target)
 	target_data = target_data[0]
 	
@@ -16,6 +17,14 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
+	
+func _turn_change():
+	_player_attack_force()
+	
+
+func _player_attack_force():
+	if _attack_decision() != null:
+		target_data.attack_spots_parent.get_child(0).change_attack_in_spot(_attack_decision(), true)
 	
 # returns the attack name for the most recents ailments force attack var (if there is none return "")
 func _attack_decision() -> attack_parent:

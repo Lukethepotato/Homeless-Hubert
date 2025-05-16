@@ -430,7 +430,7 @@ script = ExtResource("4_dhhqc")
 [node name="Hubert_Sprites" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_gomab")
 animation = &"staggered"
-frame_progress = 0.376
+frame_progress = 0.395474
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, 10.5)

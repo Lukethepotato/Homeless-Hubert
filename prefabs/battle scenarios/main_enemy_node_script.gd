@@ -36,6 +36,7 @@ extends Node2D
 
 @export var attacks_per_turn: int = 3 #the value must be typed here cuz _init magic bullshit #attack resources in size defaults to this
 
+@export var attack_spots_parent :Control
 @export var ailment_component_node: Node2D
 #number must be from 0 to 10, higher means more likly high block. The lower means more likly low block
 func _init() -> void:

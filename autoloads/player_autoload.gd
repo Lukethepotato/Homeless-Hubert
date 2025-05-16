@@ -31,6 +31,7 @@ extends Node
 @export var current_block := GlobalsAutoload.location_types.NONE
 #the idea is that every attack you do will determine a block state that hubert will do
 #and the curent state huberts in is just stored here
+@export var attack_spots_parent :Control
 @export var ailment_component_node: Node2D
 @export var attacks_per_turn: int = 2 #this is not a value to change its just the value that the attack resources in size defaults to
 
