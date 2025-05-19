@@ -29,9 +29,12 @@ func start_enemy_attack() -> void:
 			attack_in_turn_index_finished += 1
 			await %AnimPlayer.animation_finished
 			
+		# this goes through every attack, plays it, waits till its over then does the next one
+			
 		GlobalsAutoload.current_turn += 1
 		attack_in_turn_index_finished = 0
-		
+		#then once all the attacks are done it adds a turn and resets the attack index back to 0 so it can all happen again
+				
 		
 	
 func update_block():
@@ -39,19 +42,25 @@ func update_block():
 		get_parent().current_block = get_parent().attack_resources_in[attack_in_turn_index_finished].gives_block
 		#sets the block to upcoming attacks block unless its set to ignore
 	
-	
+#this decides the enemys upcoming attacks
+#updates on turn reset
 func _update_upcoming_attack():
-	get_parent().attack_resources_in.resize(10)
-	#if player choosing attacks turn decide the attack for next turn
+	get_parent().attack_resources_in.resize(10) 
+	# sets the attacks in size to a whole bunch then fills it all in with the upcoming attacks
+	# even more than will be used
+	
 	for i in get_parent().attack_resources_in.size():
 		if %Ailments_parent._attack_decision().size()-1 >= i && %Ailments_parent._attack_decision().is_empty() == false:
 			get_parent().attack_resources_in[i] = %Ailments_parent._attack_decision()[i]
+			#this checks if the current attack is supposed to be a forced attack from a current ailment
 		else:
 			get_parent().attack_resources_in[i] = _return_enemy_attack_choice()
 			
 	BattleAutoload.attack_resources_in_size_update("Enemy")
+	#now that the for loop is over and its all full of way to many attacks
+	#it trims it down to the actuall size
 
-# Returns which attack_parent the enemy will use this turn
+# Returns which attack_parent the enemy could use this turn
 func _return_enemy_attack_choice() -> attack_parent:
 	for i in get_child_count():
 		var returned_attack :attack_parent = get_child(i)._attack_verdict()

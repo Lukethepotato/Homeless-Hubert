@@ -40,17 +40,22 @@ extends Node
 func manually_change_player_attack(attack_change: attack_parent, allow_drag: bool, attack_index: int, allow_reset: bool):
 	GlobalsAutoload.timeout(.1);
 	await GlobalsAutoload.timer.timeout;
-	#the timer to make sure it happens after the spots are reset
+	#the timer to make sure it happens after the spots are deleted then reinstainted
 	
 	var attack_spot_node: Control = PlayerAutoload.attack_spots_parent.get_child(attack_index)
 	
+	#this just changes the attack spots values and textures
 	attack_spot_node.current_texture = attack_change.icon_texture
 	attack_spot_node.attack_resource_holding = attack_change
 	attack_spot_node.reset_allowed = allow_reset
-	#this gets the texture rect
+	
+	# attack_spot_node.get_child(2) gets the texture rect
 	attack_spot_node.get_child(2).texture = attack_change.icon_texture
 	attack_spot_node.get_child(2).attack_resource = attack_change
 	attack_spot_node.get_child(2).draggable_UI = allow_drag
+	
+	#and we dont need to actually update the attack resource in because in the "attack in spot dector" script
+	#it sets the playerautoload.attack_resource_in to the "attack_resource_holding" var which we already set
 	
 	print("change attack in spot to " + attack_change.animation_name)
 

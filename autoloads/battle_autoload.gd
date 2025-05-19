@@ -81,8 +81,9 @@ func convert_strs_to_attack_roles(user : String, target : String) -> Array:
 	return [perpetrator, victim]
 	
 	
+#plays all the non attack related animations on the enemy and player
+#called from the each users respective animation player
 func _non_attack_animations(anim_player_node: AnimationPlayer, ailments_parent: Node2D, user: String):
-	#plays all the non attack related animations on the enemy and player
 	
 	#its called from each of their respective animation players
 	
@@ -108,13 +109,15 @@ func _non_attack_animations(anim_player_node: AnimationPlayer, ailments_parent: 
 			
 	
 #instantiates new attack spots as child of parent chosen and resizes the attack resource size to the attacks per turn value
+#called from the player and enemy attack spots parent in the battle overlay on turn reset
 func setting_attack_spots(attack_spot_node: PackedScene, parent: Control, user: String, orgin_pos: Vector2, pos_offset: Vector2):
 	var user_data = BattleAutoload.convert_strs_to_attack_roles(user, user)[0]
-	attack_resources_in_size_update(user)
+	
+	attack_resources_in_size_update(user) #updates size of resources in
 	var attacks_per_turn: int = user_data.attack_resources_in.size()
 	
 	
-	
+	#this whole section just deletes all the users attack spots then adds the new amount
 	if parent.get_child_count() != attacks_per_turn:
 		if parent.get_child_count() > 0:
 			for i in parent.get_child_count():
@@ -128,7 +131,7 @@ func setting_attack_spots(attack_spot_node: PackedScene, parent: Control, user: 
 			new_attack_spot.position += (pos_offset) * i
 		
 #this updates the size of the users attack_resources_in size to its intended amount
-#all things substantaly that change the size should be here
+#all things that substantially change the size should be here
 func attack_resources_in_size_update(user: String):
 	var user_data = BattleAutoload.convert_strs_to_attack_roles(user, user)[0]
 	var resize_to: int = user_data.attacks_per_turn
