@@ -1,13 +1,13 @@
 [gd_scene load_steps=6 format=3 uid="uid://dr3l6ybshccr7"]
 
-[ext_resource type="Texture2D" uid="uid://elvflalqk6l3" path="res://art/temp_assets/IMG_9613.jpeg" id="1_mkh2l"]
-[ext_resource type="Script" path="res://menu_scene.gd" id="1_wft0e"]
+[ext_resource type="Script" path="res://main_menu.gd" id="1_us0d8"]
+[ext_resource type="Texture2D" uid="uid://elvflalqk6l3" path="res://art/temp_assets/IMG_9613.jpeg" id="2_5l7ef"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_djmvq"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_mkh2l")
+"texture": ExtResource("2_5l7ef")
 }],
 "loop": true,
 "name": &"default",
@@ -30,8 +30,8 @@ corner_radius_bottom_right = 30
 corner_radius_bottom_left = 30
 corner_detail = 1
 
-[node name="menu_scene" type="Node2D"]
-script = ExtResource("1_wft0e")
+[node name="main_menu" type="Node2D"]
+script = ExtResource("1_us0d8")
 
 [node name="hubert_start_animation" type="AnimatedSprite2D" parent="."]
 position = Vector2(307, 400)
