@@ -40,10 +40,11 @@ extends Node
 func manually_change_player_attack(attack_change: attack_parent, allow_drag: bool, attack_index: int, allow_reset: bool):
 	GlobalsAutoload.timeout(.1);
 	await GlobalsAutoload.timer.timeout;
+	#the timer to make sure it happens after the spots are reset
 	
 	var attack_spot_node: Control = PlayerAutoload.attack_spots_parent.get_child(attack_index)
 	
-	
+	attack_spot_node.current_texture = attack_change.icon_texture
 	attack_spot_node.attack_resource_holding = attack_change
 	attack_spot_node.reset_allowed = allow_reset
 	#this gets the texture rect
@@ -51,7 +52,6 @@ func manually_change_player_attack(attack_change: attack_parent, allow_drag: boo
 	attack_spot_node.get_child(2).attack_resource = attack_change
 	attack_spot_node.get_child(2).draggable_UI = allow_drag
 	
-	PlayerAutoload.attack_resources_in[attack_index] = attack_change
 	print("change attack in spot to " + attack_change.animation_name)
 
 

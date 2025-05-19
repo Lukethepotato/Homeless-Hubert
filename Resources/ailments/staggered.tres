@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("1_iupam")
 turn_amount = 2
-lock_block = 3
+lock_block = 0
 force_attack = ExtResource("1_8qk4a")
 damage_take_per_turn = 0
 animation_name = "staggered"
