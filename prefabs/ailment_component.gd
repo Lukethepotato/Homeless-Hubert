@@ -6,7 +6,7 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	GlobalsAutoload.turn_changed.connect(_turn_change)
+	GlobalsAutoload.current_turn_reset.connect(_turn_reset)
 	target_data = BattleAutoload.convert_strs_to_attack_roles(target, target)
 	target_data = target_data[0]
 	
@@ -18,9 +18,15 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 	
-func _turn_change():
-	pass
-#	_player_attack_force()
+func _turn_reset():
+	if target == "Player":
+		_player_attack_forcing()
+	
+func _player_attack_forcing():
+	for i in PlayerAutoload.attack_resources_in.size():
+		if _attack_decision().size()-1 >= i && _attack_decision().is_empty() == false:
+			PlayerAutoload.manually_change_player_attack(_attack_decision()[i], false, i, false)
+#	_player_attack_force()%Ailments_parent._attack_decision().size()-1 >= i && %Ailments_parent._attack_decision().is_empty() == false:
 	
 
 #func _player_attack_force():

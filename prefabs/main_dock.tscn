@@ -575,6 +575,7 @@ script = ExtResource("5_ts60k")
 
 [node name="Ailments_parent" parent="Hubert" instance=ExtResource("6_c1jcg")]
 unique_name_in_owner = true
+process_priority = 5
 ailment_component_prefab = ExtResource("7_07ds8")
 target = "Player"
 

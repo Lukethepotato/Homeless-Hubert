@@ -114,6 +114,7 @@ func setting_attack_spots(attack_spot_node: PackedScene, parent: Control, user: 
 	var attacks_per_turn: int = user_data.attack_resources_in.size()
 	
 	
+	
 	if parent.get_child_count() != attacks_per_turn:
 		if parent.get_child_count() > 0:
 			for i in parent.get_child_count():

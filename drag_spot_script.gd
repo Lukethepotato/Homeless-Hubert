@@ -8,7 +8,6 @@ static var dropped := false
 @export var drag_preview: PackedScene
 @export var draggable_UI: bool = true
 @export var attack_resource: attack_parent
-@export var locked: bool = false
 var mouse_hovering := false;
 
 func _ready() -> void:
@@ -48,7 +47,7 @@ func _get_drag_data(at_position):
 # This function returns whether or not this spot is available to have data dropped onto it.
 func _can_drop_data(_pos, data) -> bool:
 	#print("the object drop data is call from is " + name)
-	if texture == null && locked == false:
+	if texture == null:
 		return true
 	else:
 		return false
@@ -67,11 +66,10 @@ func _drop_data(_pos, data):
 
 # This function resets the spot to its original texture.
 func _reset():
-	if locked == false:
-		if dropped == false:
-			texture = original_texture
-		else:
-			dropped = false
+	if dropped == false:
+		texture = original_texture
+	else:
+		dropped = false
 
 # Detects when the mouse enters the TextureRect and displays the associated information when proper
 func _on_mouse_entered() -> void:
