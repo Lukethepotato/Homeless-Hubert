@@ -44,8 +44,8 @@ func _update_upcoming_attack():
 	get_parent().attack_resources_in.resize(10)
 	#if player choosing attacks turn decide the attack for next turn
 	for i in get_parent().attack_resources_in.size():
-		if %Ailments_parent._attack_decision() != "" && i == 0:
-			get_parent().attack_resources_in[i] = %Ailments_parent._attack_decision()
+		if %Ailments_parent._attack_decision().size()-1 >= i && %Ailments_parent._attack_decision().is_empty() == false:
+			get_parent().attack_resources_in[i] = %Ailments_parent._attack_decision()[i]
 		else:
 			get_parent().attack_resources_in[i] = _return_enemy_attack_choice()
 			

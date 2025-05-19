@@ -1,17 +1,20 @@
-[gd_resource type="Resource" script_class="attack_parent" load_steps=2 format=3 uid="uid://danxe3m702fb6"]
+[gd_resource type="Resource" script_class="attack_parent" load_steps=3 format=3 uid="uid://danxe3m702fb6"]
 
-[ext_resource type="Script" path="res://Resources/attack_parent.gd" id="1_no5qn"]
+[ext_resource type="Script" path="res://Resources/attack_parent.gd" id="1_12wf1"]
+[ext_resource type="Texture2D" uid="uid://cn2ttlk6ngbmp" path="res://art/temp_assets/none_attackl1.png" id="1_ucbxp"]
 
 [resource]
-script = ExtResource("1_no5qn")
+script = ExtResource("1_12wf1")
+icon_texture = ExtResource("1_ucbxp")
 base_damage = 0
 priority = 0
 stance_disruption_mod = 1.0
 name = "Skip_attack"
 name_color = Color(1, 1, 1, 1)
 description = ""
-animation_name = ""
+animation_name = "none"
 hit_region = 0
 gives_block = 0
+enables_rush = false
 victim_speed_subtract = 0
 victim_defense_subtract = 0

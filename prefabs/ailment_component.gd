@@ -6,6 +6,7 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	GlobalsAutoload.current_turn_reset.connect(_turn_reset)
 	target_data = BattleAutoload.convert_strs_to_attack_roles(target, target)
 	target_data = target_data[0]
 	
@@ -17,16 +18,32 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 	
+func _turn_reset():
+	if target == "Player":
+		_player_attack_forcing()
+	
+func _player_attack_forcing():
+	for i in PlayerAutoload.attack_resources_in.size():
+		if _attack_decision().size()-1 >= i && _attack_decision().is_empty() == false:
+			PlayerAutoload.manually_change_player_attack(_attack_decision()[i], false, i, false)
+#	_player_attack_force()%Ailments_parent._attack_decision().size()-1 >= i && %Ailments_parent._attack_decision().is_empty() == false:
+	
+
+#func _player_attack_force():
+	#if _attack_decision() != null && target == "player":
+	#	target_data.attack_spots_parent.get_child(0).change_attack_in_spot(_attack_decision(), true)
+	
 # returns the attack name for the most recents ailments force attack var (if there is none return "")
-func _attack_decision() -> String:
-	var current_attack_winner: String = ""
-	if get_child(0)!= null:
-		for i in get_child_count():
+func _attack_decision() -> Array[attack_parent]:
+	var all_forced_attacks: Array[attack_parent]
+	
+	for i in get_child_count():
 			
-			if get_child(i).current_ailment.force_attack != "":
-				current_attack_winner = get_child(i).current_ailment.force_attack
+		if get_child(i).current_ailment.force_attack != null && get_child(i).turns_left > 0:
+			all_forced_attacks.append(get_child(i).current_ailment.force_attack)
+			
 		
-	return current_attack_winner
+	return all_forced_attacks
 			
 
 func _animtion_decision() -> String:
@@ -55,20 +72,18 @@ func _animtion_decision() -> String:
 				#ailment_competitor = current_ailment_anim
 
 func _can_change_block() -> bool:
-	if get_child(0) != null:
-		for i in get_child_count():
-			if get_child(i).current_ailment.lock_block != GlobalsAutoload.location_types.IGNORE:
-				return false
+	for i in get_child_count():
+		if get_child(i).current_ailment.lock_block != GlobalsAutoload.location_types.IGNORE:
+			return false
 	return true
 	
 # returns the amount of the most recent ailment with a "attacks_per_turn_set" value higher than 0
 func _attacks_per_turn_possible() -> int:
 	var amount: int = 0
-	if get_child(0)!= null:
-		for i in get_child_count():
+	for i in get_child_count():
 			
-			if get_child(i).current_ailment.attacks_per_turn_set > 0 && get_child(i).turns_left > 0:
-				amount = get_child(i).current_ailment.attacks_per_turn_set 
+		if get_child(i).current_ailment.attacks_per_turn_set > 0 && get_child(i).turns_left > 0:
+			amount = get_child(i).current_ailment.attacks_per_turn_set 
 		
 	return amount
 

@@ -101,14 +101,10 @@ func _non_attack_animations(anim_player_node: AnimationPlayer, ailments_parent: 
 		if anim_player_node.is_playing() == false && unoverridables.has(last_attack_name) == false || overridables.has(anim_player_node.current_animation):
 			if ailments_parent._animtion_decision() != "":
 				anim_player_node.play(ailments_parent._animtion_decision())
-				
-				print("animtion non attack play staggered " )
 			
 			# there would also be the little attacked animations here
 			else:
 				anim_player_node.play("idle")
-				
-				print("animtion non attack play idle" )
 			
 	
 #instantiates new attack spots as child of parent chosen and resizes the attack resource size to the attacks per turn value
@@ -116,6 +112,7 @@ func setting_attack_spots(attack_spot_node: PackedScene, parent: Control, user: 
 	var user_data = BattleAutoload.convert_strs_to_attack_roles(user, user)[0]
 	attack_resources_in_size_update(user)
 	var attacks_per_turn: int = user_data.attack_resources_in.size()
+	
 	
 	
 	if parent.get_child_count() != attacks_per_turn:
@@ -200,10 +197,12 @@ func apply_attack_effects(attack_name: String, user: String, target: String) -> 
 	# You should use the switch statement for unique effects like ailments rather than just a variable every attack has
 	match attack_name:
 		"hubert_basic_low":
-			pass
+			roles[0].ailment_component_node._instantiate_ailment(load("res://Resources/ailments/staggered.tres"))
 		"hubert_basic_shove","hubert_basic_sweep":
 			pass
 		"enemy_attack":
 			pass
+			
+			
 			#roles[1].ailment_component_node._instantiate_ailment(last_attack.ailment_give)
 			#Example of how enemys attack work

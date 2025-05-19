@@ -1,10 +1,10 @@
 [gd_scene load_steps=5 format=3 uid="uid://dmcs2y0srdycl"]
 
 [ext_resource type="Script" path="res://prefabs/ailment.gd" id="1_hmbe7"]
-[ext_resource type="Script" path="res://Resources/enemy_attack_resource.gd" id="2_irsq0"]
+[ext_resource type="Script" path="res://Resources/attack_parent.gd" id="2_wqy01"]
 [ext_resource type="Resource" uid="uid://bh16ayv08j586" path="res://Resources/Attacks/Enemy/low_block.tres" id="3_mh8ku"]
 [ext_resource type="Resource" uid="uid://dclukfn5jb5fe" path="res://Resources/Attacks/Enemy/high_block.tres" id="4_2hhmt"]
 
 [node name="Ailment" type="Node2D"]
 script = ExtResource("1_hmbe7")
-enemy_blocks = Array[ExtResource("2_irsq0")]([ExtResource("3_mh8ku"), ExtResource("4_2hhmt")])
+enemy_blocks = Array[ExtResource("2_wqy01")]([ExtResource("3_mh8ku"), ExtResource("4_2hhmt")])

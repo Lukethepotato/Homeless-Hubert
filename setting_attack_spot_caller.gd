@@ -8,6 +8,10 @@ extends Control
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	call_setting_attack_spots()
+	var user_data = BattleAutoload.convert_strs_to_attack_roles(user, user)[0]
+	
+	user_data.attack_spots_parent = self
+	
 	GlobalsAutoload.current_turn_reset.connect(call_setting_attack_spots); # Replace with function body.
 
 

@@ -7,9 +7,14 @@ var attack_in_turn_index_finished: int = 0
 @export var attack_history_with_chosen_attacks: Array[attack_parent]
 @export var is_forward: bool = false
 
+
 func _ready():
 	GlobalsAutoload.turn_changed.connect(_play_attack)
+	GlobalsAutoload.current_turn_reset.connect(_turn_rest)
 	
+func _turn_rest():
+	pass
+
 func _process(delta: float):
 	BattleAutoload._non_attack_animations(self, %Ailments_parent, "player")
 

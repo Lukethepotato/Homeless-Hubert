@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://cjnea8maf3y5l"]
+[gd_scene load_steps=33 format=3 uid="uid://cjnea8maf3y5l"]
 
 [ext_resource type="PackedScene" uid="uid://co6wwlpta51be" path="res://prefabs/Hubert.tscn" id="1_n63l7"]
 [ext_resource type="Script" path="res://prefabs/main_dock_script.gd" id="1_wjf3g"]
@@ -486,6 +486,39 @@ tracks/1/keys = {
 "values": [&"Idle"]
 }
 
+[sub_resource type="Animation" id="Animation_fn40m"]
+resource_name = "none"
+
+[sub_resource type="Animation" id="Animation_locwn"]
+resource_name = "staggered"
+length = 0.196
+loop_mode = 1
+step = 0.0666667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Hubert/Hubert_Sprites:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.133333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hubert/Hubert_Sprites:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"staggered"]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_b23nh"]
 _data = {
 "RESET": SubResource("Animation_vog60"),
@@ -500,7 +533,9 @@ _data = {
 "hubert_low_block": SubResource("Animation_dym15"),
 "hubert_rush_back": SubResource("Animation_v167h"),
 "hubert_rush_forward": SubResource("Animation_qlxsy"),
-"idle": SubResource("Animation_ku6bo")
+"idle": SubResource("Animation_ku6bo"),
+"none": SubResource("Animation_fn40m"),
+"staggered": SubResource("Animation_locwn")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vft4o"]
@@ -530,12 +565,17 @@ script = ExtResource("3_nsanw")
 position = Vector2(147, 318)
 scale = Vector2(2.81022, 2.81022)
 
+[node name="Hubert_Sprites" parent="Hubert" index="0"]
+animation = &"Idle"
+frame_progress = 0.0
+
 [node name="main_camera" type="Camera2D" parent="Hubert"]
 unique_name_in_owner = true
 script = ExtResource("5_ts60k")
 
 [node name="Ailments_parent" parent="Hubert" instance=ExtResource("6_c1jcg")]
 unique_name_in_owner = true
+process_priority = 5
 ailment_component_prefab = ExtResource("7_07ds8")
 target = "Player"
 

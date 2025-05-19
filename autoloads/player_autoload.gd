@@ -31,9 +31,28 @@ extends Node
 @export var current_block := GlobalsAutoload.location_types.NONE
 #the idea is that every attack you do will determine a block state that hubert will do
 #and the curent state huberts in is just stored here
+@export var attack_spots_parent :Control
 @export var ailment_component_node: Node2D
-@export var attacks_per_turn: int = 2
+@export var attacks_per_turn: int = 2 #this is not a value to change its just the value that the attack resources in size defaults to
 
+
+#use this to change one of the players attacks chosen in code
+func manually_change_player_attack(attack_change: attack_parent, allow_drag: bool, attack_index: int, allow_reset: bool):
+	GlobalsAutoload.timeout(.1);
+	await GlobalsAutoload.timer.timeout;
+	#the timer to make sure it happens after the spots are reset
+	
+	var attack_spot_node: Control = PlayerAutoload.attack_spots_parent.get_child(attack_index)
+	
+	attack_spot_node.current_texture = attack_change.icon_texture
+	attack_spot_node.attack_resource_holding = attack_change
+	attack_spot_node.reset_allowed = allow_reset
+	#this gets the texture rect
+	attack_spot_node.get_child(2).texture = attack_change.icon_texture
+	attack_spot_node.get_child(2).attack_resource = attack_change
+	attack_spot_node.get_child(2).draggable_UI = allow_drag
+	
+	print("change attack in spot to " + attack_change.animation_name)
 
 
 #func _ready() -> void:

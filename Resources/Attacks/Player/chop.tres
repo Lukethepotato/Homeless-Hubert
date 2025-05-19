@@ -5,7 +5,6 @@
 
 [resource]
 script = ExtResource("1_p7trt")
-enables_rush = true
 icon_texture = ExtResource("1_38o7c")
 base_damage = 0
 priority = 5
@@ -16,5 +15,6 @@ description = "Speedy attack. Attack hits high, deals bad damage, and has little
 animation_name = "hubert_basic_chop"
 hit_region = 2
 gives_block = 0
+enables_rush = true
 victim_speed_subtract = 2
 victim_defense_subtract = 0

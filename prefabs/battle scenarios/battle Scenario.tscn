@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://b1h2w6ctilpdy"]
+[gd_scene load_steps=30 format=3 uid="uid://b1h2w6ctilpdy"]
 
 [ext_resource type="Script" path="res://prefabs/battle scenarios/battle_scenario_anim_player.gd" id="1_82kc4"]
 [ext_resource type="Texture2D" uid="uid://7j27av2hvwmc" path="res://art/temp_assets/Goblin_Idle.png" id="1_myu5w"]
@@ -205,6 +205,9 @@ tracks/1/keys = {
 "values": [3, 1, 2, 3]
 }
 
+[sub_resource type="Animation" id="Animation_c8hus"]
+resource_name = "none"
+
 [sub_resource type="Animation" id="Animation_fot5b"]
 resource_name = "staggered"
 length = 0.333342
@@ -242,6 +245,7 @@ _data = {
 "enemy_high_block": SubResource("Animation_sjc6m"),
 "enemy_low_block": SubResource("Animation_42vyt"),
 "idle": SubResource("Animation_vx7bh"),
+"none": SubResource("Animation_c8hus"),
 "staggered": SubResource("Animation_fot5b")
 }
 

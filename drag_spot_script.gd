@@ -21,6 +21,8 @@ func _process(delta: float) -> void:
 	if mouse_hovering:
 		$"../attack_description".global_position = get_global_mouse_position() - Vector2(0, $"../attack_description".size.y);
 
+
+
 # This function gets and returns the data of this spot. It packages a texture, node, preview texture, and attack resource into a dictionary named "data".
 func _get_drag_data(at_position):
 	if dropped == false && draggable_UI:
