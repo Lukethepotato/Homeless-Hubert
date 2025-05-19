@@ -8,7 +8,7 @@ class_name ailment
 @export var animation_name: String #if not set to anything the characters animation wont change
 @export var ailment_icon: Texture2D
 @export var animation_priority: int #if this ailment has a animation this defines the likelyness that it will be played over other ailments animations
-@export var attacks_per_turn_set: int
+@export var attacks_per_turn_set: int # set les than 0 to make ignore
 
 #wanna have somthing like an overlay or someway to change the shader
 #but dont know how to make

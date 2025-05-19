@@ -15,5 +15,6 @@ description = ""
 animation_name = "none"
 hit_region = 0
 gives_block = 0
+enables_rush = false
 victim_speed_subtract = 0
 victim_defense_subtract = 0

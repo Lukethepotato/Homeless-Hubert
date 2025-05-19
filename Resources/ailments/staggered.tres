@@ -11,4 +11,4 @@ force_attack = ExtResource("1_8qk4a")
 damage_take_per_turn = 0
 animation_name = "staggered"
 animation_priority = 5
-attacks_per_turn_set = 1
+attacks_per_turn_set = 3
