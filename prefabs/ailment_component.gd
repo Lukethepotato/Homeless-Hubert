@@ -19,20 +19,15 @@ func _process(delta: float) -> void:
 	pass
 	
 func _turn_reset():
-	if target == "Player":
+	if target == "Player": 
 		_player_attack_forcing()
+		#since the player and enemy chooses attacks diffrently the player attack force is updated here
 	
 func _player_attack_forcing():
 	for i in PlayerAutoload.attack_resources_in.size():
 		if _attack_decision().size()-1 >= i && _attack_decision().is_empty() == false:
 			PlayerAutoload.manually_change_player_attack(_attack_decision()[i], false, i, false)
-#	_player_attack_force()%Ailments_parent._attack_decision().size()-1 >= i && %Ailments_parent._attack_decision().is_empty() == false:
-	
 
-#func _player_attack_force():
-	#if _attack_decision() != null && target == "player":
-	#	target_data.attack_spots_parent.get_child(0).change_attack_in_spot(_attack_decision(), true)
-	
 # returns the attack name for the most recents ailments force attack var (if there is none return "")
 func _attack_decision() -> Array[attack_parent]:
 	var all_forced_attacks: Array[attack_parent]
@@ -44,8 +39,10 @@ func _attack_decision() -> Array[attack_parent]:
 			
 		
 	return all_forced_attacks
+	#this is called in the enemy_attack_manager script and for the enemy and here for the player
 			
 
+#returns the animation name of the ailment with the highest animation priorty stat
 func _animtion_decision() -> String:
 	var current_ailment_winner: Node2D = null
 	for i in get_child_count():
@@ -86,7 +83,7 @@ func _attacks_per_turn_possible() -> int:
 			amount = get_child(i).current_ailment.attacks_per_turn_set 
 		
 	return amount
-
+	#this is used in the battle autoload in the function "attack_resource_in_size_update()"
 	
 
 func _instantiate_ailment(ailment_chosen: ailment):
