@@ -7,7 +7,7 @@ extends Node2D
 # What the fuck does this mean Luke? You need to explain this verbally.
 
 #im sowwy
-##────────█████─────────────█████
+##───────█████─────────────█████
 #────████████████───────████████████
 #──████▓▓▓▓▓▓▓▓▓▓██───███▓▓▓▓▓▓▓▓▓████
 #─███▓▓▓▓▓▓▓▓▓▓▓▓▓██─██▓▓▓▓▓▓▓▓▓▓▓▓▓███
@@ -87,5 +87,7 @@ extends Node2D
 #original dreamer. DO NOT GO TO DREAM LAYER 6. Or else you will meet with a dastardly creature known as Old Man Dookenquences...
 
 # हेलो मैं तुम्हें शौचालय में चोदने वाला हूँ
+
+# ꯋꯥꯎ. ꯃꯗꯨ ꯑꯁꯨꯛ ꯌꯥꯝꯅꯥ ꯆꯨꯃꯗ꯭ꯔꯤꯡꯅꯥ ꯆꯠꯂꯤ꯫ ꯑꯩꯍꯥꯛꯅꯥ ꯑꯩꯆ.ꯑꯥꯔ.ꯗꯥ ꯐꯣꯟ ꯇꯧꯕꯥ ꯇꯥꯕꯅꯤ꯫
 
 #I CANT STOP LOOKING AT IT! ITS JIGGLING! JEREMY ITS JIGGLING
