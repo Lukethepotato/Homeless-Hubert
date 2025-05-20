@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://main_menu.gd" id="1_wbvye"]
 [ext_resource type="Texture2D" uid="uid://elvflalqk6l3" path="res://art/temp_assets/IMG_9613.jpeg" id="2_5l7ef"]
-[ext_resource type="Script" path="res://options.gd" id="3_cmlxy"]
+[ext_resource type="Script" path="res://main_menu_options.gd" id="3_cmlxy"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_djmvq"]
 animations = [{
@@ -114,7 +114,6 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_muixq")
 text = "EXIT"
 
 [node name="Options" type="Node2D" parent="."]
-visible = false
 script = ExtResource("3_cmlxy")
 
 [node name="Background" type="Panel" parent="Options"]
@@ -134,6 +133,24 @@ offset_left = 56.0
 offset_top = 258.0
 offset_right = 306.0
 offset_bottom = 280.0
+
+[node name="music_volume_label_control" type="Control" parent="Options"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -17.0
+offset_top = 291.0
+offset_right = 365.0
+offset_bottom = 360.0
+
+[node name="music_volume_label" type="Label" parent="Options/music_volume_label_control"]
+layout_mode = 1
+offset_right = 362.0
+offset_bottom = 69.0
+theme_override_font_sizes/font_size = 30
+text = "Music Volume"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
 
 [node name="volume_label_control" type="Control" parent="Options"]
 layout_mode = 3
@@ -167,24 +184,6 @@ offset_right = 362.0
 offset_bottom = 69.0
 theme_override_font_sizes/font_size = 30
 text = "Master Volume"
-horizontal_alignment = 1
-vertical_alignment = 1
-uppercase = true
-
-[node name="music_volume_label_control" type="Control" parent="Options"]
-layout_mode = 3
-anchors_preset = 0
-offset_left = -17.0
-offset_top = 291.0
-offset_right = 365.0
-offset_bottom = 360.0
-
-[node name="music_volume_label" type="Label" parent="Options/music_volume_label_control"]
-layout_mode = 1
-offset_right = 362.0
-offset_bottom = 69.0
-theme_override_font_sizes/font_size = 30
-text = "Music Volume"
 horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
