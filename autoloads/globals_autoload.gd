@@ -29,6 +29,7 @@ enum game_states {
 var state = game_states.ROAMING;
 
 var loading_overlay_path = load("res://loading_overlay.tscn");
+var pause_menu_path = load("res://pause_menu.tscn");
 signal overlay_done;
 signal end_load
 
@@ -115,7 +116,12 @@ func convert_to_elavation(input: location_types) -> location_types:
 
 func begin_load():
 	var loading_overlay = loading_overlay_path.instantiate();
-	get_tree().get_root().add_child(loading_overlay)
+	get_tree().get_root().add_child(loading_overlay);
+
+func pause():
+	var pause_menu = pause_menu_path.instantiate();
+	get_tree().get_root().add_child(pause_menu);
+	state = game_states.PAUSED;
 
 # Creates a timer with a duration equal to the duration parameter
 func timeout(duration := 2.0) -> void:

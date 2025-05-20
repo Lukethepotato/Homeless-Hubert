@@ -7,6 +7,10 @@ extends Node2D
 func _ready() -> void:
 	GlobalsAutoload.end_load.emit()
 
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("ESCAPE") and GlobalsAutoload.state == GlobalsAutoload.game_states.ROAMING:
+		GlobalsAutoload.pause()
+
 func _on_fishing_spot_body_entered(body: Node2D) -> void:
 	if body.name == "Hubert":
 		GlobalsAutoload.start_battle(battle_scenarios);
