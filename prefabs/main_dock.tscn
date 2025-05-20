@@ -618,6 +618,8 @@ offset_right = 1332.0
 offset_bottom = 714.0
 mouse_filter = 2
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
 [connection signal="animation_changed" from="AnimPlayer" to="AnimPlayer" method="_on_animation_changed"]
 [connection signal="animation_finished" from="AnimPlayer" to="AnimPlayer" method="_on_animation_finished"]
 [connection signal="body_entered" from="Fishing spot" to="." method="_on_fishing_spot_body_entered"]
