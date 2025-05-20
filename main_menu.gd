@@ -4,6 +4,7 @@ extends Node2D
 
 func _ready() -> void:
 	set_menu()
+	GlobalsAutoload.end_load.emit()
 
 func set_menu() -> void:
 	$Panel.position = Vector2(627,17)
