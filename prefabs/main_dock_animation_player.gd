@@ -9,6 +9,7 @@ var attack_in_turn_index_finished: int = 0
 
 
 func _ready():
+	PlayerAutoload.animation_player = self
 	GlobalsAutoload.turn_changed.connect(_play_attack)
 	GlobalsAutoload.current_turn_reset.connect(_turn_rest)
 	

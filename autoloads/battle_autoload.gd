@@ -205,6 +205,8 @@ func apply_attack_effects(attack_name: String, user: String, target: String) -> 
 			pass
 		"enemy_attack":
 			pass
+		
+		
 			
 			
 			#roles[1].ailment_component_node._instantiate_ailment(last_attack.ailment_give)

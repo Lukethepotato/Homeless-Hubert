@@ -26,7 +26,7 @@ func _turn_change():
 		
 func _can_change_block() -> bool:
 	if current_ailment != null:
-		if current_ailment.lock_block != GlobalsAutoload.location_types.IGNORE:
+		if current_ailment.lock_block == false:
 			return false
 	
 	return true
@@ -46,3 +46,5 @@ func _begin_ailment(ailment_chosen: ailment):
 	print_rich("[color=cornflower_blue][shake amp=50.0 freq=5.0][wave amp=50.0 freq=5.0][font_size=50]ailement begin");
 	current_ailment = ailment_chosen
 	turns_left = ailment_chosen.turn_amount
+	if current_ailment.force_immediate_attack != null:
+		target_data.animation_player.play(current_ailment.force_immediate_attack.animation_name)
