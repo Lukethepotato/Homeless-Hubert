@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="enemy_attack" load_steps=3 format=3 uid="uid://cb2fnsvve34aa"]
+
+[ext_resource type="Texture2D" uid="uid://dpjs7txthidhb" path="res://art/temp_assets/fish fall.png" id="1_7djm3"]
+[ext_resource type="Script" path="res://Resources/enemy_attack_resource.gd" id="2_4vcye"]
+
+[resource]
+script = ExtResource("2_4vcye")
+victim_speed_apply = 0
+icon_texture = ExtResource("1_7djm3")
+base_damage = 0
+priority = -2
+stance_disruption_mod = 1.0
+name = "immediate_high_block"
+name_color = Color(1, 1, 1, 1)
+description = "Activates a high block"
+animation_name = "enemy_high_block"
+hit_region = 0
+gives_block = 2
+enables_rush = true
+victim_speed_subtract = 0
+victim_defense_subtract = 0

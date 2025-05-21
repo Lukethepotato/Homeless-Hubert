@@ -21,13 +21,12 @@ func _turn_change():
 		queue_free()
 	elif current_ailment != null:
 		_damage_take_per_turn()
-		_update_block_lock()
 		turns_left -= 1;
 		
 		
 func _can_change_block() -> bool:
 	if current_ailment != null:
-		if current_ailment.lock_block != GlobalsAutoload.location_types.IGNORE:
+		if current_ailment.lock_block == false:
 			return false
 	
 	return true
@@ -37,16 +36,6 @@ func _damage_take_per_turn():
 	if current_ailment.damage_take_per_turn > 0:
 		damage_donor_node._damage_donation(get_parent().target,get_parent().target, current_ailment.damage_take_per_turn)
 		print_rich("[color=cornflower_blue][shake amp=50.0 freq=5.0][wave amp=50.0 freq=5.0][font_size=50]ailment damage");
-	
-func _update_block_lock():
-	if turns_left == current_ailment.turn_amount:
-		if get_parent().target == "Enemy":
-			if target_data.current_block != current_ailment.lock_block:
-				if current_ailment.lock_block == GlobalsAutoload.location_types.LOW:
-					target_data.attack_resources_in[0] = enemy_blocks[0]
-				
-				elif  current_ailment.lock_block == GlobalsAutoload.location_types.HIGH:
-					target_data.attack_resources_in[0] = enemy_blocks[1]
 		
 			#if the lock block is set to none then they will simply just not be able to move
 			
@@ -57,3 +46,5 @@ func _begin_ailment(ailment_chosen: ailment):
 	print_rich("[color=cornflower_blue][shake amp=50.0 freq=5.0][wave amp=50.0 freq=5.0][font_size=50]ailement begin");
 	current_ailment = ailment_chosen
 	turns_left = ailment_chosen.turn_amount
+	if current_ailment.force_immediate_attack != null:
+		target_data.animation_player.play(current_ailment.force_immediate_attack.animation_name)

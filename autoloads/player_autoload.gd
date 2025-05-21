@@ -33,6 +33,7 @@ extends Node
 #and the curent state huberts in is just stored here
 @export var attack_spots_parent :Control
 @export var ailment_component_node: Node2D
+@export var animation_player: AnimationPlayer #gets animation player (set in the animation player script)
 @export var attacks_per_turn: int = 2 #this is not a value to change its just the value that the attack resources in size defaults to
 
 

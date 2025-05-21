@@ -2,8 +2,9 @@ extends Resource
 class_name ailment
 
 @export var turn_amount: int = 2
-@export var lock_block: GlobalsAutoload.location_types #if ignore then not locked
+@export var lock_block: bool = false #if false then not locked
 @export var force_attack: attack_parent # will force the recipent to do this attack for the turn amount each turn unless its "" (note the animation name must be the same on both enemy and player)
+@export var force_immediate_attack: attack_parent #will force the recipent to do this attack the second they recieve the ailment (ignore if "")
 @export var damage_take_per_turn: int
 @export var animation_name: String #if not set to anything the characters animation wont change
 @export var ailment_icon: Texture2D

@@ -70,7 +70,7 @@ func _animtion_decision() -> String:
 
 func _can_change_block() -> bool:
 	for i in get_child_count():
-		if get_child(i).current_ailment.lock_block != GlobalsAutoload.location_types.IGNORE:
+		if get_child(i).current_ailment.lock_block == false:
 			return false
 	return true
 	
