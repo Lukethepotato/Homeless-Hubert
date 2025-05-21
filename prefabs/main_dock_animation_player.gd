@@ -47,7 +47,7 @@ func _play_attack():
 				
 			play(animation_to_play)
 			PlayerAutoload.attack_history.append(PlayerAutoload.attack_resources_in[attack_in_turn_index_finished])
-			update_block()
+			PlayerAutoload.current_block = PlayerAutoload.attack_resources_in[attack_in_turn_index_finished].gives_block
 			PlayerAutoload.current_combo = combo_checking()
 			attack_in_turn_index_finished += 1
 			await animation_finished
@@ -59,9 +59,6 @@ func _play_attack():
 		attack_in_turn_index_finished = 0
 		#once everything is all done and all the little varibles are happy and cozy the player rushes back
 
-#have this here to make enemy and player more simmailer 
-func update_block():
-	PlayerAutoload.current_block = PlayerAutoload.attack_resources_in[attack_in_turn_index_finished].gives_block
 		
 func rush(option: String):
 	if option == "forward":

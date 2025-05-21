@@ -79,30 +79,7 @@ func convert_strs_to_attack_roles(user : String, target : String) -> Array:
 		victim = GlobalsAutoload.enemy_node;
 	
 	return [perpetrator, victim]
-
-# since the player and enemy both manage their attacks in diffrent nodes this helps get them
-func convert_strs_to_attack_manager(user: String, target: String) -> Array:
-	var user_attack_man;
-	var target_attack_man;
 	
-	if (user.to_lower() == "player"):
-		user_attack_man= PlayerAutoload.animation_player;
-	else:
-		user_attack_man = GlobalsAutoload.enemy_node.enemy_attack_manager_node;
-	if (target.to_lower() == "player"):
-		target_attack_man = PlayerAutoload.animation_player;
-	else:
-		target_attack_man = GlobalsAutoload.enemy_node.enemy_attack_manager_node;
-	
-	return [user_attack_man, target_attack_man]
-	
-# play an attack manually (for if you wanted like a reaction attack to play for example)
-func _manual_play_attack(user: String, attack: attack_parent):
-	var user_data = BattleAutoload.convert_strs_to_attack_roles(user, user)[0]
-	var user_attack_man = BattleAutoload.convert_strs_to_attack_manager(user, user)[0]
-	
-	user_data.animation_player.play(attack.animation_name)
-	user_attack_man.update_block()
 	
 #plays all the non attack related animations on the enemy and player
 #called from the each users respective animation player
@@ -206,7 +183,6 @@ func apply_combo_effects(combo : player_combo) -> void:
 			
 			GlobalsAutoload.shake_camera.emit(20)
 	GlobalsAutoload.health_updated.emit();
-	
 				
 	
 func apply_attack_effects(attack_name: String, user: String, target: String) -> void:

@@ -39,7 +39,6 @@ extends Node2D
 @export var attack_spots_parent :Control
 @export var ailment_component_node: Node2D
 @export var animation_player: AnimationPlayer #gets animation player (set here)
-@export var enemy_attack_manager_node: Node2D #gets enemy_attack_manager (set here)
 
 #number must be from 0 to 10, higher means more likly high block. The lower means more likly low block
 func _init() -> void:
@@ -47,7 +46,6 @@ func _init() -> void:
 	attack_resources_in.resize(attacks_per_turn)
 
 func _ready() -> void:
-	enemy_attack_manager_node = $"Enemy attack manager"
 	animation_player = %AnimPlayer
 	attack_resources_in.resize(attacks_per_turn)
 	ailment_component_node = %Ailments_parent
