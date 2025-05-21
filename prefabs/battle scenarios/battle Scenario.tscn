@@ -368,26 +368,7 @@ script = ExtResource("1_82kc4")
 position = Vector2(860, 350)
 scale = Vector2(2.09681, 2.09681)
 script = ExtResource("2_cveda")
-fish_name = null
-name_color = null
-health = null
-max_health = null
-poise = null
-speed = null
 traits = Array[int]([0])
-strength = null
-defense = null
-agility = null
-luck = null
-evasion = null
-disruption_resist = null
-ailment_resist = null
-attack_resources_in = null
-current_block = null
-attack_history = null
-block_inclination = null
-goes_on_turn = null
-attacks_per_turn = null
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Enemy"]
 sprite_frames = SubResource("SpriteFrames_wf16b")

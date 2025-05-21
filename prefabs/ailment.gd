@@ -47,4 +47,4 @@ func _begin_ailment(ailment_chosen: ailment):
 	current_ailment = ailment_chosen
 	turns_left = ailment_chosen.turn_amount
 	if current_ailment.force_immediate_attack != null:
-		target_data.animation_player.play(current_ailment.force_immediate_attack.animation_name)
+		BattleAutoload._manual_play_attack(get_parent().target, current_ailment.force_immediate_attack)
