@@ -45,6 +45,9 @@ corner_detail = 1
 [node name="main_menu" type="Node2D"]
 script = ExtResource("1_wbvye")
 
+[node name="camera" type="Camera2D" parent="."]
+position = Vector2(576, 324)
+
 [node name="Initial" type="Node2D" parent="."]
 
 [node name="hubert_start_animation" type="AnimatedSprite2D" parent="Initial"]
@@ -52,24 +55,15 @@ position = Vector2(307, 400)
 scale = Vector2(0.736157, 0.736157)
 sprite_frames = SubResource("SpriteFrames_djmvq")
 
-[node name="Control" type="Control" parent="Initial"]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 583.0
-offset_bottom = 177.0
-
-[node name="game_name" type="Label" parent="Initial/Control"]
-layout_mode = 0
+[node name="game_name" type="RichTextLabel" parent="Initial"]
 offset_left = -1.0
 offset_top = 16.0
 offset_right = 622.0
 offset_bottom = 173.0
-theme_override_font_sizes/font_size = 55
-text = "HOMELESS HUBERT'S HAMBURGER HUNT"
-horizontal_alignment = 1
-autowrap_mode = 3
+bbcode_enabled = true
+text = "[font_size=55][center]homeless hubert's hamburger hunt"
 
-[node name="Panel" type="Panel" parent="Initial"]
+[node name="button_bg" type="Panel" parent="Initial"]
 offset_left = 627.0
 offset_top = 17.0
 offset_right = 1134.0
@@ -83,7 +77,7 @@ offset_right = 1112.0
 offset_bottom = 169.0
 theme_override_font_sizes/font_size = 50
 theme_override_styles/normal = SubResource("StyleBoxFlat_muixq")
-text = "START GAME"
+text = "start game"
 autowrap_mode = 3
 
 [node name="options_button" type="Button" parent="Initial"]
@@ -93,7 +87,7 @@ offset_right = 1113.0
 offset_bottom = 315.0
 theme_override_font_sizes/font_size = 50
 theme_override_styles/normal = SubResource("StyleBoxFlat_muixq")
-text = "OPTIONS"
+text = "options"
 
 [node name="credits_button" type="Button" parent="Initial"]
 offset_left = 651.0
@@ -102,7 +96,8 @@ offset_right = 1112.0
 offset_bottom = 459.0
 theme_override_font_sizes/font_size = 50
 theme_override_styles/normal = SubResource("StyleBoxFlat_muixq")
-text = "CREDITS"
+text = "credits
+"
 
 [node name="exit_button" type="Button" parent="Initial"]
 offset_left = 653.0
@@ -111,114 +106,140 @@ offset_right = 1114.0
 offset_bottom = 602.0
 theme_override_font_sizes/font_size = 50
 theme_override_styles/normal = SubResource("StyleBoxFlat_muixq")
-text = "EXIT"
+text = "exit
+"
 
 [node name="Options" type="Node2D" parent="."]
+position = Vector2(0, -648)
 script = ExtResource("3_cmlxy")
 
-[node name="Background" type="Panel" parent="Options"]
+[node name="bg2" type="Panel" parent="Options"]
+visible = false
 offset_right = 1152.0
 offset_bottom = 648.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_jgl5p")
 
-[node name="Panel" type="Panel" parent="Options"]
+[node name="bg" type="Panel" parent="Options"]
 offset_left = 26.0
 offset_top = 24.0
 offset_right = 1126.0
 offset_bottom = 624.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_wsfef")
 
-[node name="master_audio_bar" type="HScrollBar" parent="Options"]
-offset_left = 56.0
-offset_top = 258.0
-offset_right = 306.0
-offset_bottom = 280.0
+[node name="return" type="Button" parent="Options"]
+offset_left = 451.0
+offset_top = 550.0
+offset_right = 701.0
+offset_bottom = 610.0
+theme_override_font_sizes/font_size = 35
+text = "return
+"
 
-[node name="music_volume_label_control" type="Control" parent="Options"]
+[node name="volume_settings" type="Control" parent="Options"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="volume_settings_label" type="RichTextLabel" parent="Options/volume_settings"]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 110.0
+offset_right = 425.0
+offset_bottom = 180.0
+bbcode_enabled = true
+text = "[font_size=40]volume settings:"
+
+[node name="volume_sliders" type="Control" parent="Options/volume_settings"]
 layout_mode = 3
 anchors_preset = 0
 offset_left = -17.0
 offset_top = 291.0
-offset_right = 365.0
-offset_bottom = 360.0
+offset_right = 23.0
+offset_bottom = 331.0
 
-[node name="music_volume_label" type="Label" parent="Options/music_volume_label_control"]
+[node name="master_volume_label" type="RichTextLabel" parent="Options/volume_settings/volume_sliders"]
 layout_mode = 1
-offset_right = 362.0
-offset_bottom = 69.0
-theme_override_font_sizes/font_size = 30
-text = "Music Volume"
-horizontal_alignment = 1
-vertical_alignment = 1
-uppercase = true
+offset_left = 70.0
+offset_top = -120.0
+offset_right = 370.0
+offset_bottom = -50.0
+bbcode_enabled = true
+text = "[font_size=35]master volume"
 
-[node name="volume_label_control" type="Control" parent="Options"]
-layout_mode = 3
-anchors_preset = 0
-offset_left = 50.0
-offset_top = 124.0
-offset_right = 432.0
-offset_bottom = 193.0
+[node name="master_audio_bar" type="HScrollBar" parent="Options/volume_settings/volume_sliders"]
+layout_mode = 0
+offset_left = 70.0
+offset_top = -60.0
+offset_right = 395.0
+offset_bottom = -40.0
+min_value = 0.001
+max_value = 1.0
+value = 1.0
 
-[node name="volume_label" type="Label" parent="Options/volume_label_control"]
+[node name="music_volume_label" type="RichTextLabel" parent="Options/volume_settings/volume_sliders"]
 layout_mode = 1
-offset_right = 362.0
-offset_bottom = 69.0
-theme_override_font_sizes/font_size = 40
-text = "Volume Settings:"
-horizontal_alignment = 1
-vertical_alignment = 1
-uppercase = true
+offset_left = 70.0
+offset_top = -30.0
+offset_right = 370.0
+offset_bottom = 40.0
+bbcode_enabled = true
+text = "[font_size=35]music volume"
 
-[node name="master_volume_label_control2" type="Control" parent="Options"]
-layout_mode = 3
-anchors_preset = 0
-offset_left = -6.0
-offset_top = 190.0
-offset_right = 376.0
-offset_bottom = 259.0
+[node name="music_audio_bar" type="HScrollBar" parent="Options/volume_settings/volume_sliders"]
+layout_mode = 0
+offset_left = 70.0
+offset_top = 30.0
+offset_right = 395.0
+offset_bottom = 50.0
+min_value = 0.001
+max_value = 1.0
+value = 1.0
 
-[node name="master_volume_label" type="Label" parent="Options/master_volume_label_control2"]
+[node name="sfx_volume_label" type="RichTextLabel" parent="Options/volume_settings/volume_sliders"]
 layout_mode = 1
-offset_right = 362.0
-offset_bottom = 69.0
-theme_override_font_sizes/font_size = 30
-text = "Master Volume"
-horizontal_alignment = 1
-vertical_alignment = 1
-uppercase = true
+offset_left = 70.0
+offset_top = 60.0
+offset_right = 370.0
+offset_bottom = 130.0
+bbcode_enabled = true
+text = "[font_size=35]sfx volume"
 
-[node name="sfx_volume_label_control" type="Control" parent="Options"]
-layout_mode = 3
-anchors_preset = 0
-offset_left = -34.0
-offset_top = 396.0
-offset_right = 348.0
-offset_bottom = 465.0
+[node name="sfx_audio_bar" type="HScrollBar" parent="Options/volume_settings/volume_sliders"]
+layout_mode = 0
+offset_left = 70.0
+offset_top = 120.0
+offset_right = 395.0
+offset_bottom = 140.0
+min_value = 0.001
+max_value = 1.0
+value = 1.0
 
-[node name="sfx_volume_label" type="Label" parent="Options/sfx_volume_label_control"]
-layout_mode = 1
-offset_left = -9.0
-offset_top = -1.0
-offset_right = 364.0
-offset_bottom = 68.0
-theme_override_font_sizes/font_size = 30
-text = "SFX VOLUME"
-horizontal_alignment = 1
-vertical_alignment = 1
-uppercase = true
+[node name="voice_volume_label" type="RichTextLabel" parent="Options/volume_settings/volume_sliders"]
+layout_mode = 0
+offset_left = 70.0
+offset_top = 150.0
+offset_right = 370.0
+offset_bottom = 220.0
+bbcode_enabled = true
+text = "[font_size=35]voice volume"
 
-[node name="music_audio_bar" type="HScrollBar" parent="Options"]
-offset_left = 52.0
-offset_top = 361.0
-offset_right = 308.0
-offset_bottom = 381.0
+[node name="voice_audio_bar" type="HScrollBar" parent="Options/volume_settings/volume_sliders"]
+layout_mode = 0
+offset_left = 70.0
+offset_top = 210.0
+offset_right = 395.0
+offset_bottom = 230.0
+min_value = 0.001
+max_value = 1.0
+value = 1.0
 
-[node name="sfx_audio_bar" type="HScrollBar" parent="Options"]
-offset_left = 53.0
-offset_top = 455.0
-offset_right = 308.0
-offset_bottom = 476.0
+[node name="RichTextLabel" type="RichTextLabel" parent="Options"]
+offset_top = 25.0
+offset_right = 1152.0
+offset_bottom = 125.0
+bbcode_enabled = true
+text = "[center][font_size=55]settings"
 
 [node name="Credits" type="Node2D" parent="."]
 
@@ -226,6 +247,8 @@ offset_bottom = 476.0
 [connection signal="pressed" from="Initial/options_button" to="." method="_on_options_button_pressed"]
 [connection signal="pressed" from="Initial/credits_button" to="." method="_on_credits_button_pressed"]
 [connection signal="pressed" from="Initial/exit_button" to="." method="_on_exit_button_pressed"]
-[connection signal="value_changed" from="Options/master_audio_bar" to="Options" method="_on_master_audio_bar_value_changed"]
-[connection signal="value_changed" from="Options/music_audio_bar" to="Options" method="_on_music_audio_bar_value_changed"]
-[connection signal="value_changed" from="Options/sfx_audio_bar" to="Options" method="_on_sfx_audio_bar_value_changed"]
+[connection signal="pressed" from="Options/return" to="." method="_on_return_pressed"]
+[connection signal="value_changed" from="Options/volume_settings/volume_sliders/master_audio_bar" to="Options" method="_on_master_audio_bar_value_changed"]
+[connection signal="value_changed" from="Options/volume_settings/volume_sliders/music_audio_bar" to="Options" method="_on_music_audio_bar_value_changed"]
+[connection signal="value_changed" from="Options/volume_settings/volume_sliders/sfx_audio_bar" to="Options" method="_on_sfx_audio_bar_value_changed"]
+[connection signal="value_changed" from="Options/volume_settings/volume_sliders/voice_audio_bar" to="Options" method="_on_voice_audio_bar_value_changed"]
