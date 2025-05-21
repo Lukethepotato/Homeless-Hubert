@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://cknmpdmv3eqkh"]
+[gd_scene load_steps=45 format=3 uid="uid://cknmpdmv3eqkh"]
 
 [ext_resource type="Script" path="res://prefabs/battle_overlay_main.gd" id="1_gvbtk"]
 [ext_resource type="PackedScene" uid="uid://wc8076dp0nrg" path="res://prefabs/draggable_spot.tscn" id="1_m25ou"]
@@ -172,6 +172,19 @@ shader_parameter/scale = 5.618
 shader_parameter/repeats = 3.66
 shader_parameter/noise_texture = SubResource("NoiseTexture2D_vn61m")
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5b32u"]
+bg_color = Color(0.244776, 0.244776, 0.244776, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0, 0.490196, 1, 1)
+border_blend = true
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
 [node name="battle_overlay" type="CanvasLayer"]
 script = ExtResource("1_gvbtk")
 
@@ -219,7 +232,7 @@ layout_mode = 0
 offset_left = -40.0
 offset_top = -30.0
 offset_right = 1110.0
-offset_bottom = 110.0
+offset_bottom = 171.0
 color = Color(0.183333, 0.16, 0.2, 1)
 
 [node name="give_punch" parent="bottom_ui/attack_givers" instance=ExtResource("1_m25ou")]
@@ -539,6 +552,42 @@ offset_top = -20.0
 offset_right = 1192.0
 offset_bottom = 1132.0
 rotation = 1.5708
+
+[node name="info_panel" type="Panel" parent="."]
+offset_right = 325.0
+offset_bottom = 500.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_5b32u")
+
+[node name="name" type="RichTextLabel" parent="info_panel"]
+layout_mode = 0
+offset_top = 10.0
+offset_right = 325.0
+offset_bottom = 60.0
+bbcode_enabled = true
+text = "[font_size=30][center]Fuckin"
+
+[node name="healthbar" type="ProgressBar" parent="info_panel"]
+offset_left = 20.0
+offset_top = 60.0
+offset_right = 305.0
+offset_bottom = 90.0
+theme_override_styles/background = ExtResource("8_s1ss8")
+theme_override_styles/fill = ExtResource("9_numx6")
+value = 100.0
+show_percentage = false
+
+[node name="number" type="RichTextLabel" parent="info_panel/healthbar"]
+layout_mode = 0
+offset_right = 285.0
+offset_bottom = 30.0
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "[center]7/7"
+
+[node name="stats" type="Control" parent="info_panel"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
 [connection signal="pressed" from="bottom_ui/attack button" to="." method="_on_attack_button_pressed"]
 [connection signal="pressed" from="bottom_ui/clear chosen attacks" to="." method="_on_clear_chosen_attacks_pressed"]

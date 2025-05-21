@@ -4,6 +4,12 @@ extends CanvasLayer
 
 var tween;
 
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("RIGHT"):
+		close_info_panel()
+	elif event.is_action_pressed("LEFT"):
+		open_info_panel()
+
 func _ready() -> void:
 	GlobalsAutoload.dropped_UI.connect(update_button);
 	GlobalsAutoload.turn_changed.connect(turn_change);
@@ -211,3 +217,13 @@ func damage_popup(damage : int, target, crit := false, evade := false):
 	tween.tween_property(text, "modulate:a", 0, 0.5);
 	await tween.finished;
 	text.queue_free()
+
+func open_info_panel():
+	tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK).set_parallel(true);
+	tween.tween_property($info_displays, "position:y", -150, 0.5);
+	tween.tween_property($bottom_ui, "position:y", 250, 0.5);
+
+func close_info_panel():
+	tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK).set_parallel(true);
+	tween.tween_property($info_displays, "position:y", 0, 0.5);
+	tween.tween_property($bottom_ui, "position:y", 0, 0.5);
