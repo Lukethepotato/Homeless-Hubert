@@ -124,11 +124,13 @@ func pause():
 	state = game_states.PAUSED;
 
 # Creates a timer with a duration equal to the duration parameter
-func timeout(duration := 2.0) -> void:
+func timeout(duration := 2.0, pausable := true) -> void:
 	# To wait for the end of the timeout, please place the following line in your code:
 	# await GlobalsAutoload.timer.timeout;
 	
 	timer = Timer.new();
+	if not pausable:
+		timer.process_mode = Node.PROCESS_MODE_ALWAYS;
 	timer.wait_time = duration;
 	timer.one_shot = true;
 	get_tree().root.add_child(timer);
