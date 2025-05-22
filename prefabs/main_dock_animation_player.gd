@@ -62,7 +62,7 @@ func _play_attack():
 #have this here to make enemy and player more simmailer 
 func update_block():
 	PlayerAutoload.current_block = PlayerAutoload.attack_resources_in[attack_in_turn_index_finished].gives_block
-		
+
 func rush(option: String):
 	if option == "forward":
 		print_rich("[color=gold][wave amp=50.0 freq=5.0][font_size=20] rush forward");

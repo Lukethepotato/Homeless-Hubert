@@ -20,6 +20,7 @@ signal info_popup_open(clicked_on)
 
 # Combo data
 var all_player_combos: Array[player_combo]
+var camera : Camera2D;
 
 # Game states
 enum game_states {

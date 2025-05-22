@@ -16,7 +16,6 @@ func _ready() -> void:
 	$enemy_attack_spots.visible = false;
 	$combo_thing.visible = false;
 	$info_panel.visible = false;
-	#$attack_spots.position.yy = -400;
 	$info_displays.position.y = -400;
 	$bottom_ui.position.y = 300;
 	call_deferred("intro_tween");
@@ -57,7 +56,6 @@ func intro_tween():
 	GlobalsAutoload.battle_intro_finished.emit();
 	GlobalsAutoload.health_updated.emit()
 	in_battle = true;
-	$battle_overlay_cam.enabled = true
 	tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO).set_parallel(true);
 	tween.tween_property($attack_spots, "position", Vector2(70,0), 0.5).from(Vector2(70,-380))
 	tween.tween_property($combo_thing, "modulate:a", 1, 0.5)
@@ -215,7 +213,9 @@ func damage_popup(damage : int, target, crit := false, evade := false):
 	if evade:
 		color = "red"
 		fontsize = 30;
-	text.text = "[center][outline_size=" + str(fontsize/10) + "][outline_color=black][color=" + str(color) + "][font_size=" + str(fontsize) + "]" + str(damage);
+		text.text = "[center][outline_size=" + str(fontsize/10) + "][outline_color=black][color=" + str(color) + "][font_size=" + str(fontsize) + "]Miss!"
+	else:
+		text.text = "[center][outline_size=" + str(fontsize/10) + "][outline_color=black][color=" + str(color) + "][font_size=" + str(fontsize) + "]" + str(damage);
 	add_child(text);
 	text.position = target.position;
 	apply_popin.call(text);
@@ -256,8 +256,8 @@ func open_info_panel(target):
 		$info_panel/stats/text/luk.text = "[center][font_size=25]" + str(target.luck)
 		$info_panel/stats/text/eva.text = "[center][font_size=25]" + str(target.evasion)
 		$info_panel.visible = true;
-		tween.tween_property($battle_overlay_cam, "position", target.position, 0.5);
-		tween.tween_property($battle_overlay_cam, "zoom", Vector2(1.5, 1.5), 0.5);
+		tween.tween_property(GlobalsAutoload.camera, "global_position", target.position, 0.5);
+		tween.tween_property(GlobalsAutoload.camera, "zoom", Vector2(1.5, 1.5), 0.5);
 		tween.tween_property($attack_spots, "position:y", -380, 0.5)
 		tween.tween_property($enemy_attack_spots, "position:y", -380, 0.5)
 
@@ -269,7 +269,7 @@ func close_info_panel():
 	tween.tween_property($info_displays, "position:y", 0, 0.5);
 	tween.tween_property($bottom_ui, "position:y", 0, 0.5);
 	tween.tween_property($info_panel, "position:x", info_out_end_pos, 0.5);
-	tween.tween_property($battle_overlay_cam, "position", Vector2(576, 324), 0.5);
-	tween.tween_property($battle_overlay_cam, "zoom", Vector2(1, 1), 0.5);
+	tween.tween_property(GlobalsAutoload.camera, "global_position", Vector2(576, 324), 0.5);
+	tween.tween_property(GlobalsAutoload.camera, "zoom", Vector2(1, 1), 0.5);
 	tween.tween_property($attack_spots, "position:y", 0, 0.5)
 	tween.tween_property($enemy_attack_spots, "position:y", 0, 0.5)

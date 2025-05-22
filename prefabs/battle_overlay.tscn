@@ -193,9 +193,6 @@ corner_radius_bottom_left = 50
 [node name="battle_overlay" type="CanvasLayer"]
 script = ExtResource("1_gvbtk")
 
-[node name="battle_overlay_cam" type="Camera2D" parent="."]
-position = Vector2(576, 324)
-
 [node name="attack_spots" type="Control" parent="."]
 process_priority = 2
 visible = false

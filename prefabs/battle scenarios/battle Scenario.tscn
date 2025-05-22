@@ -380,7 +380,6 @@ animation = &"Idle"
 [node name="Area2D" type="Area2D" parent="Enemy/AnimatedSprite2D"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy/AnimatedSprite2D/Area2D"]
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_bhcog")
 
 [node name="Enemy attack manager" parent="Enemy" instance=ExtResource("3_6ero3")]
