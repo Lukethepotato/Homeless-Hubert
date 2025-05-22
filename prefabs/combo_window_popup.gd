@@ -7,7 +7,7 @@ var mouse_hovering := false;
 var is_open := false;
 
 func _on_gui_input(event: InputEvent) -> void:
-	if event.is_action_pressed("Left Click"):
+	if event.is_action_pressed("LMB"):
 		print("Fuck Yeah")
 		if not is_open:
 			if tween:

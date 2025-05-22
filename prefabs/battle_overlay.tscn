@@ -193,6 +193,9 @@ corner_radius_bottom_left = 50
 [node name="battle_overlay" type="CanvasLayer"]
 script = ExtResource("1_gvbtk")
 
+[node name="battle_overlay_cam" type="Camera2D" parent="."]
+position = Vector2(576, 324)
+
 [node name="attack_spots" type="Control" parent="."]
 process_priority = 2
 visible = false
@@ -551,8 +554,10 @@ offset_bottom = 1132.0
 rotation = 1.5708
 
 [node name="info_panel" type="Panel" parent="."]
-offset_right = 325.0
-offset_bottom = 500.0
+offset_left = 777.0
+offset_top = 74.0
+offset_right = 1102.0
+offset_bottom = 574.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_5b32u")
 
 [node name="name" type="RichTextLabel" parent="info_panel"]

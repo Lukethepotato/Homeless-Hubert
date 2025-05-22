@@ -16,11 +16,10 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if attack_resource != null:
 		texture = attack_resource.icon_texture
-	if Input.is_action_pressed("Left Click"):
+	if Input.is_action_pressed("LMB"):
 		mouse_hovering = false;
 	if mouse_hovering:
 		$"../attack_description".global_position = get_global_mouse_position() - Vector2(0, $"../attack_description".size.y);
-
 
 
 # This function gets and returns the data of this spot. It packages a texture, node, preview texture, and attack resource into a dictionary named "data".

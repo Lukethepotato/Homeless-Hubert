@@ -4,23 +4,27 @@ extends CanvasLayer
 
 var tween;
 
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("RIGHT"):
-		close_info_panel()
-	elif event.is_action_pressed("LEFT"):
-		open_info_panel()
+var in_battle := false;
+var info_out_end_pos;
+var in_info_panel := false
 
 func _ready() -> void:
 	GlobalsAutoload.dropped_UI.connect(update_button);
 	GlobalsAutoload.turn_changed.connect(turn_change);
 	BattleAutoload.damage_dealt.connect(damage_popup);
+	GlobalsAutoload.info_popup_open.connect(open_info_panel);
 	$enemy_attack_spots.visible = false;
 	$combo_thing.visible = false;
+	$info_panel.visible = false;
 	#$attack_spots.position.yy = -400;
 	$info_displays.position.y = -400;
 	$bottom_ui.position.y = 300;
 	call_deferred("intro_tween");
 	update_button();
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("ESCAPE") and in_info_panel and in_battle:
+		close_info_panel()
 
 # Function I made just bc i had to keep typing this over and over so to save time i made it a function
 func reset_tween():
@@ -50,8 +54,12 @@ func intro_tween():
 	enemy_attack_preview()
 	
 	reset_tween();
+	GlobalsAutoload.battle_intro_finished.emit();
+	GlobalsAutoload.health_updated.emit()
+	in_battle = true;
+	$battle_overlay_cam.enabled = true
 	tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO).set_parallel(true);
-	tween.tween_property($attack_spots, "position", Vector2(70,20), 0.5).from(Vector2(70,-400))
+	tween.tween_property($attack_spots, "position", Vector2(70,0), 0.5).from(Vector2(70,-380))
 	tween.tween_property($combo_thing, "modulate:a", 1, 0.5)
 	tween.tween_property($info_displays, "position:y", 0, 0.5).from(-400)
 	tween.tween_property($bottom_ui, "position:y", 0, 0.5).from(300)
@@ -218,12 +226,50 @@ func damage_popup(damage : int, target, crit := false, evade := false):
 	await tween.finished;
 	text.queue_free()
 
-func open_info_panel():
-	tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK).set_parallel(true);
-	tween.tween_property($info_displays, "position:y", -150, 0.5);
-	tween.tween_property($bottom_ui, "position:y", 250, 0.5);
+func open_info_panel(target):
+	if not in_info_panel and in_battle:
+		if tween:
+			tween.kill()
+		in_info_panel = true;
+		var stylebox = $info_panel.get_theme_stylebox("panel")
+		tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK).set_parallel(true);
+		tween.tween_property($info_displays, "position:y", -150, 0.5);
+		tween.tween_property($bottom_ui, "position:y", 250, 0.5);
+		if target.type == "Player":
+			stylebox.border_color = Color("#007dff");
+			$info_panel/name.text = "[center][font_size=30][color="+ str(target.name_color.to_html()) + "]" + target.player_name;
+			$info_panel.position.x = -325
+			info_out_end_pos = -325
+			tween.tween_property($info_panel, "position:x", 50, 0.5);
+		elif target.type == "Enemy":
+			stylebox.border_color = Color("#c43e37");
+			$info_panel/name.text = "[center][font_size=30][color="+ str(target.name_color.to_html()) + "]" + target.fish_name;
+			$info_panel.position.x = 1152
+			info_out_end_pos = 1152
+			tween.tween_property($info_panel, "position:x", 777, 0.5);
+		$info_panel/healthbar/number.text = "[center]" + str(target.health) + " / " + str(target.max_health)
+		$info_panel/healthbar.max_value = target.max_health
+		$info_panel/healthbar.value = target.health
+		$info_panel/stats/text/str.text = "[center][font_size=25]" + str(target.strength)
+		$info_panel/stats/text/def.text = "[center][font_size=25]" + str(target.defense)
+		$info_panel/stats/text/agi.text = "[center][font_size=25]" + str(target.agility)
+		$info_panel/stats/text/luk.text = "[center][font_size=25]" + str(target.luck)
+		$info_panel/stats/text/eva.text = "[center][font_size=25]" + str(target.evasion)
+		$info_panel.visible = true;
+		tween.tween_property($battle_overlay_cam, "position", target.position, 0.5);
+		tween.tween_property($battle_overlay_cam, "zoom", Vector2(1.5, 1.5), 0.5);
+		tween.tween_property($attack_spots, "position:y", -380, 0.5)
+		tween.tween_property($enemy_attack_spots, "position:y", -380, 0.5)
 
 func close_info_panel():
+	if tween:
+		tween.kill()
+	in_info_panel = false;
 	tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK).set_parallel(true);
 	tween.tween_property($info_displays, "position:y", 0, 0.5);
 	tween.tween_property($bottom_ui, "position:y", 0, 0.5);
+	tween.tween_property($info_panel, "position:x", info_out_end_pos, 0.5);
+	tween.tween_property($battle_overlay_cam, "position", Vector2(576, 324), 0.5);
+	tween.tween_property($battle_overlay_cam, "zoom", Vector2(1, 1), 0.5);
+	tween.tween_property($attack_spots, "position:y", 0, 0.5)
+	tween.tween_property($enemy_attack_spots, "position:y", 0, 0.5)

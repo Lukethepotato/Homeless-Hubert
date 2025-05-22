@@ -6,6 +6,8 @@ extends Node2D
 
 func _ready() -> void:
 	GlobalsAutoload.end_load.emit()
+	GlobalsAutoload.battle_intro_finished.connect(disable_cam);
+	GlobalsAutoload.battle_end.connect(enable_cam);
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ESCAPE") and GlobalsAutoload.state == GlobalsAutoload.game_states.ROAMING:
@@ -15,6 +17,12 @@ func _on_fishing_spot_body_entered(body: Node2D) -> void:
 	if body.name == "Hubert":
 		GlobalsAutoload.start_battle(battle_scenarios);
 		PlayerAutoload.position = $Hubert.position
+
+func disable_cam():
+	%main_camera.enabled = false;
+
+func enable_cam():
+	%main_camera.enabled = true;
 
 func _Chromatic_func():
 #(not exactly sure where to put this function if you wanna move it tell me)

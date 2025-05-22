@@ -9,6 +9,7 @@ extends Node2D
 # YOU WANT TO ADD A NEW CASE TO THE SWITCH CASE STATEMENT FOR YOUR NEW TRAIT
 # ONCE YOU'RE DONE WITH THAT, YOU'RE FINISHED!!!! GOOD JOB MAGGOT!
 
+const type = "Enemy";
 @export var fish_name := "Fuckin evil fred"; # Name of the fish
 @export var name_color := Color.RED; # Color of the fish's name used for display
 
@@ -57,6 +58,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	goes_on_turn = GlobalsAutoload.enemy_goes_on_turn
 
+
 # Returns if a fish is able to combo
 func is_fish_intelligent() -> bool:
 	return traits.has(BattleAutoload.traits.INTELLIGENT);
@@ -102,4 +104,7 @@ func modify_stats_with_traits() -> void:
 			BattleAutoload.traits.HARDY:
 				disruption_resist += 0.30;
 				ailment_resist += 0.50;
-				
+
+func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
+	if event.is_action_pressed("LMB"):
+		GlobalsAutoload.info_popup_open.emit(self)

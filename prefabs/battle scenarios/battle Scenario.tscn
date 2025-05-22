@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://b1h2w6ctilpdy"]
+[gd_scene load_steps=32 format=3 uid="uid://b1h2w6ctilpdy"]
 
 [ext_resource type="Script" path="res://prefabs/battle scenarios/battle_scenario_anim_player.gd" id="1_82kc4"]
 [ext_resource type="Texture2D" uid="uid://7j27av2hvwmc" path="res://art/temp_assets/Goblin_Idle.png" id="1_myu5w"]
@@ -355,6 +355,9 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bhcog"]
+size = Vector2(56.276, 48.6453)
+
 [node name="Battle Scenario" type="Node2D"]
 
 [node name="AnimPlayer" type="AnimationPlayer" parent="."]
@@ -373,6 +376,12 @@ traits = Array[int]([0])
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Enemy"]
 sprite_frames = SubResource("SpriteFrames_wf16b")
 animation = &"Idle"
+
+[node name="Area2D" type="Area2D" parent="Enemy/AnimatedSprite2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy/AnimatedSprite2D/Area2D"]
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_bhcog")
 
 [node name="Enemy attack manager" parent="Enemy" instance=ExtResource("3_6ero3")]
 fallback_attack = ExtResource("6_115l5")
@@ -397,3 +406,4 @@ camera_shake_mult = 2.0
 position = Vector2(576, 324)
 
 [connection signal="animation_finished" from="AnimPlayer" to="AnimPlayer" method="_on_animation_finished"]
+[connection signal="input_event" from="Enemy/AnimatedSprite2D/Area2D" to="Enemy" method="_on_area_2d_input_event"]

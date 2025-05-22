@@ -8,6 +8,7 @@ signal clear_attack_selection()
 signal turn_changed()
 signal health_updated()
 signal battle_start()
+signal battle_intro_finished()
 signal battle_end()
 signal done_updating_attacks()
 
@@ -15,6 +16,7 @@ signal current_turn_reset()
 #called whenever turns set back to 1
 signal shake_camera(shake_amount: float)
 #40 good default shake_amount
+signal info_popup_open(clicked_on)
 
 # Combo data
 var all_player_combos: Array[player_combo]
@@ -94,7 +96,7 @@ func start_battle(battle_scenarios) -> void:
 	current_turn = 0
 	var rand_battleS_index = randf_range(0, battle_scenarios.size() -1)
 	var instance = battle_scenarios[rand_battleS_index].instantiate()
-	add_child(instance)
+	call_deferred("add_child", instance)
 	current_battle_scenario = instance;
 	battle_start.emit();
 	

@@ -425,6 +425,7 @@ animations = [{
 size = Vector2(21, 47)
 
 [node name="Hubert" type="CharacterBody2D"]
+input_pickable = true
 script = ExtResource("4_dhhqc")
 
 [node name="Hubert_Sprites" type="AnimatedSprite2D" parent="."]
@@ -438,3 +439,5 @@ shape = SubResource("RectangleShape2D_av1s8")
 
 [node name="messabe bord" type="Node2D" parent="."]
 script = ExtResource("3_q40jc")
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]

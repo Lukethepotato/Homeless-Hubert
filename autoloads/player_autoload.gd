@@ -3,12 +3,13 @@ extends Node
 
 # This is a global script which contains most of the details about the Player character. If needed, it will also contain functions that need to be universally accessible.
 
+const type = "Player"
 @export var attack_resources_in: Array[attack_parent]
 @export var goes_on_turn: int = 2
 @export var attack_history: Array[attack_parent]
 @export var current_combo: player_combo
-#this is set when the combo combo is played in the main dock animation player
 
+#this is set when the combo combo is played in the main dock animation player
 @export var player_name := "Hubert"; # Name of the player
 @export var name_color := Color.WHITE; # Color of the player's name used for display
 @export var position := Vector2(0,0); # Position of player for damage popup numbers

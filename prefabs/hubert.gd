@@ -20,3 +20,7 @@ func apply_gravity(delta: float):
 	var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 	if not is_on_floor():
 		velocity.y += gravity * delta;
+
+func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
+	if event.is_action_pressed("LMB") and GlobalsAutoload.state == GlobalsAutoload.game_states.IN_BATTLE:
+		GlobalsAutoload.info_popup_open.emit(PlayerAutoload)
