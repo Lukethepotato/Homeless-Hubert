@@ -22,9 +22,9 @@ func _damage_donation(user : String, target : String, base_dmg: int, combo : pla
 	
 	if roles[0] != roles[1]:
 		if user_attack_region != roles[1].current_block: 
+			var last_attack_done = roles[0].attack_history[roles[0].attack_history.size() -1]
 			damage_to_deal = BattleAutoload.calculate_damage(base_dmg, roles[0], roles[1], can_crit, guaranteed_hit);
 			
-			var last_attack_done = roles[0].attack_history[roles[0].attack_history.size() -1]
 			roles[1].health -= damage_to_deal;
 			roles[1].poise -= damage_to_deal * last_attack_done.stance_disruption_mod
 			print("Poise : " + str(roles[1].poise))
@@ -32,7 +32,7 @@ func _damage_donation(user : String, target : String, base_dmg: int, combo : pla
 				#pass
 				roles[1].ailment_component_node._instantiate_ailment(load("res://Resources/ailments/staggered.tres"))
 				# reset poise back somehow (:
-			BattleAutoload.apply_attack_effects(last_attack_done.animation_name, user, target)
+			BattleAutoload.apply_attack_effects(last_attack_done, user, target)
 			
 			GlobalsAutoload.shake_camera.emit(camera_shake_mult * damage_to_deal)
 	else:

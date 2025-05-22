@@ -182,6 +182,7 @@ func calculate_damage(base_dmg : int, user, target, can_crit := true, guaranteed
 		damage = 0;
 		print_rich("[color=red][shake amp=50.0 freq=5.0][font_size=20]Evaded: " + str(damage));
 		evade = true;
+		user.attack_history.clear();
 	BattleAutoload.damage_dealt.emit(damage, target, crit, evade);
 	return damage;
 
@@ -209,7 +210,7 @@ func apply_combo_effects(combo : player_combo) -> void:
 	
 				
 	
-func apply_attack_effects(attack_name: String, user: String, target: String) -> void:
+func apply_attack_effects(last_attack: attack_parent, user: String, target: String) -> void:
 	# somthing to note
 	
 	#since this is called from the damage donator both the player and the enemy call this (because of the roles)
@@ -217,12 +218,10 @@ func apply_attack_effects(attack_name: String, user: String, target: String) -> 
 	#so i use a string since i can just input the attacks animation name no matter if its a enemy or player attack
 	var roles = BattleAutoload.convert_strs_to_attack_roles(user, target)
 	
-	var last_attack = roles[0].attack_history[roles[0].attack_history.size() -1]
-	
 	roles[1].speed -= last_attack.victim_speed_subtract;
 	roles[1].defense -= last_attack.victim_defense_subtract
 	# You should use the switch statement for unique effects like ailments rather than just a variable every attack has
-	match attack_name:
+	match last_attack.animation_name:
 		"hubert_basic_low":
 			roles[0].ailment_component_node._instantiate_ailment(load("res://Resources/ailments/staggered.tres"))
 		"hubert_basic_shove","hubert_basic_sweep":
