@@ -105,6 +105,15 @@ offset_right = 40.0
 offset_bottom = 688.0
 script = ExtResource("2_kptlx")
 
+[node name="[esc]" type="RichTextLabel" parent="menu_control/options"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 5.0
+offset_right = 60.0
+offset_bottom = 45.0
+bbcode_enabled = true
+text = "[center][font_size=20][esc]"
+
 [node name="options" type="RichTextLabel" parent="menu_control/options"]
 layout_mode = 0
 offset_top = 40.0

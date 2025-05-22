@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://cknmpdmv3eqkh"]
+[gd_scene load_steps=50 format=3 uid="uid://cknmpdmv3eqkh"]
 
 [ext_resource type="Script" path="res://prefabs/battle_overlay_main.gd" id="1_gvbtk"]
 [ext_resource type="PackedScene" uid="uid://wc8076dp0nrg" path="res://prefabs/draggable_spot.tscn" id="1_m25ou"]
@@ -32,6 +32,11 @@
 [ext_resource type="Shader" path="res://Resources/lightning.gdshader" id="23_5qd2d"]
 [ext_resource type="PackedScene" uid="uid://dggc40nhuy740" path="res://prefabs/combo_list.tscn" id="23_elvgn"]
 [ext_resource type="Script" path="res://prefabs/combo_window_popup.gd" id="27_66brq"]
+[ext_resource type="Texture2D" uid="uid://dtlolqv1l5ek7" path="res://art/temp_assets/placeholder stat icons/atk.png" id="32_hkfen"]
+[ext_resource type="Texture2D" uid="uid://dajtxmg8jp5qf" path="res://art/temp_assets/placeholder stat icons/def.png" id="33_03652"]
+[ext_resource type="Texture2D" uid="uid://dsf751kedvcn6" path="res://art/temp_assets/placeholder stat icons/agi.png" id="34_lgk6j"]
+[ext_resource type="Texture2D" uid="uid://bqtrfcuvd2rx0" path="res://art/temp_assets/placeholder stat icons/luk.png" id="35_3w3l2"]
+[ext_resource type="Texture2D" uid="uid://drargfjdgpk7l" path="res://art/temp_assets/placeholder stat icons/eva.png" id="36_v8ha8"]
 
 [sub_resource type="Gradient" id="Gradient_dgvdj"]
 offsets = PackedFloat32Array(0, 0.512987, 1)
@@ -496,14 +501,6 @@ offset_bottom = 40.0
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_p0q46")
 
-[node name="Combo list" parent="combo_thing/combo_container" instance=ExtResource("23_elvgn")]
-visible = false
-offset_left = -5.0
-offset_top = -5.0
-offset_right = 50.0
-offset_bottom = 35.0
-mouse_filter = 1
-
 [node name="bars" type="Panel" parent="combo_thing"]
 layout_mode = 0
 offset_left = 5.0
@@ -567,6 +564,7 @@ bbcode_enabled = true
 text = "[font_size=30][center]Fuckin"
 
 [node name="healthbar" type="ProgressBar" parent="info_panel"]
+layout_mode = 0
 offset_left = 20.0
 offset_top = 60.0
 offset_right = 305.0
@@ -586,8 +584,116 @@ text = "[center]7/7"
 
 [node name="stats" type="Control" parent="info_panel"]
 anchors_preset = 0
+offset_left = 22.5
+offset_top = 100.0
+offset_right = 62.5
+offset_bottom = 140.0
+
+[node name="icons" type="Control" parent="info_panel/stats"]
+anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="str" type="TextureRect" parent="info_panel/stats/icons"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("32_hkfen")
+
+[node name="def" type="TextureRect" parent="info_panel/stats/icons"]
+layout_mode = 0
+offset_left = 60.0
+offset_right = 100.0
+offset_bottom = 40.0
+texture = ExtResource("33_03652")
+
+[node name="agi" type="TextureRect" parent="info_panel/stats/icons"]
+layout_mode = 0
+offset_left = 120.0
+offset_right = 160.0
+offset_bottom = 40.0
+texture = ExtResource("34_lgk6j")
+
+[node name="luk" type="TextureRect" parent="info_panel/stats/icons"]
+layout_mode = 0
+offset_left = 180.0
+offset_right = 220.0
+offset_bottom = 40.0
+texture = ExtResource("35_3w3l2")
+
+[node name="eva" type="TextureRect" parent="info_panel/stats/icons"]
+layout_mode = 0
+offset_left = 240.0
+offset_right = 280.0
+offset_bottom = 40.0
+texture = ExtResource("36_v8ha8")
+
+[node name="text" type="Control" parent="info_panel/stats"]
+anchors_preset = 0
+offset_top = 40.0
+offset_right = 40.0
+offset_bottom = 80.0
+
+[node name="str" type="RichTextLabel" parent="info_panel/stats/text"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+bbcode_enabled = true
+text = "[center][font_size=25]1"
+
+[node name="def" type="RichTextLabel" parent="info_panel/stats/text"]
+layout_mode = 0
+offset_left = 60.0
+offset_right = 100.0
+offset_bottom = 40.0
+bbcode_enabled = true
+text = "[center][font_size=25]1"
+
+[node name="agi" type="RichTextLabel" parent="info_panel/stats/text"]
+layout_mode = 0
+offset_left = 120.0
+offset_right = 160.0
+offset_bottom = 40.0
+bbcode_enabled = true
+text = "[center][font_size=25]1"
+
+[node name="luk" type="RichTextLabel" parent="info_panel/stats/text"]
+layout_mode = 0
+offset_left = 180.0
+offset_right = 220.0
+offset_bottom = 40.0
+bbcode_enabled = true
+text = "[center][font_size=25]1"
+
+[node name="eva" type="RichTextLabel" parent="info_panel/stats/text"]
+layout_mode = 0
+offset_left = 240.0
+offset_right = 280.0
+offset_bottom = 40.0
+bbcode_enabled = true
+text = "[center][font_size=25]1"
+
+[node name="combos" type="Control" parent="info_panel"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="combos" type="RichTextLabel" parent="info_panel/combos"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 180.0
+offset_right = 305.0
+offset_bottom = 219.0
+bbcode_enabled = true
+text = "[font_size=25
+.0][center]Available Combos:"
+
+[node name="Combo list" parent="info_panel/combos" instance=ExtResource("23_elvgn")]
+offset_left = 20.0
+offset_top = 220.0
+offset_right = 305.0
+offset_bottom = 420.0
+mouse_filter = 1
 
 [connection signal="pressed" from="bottom_ui/attack button" to="." method="_on_attack_button_pressed"]
 [connection signal="pressed" from="bottom_ui/clear chosen attacks" to="." method="_on_clear_chosen_attacks_pressed"]

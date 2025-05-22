@@ -12,7 +12,6 @@ func _ready() -> void:
 		instruction.combo = GlobalsAutoload.all_player_combos[i]
 		instruction.position = Vector2(0, last_ones_spot + incrementation)
 		last_ones_spot = instruction.position.y
-		
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
