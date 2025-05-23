@@ -1,5 +1,7 @@
 extends Node
 
+# This is a global script which manages saving and loading player data from save files written in JSON.
+
 var current_file := 1;#: int;
 
 func save_data() -> bool:

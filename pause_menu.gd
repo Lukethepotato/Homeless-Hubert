@@ -62,7 +62,7 @@ func process_selection():
 			if not success:
 				$saved.size.x = 180;
 				$saved.text = "[center][font_size=30]save failed :("
-				final_pos = 972;
+				final_pos = 962;
 			var new_tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUART);
 			new_tween.tween_property($saved, "position:x", final_pos, 0.5);
 			await new_tween.finished;
