@@ -1,4 +1,3 @@
-class_name Player_Details
 extends Node
 
 # This is a global script which contains most of the details about the Player character. If needed, it will also contain functions that need to be universally accessible.

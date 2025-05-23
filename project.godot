@@ -21,6 +21,7 @@ Dialogic="*res://addons/dialogic/Core/DialogicGameHandler.gd"
 PlayerAutoload="*res://autoloads/player_autoload.gd"
 GlobalsAutoload="*res://autoloads/globals_autoload.gd"
 BattleAutoload="*res://autoloads/battle_autoload.gd"
+SaveAutoload="*res://autoloads/save_autoload.gd"
 
 [dialogic]
 

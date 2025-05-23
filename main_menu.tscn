@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://bw5d183osacco"]
+[gd_scene load_steps=10 format=3 uid="uid://bw5d183osacco"]
 
 [ext_resource type="Script" path="res://main_menu.gd" id="1_wbvye"]
 [ext_resource type="Texture2D" uid="uid://elvflalqk6l3" path="res://art/temp_assets/IMG_9613.jpeg" id="2_5l7ef"]
+[ext_resource type="Texture2D" uid="uid://c64y8mylxa0c8" path="res://art/temp_assets/sky temp.jpg" id="2_fvvec"]
 [ext_resource type="Script" path="res://main_menu_options.gd" id="3_cmlxy"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_djmvq"]
@@ -47,6 +48,13 @@ script = ExtResource("1_wbvye")
 
 [node name="camera" type="Camera2D" parent="."]
 position = Vector2(576, 324)
+
+[node name="bg" type="TextureRect" parent="."]
+offset_left = -707.0
+offset_top = -796.0
+offset_right = 2557.0
+offset_bottom = 1129.0
+texture = ExtResource("2_fvvec")
 
 [node name="Initial" type="Node2D" parent="."]
 
@@ -243,6 +251,101 @@ text = "[center][font_size=55]settings"
 
 [node name="Credits" type="Node2D" parent="."]
 
+[node name="Save_Files" type="Node2D" parent="."]
+position = Vector2(1152, 0)
+
+[node name="save_file_1" type="Button" parent="Save_Files"]
+offset_left = 50.0
+offset_top = 50.0
+offset_right = 1102.0
+offset_bottom = 200.0
+
+[node name="file" type="RichTextLabel" parent="Save_Files/save_file_1"]
+offset_right = 285.0
+offset_bottom = 150.0
+mouse_filter = 1
+bbcode_enabled = true
+text = "[font_size=50.0] FILE 1"
+
+[node name="name" type="RichTextLabel" parent="Save_Files/save_file_1"]
+layout_mode = 0
+offset_left = 80.0
+offset_top = 72.0
+offset_right = 580.0
+offset_bottom = 150.0
+mouse_filter = 1
+bbcode_enabled = true
+text = "[font_size=45.0]Hubert"
+
+[node name="playtime" type="RichTextLabel" parent="Save_Files/save_file_1"]
+layout_mode = 0
+offset_left = 902.0
+offset_right = 1052.0
+offset_bottom = 56.0
+mouse_filter = 1
+bbcode_enabled = true
+text = "[right][font_size=40]00:00 "
+
+[node name="save_file_2" type="Button" parent="Save_Files"]
+offset_left = 50.0
+offset_top = 250.0
+offset_right = 1102.0
+offset_bottom = 400.0
+
+[node name="file" type="RichTextLabel" parent="Save_Files/save_file_2"]
+offset_right = 285.0
+offset_bottom = 150.0
+mouse_filter = 1
+bbcode_enabled = true
+text = "[font_size=50.0] FILE 2"
+
+[node name="name" type="RichTextLabel" parent="Save_Files/save_file_2"]
+offset_left = 80.0
+offset_top = 72.0
+offset_right = 580.0
+offset_bottom = 150.0
+mouse_filter = 1
+bbcode_enabled = true
+text = "[font_size=45.0]Sir Gumpsalot"
+
+[node name="playtime" type="RichTextLabel" parent="Save_Files/save_file_2"]
+offset_left = 902.0
+offset_right = 1052.0
+offset_bottom = 56.0
+mouse_filter = 1
+bbcode_enabled = true
+text = "[right][font_size=40]00:00 "
+
+[node name="save_file_3" type="Button" parent="Save_Files"]
+offset_left = 50.0
+offset_top = 450.0
+offset_right = 1102.0
+offset_bottom = 600.0
+
+[node name="file" type="RichTextLabel" parent="Save_Files/save_file_3"]
+offset_right = 285.0
+offset_bottom = 150.0
+mouse_filter = 1
+bbcode_enabled = true
+text = "[font_size=50.0] FILE 3"
+
+[node name="name" type="RichTextLabel" parent="Save_Files/save_file_3"]
+offset_left = 80.0
+offset_top = 72.0
+offset_right = 580.0
+offset_bottom = 150.0
+mouse_filter = 1
+bbcode_enabled = true
+text = "[font_size=45.0]BIGGIE CHEESE"
+
+[node name="playtime" type="RichTextLabel" parent="Save_Files/save_file_3"]
+offset_left = 902.0
+offset_right = 1052.0
+offset_bottom = 56.0
+mouse_filter = 1
+bbcode_enabled = true
+text = "[right][font_size=40]00:00 "
+
 [connection signal="pressed" from="Initial/play_button" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="Initial/options_button" to="." method="_on_options_button_pressed"]
 [connection signal="pressed" from="Initial/credits_button" to="." method="_on_credits_button_pressed"]
@@ -252,3 +355,6 @@ text = "[center][font_size=55]settings"
 [connection signal="value_changed" from="Options/volume_settings/volume_sliders/music_audio_bar" to="Options" method="_on_music_audio_bar_value_changed"]
 [connection signal="value_changed" from="Options/volume_settings/volume_sliders/sfx_audio_bar" to="Options" method="_on_sfx_audio_bar_value_changed"]
 [connection signal="value_changed" from="Options/volume_settings/volume_sliders/voice_audio_bar" to="Options" method="_on_voice_audio_bar_value_changed"]
+[connection signal="pressed" from="Save_Files/save_file_1" to="." method="_on_save_file_1_pressed"]
+[connection signal="pressed" from="Save_Files/save_file_2" to="." method="_on_save_file_2_pressed"]
+[connection signal="pressed" from="Save_Files/save_file_3" to="." method="_on_save_file_3_pressed"]

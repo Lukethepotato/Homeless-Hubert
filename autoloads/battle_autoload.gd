@@ -230,7 +230,5 @@ func apply_attack_effects(last_attack: attack_parent, user: String, target: Stri
 			pass
 		
 		
-			
-			
-			#roles[1].ailment_component_node._instantiate_ailment(last_attack.ailment_give)
-			#Example of how enemys attack work
+		#roles[1].ailment_component_node._instantiate_ailment(last_attack.ailment_give)
+		#Example of how enemys attack work

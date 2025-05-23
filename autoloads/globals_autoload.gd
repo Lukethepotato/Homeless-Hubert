@@ -1,4 +1,3 @@
-class_name Globals
 extends Node
 
 # This is a global script which contains critical miscellaneous information. It also contains (will contain) useful functions which should be universally accessible.
@@ -18,9 +17,10 @@ signal shake_camera(shake_amount: float)
 #40 good default shake_amount
 signal info_popup_open(clicked_on)
 
+var camera : Camera2D;
+
 # Combo data
 var all_player_combos: Array[player_combo]
-var camera : Camera2D;
 
 # Game states
 enum game_states {

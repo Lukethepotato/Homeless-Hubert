@@ -55,8 +55,16 @@ func process_selection():
 			new_tween.tween_property($menu_control, "position:y", -648, 1.0);
 			current_screen = 1;
 		2:
+			var success = SaveAutoload.save_data();
+			var final_pos = 1042
+			$saved.size.x = 100;
+			$saved.text = "[center][font_size=30]saved!"
+			if not success:
+				$saved.size.x = 180;
+				$saved.text = "[center][font_size=30]save failed :("
+				final_pos = 972;
 			var new_tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUART);
-			new_tween.tween_property($saved, "position:x", 1042, 0.5);
+			new_tween.tween_property($saved, "position:x", final_pos, 0.5);
 			await new_tween.finished;
 			GlobalsAutoload.timeout(1.0, false);
 			await GlobalsAutoload.timer.timeout;
