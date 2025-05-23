@@ -118,8 +118,10 @@ func convert_to_elavation(input: location_types) -> location_types:
 		#if you where to input "none" or "ignore" it would just return it back
 
 func begin_load():
-	var loading_overlay = loading_overlay_path.instantiate();
-	get_tree().get_root().add_child(loading_overlay);
+	if not get_tree().root.get_node_or_null("loading_overlay"):
+		var loading_overlay = loading_overlay_path.instantiate();
+		get_tree().get_root().add_child(loading_overlay);
+	
 
 func pause():
 	var pause_menu = pause_menu_path.instantiate();

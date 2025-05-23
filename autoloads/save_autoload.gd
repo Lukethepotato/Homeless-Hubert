@@ -1,11 +1,12 @@
 extends Node
 
-# This is a global script which manages saving and loading player data from save files written in JSON.
+# This is a global script which manages saving and loading player data from save files written in JSON. The data is typically loaded in the main_menu.gd file under the function start_game
 
 var current_file := 1;#: int;
 
 func save_data() -> bool:
 	var save_file = FileAccess.open("user://save_file_"+str(current_file)+".save", FileAccess.WRITE);
+	##### ↓ REALLY IMPORTANT: Modifying the parts of this dictionary modifies what will be saved to each file
 	var save_dict := {
 		"player_name" = PlayerAutoload.player_name,
 	}
@@ -35,3 +36,7 @@ func load_data(file_to_load : int):
 		#PlayerAutoload.name = data.get("player_name");
 		return data
 	return false;
+
+func delete_data(file_to_delete : int):
+	print("Deleting file \"save_file"+str(file_to_delete)+".save\"");
+	DirAccess.remove_absolute("user://save_file_"+str(file_to_delete)+".save");
