@@ -133,7 +133,8 @@ func pause():
 
 func trigger_game_over():
 	if mortality:
-		current_battle_scenario.queue_free()
+		if current_battle_scenario:
+			current_battle_scenario.queue_free()
 		game_over.emit()
 		var game_over = game_over_path.instantiate();
 		get_tree().get_root().add_child(game_over);
