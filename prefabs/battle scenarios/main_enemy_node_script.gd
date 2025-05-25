@@ -22,15 +22,15 @@ const type = "Enemy";
 @export var strength := 1; # Additive factor to damage
 @export var defense := 0; # Subtractive factor from damage taken
 @export var agility := 1; # Additive factor to speed
-@export var luck := 0; # Additive factor to critical chance (base chance = 1)
-@export var evasion := 100; # Additive factor to dodge chance (base chance = 0)
+@export var luck := 0; # Additive factor to critical chance (base chance = 1, max_value = 99)
+@export var evasion := 100; # Additive factor to dodge chance (base chance = 0, max_value = 99)
 
 # Resistances
 @export var disruption_resist := 0.05; # Written as decimal, chance of resisting disruption
 @export var ailment_resist := 0.05; # Written as decimal, chance of resisting ailment
 
 @export var attack_resources_in: Array[attack_parent]
-@export var current_block := GlobalsAutoload.location_types.NONE
+@export var current_block := BattleAutoload.location_types.NONE
 @export var attack_history: Array[attack_parent]
 @export var block_inclination: float = 5
 @export var goes_on_turn: int
@@ -44,7 +44,7 @@ const type = "Enemy";
 
 #number must be from 0 to 10, higher means more likly high block. The lower means more likly low block
 func _init() -> void:
-	GlobalsAutoload.enemy_node = self;
+	BattleAutoload.enemy_node = self;
 	attack_resources_in.resize(attacks_per_turn)
 
 func _ready() -> void:
@@ -56,7 +56,7 @@ func _ready() -> void:
 	modify_stats_with_traits();
 	
 func _process(delta: float) -> void:
-	goes_on_turn = GlobalsAutoload.enemy_goes_on_turn
+	goes_on_turn = BattleAutoload.enemy_goes_on_turn
 
 
 # Returns if a fish is able to combo
@@ -69,6 +69,8 @@ func modify_stats_with_traits() -> void:
 		match fish_trait:
 			BattleAutoload.traits.SLIPPERY:
 				evasion += 20;
+				if evasion >= 100:
+					evasion = 99
 				disruption_resist -= 0.20;
 				if disruption_resist < 0:
 					disruption_resist = 0;

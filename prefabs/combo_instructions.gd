@@ -10,7 +10,7 @@ var checkpoint := 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	GlobalsAutoload.connect("turn_changed", _reverse_combo_checking)
+	BattleAutoload.connect("turn_changed", _reverse_combo_checking)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -18,7 +18,7 @@ func _process(delta: float) -> void:
 	var text: String =""
 	
 	if attacks_done_amount > 0:
-		text= before_bbCode
+		text = before_bbCode
 		
 	
 	for i in combo.attacks_in_combo.size():
@@ -30,7 +30,6 @@ func _process(delta: float) -> void:
 			text += after_bbCode
 			
 	$RichTextLabel.text = text 
-	
 
 func _reverse_combo_checking():
 	attacks_done_amount = 0

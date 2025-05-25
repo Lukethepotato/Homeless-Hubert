@@ -6,8 +6,8 @@ extends Node2D
 @export var attack_in_turn_index_finished: int = 0
 
 func _ready() -> void:
-	GlobalsAutoload.turn_changed.connect(start_enemy_attack)
-	GlobalsAutoload.current_turn_reset.connect(_update_upcoming_attack)
+	BattleAutoload.turn_changed.connect(start_enemy_attack)
+	BattleAutoload.current_turn_reset.connect(_update_upcoming_attack)
 	_update_upcoming_attack()
 	
 	
@@ -15,7 +15,7 @@ func _process(delta: float) -> void:
 	pass
 # Initiates the enemy's attack
 func start_enemy_attack() -> void:
-	if GlobalsAutoload.current_turn == GlobalsAutoload.enemy_goes_on_turn:
+	if BattleAutoload.current_turn == BattleAutoload.enemy_goes_on_turn:
 		
 		GlobalsAutoload.timeout(.5)
 		await GlobalsAutoload.timer.timeout
@@ -31,14 +31,14 @@ func start_enemy_attack() -> void:
 			
 		# this goes through every attack, plays it, waits till its over then does the next one
 			
-		GlobalsAutoload.current_turn += 1
+		BattleAutoload.current_turn += 1
 		attack_in_turn_index_finished = 0
 		#then once all the attacks are done it adds a turn and resets the attack index back to 0 so it can all happen again
 				
 		
 	
 func update_block():
-	if get_parent().attack_resources_in[attack_in_turn_index_finished].gives_block != GlobalsAutoload.location_types.IGNORE:
+	if get_parent().attack_resources_in[attack_in_turn_index_finished].gives_block != BattleAutoload.location_types.IGNORE:
 		get_parent().current_block = get_parent().attack_resources_in[attack_in_turn_index_finished].gives_block
 		#sets the block to upcoming attacks block unless its set to ignore
 	

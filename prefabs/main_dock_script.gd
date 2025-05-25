@@ -15,7 +15,7 @@ func _input(event: InputEvent) -> void:
 
 func _on_fishing_spot_body_entered(body: Node2D) -> void:
 	if body.name == "Hubert":
-		GlobalsAutoload.start_battle(battle_scenarios);
+		BattleAutoload.start_battle(battle_scenarios);
 		PlayerAutoload.position = $Hubert.position
 
 func _Chromatic_func():

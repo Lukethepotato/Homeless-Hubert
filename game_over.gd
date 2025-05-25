@@ -30,7 +30,8 @@ func _on_move_on_pressed() -> void:
 	tween = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_QUAD);
 	tween.tween_property($music, "volume_db", -80, 3);
 	GlobalsAutoload.begin_load();
-	await GlobalsAutoload.overlay_done
+	await GlobalsAutoload.overlay_done;
+	PlayerAutoload.health = PlayerAutoload.max_health;
 	get_tree().paused = false;
-	get_tree().change_scene_to_file("res://main_menu.tscn")
-	queue_free()
+	get_tree().change_scene_to_file("res://main_menu.tscn");
+	queue_free(); 

@@ -10,7 +10,7 @@ var in_info_panel := false
 
 func _ready() -> void:
 	GlobalsAutoload.dropped_UI.connect(update_button);
-	GlobalsAutoload.turn_changed.connect(turn_change);
+	BattleAutoload.turn_changed.connect(turn_change);
 	BattleAutoload.damage_dealt.connect(damage_popup);
 	GlobalsAutoload.info_popup_open.connect(open_info_panel);
 	$enemy_attack_spots.visible = false;
@@ -53,8 +53,8 @@ func intro_tween():
 	enemy_attack_preview()
 	
 	reset_tween();
-	GlobalsAutoload.battle_intro_finished.emit();
-	GlobalsAutoload.health_updated.emit()
+	BattleAutoload.battle_intro_finished.emit();
+	BattleAutoload.health_updated.emit()
 	in_battle = true;
 	tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO).set_parallel(true);
 	tween.tween_property($attack_spots, "position", Vector2(70,0), 0.5).from(Vector2(70,-380))
@@ -64,7 +64,7 @@ func intro_tween():
 
 # Handles the behavior of pressing the attack button
 func _on_attack_button_pressed() -> void:
-	if is_attack_ready() && GlobalsAutoload.current_turn == 1:
+	if is_attack_ready() && BattleAutoload.current_turn == 1:
 		$"bottom_ui/attack button".disabled = true;
 		reset_tween()
 		tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO);
@@ -76,12 +76,12 @@ func _on_attack_button_pressed() -> void:
 		GlobalsAutoload.timeout(0.2);
 		await GlobalsAutoload.timer.timeout;
 		BattleAutoload.update_turn_order();
-		GlobalsAutoload.current_turn = 2
+		BattleAutoload.current_turn = 2
 		print("current turn = 2 _ overlay")
 
 # Handles the behavior of pressing the clear button
 func _on_clear_chosen_attacks_pressed() -> void:
-	if GlobalsAutoload.current_turn == 1:
+	if BattleAutoload.current_turn == 1:
 		var tempSize:= PlayerAutoload.attack_resources_in.size()
 		PlayerAutoload.attack_resources_in.clear()
 		PlayerAutoload.attack_resources_in.resize(tempSize)
@@ -105,7 +105,7 @@ func update_button(_fuckts1 = null, _fuckts2 = null):
 	if is_attack_ready():
 		# The following line is a Big 'Ol Band-Aid Fix (trademark pending)
 		print("wait for is done updating attacks")
-		await GlobalsAutoload.done_updating_attacks;
+		await BattleAutoload.done_updating_attacks;
 		call_deferred("update_button_speed_text")
 		tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO);
 		tween.tween_property($"bottom_ui/attack button", "position:y", 410, 0.5).from(700)
@@ -116,7 +116,7 @@ func update_button(_fuckts1 = null, _fuckts2 = null):
 
 
 func turn_change():
-	if GlobalsAutoload.current_turn == 4:
+	if BattleAutoload.current_turn == 4:
 		tween_out_bars();
 		await tween.finished;
 		GlobalsAutoload.timeout(0.4);
@@ -177,7 +177,7 @@ func tween_out_bars():
 
 func enemy_attack_preview():
 	for i in $enemy_attack_spots.get_child_count():
-		$enemy_attack_spots.get_child(i).get_child(1).texture = GlobalsAutoload.enemy_node.attack_resources_in[i].icon_texture#the get child(0) is supposed to get the texture rect
+		$enemy_attack_spots.get_child(i).get_child(1).texture = BattleAutoload.enemy_node.attack_resources_in[i].icon_texture#the get child(0) is supposed to get the texture rect
 		$enemy_attack_spots.get_child(i).scale = Vector2(0.01,0.01);
 		$enemy_attack_spots.visible = true;
 		var tween2 = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO).set_parallel(true);

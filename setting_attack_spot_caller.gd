@@ -12,7 +12,7 @@ func _ready() -> void:
 	
 	user_data.attack_spots_parent = self
 	
-	GlobalsAutoload.current_turn_reset.connect(call_setting_attack_spots); # Replace with function body.
+	BattleAutoload.current_turn_reset.connect(call_setting_attack_spots); # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

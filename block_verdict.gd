@@ -19,10 +19,10 @@ func _attack_verdict() -> attack_parent:
 	#this decides which block will be done
 		rand_numb = randf_range(0,10)
 		
-		if GlobalsAutoload.enemy_node.block_inclination > rand_numb:
+		if BattleAutoload.enemy_node.block_inclination > rand_numb:
 		#this decides what type of block will be done
 		#Higher block inclin: high block more likly, lower block inclin: low blcok more likly
-			if  GlobalsAutoload.enemy_node.current_block == blocks[1].gives_block:
+			if  BattleAutoload.enemy_node.current_block == blocks[1].gives_block:
 				#print("blocks same so no dice")
 				return null
 				#if its already in that block it wont return it
@@ -30,7 +30,7 @@ func _attack_verdict() -> attack_parent:
 				return blocks[1]
 				#returns high block
 		else:
-			if  GlobalsAutoload.enemy_node.current_block == blocks[0].gives_block:
+			if BattleAutoload.enemy_node.current_block == blocks[0].gives_block:
 				#print("blocks same so no dice")
 				return null
 				#if its already in that block it wont return it

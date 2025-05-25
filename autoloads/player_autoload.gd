@@ -28,7 +28,7 @@ const type = "Player"
 @export var disruption_resist := 0.05; # Written as decimal, chance of resisting disruption
 @export var ailment_resist := 0.05; # Written as decimal, chance of resisting ailment
 
-@export var current_block := GlobalsAutoload.location_types.NONE
+@export var current_block := BattleAutoload.location_types.NONE
 #the idea is that every attack you do will determine a block state that hubert will do
 #and the curent state huberts in is just stored here
 @export var attack_spots_parent :Control

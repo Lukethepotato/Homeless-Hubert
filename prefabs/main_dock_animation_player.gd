@@ -10,8 +10,8 @@ var attack_in_turn_index_finished: int = 0
 
 func _ready():
 	PlayerAutoload.animation_player = self
-	GlobalsAutoload.turn_changed.connect(_play_attack)
-	GlobalsAutoload.current_turn_reset.connect(_turn_rest)
+	BattleAutoload.turn_changed.connect(_play_attack)
+	BattleAutoload.current_turn_reset.connect(_turn_rest)
 	
 func _turn_rest():
 	pass
@@ -20,7 +20,7 @@ func _process(delta: float):
 	BattleAutoload._non_attack_animations(self, %Ailments_parent, "player")
 
 func _play_attack():
-	if GlobalsAutoload.current_turn == PlayerAutoload.goes_on_turn and GlobalsAutoload.state == GlobalsAutoload.game_states.IN_BATTLE:
+	if BattleAutoload.current_turn == PlayerAutoload.goes_on_turn and GlobalsAutoload.state == GlobalsAutoload.game_states.IN_BATTLE:
 		#this function is called on turn change
 		#so this if makes sure its the players turn and the state is right
 		if PlayerAutoload.attack_resources_in[0].enables_rush:
@@ -55,7 +55,7 @@ func _play_attack():
 		
 		if is_forward:
 			rush("back")
-		GlobalsAutoload.current_turn += 1
+		BattleAutoload.current_turn += 1
 		attack_in_turn_index_finished = 0
 		#once everything is all done and all the little varibles are happy and cozy the player rushes back
 
@@ -76,12 +76,12 @@ func rush(option: String):
 
 # This function checks idf there are any completable combos and returns the proper combo if true.
 func combo_checking() -> player_combo:
-	for i in GlobalsAutoload.combo_node.combo_resources.size():
+	for i in BattleAutoload.combo_node.combo_resources.size():
 		attack_history_with_chosen_attacks = PlayerAutoload.attack_history.duplicate()
 		if (attack_in_turn_index_finished < PlayerAutoload.attack_resources_in.size()):
 			attack_history_with_chosen_attacks.append(PlayerAutoload.attack_resources_in[attack_in_turn_index_finished])
 		
-		attack_history_cut = attack_history_with_chosen_attacks.slice(attack_history_with_chosen_attacks.size() - GlobalsAutoload.combo_node.combo_resources[i].attacks_in_combo.size(), attack_history_with_chosen_attacks.size())
-		if attack_history_cut.hash() == GlobalsAutoload.combo_node.combo_resources[i].attacks_in_combo.hash():
-			return GlobalsAutoload.combo_node.combo_resources[i]
+		attack_history_cut = attack_history_with_chosen_attacks.slice(attack_history_with_chosen_attacks.size() - BattleAutoload.combo_node.combo_resources[i].attacks_in_combo.size(), attack_history_with_chosen_attacks.size())
+		if attack_history_cut.hash() == BattleAutoload.combo_node.combo_resources[i].attacks_in_combo.hash():
+			return BattleAutoload.combo_node.combo_resources[i]
 	return null

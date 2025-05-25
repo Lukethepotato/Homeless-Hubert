@@ -3,8 +3,34 @@ extends Node
 # This script contains miscellaneous data and functions pertaining to battles and battle calculations
 
 
+signal battle_start()
+signal battle_intro_finished()
+signal battle_end()
+
+signal turn_changed()
+signal current_turn_reset()
+signal health_updated()
 signal attack_ready;
 signal damage_dealt(damage : int, target, crit : bool, evade : bool);
+signal done_updating_attacks()
+
+# ! CURRENT TURN LEGEND:
+#-1 = not in fight 
+#0 = fight intro
+#1 = player choosing move 
+#2 = first participant attack* 
+#3 = second participant attack*
+#*(could be player or fish depending on speed)
+
+#if checking turn on the turn changed signal, use turn 4 instead
+@export var current_turn := -1;
+@export var enemy_goes_on_turn = 3
+var ambivalent_turn := -1
+var current_battle_scenario;
+@export var enemy_node: Node2D
+# ! NOT FOR USE AS A WAY TO CHECK THE PREVIOUS TURN, HELP FOR CHECKING IF THE TURN HAS CHANGED
+@export var combo_node: Node2D
+var all_player_combos: Array[player_combo]
 
 enum traits {
 	SLIPPERY,
@@ -24,22 +50,54 @@ enum ailments {
 	DAZE,
 	STAGGERED
 }
+enum location_types {
+	NONE,
+	LOW,
+	HIGH,
+	IGNORE
+}
 
-#func initiate_combat():
+
+func _process(delta: float) -> void:
+	if GlobalsAutoload.state == GlobalsAutoload.game_states.IN_BATTLE:
+		if (current_turn != ambivalent_turn && current_turn > 1):
+			turn_changed.emit();
+			ambivalent_turn = current_turn
+			# The following comments are for testing purposes.
+			#clear_attack_selection.emit()
+			#ambivalent_turn = current_turn
+		if (current_turn > 3):
+			print("current turn = 1 _ globalsAutoload")
+			current_turn = 1
+			current_turn_reset.emit()
+
+# This function initiates a battle, taking in a list of scenarios.
+func start_battle(battle_scenarios) -> void:
+	GlobalsAutoload.state = GlobalsAutoload.game_states.IN_BATTLE;
+	PlayerAutoload.speed += PlayerAutoload.agility;
+	current_turn = 0
+	var rand_battleS_index = randf_range(0, battle_scenarios.size() -1)
+	var instance = battle_scenarios[rand_battleS_index].instantiate()
+	call_deferred("add_child", instance)
+	current_battle_scenario = instance;
+	battle_start.emit();
 	
+	current_turn = 1
+	health_updated.emit();
+	print("current turn = 1")
 
 # Changes the PlayerAutoload goes_on_turn and the GlobalsAutoload enemy_goes_on_turn according to agility values and attack priority
 func update_turn_order():
 	PlayerAutoload.speed = get_player_speed();
-	GlobalsAutoload.enemy_node.speed = get_enemy_speed();
+	enemy_node.speed = get_enemy_speed();
 	print("Player speed = " + str(PlayerAutoload.speed));
-	print("Enemy speed = " + str(GlobalsAutoload.enemy_node.speed));
-	if PlayerAutoload.speed > GlobalsAutoload.enemy_node.speed or (PlayerAutoload.speed == GlobalsAutoload.enemy_node.speed and randi_range(1,2) == 1):
+	print("Enemy speed = " + str(enemy_node.speed));
+	if PlayerAutoload.speed > enemy_node.speed or (PlayerAutoload.speed == enemy_node.speed and randi_range(1,2) == 1):
 		PlayerAutoload.goes_on_turn = 2;
-		GlobalsAutoload.enemy_goes_on_turn = 3;
+		enemy_goes_on_turn = 3;
 	else:
 		PlayerAutoload.goes_on_turn = 3;
-		GlobalsAutoload.enemy_goes_on_turn = 2;
+		enemy_goes_on_turn = 2;
 
 # Returns what the player's speed would be for this turn
 func get_player_speed() -> int:
@@ -53,8 +111,8 @@ func get_player_speed() -> int:
 
 # Returns what the enemy's speed would be for this turn
 func get_enemy_speed() -> int:
-	var speed = GlobalsAutoload.enemy_node.speed;
-	for attack in GlobalsAutoload.enemy_node.attack_resources_in:
+	var speed = enemy_node.speed;
+	for attack in enemy_node.attack_resources_in:
 		if attack != null:
 			speed += attack.priority;
 	#return attack choice doenst give the actual attack done just a possibilty
@@ -72,11 +130,11 @@ func convert_strs_to_attack_roles(user : String, target : String) -> Array:
 	if (user.to_lower() == "player"):
 		perpetrator = PlayerAutoload;
 	else:
-		perpetrator = GlobalsAutoload.enemy_node;
+		perpetrator = enemy_node;
 	if (target.to_lower() == "player"):
 		victim = PlayerAutoload;
 	else:
-		victim = GlobalsAutoload.enemy_node;
+		victim = enemy_node;
 	
 	return [perpetrator, victim]
 
@@ -88,14 +146,26 @@ func convert_strs_to_attack_manager(user: String, target: String) -> Array:
 	if (user.to_lower() == "player"):
 		user_attack_man= PlayerAutoload.animation_player;
 	else:
-		user_attack_man = GlobalsAutoload.enemy_node.enemy_attack_manager_node;
+		user_attack_man = enemy_node.enemy_attack_manager_node;
 	if (target.to_lower() == "player"):
 		target_attack_man = PlayerAutoload.animation_player;
 	else:
-		target_attack_man = GlobalsAutoload.enemy_node.enemy_attack_manager_node;
+		target_attack_man = enemy_node.enemy_attack_manager_node;
 	
 	return [user_attack_man, target_attack_man]
+
+func convert_to_elevation(input: location_types) -> location_types:
+	#input a location and returns its elavation counterpart
+	if input == location_types.LOW:
+		return location_types.HIGH
+		
+	elif input == location_types.HIGH:
+		return location_types.LOW
 	
+	else:
+		return input
+		#if you where to input "none" or "ignore" it would just return it back
+
 # play an attack manually (for if you wanted like a reaction attack to play for example)
 func _manual_play_attack(user: String, attack: attack_parent):
 	var user_data = BattleAutoload.convert_strs_to_attack_roles(user, user)[0]
@@ -121,7 +191,7 @@ func _non_attack_animations(anim_player_node: AnimationPlayer, ailments_parent: 
 	if user_data.attack_history.is_empty() == false:
 		last_attack_name = user_data.attack_history[user_data.attack_history.size() -1].animation_name
 	
-	if GlobalsAutoload.current_turn != user_data.goes_on_turn:
+	if BattleAutoload.current_turn != user_data.goes_on_turn:
 		if anim_player_node.is_playing() == false && unoverridables.has(last_attack_name) == false || overridables.has(anim_player_node.current_animation):
 			if ailments_parent._animtion_decision() != "":
 				anim_player_node.play(ailments_parent._animtion_decision())
@@ -189,7 +259,7 @@ func calculate_damage(base_dmg : int, user, target, can_crit := true, guaranteed
 # This function does the combo effects
 func apply_combo_effects(combo : player_combo) -> void:
 	print("Applying combo effects")
-	var enemy = GlobalsAutoload.enemy_node
+	var enemy = enemy_node
 	PlayerAutoload.attack_history.clear()
 	match combo.animation_name:
 		"combo_slippy_trip":
@@ -206,10 +276,10 @@ func apply_combo_effects(combo : player_combo) -> void:
 			enemy.find_child("Ailments_parent")._instantiate_ailment(combo.ailment_give)
 			
 			GlobalsAutoload.shake_camera.emit(20)
-	GlobalsAutoload.health_updated.emit();
-	
-				
-	
+		"combo_guard_break":
+			pass
+	health_updated.emit();
+
 func apply_attack_effects(last_attack: attack_parent, user: String, target: String) -> void:
 	# somthing to note
 	

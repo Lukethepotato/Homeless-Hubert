@@ -236,7 +236,7 @@ z_index = -1
 layout_mode = 0
 offset_left = -40.0
 offset_top = -30.0
-offset_right = 1110.0
+offset_right = 1112.0
 offset_bottom = 171.0
 color = Color(0.183333, 0.16, 0.2, 1)
 

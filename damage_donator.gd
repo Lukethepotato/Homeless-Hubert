@@ -11,12 +11,12 @@ func _damage_donation(user : String, target : String, base_dmg: int, combo : pla
 	var damage_to_deal = 0
 	var user_attack_region = roles[0].attack_history[roles[0].attack_history.size() - 1].hit_region 
 	
-	if user_attack_region == GlobalsAutoload.location_types.IGNORE:
-		if roles[0].current_block != GlobalsAutoload.location_types.NONE: 
-			user_attack_region = GlobalsAutoload.convert_to_elavation(roles[0].current_block)	
+	if user_attack_region == BattleAutoload.location_types.IGNORE:
+		if roles[0].current_block != BattleAutoload.location_types.NONE: 
+			user_attack_region = BattleAutoload.convert_to_elevation(roles[0].current_block)	
 			#if the attacks region is set to ignore it sets the var attack region to the current elvation
 		else:
-			user_attack_region = GlobalsAutoload.location_types.HIGH
+			user_attack_region = BattleAutoload.location_types.HIGH
 			#if the fish is in the middle and the attack region is ignore it will default to its
 			#attack location to high
 	
@@ -41,7 +41,7 @@ func _damage_donation(user : String, target : String, base_dmg: int, combo : pla
 		roles[1].health -= damage_to_deal;
 		GlobalsAutoload.shake_camera.emit(camera_shake_mult * damage_to_deal)
 	
-	GlobalsAutoload.health_updated.emit();
+	BattleAutoload.health_updated.emit();
 	
 	if PlayerAutoload.health <= 0 and GlobalsAutoload.mortality:
 		GlobalsAutoload.trigger_game_over();

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="player_combo" load_steps=6 format=3 uid="uid://dp8p62y02o1ch"]
+
+[ext_resource type="Script" path="res://Resources/attack_parent.gd" id="1_w2lpp"]
+[ext_resource type="Resource" uid="uid://ctrdselwi2kf1" path="res://Resources/Attacks/Player/punch.tres" id="2_6k6s2"]
+[ext_resource type="Resource" uid="uid://d3ujm2fjw1s3r" path="res://Resources/Attacks/Player/shove.tres" id="3_fl6ji"]
+[ext_resource type="Resource" uid="uid://dlo7o8xx87g8g" path="res://Resources/Attacks/Player/sweep.tres" id="4_7jcqv"]
+[ext_resource type="Script" path="res://Resources/combos/player/player_combo.gd" id="5_133fm"]
+
+[resource]
+script = ExtResource("5_133fm")
+attacks_in_combo = Array[ExtResource("1_w2lpp")]([ExtResource("2_6k6s2"), ExtResource("3_fl6ji"), ExtResource("4_7jcqv")])
+animation_name = "combo_guard_break"
+description = "Halves enemy defense."

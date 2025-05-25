@@ -8,7 +8,7 @@ extends Node2D
 
 func _ready() -> void:
 	update_slot_order()
-	GlobalsAutoload.current_turn_reset.connect(update_slot_order)
+	BattleAutoload.current_turn_reset.connect(update_slot_order)
 	
 	#GlobalsAutoload.dropped_UI.connect(dropped_in_spot_signal_receive)
 	
@@ -22,7 +22,7 @@ func _process(delta: float) -> void:
 	if get_parent().current_texture != null:
 		slot_full = true
 		PlayerAutoload.attack_resources_in[attack_slot_order] = get_parent().attack_resource_holding
-		GlobalsAutoload.done_updating_attacks.emit()
+		BattleAutoload.done_updating_attacks.emit()
 	else:
 		slot_full = false
 		if PlayerAutoload.attack_resources_in[attack_slot_order] != null:

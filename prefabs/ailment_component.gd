@@ -6,7 +6,7 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	GlobalsAutoload.current_turn_reset.connect(_turn_reset)
+	BattleAutoload.current_turn_reset.connect(_turn_reset)
 	target_data = BattleAutoload.convert_strs_to_attack_roles(target, target)
 	target_data = target_data[0]
 	
@@ -63,7 +63,7 @@ func _animtion_decision() -> String:
 
 
 
-	#if GlobalsAutoload.current_turn == target_data.goes_on_turn:
+	#if BattleAutoload.current_turn == target_data.goes_on_turn:
 			#if (ailment_competitor.current_ailment.animation_priority >= current_ailment_anim.current_ailment.animation_priority) || current_ailment_anim == null:
 				#%AnimPlayer.play(ailment_competitor.current_ailment.animation_name)
 				#ailment_competitor = current_ailment_anim

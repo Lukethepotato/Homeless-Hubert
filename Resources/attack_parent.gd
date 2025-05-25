@@ -9,8 +9,8 @@ class_name attack_parent
 @export var name_color := Color.WHITE; # Name color used for display
 @export var description := "Basic fist attack. Attack hits high, deals mediocre damage, and has little disruption."; # Description
 @export var animation_name: String = ""; # Name of the animation to be played when the attack commences
-@export var hit_region := GlobalsAutoload.location_types.HIGH; # Region wherein this attack will strike
-@export var gives_block := GlobalsAutoload.location_types.NONE; # Type of block the attack will give after finishing
+@export var hit_region := BattleAutoload.location_types.HIGH; # Region wherein this attack will strike
+@export var gives_block := BattleAutoload.location_types.NONE; # Type of block the attack will give after finishing
 @export var enables_rush: bool = true #if this is the first attack it will rush if true and stay still if not
 
 #these are values to be applied to the victim on attack
