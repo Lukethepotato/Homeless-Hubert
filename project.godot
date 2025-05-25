@@ -68,6 +68,7 @@ enabled=PackedStringArray("res://addons/YouCanDoIt/plugin.cfg", "res://addons/di
 folder_colors={
 "res://Resources/": "red",
 "res://art/": "orange",
+"res://audio/": "green",
 "res://autoloads/": "gray"
 }
 

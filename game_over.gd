@@ -8,6 +8,7 @@ func _ready() -> void:
 	$background.visible = true;
 	$game_over.visible = false;
 	$move_on.visible = false;
+	$music.play()
 	GlobalsAutoload.timeout(2.0, false);
 	await GlobalsAutoload.timer.timeout;
 	$game_over.modulate.a = 0;
@@ -26,6 +27,8 @@ func _ready() -> void:
 
 
 func _on_move_on_pressed() -> void:
+	tween = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_QUAD);
+	tween.tween_property($music, "volume_db", -80, 3);
 	GlobalsAutoload.begin_load();
 	await GlobalsAutoload.overlay_done
 	get_tree().paused = false;
