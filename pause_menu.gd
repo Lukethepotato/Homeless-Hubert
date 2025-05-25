@@ -71,9 +71,9 @@ func process_selection():
 			new_tween = create_tween().set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_QUART);
 			new_tween.tween_property($saved, "position:x", 1152, 0.5);
 		3:
-			get_tree().paused = false;
 			GlobalsAutoload.begin_load();
 			await GlobalsAutoload.overlay_done
+			get_tree().paused = false;
 			get_tree().change_scene_to_file("res://main_menu.tscn")
 			GlobalsAutoload.state = GlobalsAutoload.game_states.ROAMING
 			queue_free()

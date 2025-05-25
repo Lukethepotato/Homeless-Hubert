@@ -1,0 +1,38 @@
+[gd_scene load_steps=3 format=3 uid="uid://bqoovqgjx0x1s"]
+
+[ext_resource type="Script" path="res://game_over.gd" id="1_4yu3y"]
+[ext_resource type="FontFile" uid="uid://b3nqm4ne13iuk" path="res://Resources/ScaryGhostScript-mL8WP.ttf" id="1_lv8n2"]
+
+[node name="game_over" type="CanvasLayer"]
+process_mode = 3
+layer = -1
+script = ExtResource("1_4yu3y")
+
+[node name="background" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="game_over" type="RichTextLabel" parent="."]
+visible = false
+offset_top = -20.0
+offset_right = 1152.0
+offset_bottom = 306.0
+theme_override_fonts/normal_font = ExtResource("1_lv8n2")
+bbcode_enabled = true
+text = "[center][color=web_maroon][font_size=300][shake rate=20.0 level=20]game over..."
+
+[node name="move_on" type="Button" parent="."]
+visible = false
+offset_left = 226.0
+offset_top = 480.0
+offset_right = 926.0
+offset_bottom = 605.0
+theme_override_fonts/font = ExtResource("1_lv8n2")
+theme_override_font_sizes/font_size = 100
+text = "accept your mortality and move on"
+
+[connection signal="pressed" from="move_on" to="." method="_on_move_on_pressed"]

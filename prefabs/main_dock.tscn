@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://cjnea8maf3y5l"]
+[gd_scene load_steps=34 format=3 uid="uid://cjnea8maf3y5l"]
 
 [ext_resource type="PackedScene" uid="uid://co6wwlpta51be" path="res://prefabs/Hubert.tscn" id="1_n63l7"]
 [ext_resource type="Script" path="res://prefabs/main_dock_script.gd" id="1_wjf3g"]
@@ -550,6 +550,9 @@ shader_parameter/chaos = 1.0
 shader_parameter/radius = 0.696
 shader_parameter/attenuation = 3.42
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_to7dy"]
+size = Vector2(2705, 126)
+
 [node name="main dock" type="Node2D"]
 script = ExtResource("1_wjf3g")
 battle_scenarios = Array[PackedScene]([ExtResource("2_xyfop")])
@@ -567,10 +570,10 @@ scale = Vector2(2.81022, 2.81022)
 
 [node name="Hubert_Sprites" parent="Hubert" index="0"]
 animation = &"Idle"
-frame_progress = 0.0
 
 [node name="main_camera" type="Camera2D" parent="Hubert"]
 unique_name_in_owner = true
+process_mode = 3
 script = ExtResource("5_ts60k")
 
 [node name="Ailments_parent" parent="Hubert" instance=ExtResource("6_c1jcg")]
@@ -620,8 +623,16 @@ mouse_filter = 2
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 
+[node name="death_zone" type="Area2D" parent="."]
+position = Vector2(-864, 670)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="death_zone"]
+position = Vector2(1115.5, 53)
+shape = SubResource("RectangleShape2D_to7dy")
+
 [connection signal="animation_changed" from="AnimPlayer" to="AnimPlayer" method="_on_animation_changed"]
 [connection signal="animation_finished" from="AnimPlayer" to="AnimPlayer" method="_on_animation_finished"]
 [connection signal="body_entered" from="Fishing spot" to="." method="_on_fishing_spot_body_entered"]
+[connection signal="body_entered" from="death_zone" to="." method="_on_death_zone_body_entered"]
 
 [editable path="Hubert"]

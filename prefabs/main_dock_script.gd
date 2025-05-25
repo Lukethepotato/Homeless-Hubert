@@ -5,6 +5,7 @@ extends Node2D
 @export var battle_scenarios : Array[PackedScene]
 
 func _ready() -> void:
+	GlobalsAutoload.game_over.connect(kill_hubert)
 	GlobalsAutoload.camera = %main_camera
 	GlobalsAutoload.end_load.emit()
 
@@ -28,3 +29,14 @@ func _Chromatic_func():
 	
 #call this to make the screen chromatic aberation a bit
 #give it a lil jiggle if you know what im saying homes'
+
+func _on_death_zone_body_entered(body: Node2D) -> void:
+	print("haha")
+	GlobalsAutoload.trigger_game_over();
+
+func kill_hubert():
+	$dock.visible = false;
+	$Hubert/Hubert_Sprites.play("dead")
+	GlobalsAutoload.timeout(0.5, false);
+	await GlobalsAutoload.timer.timeout;
+	$Hubert/main_camera.end_battle_camera(1)

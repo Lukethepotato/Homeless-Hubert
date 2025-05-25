@@ -6,6 +6,7 @@ signal dropped_UI(attack_resource: attack_parent, dropped_where_name: String)
 signal clear_attack_selection()
 signal turn_changed()
 signal health_updated()
+signal game_over()
 signal battle_start()
 signal battle_intro_finished()
 signal battle_end()
@@ -18,6 +19,7 @@ signal shake_camera(shake_amount: float)
 signal info_popup_open(clicked_on)
 
 var camera : Camera2D;
+var mortality := true;
 
 # Combo data
 var all_player_combos: Array[player_combo]
@@ -27,12 +29,14 @@ enum game_states {
 	PAUSED,
 	IN_BATTLE,
 	DIALOGUE,
-	ROAMING
+	ROAMING,
+	GAME_OVER
 }
 var state = game_states.ROAMING;
 
 var loading_overlay_path = load("res://loading_overlay.tscn");
 var pause_menu_path = load("res://pause_menu.tscn");
+var game_over_path = load("res://game_over.tscn");
 signal overlay_done;
 signal end_load
 
@@ -121,12 +125,19 @@ func begin_load():
 	if not get_tree().root.get_node_or_null("loading_overlay"):
 		var loading_overlay = loading_overlay_path.instantiate();
 		get_tree().get_root().add_child(loading_overlay);
-	
 
 func pause():
 	var pause_menu = pause_menu_path.instantiate();
 	get_tree().get_root().add_child(pause_menu);
 	state = game_states.PAUSED;
+
+func trigger_game_over():
+	if mortality:
+		current_battle_scenario.queue_free()
+		game_over.emit()
+		var game_over = game_over_path.instantiate();
+		get_tree().get_root().add_child(game_over);
+		state = game_states.GAME_OVER;
 
 # Creates a timer with a duration equal to the duration parameter
 func timeout(duration := 2.0, pausable := true) -> void:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=3 uid="uid://co6wwlpta51be"]
+[gd_scene load_steps=61 format=3 uid="uid://co6wwlpta51be"]
 
 [ext_resource type="Texture2D" uid="uid://ca237n0njexqp" path="res://art/temp_assets/192637.png" id="2_h37bg"]
 [ext_resource type="Texture2D" uid="uid://bap6raewbggi3" path="res://art/temp_assets/Turret_Shoot-Sheet.png" id="3_fssy4"]
@@ -195,6 +195,10 @@ region = Rect2(130, 0, 130, 117)
 [sub_resource type="AtlasTexture" id="AtlasTexture_tceuy"]
 atlas = ExtResource("3_fssy4")
 region = Rect2(260, 0, 130, 117)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dtwo8"]
+atlas = ExtResource("5_3ng8d")
+region = Rect2(230, 47, 46, 47)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_377ym"]
 atlas = ExtResource("6_drfky")
@@ -403,6 +407,14 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_dtwo8")
+}],
+"loop": false,
+"name": &"dead",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_377ym")
 }, {
 "duration": 1.0,
@@ -430,8 +442,7 @@ script = ExtResource("4_dhhqc")
 
 [node name="Hubert_Sprites" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_gomab")
-animation = &"staggered"
-frame_progress = 0.395474
+animation = &"dead"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, 10.5)

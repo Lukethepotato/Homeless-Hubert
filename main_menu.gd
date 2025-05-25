@@ -56,6 +56,7 @@ func start_game(file):
 		PlayerAutoload.player_name = data.get("player_name");
 	GlobalsAutoload.begin_load();
 	await GlobalsAutoload.overlay_done
+	GlobalsAutoload.state = GlobalsAutoload.game_states.ROAMING;
 	get_tree().change_scene_to_file(scene_to_load)
 
 func _on_play_button_pressed() -> void:

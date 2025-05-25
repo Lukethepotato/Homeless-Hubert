@@ -43,6 +43,10 @@ func _damage_donation(user : String, target : String, base_dmg: int, combo : pla
 	
 	GlobalsAutoload.health_updated.emit();
 	
+	if PlayerAutoload.health <= 0 and GlobalsAutoload.mortality:
+		GlobalsAutoload.trigger_game_over();
+
+
 func _apply_combo_effects():
 	BattleAutoload.apply_combo_effects(PlayerAutoload.current_combo)
 	
