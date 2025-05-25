@@ -82,9 +82,8 @@ func _on_attack_button_pressed() -> void:
 # Handles the behavior of pressing the clear button
 func _on_clear_chosen_attacks_pressed() -> void:
 	if BattleAutoload.current_turn == 1:
-		var tempSize:= PlayerAutoload.attack_resources_in.size()
 		PlayerAutoload.attack_resources_in.clear()
-		PlayerAutoload.attack_resources_in.resize(tempSize)
+		PlayerAutoload.attack_resources_in.resize(PlayerAutoload.attacks_per_turn)
 		
 		for i in $attack_spots.get_child_count():
 			$attack_spots.get_child(i).reset();
@@ -93,19 +92,22 @@ func _on_clear_chosen_attacks_pressed() -> void:
 
 # Returns if all player attack slots are filled
 func is_attack_ready() -> bool:
-	for attack in PlayerAutoload.attack_resources_in.size():
+	var ready_attack_count = 0;
+	for attack in PlayerAutoload.attack_resources_in:
 		if attack != null:
-			return true;
+			ready_attack_count += 1;
+	if ready_attack_count == PlayerAutoload.attack_resources_in.size():
+		#print_rich("[color=yellow][font_size=30] the attack_ready returned true")
+		return true
+	#print_rich("[color=yellow][font_size=30] the attack_ready returned false; ready_attack_count = "+str(ready_attack_count)+", total slots = "+str(PlayerAutoload.attack_resources_in.size()))
 	return false;
 
 # Updates the attack button, tweening it in and updating its text if necessary
 func update_button(_fuckts1 = null, _fuckts2 = null):
 	print("update button")
+	await BattleAutoload.done_updating_attacks;
 	reset_tween();
 	if is_attack_ready():
-		# The following line is a Big 'Ol Band-Aid Fix (trademark pending)
-		print("wait for is done updating attacks")
-		await BattleAutoload.done_updating_attacks;
 		call_deferred("update_button_speed_text")
 		tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO);
 		tween.tween_property($"bottom_ui/attack button", "position:y", 410, 0.5).from(700)
@@ -113,7 +115,6 @@ func update_button(_fuckts1 = null, _fuckts2 = null):
 		tween = create_tween().set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_QUAD);
 		tween.tween_property($"bottom_ui/attack button", "position:y", 700, 0.5)
 	$"bottom_ui/attack button".disabled = not is_attack_ready();
-
 
 func turn_change():
 	if BattleAutoload.current_turn == 4:
@@ -134,7 +135,6 @@ func speed_update():
 
 # Updates the speed displayed under "Commence Attack" on the attack button
 func update_button_speed_text():
-	
 	var player_text;
 	var enemy_text;
 	if BattleAutoload.get_player_speed() > BattleAutoload.get_enemy_speed():

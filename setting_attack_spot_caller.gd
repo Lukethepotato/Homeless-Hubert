@@ -18,7 +18,7 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
-	
+
 func call_setting_attack_spots():
 	print("attack spots called from " + get_name())
 	BattleAutoload.setting_attack_spots(attack_spot_node, self, user, orgin_pos, pos_offset)

@@ -44,7 +44,7 @@ func _play_attack():
 			elif PlayerAutoload.attack_resources_in[attack_in_turn_index_finished].enables_rush == true && is_forward == false:
 				rush("forward")
 				await animation_finished
-				
+			
 			play(animation_to_play)
 			PlayerAutoload.attack_history.append(PlayerAutoload.attack_resources_in[attack_in_turn_index_finished])
 			update_block()

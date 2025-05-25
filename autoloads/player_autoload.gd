@@ -31,10 +31,10 @@ const type = "Player"
 @export var current_block := BattleAutoload.location_types.NONE
 #the idea is that every attack you do will determine a block state that hubert will do
 #and the curent state huberts in is just stored here
-@export var attack_spots_parent :Control
+@export var attack_spots_parent : Control
 @export var ailment_component_node: Node2D
 @export var animation_player: AnimationPlayer #gets animation player (set in the animation player script)
-@export var attacks_per_turn: int = 2 #this is not a value to change its just the value that the attack resources in size defaults to
+@export var attacks_per_turn: int = 2 # stfu vro yes it is dumbass
 
 
 #use this to change one of the players attacks chosen in code
