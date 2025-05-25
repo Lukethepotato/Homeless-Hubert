@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="ailment" load_steps=2 format=3 uid="uid://7v7do66a0kl5"]
+
+[ext_resource type="Script" path="res://Resources/ailments/ailment.gd" id="1_x0676"]
+
+[resource]
+script = ExtResource("1_x0676")
+turn_amount = 2
+lock_block = false
+damage_take_per_turn = 0
+animation_name = ""
+animation_priority = 0
+attacks_per_turn_set = -1
