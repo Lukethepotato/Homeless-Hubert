@@ -21,7 +21,7 @@ func _ready() -> void:
 func _turn_change():
 	if turns_left <= 0:
 		print_rich("[color=cornflower_blue][shake amp=50.0 freq=5.0][wave amp=50.0 freq=5.0][font_size=50]ailement end");
-		target_data[1].stat_dictionary[stat] = old_stat_value;
+		target_data.stat_dictionary[stat] = old_stat_value;
 		queue_free()
 	elif current_ailment != null:
 		_damage_take_per_turn()
@@ -59,18 +59,18 @@ func apply_stat_effects():
 	if current_ailment.stat_to_change != GlobalsAutoload.stats.NONE and current_ailment.modifier != GlobalsAutoload.modifiers.NONE:
 		stat = get_stat_to_modify(current_ailment.stat_to_change);
 		
-		old_stat_value = target_data[1].stat_dictionary[stat];
+		old_stat_value = target_data.stat_dictionary[stat];
 		
 		match current_ailment.modifier:
 			GlobalsAutoload.modifiers.ADDITION:
-				target_data[1].stat_dictionary[stat] += current_ailment.value;
+				target_data.stat_dictionary[stat] += current_ailment.value;
 			GlobalsAutoload.modifiers.SUBTRACTION:
-				target_data[1].stat_dictionary[stat] -= current_ailment.value;
+				target_data.stat_dictionary[stat] -= current_ailment.value;
 			GlobalsAutoload.modifiers.MULTIPLICATION:
-				target_data[1].stat_dictionary[stat] *= current_ailment.value;
+				target_data.stat_dictionary[stat] *= current_ailment.value;
 			GlobalsAutoload.modifiers.DIVISION:
-				target_data[1].stat_dictionary[stat] /= current_ailment.value;
-		print_rich("[color=goldenrod][font_size=20]Ailment changed target "+stat+" from " +str(old_stat_value)+ " to " +str(target_data[1].stat_dictionary[stat]));
+				target_data.stat_dictionary[stat] /= current_ailment.value;
+		print_rich("[color=goldenrod][font_size=20]Ailment changed target "+stat+" from " +str(old_stat_value)+ " to " +str(target_data.stat_dictionary[stat]));
 
 func get_stat_to_modify(stat_enum : GlobalsAutoload.stats):
 	match stat_enum:

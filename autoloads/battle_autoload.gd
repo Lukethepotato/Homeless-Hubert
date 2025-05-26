@@ -277,6 +277,7 @@ func apply_combo_effects(combo : player_combo) -> void:
 			
 			GlobalsAutoload.shake_camera.emit(20)
 		"combo_guard_break":
+			BattleAutoload.damage_dealt.emit(10, enemy, false, false);
 			print_rich("[color=slate_gray][shake amp=50.0 freq=5.0][font_size=50]Guard Break");
 			enemy.find_child("Ailments_parent")._instantiate_ailment(combo.ailment_give)
 	health_updated.emit();

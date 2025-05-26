@@ -2,15 +2,18 @@
 
 [ext_resource type="Resource" uid="uid://danxe3m702fb6" path="res://Resources/Attacks/shared_attacks/none.tres" id="1_8qk4a"]
 [ext_resource type="Script" path="res://Resources/ailments/ailment.gd" id="1_iupam"]
-[ext_resource type="Resource" uid="uid://bh16ayv08j586" path="res://Resources/Attacks/Enemy/low_block.tres" id="2_biii5"]
+[ext_resource type="Resource" uid="uid://dclukfn5jb5fe" path="res://Resources/Attacks/Enemy/high_block.tres" id="2_7peck"]
 
 [resource]
 script = ExtResource("1_iupam")
 turn_amount = 2
 lock_block = false
 force_attack = ExtResource("1_8qk4a")
-force_immediate_attack = ExtResource("2_biii5")
+force_immediate_attack = ExtResource("2_7peck")
 damage_take_per_turn = 0
 animation_name = "staggered"
 animation_priority = 5
 attacks_per_turn_set = 1
+stat_to_change = 0
+modifier = 0
+value = 0.0
