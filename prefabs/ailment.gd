@@ -8,7 +8,8 @@ extends Node2D
 @export var enemy_blocks: Array[attack_parent]
 @export var animation_player: AnimationPlayer
 
-var old_stat_value;
+var stat := "none";
+var old_stat_value : int;
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -20,8 +21,7 @@ func _ready() -> void:
 func _turn_change():
 	if turns_left <= 0:
 		print_rich("[color=cornflower_blue][shake amp=50.0 freq=5.0][wave amp=50.0 freq=5.0][font_size=50]ailement end");
-		var stat;
-		stat = old_stat_value;
+		target_data[1].stat_dictionary[stat] = old_stat_value;
 		queue_free()
 	elif current_ailment != null:
 		_damage_take_per_turn()
@@ -50,22 +50,48 @@ func _begin_ailment(ailment_chosen: ailment):
 	print_rich("[color=cornflower_blue][shake amp=50.0 freq=5.0][wave amp=50.0 freq=5.0][font_size=50]ailement begin");
 	current_ailment = ailment_chosen
 	turns_left = ailment_chosen.turn_amount
+	apply_stat_effects()
 	if current_ailment.force_immediate_attack != null:
 		BattleAutoload._manual_play_attack(get_parent().target, current_ailment.force_immediate_attack)
 
 func apply_stat_effects():
 	# ts so ugly vro 💔
 	if current_ailment.stat_to_change != GlobalsAutoload.stats.NONE and current_ailment.modifier != GlobalsAutoload.modifiers.NONE:
-		var stat;
+		stat = get_stat_to_modify(current_ailment.stat_to_change);
 		
-		old_stat_value = stat;
+		old_stat_value = target_data[1].stat_dictionary[stat];
 		
 		match current_ailment.modifier:
 			GlobalsAutoload.modifiers.ADDITION:
-				stat += current_ailment.value;
+				target_data[1].stat_dictionary[stat] += current_ailment.value;
 			GlobalsAutoload.modifiers.SUBTRACTION:
-				stat -= current_ailment.value;
+				target_data[1].stat_dictionary[stat] -= current_ailment.value;
 			GlobalsAutoload.modifiers.MULTIPLICATION:
-				stat *= current_ailment.value;
+				target_data[1].stat_dictionary[stat] *= current_ailment.value;
 			GlobalsAutoload.modifiers.DIVISION:
-				stat /= current_ailment.value;
+				target_data[1].stat_dictionary[stat] /= current_ailment.value;
+		print_rich("[color=goldenrod][font_size=20]Ailment changed target "+stat+" from " +str(old_stat_value)+ " to " +str(target_data[1].stat_dictionary[stat]));
+
+func get_stat_to_modify(stat_enum : GlobalsAutoload.stats):
+	match stat_enum:
+		GlobalsAutoload.stats.HEALTH:
+			return "health"
+		GlobalsAutoload.stats.MAX_HEALTH:
+			return "max_health"
+		GlobalsAutoload.stats.SPEED:
+			return "speed"
+		GlobalsAutoload.stats.STRENGTH:
+			return "strength"
+		GlobalsAutoload.stats.DEFENSE:
+			return "defense"
+		GlobalsAutoload.stats.AGILITY:
+			return "agility"
+		GlobalsAutoload.stats.LUCK:
+			return "luck"
+		GlobalsAutoload.stats.EVASION:
+			return "evasion"
+		GlobalsAutoload.stats.DISRUPTION_RESIST:
+			return "disruption_resist"
+		GlobalsAutoload.stats.AILMENT_RESIST:
+			return "ailment_resist"
+	return "none"

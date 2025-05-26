@@ -14,7 +14,6 @@ func _ready() -> void:
 	BattleAutoload.damage_dealt.connect(damage_popup);
 	GlobalsAutoload.info_popup_open.connect(open_info_panel);
 	$enemy_attack_spots.visible = false;
-	$combo_thing.visible = false;
 	$info_panel.visible = false;
 	$info_displays.position.y = -400;
 	$bottom_ui.position.y = 300;
@@ -47,8 +46,6 @@ func intro_tween():
 	await tween.finished;
 	$info_displays.fetch_names();
 	$battle_intro.visible = false;
-	$combo_thing.modulate.a = 0;
-	$combo_thing.visible = true;
 	$attack_spots.visible = true;
 	enemy_attack_preview()
 	
@@ -58,7 +55,6 @@ func intro_tween():
 	in_battle = true;
 	tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO).set_parallel(true);
 	tween.tween_property($attack_spots, "position", Vector2(70,0), 0.5).from(Vector2(70,-380))
-	tween.tween_property($combo_thing, "modulate:a", 1, 0.5)
 	tween.tween_property($info_displays, "position:y", 0, 0.5).from(-400)
 	tween.tween_property($bottom_ui, "position:y", 0, 0.5).from(300)
 
@@ -159,7 +155,6 @@ func tween_in_bars():
 	tween.tween_property($attack_spots, "position", Vector2(-300,20), 0.2)
 	tween.tween_property($info_displays, "position:y", 90, 0.2)
 	tween.tween_property($bottom_ui, "position:y", 300, 0.2)
-	tween.tween_property($combo_thing, "modulate:a", 0, 0.5)
 	tween.tween_property($bars/bottom_bar, "position:y", 568, 0.25).from(750)
 	tween.tween_property($bars/top_bar, "position:y", 0, 0.25).from(-182)
 
@@ -171,7 +166,6 @@ func tween_out_bars():
 	tween.tween_property($attack_spots, "position", Vector2(70,20), 0.25)
 	tween.tween_property($info_displays, "position:y", 0, 0.25)
 	tween.tween_property($bottom_ui, "position:y", 0, 0.25)
-	tween.tween_property($combo_thing, "modulate:a", 1, 0.5)
 	await tween.finished;
 	$bars.visible = false;
 

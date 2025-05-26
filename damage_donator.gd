@@ -49,4 +49,3 @@ func _damage_donation(user : String, target : String, base_dmg: int, combo : pla
 
 func _apply_combo_effects():
 	BattleAutoload.apply_combo_effects(PlayerAutoload.current_combo)
-	

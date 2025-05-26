@@ -83,5 +83,6 @@ func combo_checking() -> player_combo:
 		
 		attack_history_cut = attack_history_with_chosen_attacks.slice(attack_history_with_chosen_attacks.size() - BattleAutoload.combo_node.combo_resources[i].attacks_in_combo.size(), attack_history_with_chosen_attacks.size())
 		if attack_history_cut.hash() == BattleAutoload.combo_node.combo_resources[i].attacks_in_combo.hash():
+			print("returning " + str(BattleAutoload.combo_node.combo_resources[i].animation_name))
 			return BattleAutoload.combo_node.combo_resources[i]
 	return null

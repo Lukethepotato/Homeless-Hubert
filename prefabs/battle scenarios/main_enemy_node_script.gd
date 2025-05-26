@@ -23,7 +23,7 @@ const type = "Enemy";
 	"defense" : 0, # Subtractive factor from damage taken
 	"agility" : 1, # Additive factor to speed
 	"luck" : 0, # Additive factor to critical chance (base chance = 1)
-	"evasion" : 99, # Additive factor to dodge chance (base chance = 0)
+	"evasion" : 0, # Additive factor to dodge chance (base chance = 0)
 	"disruption_resist" : 0.05, # Written as decimal, chance of resisting disruption
 	"ailment_resist" : 0.05, # Written as decimal, chance of resisting ailment
 }
@@ -35,7 +35,7 @@ const type = "Enemy";
 @export var block_inclination: float = 5
 @export var goes_on_turn: int
 
-@export var attacks_per_turn: int = 3 #the value must be typed here cuz _init magic bullshit #attack resources in size defaults to this
+@export var attacks_per_turn: int = 1 #the value must be typed here cuz _init magic bullshit #attack resources in size defaults to this
 
 @export var attack_spots_parent :Control
 @export var ailment_component_node: Node2D
