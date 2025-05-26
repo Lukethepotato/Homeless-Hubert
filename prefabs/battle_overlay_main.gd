@@ -247,14 +247,14 @@ func open_info_panel(target):
 			$info_panel.position.x = 1152
 			info_out_end_pos = 1152
 			tween.tween_property($info_panel, "position:x", 777, 0.5);
-		$info_panel/healthbar/number.text = "[center]" + str(target.health) + " / " + str(target.max_health)
-		$info_panel/healthbar.max_value = target.max_health
-		$info_panel/healthbar.value = target.health
-		$info_panel/stats/text/str.text = "[center][font_size=25]" + str(target.strength)
-		$info_panel/stats/text/def.text = "[center][font_size=25]" + str(target.defense)
-		$info_panel/stats/text/agi.text = "[center][font_size=25]" + str(target.agility)
-		$info_panel/stats/text/luk.text = "[center][font_size=25]" + str(target.luck)
-		$info_panel/stats/text/eva.text = "[center][font_size=25]" + str(target.evasion)
+		$info_panel/healthbar/number.text = "[center]" + str(target.stat_dictionary.health) + " / " + str(target.stat_dictionary.max_health)
+		$info_panel/healthbar.max_value = target.stat_dictionary.max_health
+		$info_panel/healthbar.value = target.stat_dictionary.health
+		$info_panel/stats/text/str.text = "[center][font_size=25]" + str(target.stat_dictionary.strength)
+		$info_panel/stats/text/def.text = "[center][font_size=25]" + str(target.stat_dictionary.defense)
+		$info_panel/stats/text/agi.text = "[center][font_size=25]" + str(target.stat_dictionary.agility)
+		$info_panel/stats/text/luk.text = "[center][font_size=25]" + str(target.stat_dictionary.luck)
+		$info_panel/stats/text/eva.text = "[center][font_size=25]" + str(target.stat_dictionary.evasion)
 		$info_panel.visible = true;
 		tween.tween_property(GlobalsAutoload.camera, "global_position", target.position, 0.5);
 		tween.tween_property(GlobalsAutoload.camera, "zoom", Vector2(1.5, 1.5), 0.5);

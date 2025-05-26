@@ -1,12 +1,17 @@
-[gd_resource type="Resource" script_class="ailment" load_steps=2 format=3 uid="uid://7v7do66a0kl5"]
+[gd_resource type="Resource" script_class="ailment" load_steps=3 format=3 uid="uid://7v7do66a0kl5"]
 
+[ext_resource type="Texture2D" uid="uid://bgqer2v2l6mii" path="res://art/temp_assets/guard_break.png" id="1_g3abs"]
 [ext_resource type="Script" path="res://Resources/ailments/ailment.gd" id="1_x0676"]
 
 [resource]
 script = ExtResource("1_x0676")
-turn_amount = 2
-lock_block = false
-damage_take_per_turn = 0
-animation_name = ""
-animation_priority = 0
+turn_amount = null
+lock_block = null
+damage_take_per_turn = null
+animation_name = null
+ailment_icon = ExtResource("1_g3abs")
+animation_priority = null
 attacks_per_turn_set = -1
+stat_to_change = 5
+modifier = 4
+value = 2.0

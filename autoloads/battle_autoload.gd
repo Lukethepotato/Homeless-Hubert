@@ -74,7 +74,7 @@ func _process(delta: float) -> void:
 # This function initiates a battle, taking in a list of scenarios.
 func start_battle(battle_scenarios) -> void:
 	GlobalsAutoload.state = GlobalsAutoload.game_states.IN_BATTLE;
-	PlayerAutoload.speed += PlayerAutoload.agility;
+	PlayerAutoload.stat_dictionary.speed += PlayerAutoload.stat_dictionary.agility;
 	current_turn = 0
 	var rand_battleS_index = randf_range(0, battle_scenarios.size() -1)
 	var instance = battle_scenarios[rand_battleS_index].instantiate()
@@ -88,11 +88,11 @@ func start_battle(battle_scenarios) -> void:
 
 # Changes the PlayerAutoload goes_on_turn and the GlobalsAutoload enemy_goes_on_turn according to agility values and attack priority
 func update_turn_order():
-	PlayerAutoload.speed = get_player_speed();
-	enemy_node.speed = get_enemy_speed();
-	print("Player speed = " + str(PlayerAutoload.speed));
-	print("Enemy speed = " + str(enemy_node.speed));
-	if PlayerAutoload.speed > enemy_node.speed or (PlayerAutoload.speed == enemy_node.speed and randi_range(1,2) == 1):
+	PlayerAutoload.stat_dictionary.speed = get_player_speed();
+	enemy_node.stat_dictionary.speed = get_enemy_speed();
+	print("Player speed = " + str(PlayerAutoload.stat_dictionary.speed));
+	print("Enemy speed = " + str(enemy_node.stat_dictionary.speed));
+	if PlayerAutoload.stat_dictionary.speed > enemy_node.stat_dictionary.speed or (PlayerAutoload.stat_dictionary.speed == enemy_node.stat_dictionary.speed and randi_range(1,2) == 1):
 		PlayerAutoload.goes_on_turn = 2;
 		enemy_goes_on_turn = 3;
 	else:
@@ -101,7 +101,7 @@ func update_turn_order():
 
 # Returns what the player's speed would be for this turn
 func get_player_speed() -> int:
-	var speed = PlayerAutoload.speed;
+	var speed = PlayerAutoload.stat_dictionary.speed;
 	for attack in PlayerAutoload.attack_resources_in:
 		if attack != null:
 			speed += attack.priority;
@@ -111,7 +111,7 @@ func get_player_speed() -> int:
 
 # Returns what the enemy's speed would be for this turn
 func get_enemy_speed() -> int:
-	var speed = enemy_node.speed;
+	var speed = enemy_node.stat_dictionary.speed;
 	for attack in enemy_node.attack_resources_in:
 		if attack != null:
 			speed += attack.priority;
@@ -240,15 +240,15 @@ func calculate_damage(base_dmg : int, user, target, can_crit := true, guaranteed
 	var crit = false;
 	var evade = false;
 	print("Base damage: " + str(damage))
-	damage += user.strength;
+	damage += user.stat_dictionary.strength;
 	print("Strength damage: " + str(damage))
-	damage -= target.defense;
+	damage -= target.stat_dictionary.defense;
 	print("Defense damage: " + str(damage))
-	if randi_range(1+user.luck, 100) >= 100 and can_crit:
+	if randi_range(1+user.stat_dictionary.luck, 100) >= 100 and can_crit:
 		damage *= 2.5;
 		print_rich("[color=gold][wave amp=50.0 freq=5.0][font_size=20]Critical: " + str(damage));
 		crit = true;
-	if target.evasion > 0 and randi_range(target.evasion, 100) >= 100 and not guaranteed_hit:
+	if target.stat_dictionary.evasion > 0 and randi_range(target.stat_dictionary.evasion, 100) >= 100 and not guaranteed_hit:
 		damage = 0;
 		print_rich("[color=red][shake amp=50.0 freq=5.0][font_size=20]Evaded: " + str(damage));
 		evade = true;
@@ -263,21 +263,22 @@ func apply_combo_effects(combo : player_combo) -> void:
 	PlayerAutoload.attack_history.clear()
 	match combo.animation_name:
 		"combo_slippy_trip":
-			print_rich("[color=cornflower_blue][shake amp=50.0 freq=5.0][wave amp=50.0 freq=5.0][font_size=50]Slippy Trip");
+			print_rich("[color=cornflower_blue][wave amp=50.0 freq=5.0][font_size=50]Slippy Trip");
 			enemy.traits.erase(traits.SLIPPERY);
-			enemy.health -= 10;
-			enemy.poise -= 10; # TEMPORARY
+			enemy.stat_dictionary.health -= 10;
+			enemy.stat_dictionary.poise -= 10; # TEMPORARY
 			BattleAutoload.damage_dealt.emit(10, enemy, false, false);
-			enemy.evasion -= 20;
-			enemy.speed -= 2;
-			if enemy.evasion < 0:
-				enemy.evasion = 0;
+			enemy.stat_dictionary.evasion -= 20;
+			enemy.stat_dictionary.speed -= 2;
+			if enemy.stat_dictionary.evasion < 0:
+				enemy.stat_dictionary.evasion = 0;
 			
 			enemy.find_child("Ailments_parent")._instantiate_ailment(combo.ailment_give)
 			
 			GlobalsAutoload.shake_camera.emit(20)
 		"combo_guard_break":
-			pass
+			print_rich("[color=slate_gray][shake amp=50.0 freq=5.0][font_size=50]Guard Break");
+			enemy.find_child("Ailments_parent")._instantiate_ailment(combo.ailment_give)
 	health_updated.emit();
 
 func apply_attack_effects(last_attack: attack_parent, user: String, target: String) -> void:
@@ -288,8 +289,8 @@ func apply_attack_effects(last_attack: attack_parent, user: String, target: Stri
 	#so i use a string since i can just input the attacks animation name no matter if its a enemy or player attack
 	var roles = BattleAutoload.convert_strs_to_attack_roles(user, target)
 	
-	roles[1].speed -= last_attack.victim_speed_subtract;
-	roles[1].defense -= last_attack.victim_defense_subtract
+	roles[1].stat_dictionary.speed -= last_attack.victim_speed_subtract;
+	roles[1].stat_dictionary.defense -= last_attack.victim_defense_subtract
 	# You should use the switch statement for unique effects like ailments rather than just a variable every attack has
 	match last_attack.animation_name:
 		"hubert_basic_low":

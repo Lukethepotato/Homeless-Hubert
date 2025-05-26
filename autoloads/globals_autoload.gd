@@ -32,6 +32,28 @@ signal end_load
 
 var timer;
 
+# Ailment logic enums:
+enum stats {
+	NONE,
+	HEALTH,
+	MAX_HEALTH,
+	SPEED,
+	STRENGTH,
+	DEFENSE,
+	AGILITY,
+	LUCK,
+	EVASION,
+	DISRUPTION_RESIST,
+	AILMENT_RESIST
+}
+enum modifiers {
+	NONE,
+	ADDITION,
+	SUBTRACTION,
+	MULTIPLICATION,
+	DIVISION
+}
+
 # this is a lil note for lukey poo who forgets how to print Rich
 # print_rich("[color=gold][wave amp=50.0 freq=5.0][font_size=20] PUT TEXT HERE ");
 

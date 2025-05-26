@@ -25,10 +25,10 @@ func _damage_donation(user : String, target : String, base_dmg: int, combo : pla
 			var last_attack_done = roles[0].attack_history[roles[0].attack_history.size() -1]
 			damage_to_deal = BattleAutoload.calculate_damage(base_dmg, roles[0], roles[1], can_crit, guaranteed_hit);
 			
-			roles[1].health -= damage_to_deal;
-			roles[1].poise -= damage_to_deal * last_attack_done.stance_disruption_mod
-			print("Poise : " + str(roles[1].poise))
-			if roles[1].poise <= 0:
+			roles[1].stat_dictionary.health -= damage_to_deal;
+			roles[1].stat_dictionary.poise -= damage_to_deal * last_attack_done.stance_disruption_mod
+			print("Poise : " + str(roles[1].stat_dictionary.poise))
+			if roles[1].stat_dictionary.poise <= 0:
 				#pass
 				roles[1].ailment_component_node._instantiate_ailment(load("res://Resources/ailments/staggered.tres"))
 				# reset poise back somehow (:
@@ -38,12 +38,12 @@ func _damage_donation(user : String, target : String, base_dmg: int, combo : pla
 	else:
 		damage_to_deal = BattleAutoload.calculate_damage(base_dmg, roles[0], roles[1], can_crit, guaranteed_hit);
 		
-		roles[1].health -= damage_to_deal;
+		roles[1].stat_dictionary.health -= damage_to_deal;
 		GlobalsAutoload.shake_camera.emit(camera_shake_mult * damage_to_deal)
 	
 	BattleAutoload.health_updated.emit();
 	
-	if PlayerAutoload.health <= 0 and GlobalsAutoload.mortality:
+	if PlayerAutoload.stat_dictionary.health <= 0 and GlobalsAutoload.mortality:
 		GlobalsAutoload.trigger_game_over();
 
 

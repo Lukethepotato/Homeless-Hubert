@@ -31,7 +31,7 @@ func _on_move_on_pressed() -> void:
 	tween.tween_property($music, "volume_db", -80, 3);
 	GlobalsAutoload.begin_load();
 	await GlobalsAutoload.overlay_done;
-	PlayerAutoload.health = PlayerAutoload.max_health;
+	PlayerAutoload.stat_dictionary.health = PlayerAutoload.stat_dictionary.max_health;
 	get_tree().paused = false;
 	get_tree().change_scene_to_file("res://main_menu.tscn");
 	queue_free(); 

@@ -14,19 +14,19 @@ const type = "Player"
 @export var position := Vector2(0,0); # Position of player for damage popup numbers
 
 # Player stats
-@export var health := 15 # Base health of player
-@export var max_health := 15 # Maximum health of player
-@export var poise := 100 # Percentage stance value; when poise hits 0, character is staggered
-@export var speed := 10; # Player speed value
-@export var strength := 1; # Additive factor to damage
-@export var defense := 0; # Subtractive factor from damage taken
-@export var agility := 1; # Additive factor to speed
-@export var luck := 99; # Additive factor to critical chance (base chance = 1)
-@export var evasion := 1; # Additive factor to dodge chance (base chance = 0)
-
-# Resistances
-@export var disruption_resist := 0.05; # Written as decimal, chance of resisting disruption
-@export var ailment_resist := 0.05; # Written as decimal, chance of resisting ailment
+@export var stat_dictionary = {
+	"health" : 15, # Base health of player
+	"max_health" : 15, # Maximum health of player
+	"poise" : 100, # Percentage stance value; when poise hits 0, character is staggered
+	"speed" : 10, # Player speed value
+	"strength" : 1, # Additive factor to damage
+	"defense" : 0, # Subtractive factor from damage taken
+	"agility" : 1, # Additive factor to speed
+	"luck" : 99, # Additive factor to critical chance (base chance = 1)
+	"evasion" : 1, # Additive factor to dodge chance (base chance = 0)
+	"disruption_resist" : 0.05, # Written as decimal, chance of resisting disruption
+	"ailment_resist" : 0.05, # Written as decimal, chance of resisting ailment
+}
 
 @export var current_block := BattleAutoload.location_types.NONE
 #the idea is that every attack you do will determine a block state that hubert will do

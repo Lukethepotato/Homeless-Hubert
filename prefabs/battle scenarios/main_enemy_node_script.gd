@@ -14,20 +14,20 @@ const type = "Enemy";
 @export var name_color := Color.RED; # Color of the fish's name used for display
 
 # Fish stats
-@export var health := 20 # Base health of fish
-@export var max_health := 20 # Maximum health of fish
-@export var poise := 100; # Percentage stance value; when poise hits 0, character is staggered
-@export var speed := 10; # Enemy speed value
+@export var stat_dictionary = {
+	"health" : 20, # Base health of player
+	"max_health" : 20, # Maximum health of player
+	"poise" : 100, # Percentage stance value; when poise hits 0, character is staggered
+	"speed" : 10, # Player speed value
+	"strength" : 1, # Additive factor to damage
+	"defense" : 0, # Subtractive factor from damage taken
+	"agility" : 1, # Additive factor to speed
+	"luck" : 0, # Additive factor to critical chance (base chance = 1)
+	"evasion" : 99, # Additive factor to dodge chance (base chance = 0)
+	"disruption_resist" : 0.05, # Written as decimal, chance of resisting disruption
+	"ailment_resist" : 0.05, # Written as decimal, chance of resisting ailment
+}
 @export var traits : Array[BattleAutoload.traits]; # Array containing all of the fish's traits
-@export var strength := 1; # Additive factor to damage
-@export var defense := 0; # Subtractive factor from damage taken
-@export var agility := 1; # Additive factor to speed
-@export var luck := 0; # Additive factor to critical chance (base chance = 1, max_value = 99)
-@export var evasion := 100; # Additive factor to dodge chance (base chance = 0, max_value = 99)
-
-# Resistances
-@export var disruption_resist := 0.05; # Written as decimal, chance of resisting disruption
-@export var ailment_resist := 0.05; # Written as decimal, chance of resisting ailment
 
 @export var attack_resources_in: Array[attack_parent]
 @export var current_block := BattleAutoload.location_types.NONE
@@ -52,7 +52,7 @@ func _ready() -> void:
 	animation_player = %AnimPlayer
 	attack_resources_in.resize(attacks_per_turn)
 	ailment_component_node = %Ailments_parent
-	speed += agility;
+	stat_dictionary.speed += stat_dictionary.agility;
 	modify_stats_with_traits();
 	
 func _process(delta: float) -> void:
@@ -68,44 +68,44 @@ func modify_stats_with_traits() -> void:
 	for fish_trait in traits:
 		match fish_trait:
 			BattleAutoload.traits.SLIPPERY:
-				evasion += 20;
-				if evasion >= 100:
-					evasion = 99
-				disruption_resist -= 0.20;
-				if disruption_resist < 0:
-					disruption_resist = 0;
+				stat_dictionary.evasion += 20;
+				if stat_dictionary.evasion >= 100:
+					stat_dictionary.evasion = 99
+				stat_dictionary.disruption_resist -= 0.20;
+				if stat_dictionary.disruption_resist < 0:
+					stat_dictionary.disruption_resist = 0;
 			BattleAutoload.traits.OBESE:
-				evasion -= 20;
-				if evasion < 0:
-					evasion = 0;
-				disruption_resist += 0.20
+				stat_dictionary.evasion -= 20;
+				if stat_dictionary.evasion < 0:
+					stat_dictionary.evasion = 0;
+				stat_dictionary.disruption_resist += 0.20
 			BattleAutoload.traits.FLEXIBLE:
 				pass;
 			BattleAutoload.traits.RIGID:
 				pass;
 			BattleAutoload.traits.VAMPIRE:
 				# I don't know how you want to implement lifesteal so I'll leave it up to you unless you say otherwise
-				strength += 1;
-				defense -= 4;
+				stat_dictionary.strength += 1;
+				stat_dictionary.defense -= 4;
 			BattleAutoload.traits.FRENZIED:
-				strength += 2;
-				defense -= 2;
+				stat_dictionary.strength += 2;
+				stat_dictionary.defense -= 2;
 			BattleAutoload.traits.CALM:
-				strength -= 2;
-				defense += 2;
-				disruption_resist += 0.05
+				stat_dictionary.strength -= 2;
+				stat_dictionary.defense += 2;
+				stat_dictionary.disruption_resist += 0.05
 			BattleAutoload.traits.FERAL:
-				strength += 10
-				defense -= 6;
-				agility -= 2;
-				evasion = 0;
-				disruption_resist = 0;
+				stat_dictionary.strength += 10
+				stat_dictionary.defense -= 6;
+				stat_dictionary.agility -= 2;
+				stat_dictionary.evasion = 0;
+				stat_dictionary.disruption_resist = 0;
 			BattleAutoload.traits.DEADEYE:
-				strength -= 4
-				luck = 49;
+				stat_dictionary.strength -= 4
+				stat_dictionary.luck = 49;
 			BattleAutoload.traits.HARDY:
-				disruption_resist += 0.30;
-				ailment_resist += 0.50;
+				stat_dictionary.disruption_resist += 0.30;
+				stat_dictionary.ailment_resist += 0.50;
 
 func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event.is_action_pressed("LMB"):
