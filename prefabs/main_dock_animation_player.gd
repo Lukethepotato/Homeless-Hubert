@@ -37,6 +37,7 @@ func _play_attack():
 				animation_to_play = PlayerAutoload.attack_resources_in[attack_in_turn_index_finished].animation_name
 			else:
 				animation_to_play = combo_checking().animation_name
+				PlayerAutoload.current_combo = combo_checking()
 				#if combo checking returns somthing. The "animation_to_play" string gets set to the combo's animation name instead
 			if PlayerAutoload.attack_resources_in[attack_in_turn_index_finished].enables_rush == false && is_forward:
 				rush("back")
@@ -48,11 +49,6 @@ func _play_attack():
 			play(animation_to_play)
 			PlayerAutoload.attack_history.append(PlayerAutoload.attack_resources_in[attack_in_turn_index_finished])
 			update_block()
-			PlayerAutoload.current_combo = combo_checking()
-			if combo_checking() != null:
-				print("player combo curent is = " + PlayerAutoload.current_combo.animation_name)
-			else:	
-				print("null combo")
 			attack_in_turn_index_finished += 1
 			await animation_finished
 			#once the loop is over it waits to loop again until the current attack anim is done
