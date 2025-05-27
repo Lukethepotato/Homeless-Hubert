@@ -40,3 +40,16 @@ func load_data(file_to_load : int):
 func delete_data(file_to_delete : int):
 	print("Deleting file \"save_file"+str(file_to_delete)+".save\"");
 	DirAccess.remove_absolute("user://save_file_"+str(file_to_delete)+".save");
+	
+#loads and resets player autoload values, called in the main menu script
+func player_autload_reset():
+	PlayerAutoload.player_name = load_data(current_file).get("player_name");
+	PlayerAutoload.current_block = BattleAutoload.location_types.NONE
+	PlayerAutoload.current_combo = null
+	PlayerAutoload.attack_history.resize(0)
+	PlayerAutoload.attack_resources_in.clear()
+	PlayerAutoload.attacks_per_turn = 2
+	
+	
+	
+	

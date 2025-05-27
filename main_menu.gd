@@ -53,7 +53,7 @@ func start_game(file):
 		3:
 			data = save_dict_1
 	if data:
-		PlayerAutoload.player_name = data.get("player_name");
+		SaveAutoload.player_autload_reset()
 	GlobalsAutoload.begin_load();
 	await GlobalsAutoload.overlay_done
 	GlobalsAutoload.state = GlobalsAutoload.game_states.ROAMING;
