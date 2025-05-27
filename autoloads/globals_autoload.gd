@@ -13,6 +13,9 @@ signal info_popup_open(clicked_on)
 
 var camera : Camera2D;
 var mortality := true;
+var predictable_rng = RandomNumberGenerator.new();
+var seed := hash("I HATE LUKE");
+var rng_state := 8008;
 
 # Game states
 enum game_states {
@@ -57,12 +60,20 @@ enum modifiers {
 # this is a lil note for lukey poo who forgets how to print Rich
 # print_rich("[color=gold][wave amp=50.0 freq=5.0][font_size=20] PUT TEXT HERE ");
 
-func _process(delta: float) -> void:
-	pass
+func _ready() -> void:
+	update_rng();
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("f11"):
 		toggle_fullscreen();
+	if event.is_action_pressed("LEFT"):
+		print(predictable_rng.randi())
+	if event.is_action_pressed("RIGHT"):
+		print(predictable_rng.randi())
+
+func update_rng():
+	predictable_rng.seed = seed;
+	predictable_rng.state = rng_state;
 
 # Checks what window mode the game is and toggles it accordingly
 func toggle_fullscreen():
