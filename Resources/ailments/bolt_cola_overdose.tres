@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ailment" load_steps=2 format=3 uid="uid://d3dcqcpeox68f"]
+
+[ext_resource type="Script" path="res://Resources/ailments/ailment.gd" id="1_qo3x0"]
+
+[resource]
+script = ExtResource("1_qo3x0")
+turn_amount = 2
+lock_block = false
+damage_take_per_turn = 3
+animation_name = "bolt_cola_overdose"
+animation_priority = 0
+attacks_per_turn_set = 0
+stat_to_change = 3
+modifier = 3
+value = 1.5

@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://cjnea8maf3y5l"]
+[gd_scene load_steps=38 format=3 uid="uid://cjnea8maf3y5l"]
 
 [ext_resource type="PackedScene" uid="uid://co6wwlpta51be" path="res://prefabs/Hubert.tscn" id="1_n63l7"]
 [ext_resource type="Script" path="res://prefabs/main_dock_script.gd" id="1_wjf3g"]
@@ -14,6 +14,7 @@
 [ext_resource type="Resource" uid="uid://kq1uq0yxny0g" path="res://Resources/combos/player/slippy_trip.tres" id="8_0wops"]
 [ext_resource type="Shader" path="res://prefabs/ChromaticAb.gdshader" id="11_m8xgj"]
 [ext_resource type="Resource" uid="uid://dp8p62y02o1ch" path="res://Resources/combos/player/guard_break.tres" id="13_sgfk8"]
+[ext_resource type="Resource" uid="uid://c6pp3ibswpxug" path="res://Resources/combos/player/bolt_cola.tres" id="14_4sovf"]
 
 [sub_resource type="Animation" id="Animation_vog60"]
 length = 0.001
@@ -550,9 +551,39 @@ tracks/1/keys = {
 "values": [&"staggered"]
 }
 
+[sub_resource type="Animation" id="Animation_5imbs"]
+resource_name = "combo_bolt_cola"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("damage_donator")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_apply_combo_effects"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hubert/Hubert_Sprites:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"combo:slippy_trip"]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_b23nh"]
 _data = {
 "RESET": SubResource("Animation_vog60"),
+"combo_bolt_cola": SubResource("Animation_5imbs"),
 "combo_guard_break": SubResource("Animation_ynit1"),
 "combo_slippy_trip": SubResource("Animation_l5h7e"),
 "hubert_basic_chop": SubResource("Animation_rm7sm"),
@@ -639,7 +670,7 @@ camera_shake_mult = 1.0
 
 [node name="all combo container" type="Node2D" parent="."]
 script = ExtResource("6_33w4j")
-combo_resources = Array[ExtResource("7_lru2h")]([ExtResource("8_0wops"), ExtResource("13_sgfk8")])
+combo_resources = Array[ExtResource("7_lru2h")]([ExtResource("8_0wops"), ExtResource("13_sgfk8"), ExtResource("14_4sovf")])
 
 [node name="effects overlay" type="CanvasLayer" parent="."]
 

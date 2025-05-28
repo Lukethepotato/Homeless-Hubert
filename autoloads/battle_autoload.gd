@@ -282,6 +282,10 @@ func apply_combo_effects(combo : player_combo) -> void:
 			BattleAutoload.damage_dealt.emit(10, enemy, false, false);
 			print_rich("[color=slate_gray][shake amp=50.0 freq=5.0][font_size=50]Guard Break");
 			enemy.find_child("Ailments_parent")._instantiate_ailment(combo.ailment_give)
+		"combo_bolt_cola":
+			BattleAutoload.damage_dealt.emit(10, enemy, false, false);
+			print_rich("[color=chartreuse][shake rate=20.0 level=20][font_size=50]Bolt Cola");
+			PlayerAutoload.ailment_component_node._instantiate_ailment(combo.ailment_give)
 	health_updated.emit();
 
 func apply_attack_effects(last_attack: attack_parent, user: String, target: String) -> void:

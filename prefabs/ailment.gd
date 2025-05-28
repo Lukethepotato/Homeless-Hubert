@@ -63,13 +63,13 @@ func apply_stat_effects():
 		
 		match current_ailment.modifier:
 			GlobalsAutoload.modifiers.ADDITION:
-				target_data.stat_dictionary[stat] += current_ailment.value;
+				target_data.stat_dictionary[stat] = int(target_data.stat_dictionary[stat] + current_ailment.value)
 			GlobalsAutoload.modifiers.SUBTRACTION:
-				target_data.stat_dictionary[stat] -= current_ailment.value;
+				target_data.stat_dictionary[stat] = int(target_data.stat_dictionary[stat] - current_ailment.value)
 			GlobalsAutoload.modifiers.MULTIPLICATION:
-				target_data.stat_dictionary[stat] *= current_ailment.value;
+				target_data.stat_dictionary[stat] = int(target_data.stat_dictionary[stat] * current_ailment.value)
 			GlobalsAutoload.modifiers.DIVISION:
-				target_data.stat_dictionary[stat] /= current_ailment.value;
+				target_data.stat_dictionary[stat] = int(target_data.stat_dictionary[stat] / current_ailment.value);
 		print_rich("[color=goldenrod][font_size=20]Ailment changed target "+stat+" from " +str(old_stat_value)+ " to " +str(target_data.stat_dictionary[stat]));
 
 func get_stat_to_modify(stat_enum : GlobalsAutoload.stats):

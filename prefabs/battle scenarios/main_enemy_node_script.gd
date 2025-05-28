@@ -20,7 +20,7 @@ const type = "Enemy";
 	"poise" : 100, # Percentage stance value; when poise hits 0, character is staggered
 	"speed" : 10, # Player speed value
 	"strength" : 1, # Additive factor to damage
-	"defense" : 0, # Subtractive factor from damage taken
+	"defense" : 10, # Subtractive factor from damage taken
 	"agility" : 1, # Additive factor to speed
 	"luck" : 0, # Additive factor to critical chance (base chance = 1)
 	"evasion" : 0, # Additive factor to dodge chance (base chance = 0)

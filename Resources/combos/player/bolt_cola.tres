@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="player_combo" load_steps=7 format=3 uid="uid://c6pp3ibswpxug"]
+
+[ext_resource type="Resource" uid="uid://d3dcqcpeox68f" path="res://Resources/ailments/bolt_cola_overdose.tres" id="1_x7bp4"]
+[ext_resource type="Script" path="res://Resources/attack_parent.gd" id="2_mgny1"]
+[ext_resource type="Resource" uid="uid://drn7eou7eggjf" path="res://Resources/Attacks/Player/chop.tres" id="3_86fhi"]
+[ext_resource type="Resource" uid="uid://m35p04sdk2yq" path="res://Resources/Attacks/Player/kick.tres" id="4_37mjk"]
+[ext_resource type="Resource" uid="uid://ctrdselwi2kf1" path="res://Resources/Attacks/Player/punch.tres" id="5_d5i7t"]
+[ext_resource type="Script" path="res://Resources/combos/player/player_combo.gd" id="6_w5ekh"]
+
+[resource]
+script = ExtResource("6_w5ekh")
+attacks_in_combo = Array[ExtResource("2_mgny1")]([ExtResource("3_86fhi"), ExtResource("4_37mjk"), ExtResource("5_d5i7t")])
+animation_name = "combo_bolt_cola"
+description = "Chug a big gulp cup of bolt cola and punch enemy. Doubles player speed for 2 turns."
+ailment_give = ExtResource("1_x7bp4")

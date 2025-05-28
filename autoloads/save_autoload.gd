@@ -52,4 +52,3 @@ func player_autload_reset():
 	
 	
 	
-	
