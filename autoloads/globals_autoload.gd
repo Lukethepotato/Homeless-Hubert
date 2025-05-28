@@ -66,10 +66,6 @@ func _ready() -> void:
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("f11"):
 		toggle_fullscreen();
-	if event.is_action_pressed("LEFT"):
-		print(predictable_rng.randi())
-	if event.is_action_pressed("RIGHT"):
-		print(predictable_rng.randi())
 
 func update_rng():
 	predictable_rng.seed = seed;

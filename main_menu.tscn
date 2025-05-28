@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://elvflalqk6l3" path="res://art/temp_assets/IMG_9613.jpeg" id="2_5l7ef"]
 [ext_resource type="Texture2D" uid="uid://c64y8mylxa0c8" path="res://art/temp_assets/sky temp.jpg" id="2_fvvec"]
 [ext_resource type="Script" path="res://main_menu_options.gd" id="3_cmlxy"]
-[ext_resource type="PackedScene" path="res://save_file.tscn" id="5_lw4jg"]
+[ext_resource type="PackedScene" uid="uid://c4lo374xa7xis" path="res://save_file.tscn" id="5_lw4jg"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_djmvq"]
 animations = [{

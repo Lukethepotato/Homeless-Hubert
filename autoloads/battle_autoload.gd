@@ -243,6 +243,8 @@ func calculate_damage(base_dmg : int, user, target, can_crit := true, guaranteed
 	damage += user.stat_dictionary.strength;
 	print("Strength damage: " + str(damage))
 	damage -= target.stat_dictionary.defense;
+	if damage < 0:
+		damage = 0;
 	print("Defense damage: " + str(damage))
 	if randi_range(1+user.stat_dictionary.luck, 100) >= 100 and can_crit:
 		damage *= 2.5;
