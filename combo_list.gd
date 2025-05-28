@@ -9,7 +9,8 @@ func _ready() -> void:
 		var instruction = instructions_phab.instantiate()
 		add_child(instruction)
 		instruction.combo = BattleAutoload.all_player_combos[i]
-		instruction.position = Vector2(0, last_ones_spot + incrementation)
+		if i > 0:
+			instruction.position = Vector2(0, last_ones_spot + incrementation)
 		last_ones_spot = instruction.position.y
 
 

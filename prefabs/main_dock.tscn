@@ -13,7 +13,7 @@
 [ext_resource type="Script" path="res://Resources/combos/player/player_combo.gd" id="7_lru2h"]
 [ext_resource type="Resource" uid="uid://kq1uq0yxny0g" path="res://Resources/combos/player/slippy_trip.tres" id="8_0wops"]
 [ext_resource type="Shader" path="res://prefabs/ChromaticAb.gdshader" id="11_m8xgj"]
-[ext_resource type="Resource" path="res://Resources/combos/player/guard_break.tres" id="13_sgfk8"]
+[ext_resource type="Resource" uid="uid://dp8p62y02o1ch" path="res://Resources/combos/player/guard_break.tres" id="13_sgfk8"]
 
 [sub_resource type="Animation" id="Animation_vog60"]
 length = 0.001

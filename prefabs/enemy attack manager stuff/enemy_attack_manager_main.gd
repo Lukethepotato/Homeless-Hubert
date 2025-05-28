@@ -65,7 +65,7 @@ func _return_enemy_attack_choice() -> attack_parent:
 	for i in get_child_count():
 		var returned_attack :attack_parent = get_child(i)._attack_verdict()
 		if returned_attack != null:
-			print("attack verdict returned " + returned_attack.name)
+			#print("attack verdict returned " + returned_attack.name)
 			return returned_attack
 			#goes through each child in order and sees if it returns an attack
 			#if it does it returns that attack

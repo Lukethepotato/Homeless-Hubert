@@ -31,19 +31,22 @@ func _process(delta: float) -> void:
 			
 	$RichTextLabel.text = text 
 
-func _reverse_combo_checking():
+func _reverse_combo_checking(set_checkpoint:int = 0):
 	attacks_done_amount = 0
-	var combo_reverse_index = combo.attacks_in_combo.size() -1
+	var combo_index: int = 0
 	if PlayerAutoload.attack_history.size() > 0:
-		for i in range(PlayerAutoload.attack_history.size() -1, -1, -1):
-			if combo.attacks_in_combo[combo_reverse_index] == PlayerAutoload.attack_history[i]:
-				attacks_done_amount += 1
-			elif combo.attacks_in_combo[combo_reverse_index] != PlayerAutoload.attack_history[i]:
-				if checkpoint != i:
-					checkpoint = i
-					attacks_done_amount = 0
-					
-				break
-			combo_reverse_index -= 1
+		for player_attack_index in range(set_checkpoint, PlayerAutoload.attack_history.size(),1):
+			print("at player attack index" + str(player_attack_index))
 		
+			if PlayerAutoload.attack_history[player_attack_index] == combo.attacks_in_combo[combo_index]:
+				attacks_done_amount += 1
+				print("attack found same")
+				
+			else:
+				print("reseting checkpoint at: "+ str(player_attack_index +1) )
+				_reverse_combo_checking(player_attack_index +1)
+				break
+			
+			prints("attacks same = " + str(attacks_done_amount))
+			combo_index += 1
 		
