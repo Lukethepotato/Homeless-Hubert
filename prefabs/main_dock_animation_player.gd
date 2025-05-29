@@ -20,44 +20,51 @@ func _process(delta: float):
 	BattleAutoload._non_attack_animations(self, %Ailments_parent, "player")
 
 func _play_attack():
-	if BattleAutoload.current_turn_state == PlayerAutoload.goes_during_state and GlobalsAutoload.state == GlobalsAutoload.game_states.IN_BATTLE:
-		#this function is called on turn change
-		#so this if makes sure its the players turn and the state is right
-		if PlayerAutoload.attack_resources_in[0].enables_rush:
-			rush("forward")
-			await animation_finished
-		#rush forward is called then once the animation is over the rest of the stuff will play out
-		
-		while attack_in_turn_index_finished < PlayerAutoload.attack_resources_in.size():
-		#this while loop is where the attack is played and it runs once for each attack resource spot
-		
-			var animation_to_play: String
-			#this string is changed to the upcoming attack's animation name
-			if combo_checking() == null:
-				animation_to_play = PlayerAutoload.attack_resources_in[attack_in_turn_index_finished].animation_name
-			else:
-				animation_to_play = combo_checking().animation_name
-				PlayerAutoload.current_combo = combo_checking()
-				#if combo checking returns somthing. The "animation_to_play" string gets set to the combo's animation name instead
-			if PlayerAutoload.attack_resources_in[attack_in_turn_index_finished].enables_rush == false && is_forward:
-				rush("back")
-				await animation_finished
-			elif PlayerAutoload.attack_resources_in[attack_in_turn_index_finished].enables_rush == true && is_forward == false:
+	if BattleAutoload.current_turn_state == PlayerAutoload.goes_during_state:
+		if GlobalsAutoload.state == GlobalsAutoload.game_states.IN_BATTLE:
+			#this function is called on turn change
+			#so this if makes sure its the players turn and the state is right
+			if PlayerAutoload.attack_resources_in[0].enables_rush:
 				rush("forward")
 				await animation_finished
+			#rush forward is called then once the animation is over the rest of the stuff will play out
 			
-			play(animation_to_play)
-			PlayerAutoload.attack_history.append(PlayerAutoload.attack_resources_in[attack_in_turn_index_finished])
-			update_block()
-			attack_in_turn_index_finished += 1
-			await animation_finished
+			while attack_in_turn_index_finished < PlayerAutoload.attack_resources_in.size():
+			#this while loop is where the attack is played and it runs once for each attack resource spot
+			
+				var animation_to_play: String
+				#this string is changed to the upcoming attack's animation name
+				if combo_checking() == null:
+					animation_to_play = PlayerAutoload.attack_resources_in[attack_in_turn_index_finished].animation_name
+				else:
+					animation_to_play = combo_checking().animation_name
+					PlayerAutoload.current_combo = combo_checking()
+					#if combo checking returns somthing. The "animation_to_play" string gets set to the combo's animation name instead
+				if PlayerAutoload.attack_resources_in[attack_in_turn_index_finished].enables_rush == false && is_forward:
+					rush("back")
+					await animation_finished
+				elif PlayerAutoload.attack_resources_in[attack_in_turn_index_finished].enables_rush == true && is_forward == false:
+					rush("forward")
+					await animation_finished
+				
+				play(animation_to_play)
+				PlayerAutoload.attack_history.append(PlayerAutoload.attack_resources_in[attack_in_turn_index_finished])
+				update_block()
+				attack_in_turn_index_finished += 1
+				await animation_finished
 			#once the loop is over it waits to loop again until the current attack anim is done
 		
-		if is_forward:
-			rush("back")
-		BattleAutoload.current_turn_state += 1
-		attack_in_turn_index_finished = 0
-		#once everything is all done and all the little varibles are happy and cozy the player rushes back
+			if is_forward:
+				rush("back")
+			if BattleAutoload.current_turn_state == BattleAutoload.battle_states.ACTION_1 && BattleAutoload.extra_turns > 0:
+				BattleAutoload.current_turn_state = BattleAutoload.battle_states.SELECTION;
+				BattleAutoload.extra_turns -= 1;
+				BattleAutoload.current_turn_reset.emit()
+			else:
+				BattleAutoload.current_turn_state += 1
+				attack_in_turn_index_finished = 0
+			BattleAutoload.player_turn_end.emit()
+			#once everything is all done and all the little varibles are happy and cozy the player rushes back
 
 #have this here to make enemy and player more simmailer 
 func update_block():

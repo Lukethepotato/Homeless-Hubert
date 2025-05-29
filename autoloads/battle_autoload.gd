@@ -36,6 +36,7 @@ enum battle_states {
 #if checking turn on the turn changed signal, use turn 4 instead
 @export var current_turn_state := -1;
 var current_turn = 1;
+var extra_turns = 0;
 #@export var 
 var previous_turn_state = -1
 var current_battle_scenario;
@@ -69,7 +70,6 @@ enum location_types {
 	IGNORE
 }
 
-# WHAT THE FUCK IS AMBIVALENT TURN
 func _process(delta: float) -> void:
 	if GlobalsAutoload.state == GlobalsAutoload.game_states.IN_BATTLE:
 		if (current_turn_state != previous_turn_state && current_turn_state > 1):
@@ -106,11 +106,18 @@ func update_turn_order():
 	print("Player speed = " + str(PlayerAutoload.stat_dictionary.speed));
 	print("Enemy speed = " + str(enemy_node.stat_dictionary.speed));
 	if PlayerAutoload.stat_dictionary.speed > enemy_node.stat_dictionary.speed or (PlayerAutoload.stat_dictionary.speed == enemy_node.stat_dictionary.speed and randi_range(1,2) == 1):
+		if extra_turns == 0:
+			extra_turns = int(log(PlayerAutoload.stat_dictionary.speed / enemy_node.stat_dictionary.speed)/log(2))
+		
 		PlayerAutoload.goes_during_state = battle_states.ACTION_1;
 		enemy_node.goes_during_state = battle_states.ACTION_2;
 	else:
+		if extra_turns == 0:
+			extra_turns = int(log(enemy_node.stat_dictionary.speed / PlayerAutoload.stat_dictionary.speed)/log(2))
+		
 		PlayerAutoload.goes_during_state = battle_states.ACTION_2;
 		enemy_node.goes_during_state = battle_states.ACTION_1;
+	print(extra_turns);
 
 # Returns what the player's speed would be for this turn
 func get_player_speed() -> int:
