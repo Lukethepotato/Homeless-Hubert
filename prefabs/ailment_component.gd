@@ -63,7 +63,7 @@ func _animtion_decision() -> String:
 
 
 
-	#if BattleAutoload.current_turn == target_data.goes_on_turn:
+	#if BattleAutoload.current_turn_state == target_data.goes_during_state:
 			#if (ailment_competitor.current_ailment.animation_priority >= current_ailment_anim.current_ailment.animation_priority) || current_ailment_anim == null:
 				#%AnimPlayer.play(ailment_competitor.current_ailment.animation_name)
 				#ailment_competitor = current_ailment_anim

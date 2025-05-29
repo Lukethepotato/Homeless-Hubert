@@ -18,7 +18,7 @@ func _on_mouse_entered() -> void:
 	mouse_hovering = true;
 	GlobalsAutoload.timeout(1.0);
 	await GlobalsAutoload.timer.timeout;
-	if mouse_hovering and BattleAutoload.current_turn == 1:
+	if mouse_hovering and BattleAutoload.current_turn_state == BattleAutoload.battle_states.SELECTION:
 		var text = "[font_size=40][color=" + str(BattleAutoload.enemy_node.attack_resources_in[get_parent().get_index()].name_color.to_html()) + "]" + BattleAutoload.enemy_node.upcoming_attack.name + "[/color][/font_size]"
 		if BattleAutoload.enemy_node.attack_resources_in[get_parent().get_index()].attack_resources_in[get_parent().get_index()].base_damage > 0:
 			text += "\n[font_size=25]  " + str(BattleAutoload.enemy_node.attack_resources_in[get_parent().get_index()].base_damage) + " base damage  [/font_size]";

@@ -4,7 +4,7 @@ extends Node
 
 const type = "Player"
 @export var attack_resources_in: Array[attack_parent]
-@export var goes_on_turn: int = 2
+@export var goes_during_state: int = 2
 @export var attack_history: Array[attack_parent]
 @export var current_combo: player_combo
 

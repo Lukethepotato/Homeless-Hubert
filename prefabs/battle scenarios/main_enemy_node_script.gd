@@ -33,7 +33,7 @@ const type = "Enemy";
 @export var current_block := BattleAutoload.location_types.NONE
 @export var attack_history: Array[attack_parent]
 @export var block_inclination: float = 5
-@export var goes_on_turn: int
+@export var goes_during_state: int
 
 @export var attacks_per_turn: int = 1 #the value must be typed here cuz _init magic bullshit #attack resources in size defaults to this
 
@@ -54,10 +54,6 @@ func _ready() -> void:
 	ailment_component_node = %Ailments_parent
 	stat_dictionary.speed += stat_dictionary.agility;
 	modify_stats_with_traits();
-	
-func _process(delta: float) -> void:
-	goes_on_turn = BattleAutoload.enemy_goes_on_turn
-
 
 # Returns if a fish is able to combo
 func is_fish_intelligent() -> bool:

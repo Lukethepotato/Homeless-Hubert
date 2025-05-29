@@ -15,7 +15,7 @@ func _process(delta: float) -> void:
 	pass
 # Initiates the enemy's attack
 func start_enemy_attack() -> void:
-	if BattleAutoload.current_turn == BattleAutoload.enemy_goes_on_turn:
+	if BattleAutoload.current_turn_state == BattleAutoload.enemy_node.goes_during_state:
 		
 		GlobalsAutoload.timeout(.5)
 		await GlobalsAutoload.timer.timeout
@@ -31,7 +31,7 @@ func start_enemy_attack() -> void:
 			
 		# this goes through every attack, plays it, waits till its over then does the next one
 			
-		BattleAutoload.current_turn += 1
+		BattleAutoload.current_turn_state += 1
 		attack_in_turn_index_finished = 0
 		#then once all the attacks are done it adds a turn and resets the attack index back to 0 so it can all happen again
 				

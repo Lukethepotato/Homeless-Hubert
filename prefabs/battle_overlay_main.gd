@@ -10,7 +10,7 @@ var in_info_panel := false
 
 func _ready() -> void:
 	GlobalsAutoload.dropped_UI.connect(update_button);
-	BattleAutoload.turn_changed.connect(turn_change);
+	BattleAutoload.current_turn_reset.connect(turn_change);
 	BattleAutoload.damage_dealt.connect(damage_popup);
 	GlobalsAutoload.info_popup_open.connect(open_info_panel);
 	$enemy_attack_spots.visible = false;
@@ -57,10 +57,11 @@ func intro_tween():
 	tween.tween_property($attack_spots, "position", Vector2(70,0), 0.5).from(Vector2(70,-380))
 	tween.tween_property($info_displays, "position:y", 0, 0.5).from(-400)
 	tween.tween_property($bottom_ui, "position:y", 0, 0.5).from(300)
+	turn_counter_popup()
 
 # Handles the behavior of pressing the attack button
 func _on_attack_button_pressed() -> void:
-	if is_attack_ready() && BattleAutoload.current_turn == 1:
+	if is_attack_ready() && BattleAutoload.current_turn_state == BattleAutoload.battle_states.SELECTION:
 		$"bottom_ui/attack button".disabled = true;
 		reset_tween()
 		tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO);
@@ -72,12 +73,12 @@ func _on_attack_button_pressed() -> void:
 		GlobalsAutoload.timeout(0.2);
 		await GlobalsAutoload.timer.timeout;
 		BattleAutoload.update_turn_order();
-		BattleAutoload.current_turn = 2
+		BattleAutoload.current_turn_state = BattleAutoload.battle_states.ACTION_1
 		print("current turn = 2 _ overlay")
 
 # Handles the behavior of pressing the clear button
 func _on_clear_chosen_attacks_pressed() -> void:
-	if BattleAutoload.current_turn == 1:
+	if BattleAutoload.current_turn_state == BattleAutoload.battle_states.SELECTION:
 		PlayerAutoload.attack_resources_in.clear()
 		PlayerAutoload.attack_resources_in.resize(PlayerAutoload.attacks_per_turn)
 		
@@ -113,13 +114,26 @@ func update_button(_fuckts1 = null, _fuckts2 = null):
 	$"bottom_ui/attack button".disabled = not is_attack_ready();
 
 func turn_change():
-	if BattleAutoload.current_turn == 4:
+	if BattleAutoload.current_turn_state == BattleAutoload.battle_states.SELECTION:
 		tween_out_bars();
+		turn_counter_popup();
 		await tween.finished;
 		GlobalsAutoload.timeout(0.4);
 		await GlobalsAutoload.timer.timeout;
 		enemy_attack_preview();
 		speed_update();
+
+func turn_counter_popup():
+	$turn_popup.text = "[center][font_size=70][color=black][outline_size=14][outline_color=pale_turquoise]TURN "+str(BattleAutoload.current_turn)
+	$turn_popup.modulate.a = 0;
+	$turn_popup.visible = true;
+	tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO)
+	tween.tween_property($turn_popup, "modulate:a", 1, 1);
+	await tween.finished;
+	GlobalsAutoload.timeout(0.5)
+	await GlobalsAutoload.timer.timeout
+	tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO)
+	tween.tween_property($turn_popup, "modulate:a", 0, 0.5);
 
 # Un-disables the attack button after the turn resets
 func speed_update():

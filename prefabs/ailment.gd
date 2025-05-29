@@ -12,13 +12,10 @@ var stat := "none";
 var old_stat_value : int;
 var modified_stat_value : int;
 
-# Called when the node enters the scene tree for the first time.
+
 func _ready() -> void:
 	BattleAutoload.current_turn_reset.connect(_turn_change)
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-	
 func _turn_change():
 	if turns_left <= 0:
 		print_rich("[color=cornflower_blue][shake amp=50.0 freq=5.0][wave amp=50.0 freq=5.0][font_size=50]ailement end");
@@ -27,8 +24,7 @@ func _turn_change():
 	elif current_ailment != null:
 		_damage_take_per_turn()
 		turns_left -= 1;
-		
-		
+
 func _can_change_block() -> bool:
 	if current_ailment != null:
 		if current_ailment.lock_block == false:

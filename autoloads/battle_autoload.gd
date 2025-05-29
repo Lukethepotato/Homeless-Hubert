@@ -9,6 +9,8 @@ signal battle_end()
 
 signal turn_changed()
 signal current_turn_reset()
+signal player_turn_end()
+signal enemy_turn_end()
 signal health_updated()
 signal attack_ready;
 signal damage_dealt(damage : int, target, crit : bool, evade : bool);
@@ -22,10 +24,20 @@ signal done_updating_attacks()
 #3 = second participant attack*
 #*(could be player or fish depending on speed)
 
+enum battle_states {
+	NOT_IN_BATTLE = -1,
+	INTRO,
+	SELECTION,
+	ACTION_1,
+	ACTION_2,
+	AFTER_ACTIONS,
+}
+
 #if checking turn on the turn changed signal, use turn 4 instead
-@export var current_turn := -1;
-@export var enemy_goes_on_turn = 3
-var ambivalent_turn := -1
+@export var current_turn_state := -1;
+var current_turn = 1;
+#@export var 
+var previous_turn_state = -1
 var current_battle_scenario;
 @export var enemy_node: Node2D
 # ! NOT FOR USE AS A WAY TO CHECK THE PREVIOUS TURN, HELP FOR CHECKING IF THE TURN HAS CHANGED
@@ -57,34 +69,35 @@ enum location_types {
 	IGNORE
 }
 
-
+# WHAT THE FUCK IS AMBIVALENT TURN
 func _process(delta: float) -> void:
 	if GlobalsAutoload.state == GlobalsAutoload.game_states.IN_BATTLE:
-		if (current_turn != ambivalent_turn && current_turn > 1):
+		if (current_turn_state != previous_turn_state && current_turn_state > 1):
 			turn_changed.emit();
-			ambivalent_turn = current_turn
+			previous_turn_state = current_turn_state
 			# The following comments are for testing purposes.
 			#clear_attack_selection.emit()
-			#ambivalent_turn = current_turn
-		if (current_turn > 3):
+			#previous_turn_state = current_turn
+		if (current_turn_state == battle_states.AFTER_ACTIONS):
 			print("current turn = 1 _ globalsAutoload")
-			current_turn = 1
+			current_turn_state = battle_states.SELECTION
+			current_turn += 1;
 			current_turn_reset.emit()
 
 # This function initiates a battle, taking in a list of scenarios.
 func start_battle(battle_scenarios) -> void:
 	GlobalsAutoload.state = GlobalsAutoload.game_states.IN_BATTLE;
 	PlayerAutoload.stat_dictionary.speed += PlayerAutoload.stat_dictionary.agility;
-	current_turn = 0
+	current_turn_state = battle_states.INTRO
 	var rand_battleS_index = randf_range(0, battle_scenarios.size() -1)
 	var instance = battle_scenarios[rand_battleS_index].instantiate()
 	call_deferred("add_child", instance)
 	current_battle_scenario = instance;
 	battle_start.emit();
 	
-	current_turn = 1
+	current_turn_state = battle_states.SELECTION
 	health_updated.emit();
-	print("current turn = 1")
+	print("current turn = ")
 
 # Changes the PlayerAutoload goes_on_turn and the GlobalsAutoload enemy_goes_on_turn according to agility values and attack priority
 func update_turn_order():
@@ -93,11 +106,11 @@ func update_turn_order():
 	print("Player speed = " + str(PlayerAutoload.stat_dictionary.speed));
 	print("Enemy speed = " + str(enemy_node.stat_dictionary.speed));
 	if PlayerAutoload.stat_dictionary.speed > enemy_node.stat_dictionary.speed or (PlayerAutoload.stat_dictionary.speed == enemy_node.stat_dictionary.speed and randi_range(1,2) == 1):
-		PlayerAutoload.goes_on_turn = 2;
-		enemy_goes_on_turn = 3;
+		PlayerAutoload.goes_during_state = battle_states.ACTION_1;
+		enemy_node.goes_during_state = battle_states.ACTION_2;
 	else:
-		PlayerAutoload.goes_on_turn = 3;
-		enemy_goes_on_turn = 2;
+		PlayerAutoload.goes_during_state = battle_states.ACTION_2;
+		enemy_node.goes_during_state = battle_states.ACTION_1;
 
 # Returns what the player's speed would be for this turn
 func get_player_speed() -> int:
@@ -191,7 +204,7 @@ func _non_attack_animations(anim_player_node: AnimationPlayer, ailments_parent: 
 	if user_data.attack_history.is_empty() == false:
 		last_attack_name = user_data.attack_history[user_data.attack_history.size() -1].animation_name
 	
-	if BattleAutoload.current_turn != user_data.goes_on_turn:
+	if BattleAutoload.current_turn_state != user_data.goes_during_state:
 		if anim_player_node.is_playing() == false && unoverridables.has(last_attack_name) == false || overridables.has(anim_player_node.current_animation):
 			if ailments_parent._animtion_decision() != "":
 				anim_player_node.play(ailments_parent._animtion_decision())

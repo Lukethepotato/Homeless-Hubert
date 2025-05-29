@@ -20,7 +20,7 @@ func _process(delta: float):
 	BattleAutoload._non_attack_animations(self, %Ailments_parent, "player")
 
 func _play_attack():
-	if BattleAutoload.current_turn == PlayerAutoload.goes_on_turn and GlobalsAutoload.state == GlobalsAutoload.game_states.IN_BATTLE:
+	if BattleAutoload.current_turn_state == PlayerAutoload.goes_during_state and GlobalsAutoload.state == GlobalsAutoload.game_states.IN_BATTLE:
 		#this function is called on turn change
 		#so this if makes sure its the players turn and the state is right
 		if PlayerAutoload.attack_resources_in[0].enables_rush:
@@ -55,7 +55,7 @@ func _play_attack():
 		
 		if is_forward:
 			rush("back")
-		BattleAutoload.current_turn += 1
+		BattleAutoload.current_turn_state += 1
 		attack_in_turn_index_finished = 0
 		#once everything is all done and all the little varibles are happy and cozy the player rushes back
 
