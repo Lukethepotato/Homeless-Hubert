@@ -10,6 +10,7 @@ extends Node2D
 
 var stat := "none";
 var old_stat_value : int;
+var modified_stat_value : int;
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -21,7 +22,7 @@ func _ready() -> void:
 func _turn_change():
 	if turns_left <= 0:
 		print_rich("[color=cornflower_blue][shake amp=50.0 freq=5.0][wave amp=50.0 freq=5.0][font_size=50]ailement end");
-		target_data.stat_dictionary[stat] = old_stat_value;
+		target_data.stat_dictionary[stat] = old_stat_value + (target_data.stat_dictionary[stat] - modified_stat_value)
 		queue_free()
 	elif current_ailment != null:
 		_damage_take_per_turn()
@@ -70,7 +71,8 @@ func apply_stat_effects():
 				target_data.stat_dictionary[stat] = int(target_data.stat_dictionary[stat] * current_ailment.value)
 			GlobalsAutoload.modifiers.DIVISION:
 				target_data.stat_dictionary[stat] = int(target_data.stat_dictionary[stat] / current_ailment.value);
-		print_rich("[color=goldenrod][font_size=20]Ailment changed target "+stat+" from " +str(old_stat_value)+ " to " +str(target_data.stat_dictionary[stat]));
+		modified_stat_value = target_data.stat_dictionary[stat]
+		print_rich("[color=goldenrod][font_size=20]Ailment changed target "+stat+" from " +str(old_stat_value)+ " to " +str(modified_stat_value));
 
 func get_stat_to_modify(stat_enum : GlobalsAutoload.stats):
 	match stat_enum:
