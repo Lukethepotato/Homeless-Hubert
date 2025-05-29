@@ -6,10 +6,12 @@ extends Node2D
 # User is who is using the attack, Target is the target of the attack, Base_dmg is the attack base damage, Can_crit is if the attack can crit, 
 # Guaranteed_hit is if the attack can miss
 
-func _damage_donation(user : String, target : String, base_dmg: int, combo : player_combo = null, can_crit := true, guaranteed_hit := false):
+func _damage_donation(user : String, target : String, base_dmg: int, can_crit := true, guaranteed_hit := false): #combo : player_combo = null, <--- Removed seemingly obsolete parameter
 	var roles = BattleAutoload.convert_strs_to_attack_roles(user, target)
 	var damage_to_deal = 0
-	var user_attack_region = roles[0].attack_history[roles[0].attack_history.size() - 1].hit_region 
+	var user_attack_region := BattleAutoload.location_types.IGNORE;
+	if roles[0].attack_history.size() > 0:
+		user_attack_region = roles[0].attack_history[roles[0].attack_history.size() - 1].hit_region 
 	
 	if user_attack_region == BattleAutoload.location_types.IGNORE:
 		if roles[0].current_block != BattleAutoload.location_types.NONE: 

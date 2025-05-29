@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=3 uid="uid://co6wwlpta51be"]
+[gd_scene load_steps=63 format=3 uid="uid://co6wwlpta51be"]
 
 [ext_resource type="Texture2D" uid="uid://ca237n0njexqp" path="res://art/temp_assets/192637.png" id="2_h37bg"]
 [ext_resource type="Texture2D" uid="uid://bap6raewbggi3" path="res://art/temp_assets/Turret_Shoot-Sheet.png" id="3_fssy4"]
@@ -183,6 +183,14 @@ region = Rect2(456, 104, 76, 52)
 [sub_resource type="AtlasTexture" id="AtlasTexture_fpsdg"]
 atlas = ExtResource("6_drfky")
 region = Rect2(532, 104, 76, 52)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_opl4v"]
+atlas = ExtResource("2_h37bg")
+region = Rect2(840, 258, 105, 86)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p3x4r"]
+atlas = ExtResource("2_h37bg")
+region = Rect2(945, 258, 105, 86)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dk3s5"]
 atlas = ExtResource("3_fssy4")
@@ -393,6 +401,17 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_opl4v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p3x4r")
+}],
+"loop": false,
+"name": &"bolt_cola_overdose",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_dk3s5")
 }, {
 "duration": 1.0,
@@ -442,7 +461,7 @@ script = ExtResource("4_dhhqc")
 
 [node name="Hubert_Sprites" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_gomab")
-animation = &"dead"
+animation = &"bolt_cola_overdose"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, 10.5)

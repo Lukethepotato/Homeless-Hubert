@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://cjnea8maf3y5l"]
+[gd_scene load_steps=39 format=3 uid="uid://cjnea8maf3y5l"]
 
 [ext_resource type="PackedScene" uid="uid://co6wwlpta51be" path="res://prefabs/Hubert.tscn" id="1_n63l7"]
 [ext_resource type="Script" path="res://prefabs/main_dock_script.gd" id="1_wjf3g"]
@@ -53,6 +53,35 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_5imbs"]
+resource_name = "combo_bolt_cola"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("damage_donator")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_apply_combo_effects"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hubert/Hubert_Sprites:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"combo:slippy_trip"]
 }
 
 [sub_resource type="Animation" id="Animation_ynit1"]
@@ -551,38 +580,39 @@ tracks/1/keys = {
 "values": [&"staggered"]
 }
 
-[sub_resource type="Animation" id="Animation_5imbs"]
-resource_name = "combo_bolt_cola"
-tracks/0/type = "method"
+[sub_resource type="Animation" id="Animation_cgot2"]
+resource_name = "bolt_cola_overdose"
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("damage_donator")
+tracks/0/path = NodePath("Hubert/Hubert_Sprites:animation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"_apply_combo_effects"
-}]
+"update": 1,
+"values": [&"bolt_cola_overdose"]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Hubert/Hubert_Sprites:animation")
+tracks/1/path = NodePath("Hubert/Hubert_Sprites:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [&"combo:slippy_trip"]
+"values": [0, 1]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_b23nh"]
 _data = {
 "RESET": SubResource("Animation_vog60"),
+"bolt_cola_overdose": SubResource("Animation_cgot2"),
 "combo_bolt_cola": SubResource("Animation_5imbs"),
 "combo_guard_break": SubResource("Animation_ynit1"),
 "combo_slippy_trip": SubResource("Animation_l5h7e"),

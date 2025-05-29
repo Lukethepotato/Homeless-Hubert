@@ -38,7 +38,7 @@ func _can_change_block() -> bool:
 	
 func _damage_take_per_turn():
 	if current_ailment.damage_take_per_turn > 0:
-		damage_donor_node._damage_donation(get_parent().target, get_parent().target, current_ailment.damage_take_per_turn)
+		damage_donor_node._damage_donation(get_parent().target, get_parent().target, current_ailment.damage_take_per_turn, false, true)
 		print_rich("[color=cornflower_blue][shake amp=50.0 freq=5.0][wave amp=50.0 freq=5.0][font_size=50]ailment damage");
 		
 			#if the lock block is set to none then they will simply just not be able to move
