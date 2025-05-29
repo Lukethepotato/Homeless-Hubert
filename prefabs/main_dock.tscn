@@ -1,8 +1,9 @@
-[gd_scene load_steps=38 format=3 uid="uid://cjnea8maf3y5l"]
+[gd_scene load_steps=42 format=3 uid="uid://cjnea8maf3y5l"]
 
 [ext_resource type="PackedScene" uid="uid://co6wwlpta51be" path="res://prefabs/Hubert.tscn" id="1_n63l7"]
 [ext_resource type="Script" path="res://prefabs/main_dock_script.gd" id="1_wjf3g"]
 [ext_resource type="PackedScene" uid="uid://b1h2w6ctilpdy" path="res://prefabs/battle scenarios/battle Scenario.tscn" id="2_xyfop"]
+[ext_resource type="Texture2D" uid="uid://ddq0pfs33f41n" path="res://art/background/intended size1.png" id="3_m44wb"]
 [ext_resource type="Script" path="res://prefabs/main_dock_animation_player.gd" id="3_nsanw"]
 [ext_resource type="Texture2D" uid="uid://wswl8qs1ug0u" path="res://art/temp_assets/baddie.png" id="5_4djew"]
 [ext_resource type="PackedScene" uid="uid://gpn4laugdwmm" path="res://prefabs/damage_donator.tscn" id="5_krbdy"]
@@ -13,8 +14,11 @@
 [ext_resource type="Script" path="res://Resources/combos/player/player_combo.gd" id="7_lru2h"]
 [ext_resource type="Resource" uid="uid://kq1uq0yxny0g" path="res://Resources/combos/player/slippy_trip.tres" id="8_0wops"]
 [ext_resource type="Shader" path="res://prefabs/ChromaticAb.gdshader" id="11_m8xgj"]
-[ext_resource type="Resource" uid="uid://dp8p62y02o1ch" path="res://Resources/combos/player/guard_break.tres" id="13_sgfk8"]
+[ext_resource type="Resource" path="res://Resources/combos/player/guard_break.tres" id="13_sgfk8"]
 [ext_resource type="Resource" uid="uid://c6pp3ibswpxug" path="res://Resources/combos/player/bolt_cola.tres" id="14_4sovf"]
+[ext_resource type="Texture2D" uid="uid://bj6ryx7c2urd4" path="res://art/background/skyr.png" id="17_tkun4"]
+[ext_resource type="Texture2D" uid="uid://yw7u6cf7k3d1" path="res://art/background/background-export.png" id="18_aghuc"]
+[ext_resource type="Texture2D" uid="uid://b5itdwxje74fu" path="res://art/background/water.png" id="19_dkng0"]
 
 [sub_resource type="Animation" id="Animation_vog60"]
 length = 0.001
@@ -53,6 +57,35 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_5imbs"]
+resource_name = "combo_bolt_cola"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("damage_donator")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_apply_combo_effects"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hubert/Hubert_Sprites:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"combo:slippy_trip"]
 }
 
 [sub_resource type="Animation" id="Animation_ynit1"]
@@ -551,35 +584,6 @@ tracks/1/keys = {
 "values": [&"staggered"]
 }
 
-[sub_resource type="Animation" id="Animation_5imbs"]
-resource_name = "combo_bolt_cola"
-tracks/0/type = "method"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("damage_donator")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"_apply_combo_effects"
-}]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Hubert/Hubert_Sprites:animation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"combo:slippy_trip"]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_b23nh"]
 _data = {
 "RESET": SubResource("Animation_vog60"),
@@ -620,6 +624,11 @@ size = Vector2(2705, 126)
 script = ExtResource("1_wjf3g")
 battle_scenarios = Array[PackedScene]([ExtResource("2_xyfop")])
 
+[node name="IntendedSize1" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(498, 253)
+texture = ExtResource("3_m44wb")
+
 [node name="AnimPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
 libraries = {
@@ -637,6 +646,7 @@ animation = &"Idle"
 [node name="main_camera" type="Camera2D" parent="Hubert"]
 unique_name_in_owner = true
 process_mode = 3
+position = Vector2(0, -41.9896)
 script = ExtResource("5_ts60k")
 
 [node name="Ailments_parent" parent="Hubert" instance=ExtResource("6_c1jcg")]
@@ -648,7 +658,7 @@ target = "Player"
 [node name="dock" type="StaticBody2D" parent="."]
 position = Vector2(331, 464)
 rotation = 1.57079
-scale = Vector2(1, 2.36)
+scale = Vector2(1, 15.24)
 
 [node name="Sprite2D" type="Sprite2D" parent="dock"]
 scale = Vector2(0.219833, 0.998438)
@@ -692,6 +702,41 @@ position = Vector2(-864, 670)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="death_zone"]
 position = Vector2(1115.5, 53)
 shape = SubResource("RectangleShape2D_to7dy")
+
+[node name="far Background" type="ParallaxBackground" parent="."]
+
+[node name="Parallax2D" type="ParallaxLayer" parent="far Background"]
+motion_scale = Vector2(0, 0)
+
+[node name="sky" type="Sprite2D" parent="far Background/Parallax2D"]
+z_index = -20
+texture_filter = 1
+position = Vector2(-761, -505)
+texture = ExtResource("17_tkun4")
+centered = false
+
+[node name="Parallax2D2" type="ParallaxLayer" parent="far Background"]
+motion_scale = Vector2(0.1, 0)
+motion_mirroring = Vector2(1940, 0)
+
+[node name="clouds" type="Sprite2D" parent="far Background/Parallax2D2"]
+z_index = -20
+texture_filter = 1
+position = Vector2(523, 89)
+texture = ExtResource("18_aghuc")
+centered = false
+offset = Vector2(-1286, -548)
+
+[node name="Parallax2D3" type="ParallaxLayer" parent="far Background"]
+motion_scale = Vector2(0.2, 0)
+motion_mirroring = Vector2(1945, 0)
+
+[node name="ocean" type="Sprite2D" parent="far Background/Parallax2D3"]
+z_index = -20
+texture_filter = 1
+position = Vector2(-824, -505)
+texture = ExtResource("19_dkng0")
+centered = false
 
 [connection signal="animation_changed" from="AnimPlayer" to="AnimPlayer" method="_on_animation_changed"]
 [connection signal="animation_finished" from="AnimPlayer" to="AnimPlayer" method="_on_animation_finished"]
