@@ -2,7 +2,6 @@ extends Node
 
 # This script contains miscellaneous data and functions pertaining to battles and battle calculations
 
-
 signal battle_start()
 signal battle_intro_finished()
 signal battle_end()
@@ -37,6 +36,7 @@ enum battle_states {
 @export var current_turn_state := -1;
 var current_turn = 1;
 var extra_turns = 0;
+var previous_extra_turns = 0;
 #@export var 
 var previous_turn_state = -1
 var current_battle_scenario;
@@ -101,23 +101,24 @@ func start_battle(battle_scenarios) -> void:
 
 # Changes the PlayerAutoload goes_on_turn and the GlobalsAutoload enemy_goes_on_turn according to agility values and attack priority
 func update_turn_order():
-	PlayerAutoload.stat_dictionary.speed = get_player_speed();
-	enemy_node.stat_dictionary.speed = get_enemy_speed();
-	print("Player speed = " + str(PlayerAutoload.stat_dictionary.speed));
-	print("Enemy speed = " + str(enemy_node.stat_dictionary.speed));
-	if PlayerAutoload.stat_dictionary.speed > enemy_node.stat_dictionary.speed or (PlayerAutoload.stat_dictionary.speed == enemy_node.stat_dictionary.speed and randi_range(1,2) == 1):
-		if extra_turns == 0:
-			extra_turns = int(log(PlayerAutoload.stat_dictionary.speed / enemy_node.stat_dictionary.speed)/log(2))
+	var player_speed = get_player_speed();
+	var enemy_speed = get_enemy_speed();
+	print("Player speed = " + str(player_speed));
+	print("Enemy speed = " + str(enemy_speed));
+	if player_speed > enemy_speed or (player_speed == enemy_speed and randi_range(1,2) == 1):
+		if previous_extra_turns == 0:
+			extra_turns = int(log(player_speed / enemy_speed)/log(2))
 		
 		PlayerAutoload.goes_during_state = battle_states.ACTION_1;
 		enemy_node.goes_during_state = battle_states.ACTION_2;
 	else:
-		if extra_turns == 0:
-			extra_turns = int(log(enemy_node.stat_dictionary.speed / PlayerAutoload.stat_dictionary.speed)/log(2))
+		if previous_extra_turns == 0:
+			extra_turns = int(log(enemy_speed / player_speed)/log(2))
 		
 		PlayerAutoload.goes_during_state = battle_states.ACTION_2;
 		enemy_node.goes_during_state = battle_states.ACTION_1;
-	print(extra_turns);
+	previous_extra_turns = extra_turns;
+	print_rich("[font_size=100][color=red]"+str(extra_turns));
 
 # Returns what the player's speed would be for this turn
 func get_player_speed() -> int:

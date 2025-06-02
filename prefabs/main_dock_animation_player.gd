@@ -22,6 +22,7 @@ func _process(delta: float):
 func _play_attack():
 	if BattleAutoload.current_turn_state == PlayerAutoload.goes_during_state:
 		if GlobalsAutoload.state == GlobalsAutoload.game_states.IN_BATTLE:
+			PlayerAutoload.stat_dictionary.speed = BattleAutoload.get_player_speed()
 			#this function is called on turn change
 			#so this if makes sure its the players turn and the state is right
 			if PlayerAutoload.attack_resources_in[0].enables_rush:

@@ -17,6 +17,7 @@ func _process(delta: float) -> void:
 # Initiates the enemy's attack
 func start_enemy_attack() -> void:
 	if BattleAutoload.current_turn_state == BattleAutoload.enemy_node.goes_during_state:
+		BattleAutoload.enemy_node.stat_dictionary.speed = BattleAutoload.get_enemy_speed()
 		
 		GlobalsAutoload.timeout(.5)
 		await GlobalsAutoload.timer.timeout
