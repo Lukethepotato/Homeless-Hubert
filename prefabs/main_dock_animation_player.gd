@@ -61,6 +61,7 @@ func _play_attack():
 				BattleAutoload.current_turn_state = BattleAutoload.battle_states.SELECTION;
 				BattleAutoload.extra_turns -= 1;
 				BattleAutoload.previous_turn_state += 5
+				attack_in_turn_index_finished = 0
 				BattleAutoload.current_turn_reset.emit()
 			else:
 				BattleAutoload.current_turn_state += 1
