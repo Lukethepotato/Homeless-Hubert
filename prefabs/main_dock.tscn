@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://cjnea8maf3y5l"]
+[gd_scene load_steps=44 format=3 uid="uid://cjnea8maf3y5l"]
 
 [ext_resource type="PackedScene" uid="uid://co6wwlpta51be" path="res://prefabs/Hubert.tscn" id="1_n63l7"]
 [ext_resource type="Script" path="res://prefabs/main_dock_script.gd" id="1_wjf3g"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" path="res://Resources/combos/player/player_combo.gd" id="7_lru2h"]
 [ext_resource type="Resource" uid="uid://kq1uq0yxny0g" path="res://Resources/combos/player/slippy_trip.tres" id="8_0wops"]
 [ext_resource type="Shader" path="res://prefabs/ChromaticAb.gdshader" id="11_m8xgj"]
+[ext_resource type="Texture2D" uid="uid://b84jvofvhhvkn" path="res://art/temp_assets/AB.jpg" id="13_ms7bw"]
 [ext_resource type="Resource" path="res://Resources/combos/player/guard_break.tres" id="13_sgfk8"]
 [ext_resource type="Resource" uid="uid://c6pp3ibswpxug" path="res://Resources/combos/player/bolt_cola.tres" id="14_4sovf"]
 [ext_resource type="Texture2D" uid="uid://blye3nk0lnuds" path="res://art/background/paralax_parts/Background.png" id="16_p0rhx"]
@@ -532,7 +533,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.7),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(175, 0), Vector2(0, 0)]
+"values": [Vector2(480, 0), Vector2(0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_qlxsy"]
@@ -547,7 +548,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.766667),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(175, 0)]
+"values": [Vector2(0, 0), Vector2(480, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_ku6bo"]
@@ -639,7 +640,7 @@ _data = {
 size = Vector2(134.002, 786)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ljyot"]
-size = Vector2(185, 159)
+size = Vector2(270.648, 235.903)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_poeum"]
 shader = ExtResource("11_m8xgj")
@@ -653,6 +654,68 @@ size = Vector2(2705, 126)
 [node name="main dock" type="Node2D"]
 script = ExtResource("1_wjf3g")
 battle_scenarios = Array[PackedScene]([ExtResource("2_xyfop")])
+
+[node name="Paralax_background" type="Node2D" parent="."]
+position = Vector2(-864, 168)
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="Paralax_background"]
+
+[node name="sky" type="ParallaxLayer" parent="Paralax_background/ParallaxBackground"]
+position = Vector2(127, 0)
+motion_scale = Vector2(0, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Paralax_background/ParallaxBackground/sky"]
+position = Vector2(50, -45)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("16_p0rhx")
+
+[node name="back_clouds" type="ParallaxLayer" parent="Paralax_background/ParallaxBackground"]
+position = Vector2(0, 189)
+motion_scale = Vector2(0.5, 0.5)
+motion_mirroring = Vector2(4610, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Paralax_background/ParallaxBackground/back_clouds"]
+position = Vector2(50, -100)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("17_euwtx")
+
+[node name="back_clouds2" type="ParallaxLayer" parent="Paralax_background/ParallaxBackground"]
+position = Vector2(2305, 189)
+motion_scale = Vector2(0.5, 0.5)
+motion_mirroring = Vector2(4610, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Paralax_background/ParallaxBackground/back_clouds2"]
+position = Vector2(50, -100)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("17_euwtx")
+
+[node name="front_clouds" type="ParallaxLayer" parent="Paralax_background/ParallaxBackground"]
+motion_scale = Vector2(0.7, 0.7)
+motion_mirroring = Vector2(4610, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Paralax_background/ParallaxBackground/front_clouds"]
+position = Vector2(50, -28)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("18_7ic20")
+
+[node name="front_clouds2" type="ParallaxLayer" parent="Paralax_background/ParallaxBackground"]
+position = Vector2(2305, 0)
+motion_scale = Vector2(0.7, 0.7)
+motion_mirroring = Vector2(4610, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Paralax_background/ParallaxBackground/front_clouds2"]
+position = Vector2(50, -28)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("18_7ic20")
+
+[node name="water" type="ParallaxLayer" parent="Paralax_background/ParallaxBackground"]
+motion_scale = Vector2(0.8, 0.8)
+motion_mirroring = Vector2(2917.5, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Paralax_background/ParallaxBackground/water"]
+position = Vector2(50, 342)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("19_rr240")
 
 [node name="AnimPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
@@ -696,9 +759,16 @@ shape = SubResource("RectangleShape2D_vft4o")
 [node name="Fishing spot" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Fishing spot"]
-position = Vector2(431, 317)
+position = Vector2(441.5, 344)
+scale = Vector2(-0.864, 1)
 shape = SubResource("RectangleShape2D_ljyot")
 one_way_collision_margin = 0.0
+
+[node name="enemey_refrence_location" type="Sprite2D" parent="Fishing spot"]
+visible = false
+position = Vector2(676, 342)
+scale = Vector2(0.0595561, 0.0595561)
+texture = ExtResource("13_ms7bw")
 
 [node name="damage_donator" parent="." instance=ExtResource("5_krbdy")]
 unique_name_in_owner = true
@@ -714,54 +784,13 @@ combo_resources = Array[ExtResource("7_lru2h")]([ExtResource("8_0wops"), ExtReso
 unique_name_in_owner = true
 z_index = -1
 material = SubResource("ShaderMaterial_poeum")
-offset_left = -458.0
+offset_left = -440.0
 offset_top = -94.0
-offset_right = 1335.0
+offset_right = 1353.0
 offset_bottom = 668.0
 mouse_filter = 2
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-
-[node name="Paralax_background" type="Node2D" parent="."]
-position = Vector2(-864, 168)
-
-[node name="ParallaxBackground" type="ParallaxBackground" parent="Paralax_background"]
-
-[node name="sky" type="ParallaxLayer" parent="Paralax_background/ParallaxBackground"]
-motion_scale = Vector2(0, 0)
-
-[node name="Sprite2D" type="Sprite2D" parent="Paralax_background/ParallaxBackground/sky"]
-position = Vector2(50, -45)
-scale = Vector2(1.5, 1.5)
-texture = ExtResource("16_p0rhx")
-
-[node name="back_clouds" type="ParallaxLayer" parent="Paralax_background/ParallaxBackground"]
-position = Vector2(0, 189)
-motion_scale = Vector2(0.5, 0.5)
-motion_mirroring = Vector2(2305, 0)
-
-[node name="Sprite2D" type="Sprite2D" parent="Paralax_background/ParallaxBackground/back_clouds"]
-position = Vector2(50, -100)
-scale = Vector2(1.5, 1.5)
-texture = ExtResource("17_euwtx")
-
-[node name="front_clouds" type="ParallaxLayer" parent="Paralax_background/ParallaxBackground"]
-motion_scale = Vector2(0.7, 0.7)
-motion_mirroring = Vector2(2305, 0)
-
-[node name="Sprite2D" type="Sprite2D" parent="Paralax_background/ParallaxBackground/front_clouds"]
-position = Vector2(50, -28)
-scale = Vector2(1.5, 1.5)
-texture = ExtResource("18_7ic20")
-
-[node name="water" type="ParallaxLayer" parent="Paralax_background/ParallaxBackground"]
-motion_scale = Vector2(0.8, 0.8)
-motion_mirroring = Vector2(2917.5, 0)
-
-[node name="Sprite2D" type="Sprite2D" parent="Paralax_background/ParallaxBackground/water"]
-position = Vector2(50, 342)
-scale = Vector2(1.5, 1.5)
-texture = ExtResource("19_rr240")
 
 [node name="death_zone" type="Area2D" parent="."]
 position = Vector2(-864, 670)
