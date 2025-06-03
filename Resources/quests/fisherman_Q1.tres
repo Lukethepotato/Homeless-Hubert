@@ -1,0 +1,10 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://rjtew4flbhks"]
+
+[ext_resource type="Script" path="res://Resources/quests/quest.gd" id="1_lj2hm"]
+
+[resource]
+script = ExtResource("1_lj2hm")
+title = "Learning to Fish"
+objective = "Learn how to fish from the Fisherman"
+giver = 1
+type = 1
