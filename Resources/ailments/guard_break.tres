@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="ailment" load_steps=3 format=3 uid="uid://dxpkvj02g53r3"]
+[gd_resource type="Resource" script_class="ailment" load_steps=3 format=3 uid="uid://7v7do66a0kl5"]
 
 [ext_resource type="Texture2D" uid="uid://bgqer2v2l6mii" path="res://art/temp_assets/guard_break.png" id="1_g3abs"]
 [ext_resource type="Script" path="res://Resources/ailments/ailment.gd" id="1_x0676"]
