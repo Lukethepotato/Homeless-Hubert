@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://wc8076dp0nrg"]
+[gd_scene load_steps=8 format=3 uid="uid://wc8076dp0nrg"]
 
 [ext_resource type="Script" path="res://drag_spot_script.gd" id="1_0oyh1"]
 [ext_resource type="Script" path="res://draggable_spot_parent.gd" id="1_kvsg6"]
 [ext_resource type="StyleBox" uid="uid://bx6agehovky2h" path="res://Resources/draggable_spot_bg.tres" id="2_bvog4"]
 [ext_resource type="PackedScene" uid="uid://cahb7rpax867j" path="res://prefabs/drag_preview.tscn" id="3_4jywp"]
+[ext_resource type="Texture2D" uid="uid://pe8j4lbek0ef" path="res://art/temp_assets/KICK.png" id="4_52v1o"]
 [ext_resource type="Script" path="res://prefabs/dynamic_sizing.gd" id="4_nbtrg"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w26rm"]
@@ -61,8 +62,9 @@ offset_left = 5.0
 offset_top = 5.0
 offset_right = 85.0
 offset_bottom = 85.0
+scale = Vector2(1.269, 1.269)
 pivot_offset = Vector2(40, 40)
-expand_mode = 1
+texture = ExtResource("4_52v1o")
 script = ExtResource("1_0oyh1")
 drag_preview = ExtResource("3_4jywp")
 

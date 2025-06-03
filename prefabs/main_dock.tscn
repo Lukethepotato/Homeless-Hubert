@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://cjnea8maf3y5l"]
+[gd_scene load_steps=43 format=3 uid="uid://cjnea8maf3y5l"]
 
 [ext_resource type="PackedScene" uid="uid://co6wwlpta51be" path="res://prefabs/Hubert.tscn" id="1_n63l7"]
 [ext_resource type="Script" path="res://prefabs/main_dock_script.gd" id="1_wjf3g"]
@@ -13,8 +13,12 @@
 [ext_resource type="Script" path="res://Resources/combos/player/player_combo.gd" id="7_lru2h"]
 [ext_resource type="Resource" uid="uid://kq1uq0yxny0g" path="res://Resources/combos/player/slippy_trip.tres" id="8_0wops"]
 [ext_resource type="Shader" path="res://prefabs/ChromaticAb.gdshader" id="11_m8xgj"]
-[ext_resource type="Resource" uid="uid://dp8p62y02o1ch" path="res://Resources/combos/player/guard_break.tres" id="13_sgfk8"]
+[ext_resource type="Resource" path="res://Resources/combos/player/guard_break.tres" id="13_sgfk8"]
 [ext_resource type="Resource" uid="uid://c6pp3ibswpxug" path="res://Resources/combos/player/bolt_cola.tres" id="14_4sovf"]
+[ext_resource type="Texture2D" uid="uid://blye3nk0lnuds" path="res://art/background/paralax_parts/Background.png" id="16_p0rhx"]
+[ext_resource type="Texture2D" uid="uid://ce2os2hitxqmt" path="res://art/background/paralax_parts/back_clouds.png" id="17_euwtx"]
+[ext_resource type="Texture2D" uid="uid://dwe3pc2yfgthd" path="res://art/background/paralax_parts/front_cloud.png" id="18_7ic20"]
+[ext_resource type="Texture2D" uid="uid://ijt6kuihsom1" path="res://art/background/paralax_parts/watrer-export.png" id="19_rr240"]
 
 [sub_resource type="Animation" id="Animation_vog60"]
 length = 0.001
@@ -658,14 +662,13 @@ libraries = {
 script = ExtResource("3_nsanw")
 
 [node name="Hubert" parent="." instance=ExtResource("1_n63l7")]
-position = Vector2(148, 302)
+position = Vector2(148, 321)
 
 [node name="Hubert_Sprites" parent="Hubert" index="0"]
-scale = Vector2(3, 3)
 animation = &"Idle"
 
 [node name="CollisionShape2D" parent="Hubert" index="1"]
-position = Vector2(-2, 30.5)
+position = Vector2(-2, 30)
 
 [node name="main_camera" type="Camera2D" parent="Hubert"]
 unique_name_in_owner = true
@@ -681,7 +684,7 @@ target = "Player"
 [node name="dock" type="StaticBody2D" parent="."]
 position = Vector2(331, 464)
 rotation = 1.57079
-scale = Vector2(1, 2.36)
+scale = Vector2(1, 5.145)
 
 [node name="Sprite2D" type="Sprite2D" parent="dock"]
 scale = Vector2(0.219833, 0.998438)
@@ -718,6 +721,47 @@ offset_bottom = 668.0
 mouse_filter = 2
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="Paralax_background" type="Node2D" parent="."]
+position = Vector2(-864, 168)
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="Paralax_background"]
+
+[node name="sky" type="ParallaxLayer" parent="Paralax_background/ParallaxBackground"]
+motion_scale = Vector2(0, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Paralax_background/ParallaxBackground/sky"]
+position = Vector2(50, -45)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("16_p0rhx")
+
+[node name="back_clouds" type="ParallaxLayer" parent="Paralax_background/ParallaxBackground"]
+position = Vector2(0, 189)
+motion_scale = Vector2(0.5, 0.5)
+motion_mirroring = Vector2(2305, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Paralax_background/ParallaxBackground/back_clouds"]
+position = Vector2(50, -100)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("17_euwtx")
+
+[node name="front_clouds" type="ParallaxLayer" parent="Paralax_background/ParallaxBackground"]
+motion_scale = Vector2(0.7, 0.7)
+motion_mirroring = Vector2(2305, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Paralax_background/ParallaxBackground/front_clouds"]
+position = Vector2(50, -28)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("18_7ic20")
+
+[node name="water" type="ParallaxLayer" parent="Paralax_background/ParallaxBackground"]
+motion_scale = Vector2(0.8, 0.8)
+motion_mirroring = Vector2(2917.5, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Paralax_background/ParallaxBackground/water"]
+position = Vector2(50, 342)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("19_rr240")
 
 [node name="death_zone" type="Area2D" parent="."]
 position = Vector2(-864, 670)
