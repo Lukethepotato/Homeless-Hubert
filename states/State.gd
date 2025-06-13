@@ -1,4 +1,5 @@
 extends Node
+class_name State
 #this is the state script
 #all of the states extend this script
 #they all follow the same format of functions just with diffrent stuff in inside

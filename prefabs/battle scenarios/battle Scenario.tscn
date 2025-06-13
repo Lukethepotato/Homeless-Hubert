@@ -1,4 +1,4 @@
-[gd_scene load_steps=244 format=3 uid="uid://b1h2w6ctilpdy"]
+[gd_scene load_steps=245 format=3 uid="uid://b1h2w6ctilpdy"]
 
 [ext_resource type="Script" path="res://prefabs/battle scenarios/battle_scenario_anim_player.gd" id="1_82kc4"]
 [ext_resource type="Texture2D" uid="uid://7j27av2hvwmc" path="res://art/temp_assets/Goblin_Idle.png" id="1_myu5w"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://gpn4laugdwmm" path="res://prefabs/damage_donator.tscn" id="9_nr2w5"]
 [ext_resource type="PackedScene" uid="uid://dda28oxypebnr" path="res://prefabs/ailment_component.tscn" id="9_wqr2g"]
 [ext_resource type="PackedScene" uid="uid://dmcs2y0srdycl" path="res://prefabs/ailment.tscn" id="11_le8ai"]
+[ext_resource type="Script" path="res://prefabs/battle scenarios/finite_state_machine.gd" id="13_pv8qf"]
 [ext_resource type="Texture2D" uid="uid://b84jvofvhhvkn" path="res://art/temp_assets/AB.jpg" id="14_2hh0n"]
 
 [sub_resource type="Animation" id="Animation_ulm2a"]
@@ -1888,6 +1889,7 @@ target = "Enemy"
 
 [node name="Finite state machine" type="Node2D" parent="Enemy"]
 position = Vector2(-860, -350)
+script = ExtResource("13_pv8qf")
 
 [node name="battle_overlay" parent="." instance=ExtResource("1_pcs3m")]
 
