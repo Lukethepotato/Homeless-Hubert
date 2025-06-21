@@ -11,10 +11,5 @@ class_name State
 func _process(delta: float) -> void:
 	pass
 	
-#sets the attack pattern
-#can be called in your states its up to you (:
-func _set_attack_pattern():
-	%"Attack pattern".attack_pattern = attack_pattern_set
-
 func enter():
 	pass
