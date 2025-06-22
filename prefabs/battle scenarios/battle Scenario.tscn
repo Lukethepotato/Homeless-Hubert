@@ -1,23 +1,26 @@
-[gd_scene load_steps=247 format=3 uid="uid://b1h2w6ctilpdy"]
+[gd_scene load_steps=250 format=3 uid="uid://b1h2w6ctilpdy"]
 
 [ext_resource type="Script" path="res://prefabs/battle scenarios/battle_scenario_anim_player.gd" id="1_82kc4"]
 [ext_resource type="Texture2D" uid="uid://7j27av2hvwmc" path="res://art/temp_assets/Goblin_Idle.png" id="1_myu5w"]
 [ext_resource type="PackedScene" uid="uid://cknmpdmv3eqkh" path="res://prefabs/battle_overlay.tscn" id="1_pcs3m"]
 [ext_resource type="Texture2D" uid="uid://bchmb2qxgwmh0" path="res://art/temp_assets/GoldMedium-Sheet.png" id="2_bdd1a"]
 [ext_resource type="Script" path="res://prefabs/battle scenarios/main_enemy_node_script.gd" id="2_cveda"]
-[ext_resource type="PackedScene" uid="uid://cdymqdr452r68" path="res://prefabs/enemy attack manager stuff/enemy_attack_manager.tscn" id="3_6ero3"]
+[ext_resource type="PackedScene" uid="uid://cdymqdr452r68" path="res://autoloads/enemy attack manager stuff/enemy_attack_manager.tscn" id="3_6ero3"]
 [ext_resource type="Texture2D" uid="uid://blj4lhyboafy2" path="res://art/temp_assets/test_guy_00039_export_Image Frames.png" id="4_bav01"]
-[ext_resource type="PackedScene" uid="uid://chwxkkpa6v2ik" path="res://prefabs/enemy attack manager stuff/components/attack_pattern.tscn" id="4_bfxgc"]
+[ext_resource type="PackedScene" uid="uid://chwxkkpa6v2ik" path="res://autoloads/enemy attack manager stuff/components/attack_pattern.tscn" id="4_bfxgc"]
 [ext_resource type="Texture2D" uid="uid://uki73r6adt2h" path="res://art/temp_assets/192641.png" id="5_ojlmk"]
 [ext_resource type="Resource" uid="uid://caqte230he11q" path="res://Resources/Attacks/Enemy/punch.tres" id="6_115l5"]
-[ext_resource type="PackedScene" uid="uid://diqklicqc4obv" path="res://prefabs/enemy attack manager stuff/components/block_verdict.tscn" id="8_ynsp4"]
+[ext_resource type="PackedScene" uid="uid://diqklicqc4obv" path="res://autoloads/enemy attack manager stuff/components/block_verdict.tscn" id="8_ynsp4"]
 [ext_resource type="PackedScene" uid="uid://gpn4laugdwmm" path="res://prefabs/damage_donator.tscn" id="9_nr2w5"]
 [ext_resource type="PackedScene" uid="uid://dda28oxypebnr" path="res://prefabs/ailment_component.tscn" id="9_wqr2g"]
 [ext_resource type="PackedScene" uid="uid://dmcs2y0srdycl" path="res://prefabs/ailment.tscn" id="11_le8ai"]
-[ext_resource type="Script" path="res://prefabs/battle scenarios/finite_state_machine.gd" id="13_pv8qf"]
+[ext_resource type="Script" path="res://states/finite_state_machine.gd" id="13_pv8qf"]
 [ext_resource type="Texture2D" uid="uid://b84jvofvhhvkn" path="res://art/temp_assets/AB.jpg" id="14_2hh0n"]
-[ext_resource type="Script" path="res://prefabs/battle scenarios/defensive_state.gd" id="14_yidhr"]
-[ext_resource type="Script" path="res://prefabs/battle scenarios/agresive.gd" id="15_prlvk"]
+[ext_resource type="Script" path="res://states/defensive_state.gd" id="14_yidhr"]
+[ext_resource type="Resource" uid="uid://dmqgyh8xxlmhk" path="res://Resources/Attacks/Player/low_block.tres" id="15_52xum"]
+[ext_resource type="Script" path="res://states/agresive.gd" id="15_prlvk"]
+[ext_resource type="Script" path="res://Resources/attack_parent.gd" id="17_nxro4"]
+[ext_resource type="Resource" uid="uid://ctrdselwi2kf1" path="res://Resources/Attacks/Player/punch.tres" id="18_b0mn5"]
 
 [sub_resource type="Animation" id="Animation_ulm2a"]
 length = 0.001
@@ -1876,7 +1879,9 @@ animation = &"Idle"
 shape = SubResource("RectangleShape2D_bhcog")
 
 [node name="Enemy attack manager" parent="Enemy" instance=ExtResource("3_6ero3")]
+unique_name_in_owner = true
 fallback_attack = ExtResource("6_115l5")
+attack_in_turn_index_finished = null
 
 [node name="block_verdict" parent="Enemy/Enemy attack manager" instance=ExtResource("8_ynsp4")]
 position = Vector2(275.657, 143.551)
@@ -1894,11 +1899,14 @@ script = ExtResource("13_pv8qf")
 
 [node name="defensive" type="Node2D" parent="Enemy/Finite state machine"]
 script = ExtResource("14_yidhr")
-attack_pattern_set = null
-attack_deciders_to_disable = null
+attack_deciders_to_disable = Array[NodePath]([NodePath("../../Enemy attack manager/Attack pattern")])
+set_fallback_attack = ExtResource("15_52xum")
 
 [node name="agresive" type="Node2D" parent="Enemy/Finite state machine"]
 script = ExtResource("15_prlvk")
+attack_pattern_set = Array[ExtResource("17_nxro4")]([ExtResource("6_115l5")])
+attack_deciders_to_disable = Array[NodePath]([NodePath("../../Enemy attack manager/block_verdict")])
+set_fallback_attack = ExtResource("18_b0mn5")
 
 [node name="battle_overlay" parent="." instance=ExtResource("1_pcs3m")]
 

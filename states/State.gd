@@ -7,9 +7,13 @@ class_name State
 
 @export var attack_pattern_set:Array[attack_parent] #this is the attack pattern set on "_set_attack_pattern"
 @export var attack_deciders_to_disable: Array[NodePath] # This disables the decided children of enemy attack manager
+@export var set_fallback_attack: attack_parent
 
 func _process(delta: float) -> void:
 	pass
 	
 func enter():
+	pass
+	
+func exit():
 	pass
