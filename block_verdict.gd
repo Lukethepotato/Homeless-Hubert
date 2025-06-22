@@ -1,4 +1,6 @@
-extends Node2D
+extends attack_decider_parent
+class_name block_verdict
+
 @export var block_chance: float = 5
 #number must be from 0 to 10, the higher the more likly they block
 

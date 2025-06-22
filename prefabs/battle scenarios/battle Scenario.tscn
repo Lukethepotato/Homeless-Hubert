@@ -5,12 +5,12 @@
 [ext_resource type="PackedScene" uid="uid://cknmpdmv3eqkh" path="res://prefabs/battle_overlay.tscn" id="1_pcs3m"]
 [ext_resource type="Texture2D" uid="uid://bchmb2qxgwmh0" path="res://art/temp_assets/GoldMedium-Sheet.png" id="2_bdd1a"]
 [ext_resource type="Script" path="res://prefabs/battle scenarios/main_enemy_node_script.gd" id="2_cveda"]
-[ext_resource type="PackedScene" uid="uid://cdymqdr452r68" path="res://autoloads/enemy attack manager stuff/enemy_attack_manager.tscn" id="3_6ero3"]
+[ext_resource type="PackedScene" uid="uid://cdymqdr452r68" path="res://enemy attack deciders/enemy_attack_manager.tscn" id="3_6ero3"]
 [ext_resource type="Texture2D" uid="uid://blj4lhyboafy2" path="res://art/temp_assets/test_guy_00039_export_Image Frames.png" id="4_bav01"]
-[ext_resource type="PackedScene" uid="uid://chwxkkpa6v2ik" path="res://autoloads/enemy attack manager stuff/components/attack_pattern.tscn" id="4_bfxgc"]
+[ext_resource type="PackedScene" uid="uid://chwxkkpa6v2ik" path="res://enemy attack deciders/components/attack_pattern.tscn" id="4_bfxgc"]
 [ext_resource type="Texture2D" uid="uid://uki73r6adt2h" path="res://art/temp_assets/192641.png" id="5_ojlmk"]
 [ext_resource type="Resource" uid="uid://caqte230he11q" path="res://Resources/Attacks/Enemy/punch.tres" id="6_115l5"]
-[ext_resource type="PackedScene" uid="uid://diqklicqc4obv" path="res://autoloads/enemy attack manager stuff/components/block_verdict.tscn" id="8_ynsp4"]
+[ext_resource type="PackedScene" uid="uid://diqklicqc4obv" path="res://enemy attack deciders/components/block_verdict.tscn" id="8_ynsp4"]
 [ext_resource type="PackedScene" uid="uid://gpn4laugdwmm" path="res://prefabs/damage_donator.tscn" id="9_nr2w5"]
 [ext_resource type="PackedScene" uid="uid://dda28oxypebnr" path="res://prefabs/ailment_component.tscn" id="9_wqr2g"]
 [ext_resource type="PackedScene" uid="uid://dmcs2y0srdycl" path="res://prefabs/ailment.tscn" id="11_le8ai"]
@@ -1881,7 +1881,7 @@ shape = SubResource("RectangleShape2D_bhcog")
 [node name="Enemy attack manager" parent="Enemy" instance=ExtResource("3_6ero3")]
 unique_name_in_owner = true
 fallback_attack = ExtResource("6_115l5")
-attack_in_turn_index_finished = null
+attack_in_turn_index_finished = 0
 
 [node name="block_verdict" parent="Enemy/Enemy attack manager" instance=ExtResource("8_ynsp4")]
 position = Vector2(275.657, 143.551)

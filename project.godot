@@ -73,6 +73,7 @@ folder_colors={
 "res://art/": "orange",
 "res://audio/": "green",
 "res://autoloads/": "gray",
+"res://prefabs/": "pink",
 "res://states/": "gray"
 }
 

@@ -1,4 +1,5 @@
-extends Node2D
+extends attack_decider_parent
+class_name attack_pattern_script
 
 # This is a script (Resource?) that contains an enemy's given attack pattern. It also has a function _attack_verdict which returns the next attack the enemy will use.
 
