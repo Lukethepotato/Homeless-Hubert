@@ -102,3 +102,5 @@ extends Node2D
 
 # https://www.youtube.com/watch?v=b0NHrFNZWh0
 # watch it
+
+#brain rot

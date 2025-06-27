@@ -19,7 +19,8 @@ func _ready() -> void:
 func _turn_change():
 	if turns_left <= 0:
 		print_rich("[color=cornflower_blue][shake amp=50.0 freq=5.0][wave amp=50.0 freq=5.0][font_size=50]ailement end");
-		target_data.stat_dictionary[stat] = old_stat_value + (target_data.stat_dictionary[stat] - modified_stat_value)
+		if stat != "none":
+			target_data.stat_dictionary[stat] = old_stat_value + (target_data.stat_dictionary[stat] - modified_stat_value)
 		queue_free()
 	elif current_ailment != null:
 		_damage_take_per_turn()

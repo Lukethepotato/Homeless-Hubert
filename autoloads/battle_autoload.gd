@@ -112,8 +112,8 @@ func update_turn_order():
 		PlayerAutoload.goes_during_state = battle_states.ACTION_1;
 		enemy_node.goes_during_state = battle_states.ACTION_2;
 	else:
-		if previous_extra_turns == 0:
-			extra_turns = int(log(enemy_speed / player_speed)/log(2))
+		#if previous_extra_turns == 0:
+			#extra_turns = int(log(enemy_speed / player_speed)/log(2))
 		
 		PlayerAutoload.goes_during_state = battle_states.ACTION_2;
 		enemy_node.goes_during_state = battle_states.ACTION_1;

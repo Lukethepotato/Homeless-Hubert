@@ -15,12 +15,14 @@ func _process(delta: float) -> void:
 	pass
 	
 func check_state_change_triggers():
-	for i in active_state_change_triggers:
-		if i.trigger_check:
+	for i in active_state_change_triggers.size():
+		if active_state_change_triggers[i].trigger_check():
+			#	print((PlayerAutoload.stat_dictionary[i.player_stat]) + "-" +   BattleAutoload.enemy_node.stat_dictionary[i.enemy_stat] + "=" + (PlayerAutoload.stat_dictionary[i.player_stat] - BattleAutoload.enemy_node.stat_dictionary[i.enemy_stat]))
+			
 			current_state.exit()
 			#calls exit on old state
 			
-			current_state = get_node(NodePath(i.state_change_to)) 
+			current_state = get_node(NodePath(active_state_change_triggers[i].state_change_to)) 
 			#sets new state
 			
 			current_state.enter()

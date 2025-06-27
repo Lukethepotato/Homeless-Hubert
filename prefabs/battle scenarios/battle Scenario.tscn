@@ -1,4 +1,4 @@
-[gd_scene load_steps=253 format=3 uid="uid://b1h2w6ctilpdy"]
+[gd_scene load_steps=254 format=3 uid="uid://b1h2w6ctilpdy"]
 
 [ext_resource type="Script" path="res://prefabs/battle scenarios/battle_scenario_anim_player.gd" id="1_82kc4"]
 [ext_resource type="Texture2D" uid="uid://7j27av2hvwmc" path="res://art/temp_assets/Goblin_Idle.png" id="1_myu5w"]
@@ -16,7 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://dmcs2y0srdycl" path="res://prefabs/ailment.tscn" id="11_le8ai"]
 [ext_resource type="Script" path="res://states/finite_state_machine.gd" id="13_pv8qf"]
 [ext_resource type="Texture2D" uid="uid://b84jvofvhhvkn" path="res://art/temp_assets/AB.jpg" id="14_2hh0n"]
-[ext_resource type="Script" path="res://Resources/state_change_triggers.gd" id="14_en5tp"]
+[ext_resource type="Script" path="res://Resources/state change triggers/state_change_triggers.gd" id="14_en5tp"]
 [ext_resource type="Script" path="res://states/defensive_state.gd" id="14_yidhr"]
 [ext_resource type="Script" path="res://states/agresive.gd" id="15_prlvk"]
 [ext_resource type="Script" path="res://Resources/attack_parent.gd" id="17_nxro4"]
@@ -1846,9 +1846,16 @@ size = Vector2(56.276, 48.6453)
 [sub_resource type="Resource" id="Resource_jjcxd"]
 script = ExtResource("14_en5tp")
 stat_diffrence = 10
-enemy_stat = 1
-player_stat = 1
+enemy_stat = "health"
+player_stat = "health"
 state_change_to = "defensive"
+
+[sub_resource type="Resource" id="Resource_w101e"]
+script = ExtResource("14_en5tp")
+stat_diffrence = -10
+enemy_stat = "health"
+player_stat = "health"
+state_change_to = "agresive"
 
 [node name="Battle Scenario" type="Node2D"]
 
@@ -1906,7 +1913,7 @@ target = "Enemy"
 position = Vector2(-860, -350)
 script = ExtResource("13_pv8qf")
 initial_state = NodePath("basic")
-active_state_change_triggers = Array[ExtResource("14_en5tp")]([SubResource("Resource_jjcxd")])
+active_state_change_triggers = Array[ExtResource("14_en5tp")]([SubResource("Resource_jjcxd"), SubResource("Resource_w101e")])
 
 [node name="defensive" type="Node2D" parent="Enemy/Finite state machine"]
 script = ExtResource("14_yidhr")
