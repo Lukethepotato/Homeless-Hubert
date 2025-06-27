@@ -17,11 +17,6 @@ func _process(delta: float) -> void:
 	
 func _attack_verdict() -> attack_parent:
 	var rand_numb = randf_range(0, 10)
-	var last_attack_done: attack_parent = null
-	
-	if BattleAutoload.enemy_node.attack_history.size() > 0:
-		last_attack_done = BattleAutoload.enemy_node.attack_history[BattleAutoload.enemy_node.attack_history.size() -1]
-	
 	if rand_numb > block_chance && %Ailments_parent._can_change_block():
 	#this decides which block will be done
 		rand_numb = randf_range(0,10)
@@ -29,7 +24,7 @@ func _attack_verdict() -> attack_parent:
 		if BattleAutoload.enemy_node.block_inclination > rand_numb:
 		#this decides what type of block will be done
 		#Higher block inclin: high block more likly, lower block inclin: low blcok more likly
-			if last_attack_done == blocks[1]:
+			if  BattleAutoload.enemy_node.current_block == blocks[1].gives_block:
 				#print("blocks same so no dice")
 				return null
 				#if its already in that block it wont return it
@@ -37,7 +32,7 @@ func _attack_verdict() -> attack_parent:
 				return blocks[1]
 				#returns high block
 		else:
-			if last_attack_done == blocks[0]:
+			if BattleAutoload.enemy_node.current_block == blocks[0].gives_block:
 				#print("blocks same so no dice")
 				return null
 				#if its already in that block it wont return it
