@@ -1,6 +1,7 @@
-[gd_scene load_steps=63 format=3 uid="uid://co6wwlpta51be"]
+[gd_scene load_steps=65 format=3 uid="uid://co6wwlpta51be"]
 
 [ext_resource type="Texture2D" uid="uid://ca237n0njexqp" path="res://art/temp_assets/192637.png" id="2_h37bg"]
+[ext_resource type="Texture2D" uid="uid://bghnuwvd5o5n8" path="res://art/hubert/idle_animt-export.png" id="2_ygqdd"]
 [ext_resource type="Texture2D" uid="uid://bap6raewbggi3" path="res://art/temp_assets/Turret_Shoot-Sheet.png" id="3_fssy4"]
 [ext_resource type="Script" path="res://prefabs/misc_player_anim_player.gd" id="3_q40jc"]
 [ext_resource type="Script" path="res://prefabs/hubert.gd" id="4_dhhqc"]
@@ -8,17 +9,21 @@
 [ext_resource type="Texture2D" uid="uid://o8aoifn8pokw" path="res://art/temp_assets/PC Computer - Code Shifter - Sol Badguy.png" id="5_3ng8d"]
 [ext_resource type="Texture2D" uid="uid://uki73r6adt2h" path="res://art/temp_assets/192641.png" id="6_drfky"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_st2ld"]
-atlas = ExtResource("5_3ng8d")
-region = Rect2(92, 188, 46, 47)
+[sub_resource type="AtlasTexture" id="AtlasTexture_knus5"]
+atlas = ExtResource("2_ygqdd")
+region = Rect2(0, 0, 152, 68)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_7xcbw"]
-atlas = ExtResource("5_3ng8d")
-region = Rect2(138, 188, 46, 47)
+[sub_resource type="AtlasTexture" id="AtlasTexture_efeh8"]
+atlas = ExtResource("2_ygqdd")
+region = Rect2(152, 0, 152, 68)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ilpdm"]
-atlas = ExtResource("5_3ng8d")
-region = Rect2(184, 188, 46, 47)
+[sub_resource type="AtlasTexture" id="AtlasTexture_n0718"]
+atlas = ExtResource("2_ygqdd")
+region = Rect2(304, 0, 152, 68)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3f3xa"]
+atlas = ExtResource("2_ygqdd")
+region = Rect2(456, 0, 152, 68)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_x81rd"]
 atlas = ExtResource("4_tvrug")
@@ -224,13 +229,16 @@ region = Rect2(380, 52, 76, 52)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_st2ld")
+"texture": SubResource("AtlasTexture_knus5")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_7xcbw")
+"texture": SubResource("AtlasTexture_efeh8")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ilpdm")
+"texture": SubResource("AtlasTexture_n0718")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3f3xa")
 }],
 "loop": true,
 "name": &"Idle",
@@ -462,7 +470,8 @@ script = ExtResource("4_dhhqc")
 [node name="Hubert_Sprites" type="AnimatedSprite2D" parent="."]
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_gomab")
-animation = &"bolt_cola_overdose"
+animation = &"Idle"
+frame_progress = 0.34594
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-5.5, 52)

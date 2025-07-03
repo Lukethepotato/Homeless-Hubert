@@ -1,0 +1,10 @@
+[gd_scene load_steps=5 format=3 uid="uid://diqklicqc4obv"]
+
+[ext_resource type="Script" path="res://block_verdict.gd" id="1_lyb4d"]
+[ext_resource type="Script" path="res://Resources/attack_parent.gd" id="2_1vfpc"]
+[ext_resource type="Resource" uid="uid://bh16ayv08j586" path="res://Resources/Attacks/Enemy/low_block.tres" id="3_xebqq"]
+[ext_resource type="Resource" uid="uid://dclukfn5jb5fe" path="res://Resources/Attacks/Enemy/high_block.tres" id="4_hin05"]
+
+[node name="block_verdict" type="Node2D"]
+script = ExtResource("1_lyb4d")
+blocks = Array[ExtResource("2_1vfpc")]([ExtResource("3_xebqq"), ExtResource("4_hin05")])

@@ -57,7 +57,6 @@ translation/add_separator=false
 
 [display]
 
-window/size/mode=3
 window/size/window_width_override=1920
 window/size/window_height_override=1080
 window/stretch/mode="viewport"
@@ -72,7 +71,9 @@ folder_colors={
 "res://Resources/": "red",
 "res://art/": "orange",
 "res://audio/": "green",
-"res://autoloads/": "gray"
+"res://autoloads/": "gray",
+"res://prefabs/": "pink",
+"res://states/": "gray"
 }
 
 [input]

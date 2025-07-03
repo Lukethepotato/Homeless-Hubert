@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://cdymqdr452r68"]
+
+[ext_resource type="Script" path="res://enemy attack deciders/enemy_attack_manager_main.gd" id="1_lfr3i"]
+
+[node name="Enemy attack manager" type="Node2D"]
+process_priority = -1
+script = ExtResource("1_lfr3i")

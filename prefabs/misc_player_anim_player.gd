@@ -99,3 +99,8 @@ extends Node2D
 # Where's my copy of The Metamorphosis and Other Short Stories by Franz Kafka, Mark?
 #thank you jerm dog for helping me reset everything
 #im in UTAH HORAH
+
+# https://www.youtube.com/watch?v=b0NHrFNZWh0
+# watch it
+
+#brain rot
