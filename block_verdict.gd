@@ -26,21 +26,20 @@ func _attack_verdict() -> attack_parent:
 		#Higher block inclin: high block more likly, lower block inclin: low blcok more likly
 			if  BattleAutoload.enemy_node.current_block == blocks[1].gives_block:
 				#print("blocks same so no dice")
-				return null
-				#if its already in that block it wont return it
+				return blocks[0]
+				#if its already in that block it will return the other location
 			else:
 				return blocks[1]
 				#returns high block
 		else:
 			if BattleAutoload.enemy_node.current_block == blocks[0].gives_block:
 				#print("blocks same so no dice")
-				return null
-				#if its already in that block it wont return it
+				return blocks[1]
+				#if its already in that block it will return the other location
 			else:
 				return blocks[0]
 				#returns low block
 	else:
 		return null
-		
 	
 	
