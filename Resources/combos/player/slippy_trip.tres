@@ -1,13 +1,14 @@
-[gd_resource type="Resource" script_class="player_combo" load_steps=5 format=3 uid="uid://kq1uq0yxny0g"]
+[gd_resource type="Resource" script_class="player_combo" load_steps=6 format=3 uid="uid://kq1uq0yxny0g"]
 
 [ext_resource type="Resource" uid="uid://dqd5hkyqexcn5" path="res://Resources/ailments/staggered.tres" id="1_nwiqo"]
 [ext_resource type="Resource" uid="uid://ctrdselwi2kf1" path="res://Resources/Attacks/Player/punch.tres" id="2_14nyn"]
 [ext_resource type="Script" path="res://Resources/attack_parent.gd" id="2_qajqs"]
 [ext_resource type="Script" path="res://Resources/combos/player/player_combo.gd" id="2_txla2"]
+[ext_resource type="Resource" uid="uid://drn7eou7eggjf" path="res://Resources/Attacks/Player/chop.tres" id="4_2s8q0"]
 
 [resource]
 script = ExtResource("2_txla2")
-attacks_in_combo = Array[ExtResource("2_qajqs")]([ExtResource("2_14nyn"), ExtResource("2_14nyn"), ExtResource("2_14nyn")])
+attacks_in_combo = Array[ExtResource("2_qajqs")]([ExtResource("2_14nyn"), ExtResource("4_2s8q0"), ExtResource("2_14nyn")])
 animation_name = "combo_slippy_trip"
 description = "Reduces evasion by 20; Counteracts the effects of Slippery fish."
 ailment_give = ExtResource("1_nwiqo")
