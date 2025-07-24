@@ -14,7 +14,7 @@
 [ext_resource type="Resource" uid="uid://kq1uq0yxny0g" path="res://Resources/combos/player/slippy_trip.tres" id="8_0wops"]
 [ext_resource type="Shader" path="res://prefabs/ChromaticAb.gdshader" id="11_m8xgj"]
 [ext_resource type="Texture2D" uid="uid://b84jvofvhhvkn" path="res://art/temp_assets/AB.jpg" id="13_ms7bw"]
-[ext_resource type="Resource" path="res://Resources/combos/player/guard_break.tres" id="13_sgfk8"]
+[ext_resource type="Resource" uid="uid://dp8p62y02o1ch" path="res://Resources/combos/player/guard_break.tres" id="13_sgfk8"]
 [ext_resource type="Resource" uid="uid://c6pp3ibswpxug" path="res://Resources/combos/player/bolt_cola.tres" id="14_4sovf"]
 [ext_resource type="Texture2D" uid="uid://blye3nk0lnuds" path="res://art/background/paralax_parts/Background.png" id="16_p0rhx"]
 [ext_resource type="Texture2D" uid="uid://ce2os2hitxqmt" path="res://art/background/paralax_parts/back_clouds.png" id="17_euwtx"]
